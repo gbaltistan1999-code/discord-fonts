@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 390" width="640" height="390" role="img">
+  <rect width="640" height="390" rx="18" fill="#14151e"/>
+  <rect x="24" y="30" width="592" height="48" rx="10" fill="#1b1d29"/>
+  <text x="44" y="60" font-size="13" fill="#a4a8bd" font-family="system-ui, sans-serif">Bold</text>
+  <text x="150" y="62" font-size="22" fill="#ececf4" font-family="'Segoe UI Symbol','Apple Symbols','Noto Sans Math',system-ui,sans-serif">𝐃𝐢𝐬𝐜𝐨𝐫𝐝 𝐅𝐨𝐧𝐭𝐬</text>
+  <rect x="24" y="88" width="592" height="48" rx="10" fill="#1b1d29"/>
+  <text x="44" y="118" font-size="13" fill="#a4a8bd" font-family="system-ui, sans-serif">Script</text>
+  <text x="150" y="120" font-size="22" fill="#ececf4" font-family="'Segoe UI Symbol','Apple Symbols','Noto Sans Math',system-ui,sans-serif">𝓓𝓲𝓼𝓬𝓸𝓻𝓭 𝓕𝓸𝓷𝓽𝓼</text>
+  <rect x="24" y="146" width="592" height="48" rx="10" fill="#1b1d29"/>
+  <text x="44" y="176" font-size="13" fill="#a4a8bd" font-family="system-ui, sans-serif">Gothic</text>
+  <text x="150" y="178" font-size="22" fill="#ececf4" font-family="'Segoe UI Symbol','Apple Symbols','Noto Sans Math',system-ui,sans-serif">𝕯𝖎𝖘𝖈𝖔𝖗𝖉 𝕱𝖔𝖓𝖙𝖘</text>
+  <rect x="24" y="204" width="592" height="48" rx="10" fill="#1b1d29"/>
+  <text x="44" y="234" font-size="13" fill="#a4a8bd" font-family="system-ui, sans-serif">Small Caps</text>
+  <text x="150" y="236" font-size="22" fill="#ececf4" font-family="'Segoe UI Symbol','Apple Symbols','Noto Sans Math',system-ui,sans-serif">Dɪꜱᴄᴏʀᴅ Fᴏɴᴛꜱ</text>
+  <rect x="24" y="262" width="592" height="48" rx="10" fill="#1b1d29"/>
+  <text x="44" y="292" font-size="13" fill="#a4a8bd" font-family="system-ui, sans-serif">Bubble</text>
+  <text x="150" y="294" font-size="22" fill="#ececf4" font-family="'Segoe UI Symbol','Apple Symbols','Noto Sans Math',system-ui,sans-serif">ⓓⓘⓢⓒⓞⓡⓓ ⓕⓞⓝⓣⓢ</text>
+  <rect x="24" y="320" width="592" height="48" rx="10" fill="#1b1d29"/>
+  <text x="44" y="350" font-size="13" fill="#a4a8bd" font-family="system-ui, sans-serif">Decorated</text>
+  <text x="150" y="352" font-size="22" fill="#ececf4" font-family="'Segoe UI Symbol','Apple Symbols','Noto Sans Math',system-ui,sans-serif">★彡 𝓓𝓲𝓼𝓬𝓸𝓻𝓭 彡★</text>
+</svg>
