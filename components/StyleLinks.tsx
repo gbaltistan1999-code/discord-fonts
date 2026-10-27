@@ -18,22 +18,22 @@ const cardSamples: Record<string, string> = {
 export function StyleLinks({ exclude }: { exclude?: string }) {
   const pages = stylePages.filter((page) => page.slug !== exclude);
   return (
-    <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+    <ul className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-4">
       {pages.map((page) => (
-        <li key={page.slug}>
+        <li key={page.slug} className="bg-surface">
           <Link
             href={`/discord-font-generator/${page.slug}`}
-            className="group flex h-full flex-col rounded-xl border border-border bg-surface p-4 transition-colors hover:border-accent"
+            className="group flex h-full flex-col gap-1 p-4 transition-colors hover:bg-surface-2 sm:p-5"
           >
             <span aria-hidden="true" className="fancy-text truncate py-1 text-xl text-text">
               {convert(cardSamples[page.slug] ?? "bold-serif", page.name, { zalgoIntensity: 2 })}
             </span>
-            <span className="mt-1 text-sm font-medium text-muted group-hover:text-accent">
-              {page.name} font generator →
-            </span>
+            <span className="text-sm text-muted group-hover:text-text">{page.name} font generator</span>
           </Link>
         </li>
       ))}
+      {/* Keep the hairline grid even when the item count is odd. */}
+      {pages.length % 2 === 1 && <li aria-hidden="true" className="bg-surface" />}
     </ul>
   );
 }

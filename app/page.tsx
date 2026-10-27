@@ -16,6 +16,17 @@ export const metadata = buildMetadata({
   path: "/",
 });
 
+function SectionHeader({ id, title, children }: { id: string; title: string; children: React.ReactNode }) {
+  return (
+    <header className="mb-6 max-w-2xl">
+      <h2 id={id} className="text-2xl font-semibold tracking-tight">
+        {title}
+      </h2>
+      <p className="mt-2 text-muted">{children}</p>
+    </header>
+  );
+}
+
 export default function HomePage() {
   return (
     <>
@@ -31,52 +42,51 @@ export default function HomePage() {
         ]}
       />
 
-      <section className="pt-8 pb-6 sm:pt-10">
-        <h1 className="max-w-4xl text-3xl leading-tight font-extrabold tracking-tight text-balance sm:text-4xl lg:text-5xl">
+      <section className="mx-auto max-w-3xl pt-12 pb-10 text-center sm:pt-20 sm:pb-12">
+        <h1 className="text-3xl leading-tight font-bold tracking-tight text-balance sm:text-[2.75rem]">
           Discord Fonts Generator – Copy &amp; Paste Cool Discord Font Styles
         </h1>
-        <p className="mt-4 max-w-3xl text-base text-muted sm:text-lg">
-          Type below to turn your text into {fontStyles.length}+ Discord fonts instantly: bold, cursive,
-          gothic, bubble, glitch and more. Copy any style with one click and paste it into your display name,
-          server nickname, server name, bio or messages. It is free, works on mobile and needs no app.
+        <p className="mx-auto mt-4 max-w-2xl text-base text-pretty text-muted sm:text-lg">
+          Turn any text into {fontStyles.length} Discord fonts, from bold and cursive to gothic and glitch.
+          Copy a style and paste it into your Discord name, nickname, server or messages. Free, private and no
+          sign-up.
         </p>
       </section>
 
-      <section id="font-styles" aria-label="Discord font generator" className="scroll-mt-4">
+      <section id="font-styles" aria-label="Discord font generator" className="mx-auto max-w-5xl scroll-mt-4">
         <FontGenerator />
       </section>
 
-      <section aria-labelledby="formatting-tool" className="mt-16">
-        <h2 id="formatting-tool" className="text-2xl font-bold tracking-tight">
-          Discord Text Formatting Helper
-        </h2>
-        <p className="mt-2 mb-5 max-w-3xl text-muted">
-          Want bold, spoilers, headers or colored text in a message? Discord’s markdown handles that natively.
-          Type here and copy the ready-made syntax. Full details are in the{" "}
-          <Link href="/discord-text-formatting" className="text-accent underline underline-offset-2">
-            Discord text formatting guide
-          </Link>
-          .
-        </p>
-        <FormattingTool />
-      </section>
+      <div className="mx-auto max-w-5xl">
+        <section aria-labelledby="formatting-tool" className="mt-20 border-t border-border pt-16">
+          <SectionHeader id="formatting-tool" title="Discord Text Formatting Helper">
+            Bold, spoilers, headers and colored text use Discord’s built-in markdown. Type once and copy the
+            syntax, or read the{" "}
+            <Link href="/discord-text-formatting" className="text-text underline underline-offset-4">
+              full formatting guide
+            </Link>
+            .
+          </SectionHeader>
+          <div className="max-w-3xl">
+            <FormattingTool />
+          </div>
+        </section>
 
-      <section aria-labelledby="popular-styles" className="cv-auto mt-16">
-        <h2 id="popular-styles" className="text-2xl font-bold tracking-tight">
-          Popular Discord Font Styles
-        </h2>
-        <p className="mt-2 mb-5 max-w-3xl text-muted">
-          Each Discord font generator below is focused on one look, with tips on where it works best.
-        </p>
-        <StyleLinks />
-      </section>
+        <section aria-labelledby="popular-styles" className="cv-auto mt-20 border-t border-border pt-16">
+          <SectionHeader id="popular-styles" title="Popular Discord Font Styles">
+            Focused generators for one look at a time, each with tips on where it works best.
+          </SectionHeader>
+          <StyleLinks />
+        </section>
 
-      <article className="cv-auto mt-8">
-        <HomeArticle />
-      </article>
-
-      <div className="cv-auto mt-6">
-        <FaqList faqs={homeFaqs} heading="Discord Font FAQ" />
+        <div className="cv-auto mt-20 border-t border-border pt-4">
+          <article className="mx-auto max-w-3xl">
+            <HomeArticle />
+          </article>
+          <div className="mx-auto mt-16 max-w-3xl">
+            <FaqList faqs={homeFaqs} heading="Discord Font FAQ" />
+          </div>
+        </div>
       </div>
     </>
   );

@@ -13,7 +13,7 @@ const siteLinks = [
 
 export function Footer() {
   return (
-    <footer className="mt-16 border-t border-border bg-surface/60">
+    <footer className="mt-24 border-t border-border">
       <div className="mx-auto grid max-w-6xl gap-8 px-4 py-10 sm:grid-cols-2">
         <nav aria-labelledby="footer-styles">
           <h2 id="footer-styles" className="text-sm font-semibold">

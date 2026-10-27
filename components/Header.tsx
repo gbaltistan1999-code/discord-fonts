@@ -4,14 +4,14 @@ import { Logo } from "./Logo";
 import { ThemeToggle } from "./ThemeToggle";
 
 const navLinks = [
-  { href: "/#font-styles", label: "Font Styles", mobile: true },
+  { href: "/#font-styles", label: "Font Styles", mobile: false },
   { href: "/discord-text-formatting", label: "Text Formatting", mobile: true },
   { href: "/about", label: "About", mobile: false },
 ] as const;
 
 export function Header() {
   return (
-    <header className="border-b border-border bg-surface/60">
+    <header className="border-b border-border">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-3 px-4">
         <Link href="/" className="flex shrink-0 items-center gap-2.5 font-bold tracking-tight">
           <Logo />
@@ -23,7 +23,7 @@ export function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className={`rounded-lg px-2 py-2 text-sm font-medium text-muted transition-colors hover:text-text sm:px-3 ${
+              className={`rounded-lg px-2 py-2 text-sm font-medium whitespace-nowrap text-muted transition-colors hover:text-text sm:px-3 ${
                 link.mobile ? "" : "hidden sm:block"
               }`}
             >

@@ -13,7 +13,7 @@ export function DiscordPreview({ styleName, text }: DiscordPreviewProps) {
   return (
     <figure
       aria-label={`Preview of the ${styleName} style as a name and a chat message`}
-      className="overflow-hidden rounded-2xl border border-[#2b2d3a] bg-[#16171f] text-[#e6e7ee] shadow-xl shadow-black/20"
+      className="overflow-hidden rounded-xl border border-[#2b2d3a] bg-[#16171f] text-[#e6e7ee]"
     >
       <figcaption className="flex items-center justify-between gap-2 border-b border-[#2b2d3a] px-4 py-2.5 text-xs">
         <span className="font-semibold tracking-wide text-[#b9bccc] uppercase">Live preview</span>

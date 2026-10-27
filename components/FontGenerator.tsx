@@ -95,8 +95,8 @@ export function FontGenerator({ featured }: FontGeneratorProps) {
   return (
     <div className="relative">
       {/* Input: sticks to the top on small screens while scrolling results */}
-      <div className="sticky top-[env(safe-area-inset-top)] z-20 -mx-4 border-b border-border bg-bg/95 px-4 py-3 backdrop-blur supports-[backdrop-filter]:bg-bg/80 sm:static sm:mx-0 sm:border-0 sm:bg-transparent sm:p-0 sm:backdrop-blur-none">
-        <label htmlFor={inputId} className="mb-2 block text-sm font-semibold">
+      <div className="sticky top-[env(safe-area-inset-top)] z-20 -mx-4 border-b border-border bg-bg/95 px-4 py-3 backdrop-blur supports-[backdrop-filter]:bg-bg/85 sm:static sm:mx-0 sm:border-0 sm:bg-transparent sm:p-0 sm:backdrop-blur-none">
+        <label htmlFor={inputId} className="sr-only">
           Type or paste your text
         </label>
         <div className="relative">
@@ -105,14 +105,14 @@ export function FontGenerator({ featured }: FontGeneratorProps) {
             id={inputId}
             value={text}
             onChange={(e) => setText(e.target.value)}
-            placeholder="Type your name or message to see it in every Discord font…"
-            rows={2}
+            placeholder="Type your text here…"
+            rows={1}
             maxLength={MAX_INPUT}
             spellCheck={false}
             autoComplete="off"
             autoCapitalize="off"
             aria-describedby={hintId}
-            className="block max-h-40 min-h-[3.25rem] w-full resize-y rounded-xl border-2 border-border bg-surface px-4 py-3 pr-24 text-lg text-text shadow-sm transition-colors outline-none placeholder:text-muted/80 focus:border-accent sm:min-h-[4.5rem] sm:text-xl"
+            className="block max-h-40 min-h-14 w-full resize-none rounded-xl border border-border bg-surface px-4 py-3.5 pr-20 text-lg text-text shadow-sm transition-[border-color,box-shadow] outline-none placeholder:text-muted focus:border-accent focus:ring-4 focus:ring-accent/15 sm:min-h-16 sm:px-5 sm:py-4 sm:text-xl [field-sizing:content]"
           />
           {text && (
             <button
@@ -121,14 +121,14 @@ export function FontGenerator({ featured }: FontGeneratorProps) {
                 setText("");
                 inputRef.current?.focus();
               }}
-              className="absolute top-2.5 right-2.5 rounded-lg border border-border bg-surface-2 px-3 py-1.5 text-sm font-medium text-text hover:border-accent"
+              className="absolute top-1/2 right-3 -translate-y-1/2 rounded-md px-2.5 py-1.5 text-sm font-medium text-muted transition-colors hover:bg-surface-2 hover:text-text"
             >
               Clear<span className="sr-only"> text</span>
             </button>
           )}
         </div>
-        <p id={hintId} className="mt-1.5 flex justify-between gap-4 text-xs text-muted">
-          <span>Results update as you type. Click any style to copy it.</span>
+        <p id={hintId} className="mt-2 flex justify-between gap-4 px-1 text-xs text-muted">
+          <span>Updates as you type. Click any result to copy it.</span>
           <span className="shrink-0 tabular-nums">{visibleLength(text)} chars</span>
         </p>
       </div>
@@ -136,29 +136,31 @@ export function FontGenerator({ featured }: FontGeneratorProps) {
       <div
         role="group"
         aria-label="Filter font styles by category"
-        className="-mx-4 mt-4 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:px-0"
+        className="-mx-4 mt-6 flex gap-1 overflow-x-auto px-4 sm:mx-0 sm:flex-wrap sm:px-0"
       >
-        {filters.map((f) => (
-          <button
-            key={f.id}
-            type="button"
-            aria-pressed={filter === f.id}
-            onClick={() => {
-              setFilter(f.id);
-              setLimit(PAGE_SIZE);
-            }}
-            className={`shrink-0 rounded-full border px-3.5 py-1.5 text-sm font-medium transition-colors ${
-              filter === f.id
-                ? "border-accent-solid bg-accent-solid text-on-accent"
-                : "border-border bg-surface text-text hover:border-accent"
-            }`}
-          >
-            {f.label} <span className="opacity-75">{f.count}</span>
-          </button>
-        ))}
+        {filters.map((f) => {
+          const active = filter === f.id;
+          return (
+            <button
+              key={f.id}
+              type="button"
+              aria-pressed={active}
+              onClick={() => {
+                setFilter(f.id);
+                setLimit(PAGE_SIZE);
+              }}
+              className={`shrink-0 rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
+                active ? "bg-text text-bg" : "text-muted hover:bg-surface-2 hover:text-text"
+              }`}
+            >
+              {f.label}
+              <span className={`ml-1.5 tabular-nums ${active ? "opacity-70" : ""}`}>{f.count}</span>
+            </button>
+          );
+        })}
       </div>
 
-      <div className="mt-4 grid gap-6 lg:grid-cols-[minmax(0,1fr)_20rem]">
+      <div className="mt-4 grid gap-6 lg:grid-cols-[minmax(0,1fr)_18rem]">
         <aside aria-label="Preview" className="order-first lg:order-none lg:col-start-2 lg:row-start-1">
           <div className="lg:sticky lg:top-6">
             <DiscordPreview styleName={selected.name} text={previewText} />
@@ -166,7 +168,10 @@ export function FontGenerator({ featured }: FontGeneratorProps) {
         </aside>
 
         <div className="cv-list min-w-0 lg:col-start-1 lg:row-start-1">
-          <ul aria-label="Converted text styles" className="space-y-2.5">
+          <ul
+            aria-label="Converted text styles"
+            className="divide-y divide-border rounded-xl border border-border bg-surface"
+          >
             {results.map(({ style, value }, index) => (
               <StyleRow
                 key={style.id}
@@ -186,9 +191,9 @@ export function FontGenerator({ featured }: FontGeneratorProps) {
             <button
               type="button"
               onClick={() => setLimit((n) => n + PAGE_SIZE)}
-              className="mt-4 w-full rounded-xl border border-border bg-surface px-4 py-3 font-semibold text-text transition-colors hover:border-accent"
+              className="mt-3 w-full rounded-xl border border-border px-4 py-3 text-sm font-medium text-muted transition-colors hover:bg-surface hover:text-text"
             >
-              Load more fonts ({filtered.length - limit} more)
+              Show {Math.min(PAGE_SIZE, filtered.length - limit)} more styles
             </button>
           )}
         </div>
@@ -224,46 +229,47 @@ function StyleRow({
 
   return (
     <li
-      className={`rounded-xl border bg-surface p-3 transition-colors sm:p-4 ${
-        selected ? "border-accent" : "border-border hover:border-accent/60"
+      className={`px-4 py-3 transition-colors first:rounded-t-xl last:rounded-b-xl sm:px-5 ${
+        selected ? "bg-surface-2 shadow-[inset_2px_0_0_var(--accent)]" : "hover:bg-surface-2/60"
       }`}
     >
-      <div className="flex flex-wrap items-center gap-2 text-xs">
-        <span className="font-semibold text-muted">{style.name}</span>
-        {style.warning && <WarningBadge text={style.warning} up={tooltipUp} />}
-        {tooLong && (
-          <span className="rounded-full bg-surface-2 px-2 py-0.5 font-medium text-muted">
-            Over {DISCORD_NAME_LIMIT} chars
-          </span>
-        )}
-      </div>
-
-      <div className="mt-1.5 flex items-center gap-3">
-        {/* Mouse/touch shortcut; keyboard users use the Copy button. */}
-        <p
-          onClick={onCopy}
-          title="Click to copy"
-          className="fancy-text min-w-0 flex-1 cursor-pointer text-lg leading-snug text-text sm:text-xl"
-        >
-          {value}
-        </p>
+      <div className="flex items-center gap-3 sm:gap-4">
+        <div className="min-w-0 flex-1 sm:flex sm:items-center sm:gap-4">
+          <div className="flex items-center gap-1.5 text-xs text-muted sm:w-36 sm:shrink-0">
+            <span className="truncate">{style.name}</span>
+            {style.warning && <WarningBadge text={style.warning} up={tooltipUp} />}
+            {tooLong && (
+              <span title={`Over ${DISCORD_NAME_LIMIT} characters`} className="tabular-nums">
+                · {DISCORD_NAME_LIMIT}+
+              </span>
+            )}
+          </div>
+          {/* Mouse/touch shortcut; keyboard users use the Copy button. */}
+          <p
+            onClick={onCopy}
+            title="Click to copy"
+            className="fancy-text mt-0.5 min-w-0 flex-1 cursor-pointer text-lg leading-snug text-text sm:mt-0"
+          >
+            {value}
+          </p>
+        </div>
         <button
           type="button"
           onClick={onCopy}
-          className={`shrink-0 rounded-lg px-3.5 py-2 text-sm font-semibold transition-colors ${
+          className={`shrink-0 rounded-md border px-3 py-1.5 text-sm font-medium transition-colors ${
             copied
-              ? "bg-success/15 text-success"
-              : "bg-accent-soft text-accent hover:bg-accent-solid hover:text-on-accent"
+              ? "border-transparent text-success"
+              : "border-border text-text hover:border-text/30 hover:bg-surface"
           }`}
         >
-          {copied ? "Copied!" : "Copy"}
+          {copied ? "Copied" : "Copy"}
           <span className="sr-only"> {style.name} text</span>
         </button>
       </div>
 
       {style.id === "zalgo" && (
-        <div className="mt-3 flex items-center gap-3 text-sm">
-          <label htmlFor={sliderId} className="shrink-0 font-medium text-muted">
+        <div className="mt-2 flex items-center gap-3 text-xs sm:pl-40">
+          <label htmlFor={sliderId} className="shrink-0 text-muted">
             Intensity
           </label>
           <input
@@ -273,9 +279,9 @@ function StyleRow({
             max={ZALGO_MAX}
             value={zalgoIntensity}
             onChange={(e) => onZalgoChange(Number(e.target.value))}
-            className="w-full max-w-xs accent-[var(--accent-solid)]"
+            className="w-full max-w-48 accent-[var(--accent-solid)]"
           />
-          <span className="w-6 text-right tabular-nums text-muted">{zalgoIntensity}</span>
+          <span className="w-5 text-right text-muted tabular-nums">{zalgoIntensity}</span>
         </div>
       )}
     </li>
@@ -285,23 +291,24 @@ function StyleRow({
 function WarningBadge({ text, up }: { text: string; up: boolean }) {
   const tipId = useId();
   return (
-    <span className="group relative inline-flex">
+    <span className="group relative inline-flex shrink-0">
       <button
         type="button"
+        aria-label="Limited support"
         aria-describedby={tipId}
         onKeyDown={(e) => e.key === "Escape" && e.currentTarget.blur()}
-        className="inline-flex items-center gap-1 rounded-full bg-warning-soft px-2 py-0.5 font-medium text-warning"
+        className="inline-flex size-5 items-center justify-center rounded text-warning hover:bg-warning-soft"
       >
         <svg aria-hidden="true" viewBox="0 0 20 20" className="size-3.5" fill="currentColor">
           <path d="M10 2 1 18h18L10 2Zm0 5 .1 0c.5 0 .9.4.9.9l-.3 4.3a.7.7 0 0 1-1.4 0L9 7.9c0-.5.4-.9 1-.9Zm0 9a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z" />
         </svg>
-        Limited support
       </button>
       <span
         role="tooltip"
         id={tipId}
-        className={`invisible absolute left-0 z-30 ${up ? "bottom-full mb-2" : "top-full mt-2"} w-72 max-w-[80vw] rounded-lg border border-border bg-surface-2 p-3 text-xs leading-relaxed font-normal text-text opacity-0 shadow-xl transition-opacity group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100`}
+        className={`invisible absolute left-0 z-30 ${up ? "bottom-full mb-2" : "top-full mt-2"} w-72 max-w-[80vw] rounded-lg border border-border bg-surface p-3 text-xs leading-relaxed font-normal text-text opacity-0 shadow-xl transition-opacity group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100`}
       >
+        <strong className="mb-1 block font-semibold">Limited support</strong>
         {text} {USERNAME_NOTE}
       </span>
     </span>
