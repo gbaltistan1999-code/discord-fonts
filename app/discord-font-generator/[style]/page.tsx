@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { AdSlot } from "@/components/AdSlot";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { FontGenerator } from "@/components/FontGenerator";
 import { JsonLd } from "@/components/JsonLd";
@@ -48,7 +47,7 @@ export default async function StylePageRoute({ params }: PageProps) {
       </div>
 
       <section aria-label={`${page.name} Discord font generator`}>
-        <FontGenerator featured={page.featured} sidebar={<AdSlot variant="sidebar" />} />
+        <FontGenerator featured={page.featured} />
       </section>
 
       <article className="prose-content cv-auto mt-12">
@@ -59,9 +58,7 @@ export default async function StylePageRoute({ params }: PageProps) {
         </p>
       </article>
 
-      <AdSlot variant="inContent" className="my-10" />
-
-      <section aria-labelledby="more-styles" className="cv-auto">
+      <section aria-labelledby="more-styles" className="cv-auto mt-12">
         <h2 id="more-styles" className="mb-4 text-2xl font-bold tracking-tight">
           More Discord Font Generators
         </h2>

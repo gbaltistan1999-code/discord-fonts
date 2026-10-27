@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
-import { AdSlot } from "@/components/AdSlot";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { ToastProvider } from "@/components/ToastProvider";
@@ -51,9 +50,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </a>
         <ToastProvider>
           <Header />
-          <div className="mx-auto max-w-6xl px-4 pt-4">
-            <AdSlot variant="leaderboard" />
-          </div>
           <main id="main" className="mx-auto max-w-6xl px-4">
             {children}
           </main>

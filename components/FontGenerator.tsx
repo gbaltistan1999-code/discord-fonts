@@ -33,11 +33,9 @@ export interface FeaturedStyles {
 interface FontGeneratorProps {
   /** Pre-filter the tool, e.g. on a style landing page. */
   featured?: FeaturedStyles;
-  /** Server-rendered extra content for the sidebar (e.g. an ad slot). */
-  sidebar?: React.ReactNode;
 }
 
-export function FontGenerator({ featured, sidebar }: FontGeneratorProps) {
+export function FontGenerator({ featured }: FontGeneratorProps) {
   const inputId = useId();
   const hintId = useId();
   const inputRef = useRef<HTMLTextAreaElement>(null);
@@ -162,9 +160,8 @@ export function FontGenerator({ featured, sidebar }: FontGeneratorProps) {
 
       <div className="mt-4 grid gap-6 lg:grid-cols-[minmax(0,1fr)_20rem]">
         <aside aria-label="Preview" className="order-first lg:order-none lg:col-start-2 lg:row-start-1">
-          <div className="space-y-6 lg:sticky lg:top-6">
+          <div className="lg:sticky lg:top-6">
             <DiscordPreview styleName={selected.name} text={previewText} />
-            {sidebar}
           </div>
         </aside>
 

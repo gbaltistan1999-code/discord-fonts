@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { AdSlot } from "@/components/AdSlot";
 import { FaqList } from "@/components/FaqList";
 import { FontGenerator } from "@/components/FontGenerator";
 import { FormattingTool } from "@/components/FormattingTool";
@@ -44,7 +43,7 @@ export default function HomePage() {
       </section>
 
       <section id="font-styles" aria-label="Discord font generator" className="scroll-mt-4">
-        <FontGenerator sidebar={<AdSlot variant="sidebar" />} />
+        <FontGenerator />
       </section>
 
       <section aria-labelledby="formatting-tool" className="mt-16">

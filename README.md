@@ -32,7 +32,7 @@ npm run dev                  # http://localhost:3000
 
 ## Configuration
 
-Everything site-wide lives in **`lib/site.ts`**: site name, base URL, default title and description, contact email, footer disclaimer, ad toggle and the "last updated" date used in the sitemap and legal pages.
+Everything site-wide lives in **`lib/site.ts`**: site name, base URL, default title and description, contact email, footer disclaimer and the "last updated" date used in the sitemap and legal pages.
 
 The base URL is resolved in this order:
 
@@ -46,7 +46,7 @@ It drives canonical URLs, Open Graph tags, JSON-LD, `sitemap.xml` and `robots.tx
 
 ```
 app/
-  layout.tsx                       Root layout: fonts, theme script, header, footer, leaderboard ad slot
+  layout.tsx                       Root layout: fonts, theme script, header, footer
   page.tsx                         Homepage: generator, formatting helper, style links, article, FAQ
   discord-font-generator/[style]/  8 statically generated style pages (+ per-page OG image)
   discord-text-formatting/         Markdown guide and tool
@@ -59,7 +59,6 @@ components/
   FormattingTool.tsx (client)      Discord markdown + ANSI color helper
   ToastProvider.tsx  (client)      Copy action + aria-live "Copied!" toast
   ThemeToggle.tsx    (client)      Light/dark toggle that follows the OS until changed
-  AdSlot.tsx                       Fixed-size ad placeholders (no ad code loaded)
   Header, Footer, Breadcrumbs, JsonLd, FaqList, StyleLinks, SimplePage, Logo
 lib/
   fonts.ts                         Unicode engine: one CharMap per style + pure transform functions
@@ -81,10 +80,6 @@ public/                            Static assets
 ### Adding a style landing page
 
 Add an entry to `stylePages` in `content/style-pages.tsx` (slug, H1, title, description, intro, featured styles and body copy). The page, sitemap entry, OG image, footer link and internal links are generated automatically.
-
-### Ads
-
-`AdSlot` reserves the exact final size of each slot (leaderboard, in-content and the desktop sidebar), so turning ads on later causes no layout shift. No ad scripts are loaded. When you add a provider, render its tag inside `AdSlot` and update the privacy policy in `content/legal.tsx` (cookie consent is required for UK visitors).
 
 ## Deploying to Vercel
 

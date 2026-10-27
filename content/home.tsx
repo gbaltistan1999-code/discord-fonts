@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { AdSlot } from "@/components/AdSlot";
 
 const styleLink = (slug: string, label: string) => (
   <Link href={`/discord-font-generator/${slug}`}>{label}</Link>
@@ -141,8 +140,6 @@ export function HomeArticle() {
         A good rule is that anything people need to read quickly, like a name they want to @mention, should
         use a clean style. Save heavy decoration for places where it is purely for fun.
       </p>
-
-      <AdSlot variant="inContent" />
 
       <h2 id="discord-text-formatting">Discord Text Formatting (Markdown) Explained</h2>
       <p>

@@ -1,4 +1,3 @@
-import { AdSlot } from "@/components/AdSlot";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { FormattingTool } from "@/components/FormattingTool";
 import { JsonLd } from "@/components/JsonLd";
@@ -32,9 +31,7 @@ export default function DiscordTextFormattingPage() {
         <FormattingTool headingLevel="h2" />
       </section>
 
-      <AdSlot variant="inContent" className="my-10" />
-
-      <article className="cv-auto">
+      <article className="cv-auto mt-12">
         <FormattingGuide />
       </article>
     </>
