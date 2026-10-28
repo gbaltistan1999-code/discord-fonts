@@ -22,6 +22,8 @@ export const siteConfig = {
   ogImageAlt: "Discord Fonts generator – copy and paste cool Discord font styles",
   contactEmail: "eshfaqihmed@gmail.com",
   disclaimer: "This site is not affiliated with or endorsed by Discord Inc.",
+  /** Google Search Console HTML-tag verification token (rendered as google-site-verification). */
+  googleSiteVerification: "9s4EYvOAQb0JA1TvevOu3OSVYPhO9LHHWHpWL1-qan0",
   /** Used as dateModified / sitemap lastModified. Update when content changes. */
   lastUpdated: "2026-10-27",
 } as const;

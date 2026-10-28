@@ -22,6 +22,7 @@ export const metadata: Metadata = {
     follow: true,
     googleBot: { index: true, follow: true, "max-image-preview": "large" },
   },
+  verification: { google: siteConfig.googleSiteVerification },
 };
 
 export const viewport: Viewport = {
