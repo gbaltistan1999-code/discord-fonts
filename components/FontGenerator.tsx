@@ -33,6 +33,42 @@ function makeRandomStyle(seed: number, index: number): FontStyle {
 
 type Filter = "featured" | "all" | FontCategory;
 
+/** Each filter tab gets its own colour: a soft tint when idle, solid when selected (white text stays above 4.5:1). */
+const FILTER_COLORS: Record<Filter, { idle: string; active: string }> = {
+  featured: {
+    idle: "bg-violet-50 text-violet-700 hover:bg-violet-100 dark:bg-violet-500/15 dark:text-violet-300 dark:hover:bg-violet-500/25",
+    active: "bg-linear-to-r from-violet-600 to-fuchsia-600 text-white",
+  },
+  all: {
+    idle: "bg-indigo-50 text-indigo-700 hover:bg-indigo-100 dark:bg-indigo-500/15 dark:text-indigo-300 dark:hover:bg-indigo-500/25",
+    active: "bg-indigo-600 text-white",
+  },
+  bold: {
+    idle: "bg-rose-50 text-rose-700 hover:bg-rose-100 dark:bg-rose-500/15 dark:text-rose-300 dark:hover:bg-rose-500/25",
+    active: "bg-rose-600 text-white",
+  },
+  cursive: {
+    idle: "bg-pink-50 text-pink-700 hover:bg-pink-100 dark:bg-pink-500/15 dark:text-pink-300 dark:hover:bg-pink-500/25",
+    active: "bg-pink-700 text-white",
+  },
+  gothic: {
+    idle: "bg-purple-50 text-purple-700 hover:bg-purple-100 dark:bg-purple-500/15 dark:text-purple-300 dark:hover:bg-purple-500/25",
+    active: "bg-purple-700 text-white",
+  },
+  decorative: {
+    idle: "bg-amber-50 text-amber-800 hover:bg-amber-100 dark:bg-amber-500/15 dark:text-amber-300 dark:hover:bg-amber-500/25",
+    active: "bg-amber-700 text-white",
+  },
+  aesthetic: {
+    idle: "bg-teal-50 text-teal-700 hover:bg-teal-100 dark:bg-teal-500/15 dark:text-teal-300 dark:hover:bg-teal-500/25",
+    active: "bg-teal-700 text-white",
+  },
+  glitch: {
+    idle: "bg-emerald-50 text-emerald-700 hover:bg-emerald-100 dark:bg-emerald-500/15 dark:text-emerald-300 dark:hover:bg-emerald-500/25",
+    active: "bg-emerald-700 text-white",
+  },
+};
+
 export interface FeaturedStyles {
   label: string;
   ids: readonly string[];
@@ -157,7 +193,7 @@ export function FontGenerator({ featured, sampleText = SAMPLE_TEXT }: FontGenera
       <div
         role="group"
         aria-label="Filter font styles by category"
-        className="-mx-4 mt-6 flex gap-1 overflow-x-auto px-4 sm:mx-0 sm:flex-wrap sm:px-0"
+        className="-mx-4 mt-6 flex gap-1.5 overflow-x-auto px-4 sm:mx-0 sm:flex-wrap sm:px-0"
       >
         {filters.map((f) => {
           const active = filter === f.id;
@@ -171,11 +207,11 @@ export function FontGenerator({ featured, sampleText = SAMPLE_TEXT }: FontGenera
                 setLimit(PAGE_SIZE);
               }}
               className={`shrink-0 rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
-                active ? "bg-text text-bg" : "text-muted hover:bg-surface-2 hover:text-text"
+                active ? `${FILTER_COLORS[f.id].active} shadow-sm` : FILTER_COLORS[f.id].idle
               }`}
             >
               {f.label}
-              <span className={`ml-1.5 tabular-nums ${active ? "opacity-70" : ""}`}>{f.count}</span>
+              <span className={`ml-1.5 tabular-nums ${active ? "opacity-80" : "opacity-70"}`}>{f.count}</span>
             </button>
           );
         })}
