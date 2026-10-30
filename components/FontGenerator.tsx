@@ -339,7 +339,7 @@ export function FontGenerator({ featured, sampleText = SAMPLE_TEXT }: FontGenera
         <div className="mt-4 flex flex-col gap-3 lg:flex-row lg:items-center">
           <div className="relative flex-1">
             <label htmlFor={searchId} className="sr-only">
-              Search styles
+              Find a style by name
             </label>
             <span className="pointer-events-none absolute top-1/2 left-3.5 -translate-y-1/2 text-muted">
               <SearchIcon />
@@ -352,7 +352,7 @@ export function FontGenerator({ featured, sampleText = SAMPLE_TEXT }: FontGenera
                 setQuery(e.target.value);
                 setLimit(PAGE_SIZE);
               }}
-              placeholder="Search styles, such as bold or script"
+              placeholder="Find a style by name, e.g. bold or script"
               autoComplete="off"
               className="h-12 w-full rounded-xl border border-border bg-bg pr-4 pl-11 text-base text-text outline-none placeholder:text-muted focus:border-accent focus:ring-4 focus:ring-accent/15"
             />
@@ -408,15 +408,38 @@ export function FontGenerator({ featured, sampleText = SAMPLE_TEXT }: FontGenera
               {results.map((result) => renderRow(result, true))}
             </ul>
           ) : (
-            <p className="rounded-2xl border border-dashed border-border bg-surface px-5 py-10 text-center text-sm text-muted">
-              {search
-                ? `No styles match “${query.trim()}”. Try another word, such as bold, script or bubble.`
-                : scope === "favorites"
-                  ? "No favorites yet. Tap the heart on any style to save it here."
-                  : scope === "recent"
-                    ? "Styles you copy will show up here."
-                    : "No styles in this group."}
-            </p>
+            <div className="rounded-2xl border border-dashed border-border bg-surface px-5 py-10 text-center text-sm text-muted">
+              {search ? (
+                <>
+                  <p>
+                    No style is called “{query.trim()}”. This box finds styles by name, such as bold, script
+                    or bubble.
+                  </p>
+                  {/* Visitors often type the text they want converted here, so offer to move it. */}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setText(query.trim());
+                      setQuery("");
+                      setScope("all");
+                      inputRef.current?.focus();
+                      inputRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+                    }}
+                    className="mt-4 rounded-full bg-accent-solid px-5 py-2.5 text-sm font-semibold text-on-accent shadow-sm transition-opacity hover:opacity-90"
+                  >
+                    Convert “{query.trim()}” instead
+                  </button>
+                </>
+              ) : (
+                <p>
+                  {scope === "favorites"
+                    ? "No favorites yet. Tap the heart on any style to save it here."
+                    : scope === "recent"
+                      ? "Styles you copy will show up here."
+                      : "No styles in this group."}
+                </p>
+              )}
+            </div>
           )}
 
           {browsingAll && limit < matched.length && (
