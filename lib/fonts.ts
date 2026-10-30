@@ -352,16 +352,6 @@ const randomEmoji: Transform = (text) => {
   return `${pick()}${pick()} ${mixed(5)(text)} ${pick()}${pick()}`;
 };
 
-const WARN = {
-  combining:
-    "Uses combining marks that can look misaligned on some phones, and Discord may strip them from names.",
-  rare: "Uses newer or rare Unicode symbols that can show as empty boxes on older devices.",
-  partial: "Not every letter has a matching symbol, so some characters stay plain.",
-  zalgo:
-    "Stacked marks can overlap nearby messages. Many servers block zalgo in names and nicknames, and AutoMod may filter it.",
-  hieroglyph: "The bird symbols are Egyptian hieroglyphs, which some older devices cannot display.",
-} as const;
-
 // ---------------------------------------------------------------------------
 // Style registry (display order)
 // ---------------------------------------------------------------------------
@@ -457,21 +447,18 @@ export const fontStyles: readonly FontStyle[] = [
     name: "Parenthesized",
     categories: ["decorative"],
     transform: mapWith("parenthesized"),
-    warning: WARN.rare,
   },
   {
     id: "upside-down",
     name: "Upside Down",
     categories: ["glitch"],
     transform: (text) => reverseText(applyMap(text, charMaps.upsideDown)),
-    warning: WARN.rare,
   },
   {
     id: "mirrored",
     name: "Mirrored",
     categories: ["glitch"],
     transform: (text) => reverseText(applyMap(text, charMaps.mirrored)),
-    warning: WARN.rare,
   },
   { id: "reversed", name: "Reversed", categories: ["glitch"], transform: reverseText },
   { id: "strikethrough", name: "Strikethrough", categories: ["glitch"], transform: marks("̶", true) },
@@ -481,30 +468,26 @@ export const fontStyles: readonly FontStyle[] = [
     name: "Double Underline",
     categories: ["aesthetic"],
     transform: marks("̳", true),
-    warning: WARN.combining,
   },
-  { id: "slashed", name: "Slashed", categories: ["glitch"], transform: marks("̸"), warning: WARN.combining },
+  { id: "slashed", name: "Slashed", categories: ["glitch"], transform: marks("̸") },
   {
     id: "overline",
     name: "Overline",
     categories: ["glitch"],
     transform: marks("̅", true),
-    warning: WARN.combining,
   },
   {
     id: "wavy",
     name: "Wavy Underline",
     categories: ["glitch"],
     transform: marks("̰"),
-    warning: WARN.combining,
   },
-  { id: "dotted", name: "Dotted", categories: ["glitch"], transform: marks("̤"), warning: WARN.combining },
+  { id: "dotted", name: "Dotted", categories: ["glitch"], transform: marks("̤") },
   {
     id: "zalgo",
     name: "Zalgo Glitch",
     categories: ["glitch"],
     transform: (text, options) => zalgo(text, options?.zalgoIntensity),
-    warning: WARN.zalgo,
   },
   { id: "wide-spaced", name: "Wide Spaced", categories: ["aesthetic"], transform: (text) => spaceOut(text) },
   {
@@ -519,7 +502,6 @@ export const fontStyles: readonly FontStyle[] = [
     name: "Squiggle",
     categories: ["decorative"],
     transform: mapWith("squiggle"),
-    warning: WARN.rare,
   },
   { id: "soft-glyphs", name: "Soft Glyphs", categories: ["aesthetic"], transform: mapWith("softGlyphs") },
   { id: "greekish", name: "Greek Style", categories: ["decorative"], transform: mapWith("greekish") },
@@ -586,7 +568,6 @@ export const fontStyles: readonly FontStyle[] = [
     name: "Crossbones",
     categories: ["decorative", "bold"],
     transform: wrap("×͜× ", "", mapWith("boldItalicSans")),
-    warning: WARN.combining,
   },
   {
     id: "kawaii",
@@ -623,7 +604,6 @@ export const fontStyles: readonly FontStyle[] = [
     name: "Birds",
     categories: ["aesthetic", "decorative"],
     transform: wrap("𓆩 ", " 𓆪", mapWith("script")),
-    warning: WARN.hieroglyph,
   },
   {
     id: "music",
@@ -894,14 +874,12 @@ export const fontStyles: readonly FontStyle[] = [
     name: "Sparkle Hearts",
     categories: ["decorative"],
     transform: wrap("💖´ *•.¸♥¸.•** ", " **•.¸♥¸.•*´💖", marks("̇⁞")),
-    warning: WARN.combining,
   },
   {
     id: "heart-arrows",
     name: "Heart Arrows",
     categories: ["decorative"],
     transform: wrap("♥♥♥.¸•♥`.•♥`¸ ", " ¸.•♥`.•♥`¸.♥♥♥", marks("̣̇→")),
-    warning: WARN.combining,
   },
   {
     id: "heart-chain",
@@ -926,21 +904,18 @@ export const fontStyles: readonly FontStyle[] = [
     name: "Heart Melody",
     categories: ["decorative"],
     transform: wrap("(¯`'•.¸♥♫♪♥(◠‿◠)♥♫♪♥¸.•'´¯) ", " (¯`'•.¸♥♫♪♥(◠‿◠)♥♫♪♥¸.•'´¯)", mapWith("subscript")),
-    warning: WARN.partial,
   },
   {
     id: "checkered",
     name: "Checkered",
     categories: ["decorative"],
     transform: wrap("▀▄▀▄▀▄ ", " ▀▄▀▄▀▄", mapWith("squared")),
-    warning: WARN.rare,
   },
   {
     id: "squared-melody",
     name: "Squared Melody",
     categories: ["decorative"],
     transform: wrap(".•♫•♬• ", " •♬•♫•.", mapWith("squared")),
-    warning: WARN.rare,
   },
   {
     id: "angle-melody",
@@ -959,21 +934,18 @@ export const fontStyles: readonly FontStyle[] = [
     name: "Blade",
     categories: ["decorative", "glitch"],
     transform: wrap("░▒▓█►─═ ", " ═─◄█▓▒░", marks("̇⁞")),
-    warning: WARN.combining,
   },
   {
     id: "rainbow-hearts",
     name: "Rainbow Hearts",
     categories: ["decorative"],
     transform: wrap("💙💜💛🧡❤️ ", " ❤️🧡💛💜💙", marks("̊⁚")),
-    warning: WARN.combining,
   },
   {
     id: "equalizer",
     name: "Equalizer",
     categories: ["decorative", "glitch"],
     transform: wrap("_▂▃▄▅▆▇█ ", " █▇▆▅▄▃▂_", marks("̣̇→")),
-    warning: WARN.combining,
   },
   {
     id: "twinkle",
