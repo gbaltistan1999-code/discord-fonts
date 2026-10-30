@@ -439,21 +439,18 @@ export const fontStyles: readonly FontStyle[] = [
     name: "Bubble Dark",
     categories: ["decorative", "bold"],
     transform: mapWith("negativeCircled"),
-    warning: WARN.rare,
   },
   {
     id: "squared",
     name: "Squared",
     categories: ["decorative"],
     transform: mapWith("squared"),
-    warning: WARN.rare,
   },
   {
     id: "negative-squared",
     name: "Squared Dark",
     categories: ["decorative", "bold"],
     transform: mapWith("negativeSquared"),
-    warning: WARN.rare,
   },
   {
     id: "parenthesized",
