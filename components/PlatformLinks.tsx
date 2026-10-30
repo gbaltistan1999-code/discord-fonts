@@ -16,7 +16,7 @@ export function PlatformLinks() {
   return (
     <nav aria-labelledby="platform-links" className="rounded-xl border border-border bg-surface p-4">
       <h2 id="platform-links" className="mb-3 text-xs font-semibold tracking-wider text-muted uppercase">
-        Popular platforms
+        Social platforms
       </h2>
       <ul className="space-y-1.5">
         {links.map((link) => {
