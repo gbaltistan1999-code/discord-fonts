@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { platformPages } from "@/content/platforms";
 import { stylePages } from "@/content/style-pages";
 import { siteConfig } from "@/lib/site";
 
@@ -14,7 +15,7 @@ const siteLinks = [
 export function Footer() {
   return (
     <footer className="mt-24 border-t border-border">
-      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-10 sm:grid-cols-2">
+      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-10 sm:grid-cols-2 lg:grid-cols-3">
         <nav aria-labelledby="footer-styles">
           <h2 id="footer-styles" className="text-sm font-semibold">
             Discord font styles
@@ -27,6 +28,20 @@ export function Footer() {
                   className="inline-block py-1 text-muted hover:text-accent"
                 >
                   {page.name} Font
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <nav aria-labelledby="footer-platforms">
+          <h2 id="footer-platforms" className="text-sm font-semibold">
+            Fonts for other platforms
+          </h2>
+          <ul className="mt-2 grid grid-cols-2 gap-x-4 gap-y-0.5 text-sm">
+            {platformPages.map((page) => (
+              <li key={page.slug}>
+                <Link href={`/${page.slug}`} className="inline-block py-1 text-muted hover:text-accent">
+                  {page.name} Fonts
                 </Link>
               </li>
             ))}

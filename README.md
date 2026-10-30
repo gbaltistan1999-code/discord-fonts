@@ -55,7 +55,7 @@ app/
   sitemap.ts robots.ts manifest.ts opengraph-image.tsx icon.svg
 components/
   FontGenerator.tsx  (client)      Input, category filters, load more, zalgo slider, copy, preview
-  DiscordPreview.tsx               Generic dark chat preview (no Discord branding)
+  PlatformLinks.tsx                Sidebar links to each platform font page
   FormattingTool.tsx (client)      Discord markdown + ANSI color helper
   ToastProvider.tsx  (client)      Copy action + aria-live "Copied!" toast
   ThemeToggle.tsx    (client)      Light/dark toggle that follows the OS until changed

@@ -14,7 +14,7 @@ import {
   type FontCategory,
   type FontStyle,
 } from "@/lib/fonts";
-import { DiscordPreview } from "./DiscordPreview";
+import { PlatformLinks } from "./PlatformLinks";
 import { useCopy } from "./ToastProvider";
 
 const SAMPLE_TEXT = "Your Text Here";
@@ -89,10 +89,6 @@ export function FontGenerator({ featured }: FontGeneratorProps) {
     () => (filter === "all" ? randomStyles.map((style) => ({ style, value: style.transform(source) })) : []),
     [filter, randomStyles, source],
   );
-
-  const selected =
-    getFontStyle(selectedId) ?? randomStyles.find((s) => s.id === selectedId) ?? fontStyles[0]!;
-  const previewText = selected.transform(source, { zalgoIntensity });
 
   useEffect(() => {
     if (!copiedId) return;
@@ -184,9 +180,9 @@ export function FontGenerator({ featured }: FontGeneratorProps) {
       </div>
 
       <div className="mt-4 grid gap-6 lg:grid-cols-[minmax(0,1fr)_18rem]">
-        <aside aria-label="Preview" className="order-first lg:order-none lg:col-start-2 lg:row-start-1">
+        <aside className="order-last lg:order-none lg:col-start-2 lg:row-start-1">
           <div className="lg:sticky lg:top-6">
-            <DiscordPreview styleName={selected.name} text={previewText} />
+            <PlatformLinks />
           </div>
         </aside>
 

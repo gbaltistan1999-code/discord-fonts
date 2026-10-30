@@ -18,14 +18,14 @@ export const siteConfig = {
   language: "en",
   title: "Discord Fonts – Copy & Paste Cool Discord Font Generator",
   description:
-    "Free Discord Fonts generator: turn text into 60+ cool styles to copy and paste. Pick a Discord font for your name, nickname, server, bio or messages.",
+    "Free Discord Fonts generator: turn text into 170+ cool styles to copy and paste. Pick a Discord font for your name, nickname, server, bio or messages.",
   ogImageAlt: "Discord Fonts generator – copy and paste cool Discord font styles",
   contactEmail: "eshfaqihmed@gmail.com",
   disclaimer: "This site is not affiliated with or endorsed by Discord Inc.",
   /** Google Search Console HTML-tag verification token (rendered as google-site-verification). */
   googleSiteVerification: "9s4EYvOAQb0JA1TvevOu3OSVYPhO9LHHWHpWL1-qan0",
   /** Used as dateModified / sitemap lastModified. Update when content changes. */
-  lastUpdated: "2026-10-27",
+  lastUpdated: "2026-10-31",
 } as const;
 
 export function absoluteUrl(path = "/"): string {

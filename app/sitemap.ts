@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { platformPages } from "@/content/platforms";
 import { stylePages } from "@/content/style-pages";
 import { absoluteUrl, siteConfig } from "@/lib/site";
 
@@ -14,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     entry("/", 1, "weekly"),
     ...stylePages.map((page) => entry(`/discord-font-generator/${page.slug}`, 0.8, "monthly")),
+    ...platformPages.map((page) => entry(`/${page.slug}`, 0.7, "monthly")),
     entry("/discord-text-formatting", 0.8, "monthly"),
     entry("/about", 0.4, "yearly"),
     entry("/contact", 0.3, "yearly"),

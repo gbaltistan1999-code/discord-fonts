@@ -8,7 +8,7 @@ export const contentType = "image/png";
 export default function Image() {
   return renderOgImage({
     title: "Discord Fonts Generator",
-    subtitle: "Copy & paste 60+ cool Discord font styles for names, bios and messages.",
+    subtitle: "Copy & paste 170+ cool Discord font styles for names, bios and messages.",
     tags: ["Bold", "Cursive", "Gothic", "Aesthetic", "Glitch"],
   });
 }
