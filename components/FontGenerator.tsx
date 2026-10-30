@@ -14,6 +14,7 @@ import {
   type FontCategory,
   type FontStyle,
 } from "@/lib/fonts";
+import { useStoredState } from "@/lib/useStoredState";
 import { PlatformLinks } from "./PlatformLinks";
 import { useCopy } from "./ToastProvider";
 
@@ -21,6 +22,7 @@ const SAMPLE_TEXT = "Your Text Here";
 const PAGE_SIZE = 24;
 const MAX_INPUT = 1000;
 const RANDOM_PAGE = 12;
+const RECENT_LIMIT = 24;
 
 function makeRandomStyle(seed: number, index: number): FontStyle {
   return {
@@ -32,6 +34,8 @@ function makeRandomStyle(seed: number, index: number): FontStyle {
 }
 
 type Filter = "featured" | "all" | FontCategory;
+type Scope = "all" | "favorites" | "recent";
+type View = "list" | "grid";
 
 /** Each filter tab gets its own colour: a soft tint when idle, solid when selected (white text stays above 4.5:1). */
 const FILTER_COLORS: Record<Filter, { idle: string; active: string }> = {
@@ -69,6 +73,18 @@ const FILTER_COLORS: Record<Filter, { idle: string; active: string }> = {
   },
 };
 
+// Per-visitor conveniences only; the tool works the same when storage is unavailable.
+const NO_IDS: string[] = [];
+
+/** Keep only ids of styles that still exist, so removed styles drop out of saved lists. */
+function parseStyleIds(value: unknown): string[] {
+  return Array.isArray(value)
+    ? value.filter((id): id is string => typeof id === "string" && Boolean(getFontStyle(id)))
+    : NO_IDS;
+}
+
+const parseView = (value: unknown): View => (value === "grid" ? "grid" : "list");
+
 export interface FeaturedStyles {
   label: string;
   ids: readonly string[];
@@ -84,12 +100,19 @@ interface FontGeneratorProps {
 export function FontGenerator({ featured, sampleText = SAMPLE_TEXT }: FontGeneratorProps) {
   const inputId = useId();
   const hintId = useId();
+  const searchId = useId();
+  const resultsHeadingId = useId();
   const randomHeadingId = useId();
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const copy = useCopy();
 
   const [text, setText] = useState("");
+  const [query, setQuery] = useState("");
   const [filter, setFilter] = useState<Filter>(featured ? "featured" : "all");
+  const [scope, setScope] = useState<Scope>("all");
+  const [view, setView] = useStoredState<View>("df:view", "list", parseView);
+  const [favorites, setFavorites] = useStoredState("df:favorites", NO_IDS, parseStyleIds);
+  const [recent, setRecent] = useStoredState("df:recent", NO_IDS, parseStyleIds);
   const [limit, setLimit] = useState(PAGE_SIZE);
   const [zalgoIntensity, setZalgoIntensity] = useState(ZALGO_DEFAULT);
   const [selectedId, setSelectedId] = useState(featured?.ids[0] ?? fontStyles[0]!.id);
@@ -101,6 +124,7 @@ export function FontGenerator({ featured, sampleText = SAMPLE_TEXT }: FontGenera
   // Keep typing responsive: results re-render at lower priority than the input.
   const deferredText = useDeferredValue(text);
   const source = deferredText.trim() ? deferredText : sampleText;
+  const search = useDeferredValue(query).trim().toLowerCase();
 
   const featuredStyles = useMemo(
     () => (featured ? featured.ids.map(getFontStyle).filter((s): s is FontStyle => Boolean(s)) : []),
@@ -113,10 +137,31 @@ export function FontGenerator({ featured, sampleText = SAMPLE_TEXT }: FontGenera
     return fontStyles.filter((style) => style.categories.includes(filter));
   }, [filter, featuredStyles]);
 
+  const matched = useMemo(() => {
+    let list = filtered;
+    if (scope === "favorites") list = list.filter((style) => favorites.includes(style.id));
+    if (scope === "recent") {
+      const inFilter = new Map(list.map((style) => [style.id, style]));
+      list = recent.map((id) => inFilter.get(id)).filter((s): s is FontStyle => Boolean(s));
+    }
+    if (search) {
+      list = list.filter(
+        (style) =>
+          style.name.toLowerCase().includes(search) ||
+          style.id.includes(search) ||
+          style.categories.some((category) => category.includes(search)),
+      );
+    }
+    return list;
+  }, [filtered, scope, favorites, recent, search]);
+
+  // Paging and random styles only apply to the full, unsearched list.
+  const browsingAll = filter === "all" && scope === "all" && !search;
+
   const results = useMemo(() => {
-    const visible = filter === "all" ? filtered.slice(0, limit) : filtered;
+    const visible = browsingAll ? matched.slice(0, limit) : matched;
     return visible.map((style) => ({ style, value: style.transform(source, { zalgoIntensity }) }));
-  }, [filter, filtered, limit, source, zalgoIntensity]);
+  }, [browsingAll, matched, limit, source, zalgoIntensity]);
 
   const randomStyles = useMemo(
     () => Array.from({ length: randomCount }, (_, i) => makeRandomStyle(randomStart + i, i)),
@@ -124,8 +169,8 @@ export function FontGenerator({ featured, sampleText = SAMPLE_TEXT }: FontGenera
   );
 
   const randomResults = useMemo(
-    () => (filter === "all" ? randomStyles.map((style) => ({ style, value: style.transform(source) })) : []),
-    [filter, randomStyles, source],
+    () => (browsingAll ? randomStyles.map((style) => ({ style, value: style.transform(source) })) : []),
+    [browsingAll, randomStyles, source],
   );
 
   useEffect(() => {
@@ -136,7 +181,15 @@ export function FontGenerator({ featured, sampleText = SAMPLE_TEXT }: FontGenera
 
   async function handleCopy(style: FontStyle, value: string) {
     setSelectedId(style.id);
-    if (await copy(value, style.name)) setCopiedId(style.id);
+    if (!(await copy(value, style.name))) return;
+    setCopiedId(style.id);
+    if (getFontStyle(style.id)) {
+      setRecent([style.id, ...recent.filter((id) => id !== style.id)].slice(0, RECENT_LIMIT));
+    }
+  }
+
+  function toggleFavorite(id: string) {
+    setFavorites(favorites.includes(id) ? favorites.filter((f) => f !== id) : [id, ...favorites]);
   }
 
   const filters: { id: Filter; label: string; count: number }[] = [
@@ -148,6 +201,33 @@ export function FontGenerator({ featured, sampleText = SAMPLE_TEXT }: FontGenera
       count: fontStyles.filter((s) => s.categories.includes(c.id)).length,
     })),
   ];
+
+  const scopes: { id: Scope; label: string; icon?: React.ReactNode; badge?: number }[] = [
+    { id: "all", label: "All styles" },
+    { id: "favorites", label: "Favorites", icon: <HeartIcon filled={false} />, badge: favorites.length },
+    { id: "recent", label: "Recent", icon: <HistoryIcon /> },
+  ];
+
+  const listClass =
+    view === "grid"
+      ? "grid gap-3 sm:grid-cols-2"
+      : "divide-y divide-border rounded-2xl border border-border bg-surface shadow-sm";
+
+  const renderRow = ({ style, value }: { style: FontStyle; value: string }, canFavorite: boolean) => (
+    <StyleRow
+      key={style.id}
+      style={style}
+      value={value}
+      view={view}
+      selected={style.id === selectedId}
+      copied={style.id === copiedId}
+      onCopy={() => handleCopy(style, value)}
+      favorite={canFavorite ? favorites.includes(style.id) : undefined}
+      onToggleFavorite={canFavorite ? () => toggleFavorite(style.id) : undefined}
+      zalgoIntensity={zalgoIntensity}
+      onZalgoChange={setZalgoIntensity}
+    />
+  );
 
   return (
     <div className="relative">
@@ -190,31 +270,129 @@ export function FontGenerator({ featured, sampleText = SAMPLE_TEXT }: FontGenera
         </p>
       </div>
 
-      <div
-        role="group"
-        aria-label="Filter font styles by category"
-        className="-mx-4 mt-6 flex gap-1.5 overflow-x-auto px-4 sm:mx-0 sm:flex-wrap sm:px-0"
-      >
-        {filters.map((f) => {
-          const active = filter === f.id;
-          return (
+      {/* Results header */}
+      <div className="mt-6 flex items-center justify-between gap-4 rounded-2xl border border-border bg-surface px-4 py-4 shadow-sm sm:px-5">
+        <div className="min-w-0">
+          <span className="inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent-soft px-3 py-1 text-[0.7rem] font-bold tracking-[0.2em] text-accent uppercase">
+            <span aria-hidden="true" className="size-2 rounded-full bg-accent" />
+            Results
+          </span>
+          <h2 id={resultsHeadingId} className="mt-2 text-xl font-bold tracking-tight text-text sm:text-2xl">
+            Choose a style and copy it.
+          </h2>
+        </div>
+        <div
+          role="group"
+          aria-label="Results layout"
+          className="flex shrink-0 gap-1 rounded-full border border-border bg-surface-2/60 p-1"
+        >
+          {(["list", "grid"] as const).map((option) => (
             <button
-              key={f.id}
+              key={option}
               type="button"
-              aria-pressed={active}
-              onClick={() => {
-                setFilter(f.id);
-                setLimit(PAGE_SIZE);
-              }}
-              className={`shrink-0 rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
-                active ? `${FILTER_COLORS[f.id].active} shadow-sm` : FILTER_COLORS[f.id].idle
+              aria-pressed={view === option}
+              aria-label={option === "list" ? "List view" : "Grid view"}
+              onClick={() => setView(option)}
+              className={`grid size-10 place-items-center rounded-full transition-colors ${
+                view === option
+                  ? "bg-accent-soft text-accent ring-1 ring-accent/50"
+                  : "text-muted hover:bg-surface hover:text-text"
               }`}
             >
-              {f.label}
-              <span className={`ml-1.5 tabular-nums ${active ? "opacity-80" : "opacity-70"}`}>{f.count}</span>
+              {option === "list" ? <ListIcon /> : <GridIcon />}
             </button>
-          );
-        })}
+          ))}
+        </div>
+      </div>
+
+      {/* Filters, search and saved styles */}
+      <div className="mt-3 rounded-2xl border border-border bg-surface p-4 shadow-sm sm:p-5">
+        <div
+          role="group"
+          aria-label="Filter font styles by category"
+          className="-mx-4 flex gap-2 overflow-x-auto px-4 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:px-0"
+        >
+          {filters.map((f) => {
+            const active = filter === f.id;
+            return (
+              <button
+                key={f.id}
+                type="button"
+                aria-pressed={active}
+                onClick={() => {
+                  setFilter(f.id);
+                  setLimit(PAGE_SIZE);
+                }}
+                className={`shrink-0 rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
+                  active ? `${FILTER_COLORS[f.id].active} shadow-sm` : FILTER_COLORS[f.id].idle
+                }`}
+              >
+                {f.label}
+                <span className={`ml-1.5 tabular-nums ${active ? "opacity-80" : "opacity-70"}`}>
+                  {f.count}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="mt-4 flex flex-col gap-3 lg:flex-row lg:items-center">
+          <div className="relative flex-1">
+            <label htmlFor={searchId} className="sr-only">
+              Search styles
+            </label>
+            <span className="pointer-events-none absolute top-1/2 left-3.5 -translate-y-1/2 text-muted">
+              <SearchIcon />
+            </span>
+            <input
+              id={searchId}
+              type="search"
+              value={query}
+              onChange={(e) => {
+                setQuery(e.target.value);
+                setLimit(PAGE_SIZE);
+              }}
+              placeholder="Search styles, such as bold or script"
+              autoComplete="off"
+              className="h-12 w-full rounded-xl border border-border bg-bg pr-4 pl-11 text-base text-text outline-none placeholder:text-muted focus:border-accent focus:ring-4 focus:ring-accent/15"
+            />
+          </div>
+
+          <div className="-mx-4 flex items-center gap-2 overflow-x-auto px-4 [scrollbar-width:none] sm:mx-0 sm:px-0">
+            <div role="group" aria-label="Show styles" className="flex shrink-0 gap-2">
+              {scopes.map((s) => {
+                const active = scope === s.id;
+                return (
+                  <button
+                    key={s.id}
+                    type="button"
+                    aria-pressed={active}
+                    onClick={() => {
+                      setScope(s.id);
+                      setLimit(PAGE_SIZE);
+                    }}
+                    className={`inline-flex h-12 shrink-0 items-center gap-2 rounded-full border px-4 text-sm font-semibold transition-colors ${
+                      active
+                        ? "border-accent/50 bg-accent-soft text-accent"
+                        : "border-border text-text hover:border-text/30 hover:bg-surface-2"
+                    }`}
+                  >
+                    {s.icon}
+                    {s.label}
+                    {s.badge !== undefined && (
+                      <span className="grid min-w-6 place-items-center rounded-full bg-surface-2 px-1.5 text-xs tabular-nums text-text">
+                        {s.badge}
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+            <p aria-live="polite" className="shrink-0 pl-1 text-sm font-medium text-muted tabular-nums">
+              {matched.length} {matched.length === 1 ? "style" : "styles"}
+            </p>
+          </div>
+        </div>
       </div>
 
       <div className="mt-4 grid gap-6 lg:grid-cols-[minmax(0,1fr)_18rem]">
@@ -225,35 +403,33 @@ export function FontGenerator({ featured, sampleText = SAMPLE_TEXT }: FontGenera
         </aside>
 
         <div className="cv-list min-w-0 lg:col-start-1 lg:row-start-1">
-          <ul
-            aria-label="Converted text styles"
-            className="divide-y divide-border rounded-xl border border-border bg-surface"
-          >
-            {results.map(({ style, value }) => (
-              <StyleRow
-                key={style.id}
-                style={style}
-                value={value}
-                selected={style.id === selectedId}
-                copied={style.id === copiedId}
-                onCopy={() => handleCopy(style, value)}
-                zalgoIntensity={zalgoIntensity}
-                onZalgoChange={setZalgoIntensity}
-              />
-            ))}
-          </ul>
+          {results.length > 0 ? (
+            <ul aria-labelledby={resultsHeadingId} className={listClass}>
+              {results.map((result) => renderRow(result, true))}
+            </ul>
+          ) : (
+            <p className="rounded-2xl border border-dashed border-border bg-surface px-5 py-10 text-center text-sm text-muted">
+              {search
+                ? `No styles match “${query.trim()}”. Try another word, such as bold, script or bubble.`
+                : scope === "favorites"
+                  ? "No favorites yet. Tap the heart on any style to save it here."
+                  : scope === "recent"
+                    ? "Styles you copy will show up here."
+                    : "No styles in this group."}
+            </p>
+          )}
 
-          {filter === "all" && limit < filtered.length && (
+          {browsingAll && limit < matched.length && (
             <button
               type="button"
               onClick={() => setLimit((n) => n + PAGE_SIZE)}
               className="mt-3 w-full rounded-xl border border-border px-4 py-3 text-sm font-medium text-muted transition-colors hover:bg-surface hover:text-text"
             >
-              Show {Math.min(PAGE_SIZE, filtered.length - limit)} more styles
+              Show {Math.min(PAGE_SIZE, matched.length - limit)} more styles
             </button>
           )}
 
-          {filter === "all" && (
+          {browsingAll && (
             <section aria-labelledby={randomHeadingId} className="mt-8">
               <div className="mb-3 flex flex-wrap items-end justify-between gap-3">
                 <div>
@@ -270,27 +446,13 @@ export function FontGenerator({ featured, sampleText = SAMPLE_TEXT }: FontGenera
                     setRandomStart((n) => n + randomCount);
                     setRandomCount(RANDOM_PAGE);
                   }}
-                  className="shrink-0 rounded-md border border-border px-3 py-1.5 text-sm font-medium text-text transition-colors hover:border-text/30 hover:bg-surface"
+                  className="shrink-0 rounded-full border border-border px-4 py-1.5 text-sm font-medium text-text transition-colors hover:border-text/30 hover:bg-surface"
                 >
                   Shuffle
                 </button>
               </div>
-              <ul
-                aria-label="Random text styles"
-                className="divide-y divide-border rounded-xl border border-border bg-surface"
-              >
-                {randomResults.map(({ style, value }) => (
-                  <StyleRow
-                    key={style.id}
-                    style={style}
-                    value={value}
-                    selected={style.id === selectedId}
-                    copied={style.id === copiedId}
-                    onCopy={() => handleCopy(style, value)}
-                    zalgoIntensity={zalgoIntensity}
-                    onZalgoChange={setZalgoIntensity}
-                  />
-                ))}
+              <ul aria-label="Random text styles" className={listClass}>
+                {randomResults.map((result) => renderRow(result, false))}
               </ul>
               <button
                 type="button"
@@ -310,73 +472,192 @@ export function FontGenerator({ featured, sampleText = SAMPLE_TEXT }: FontGenera
 interface StyleRowProps {
   style: FontStyle;
   value: string;
+  view: View;
   selected: boolean;
   copied: boolean;
   onCopy: () => void;
+  /** Undefined hides the heart (random styles can't be saved). */
+  favorite?: boolean;
+  onToggleFavorite?: () => void;
   zalgoIntensity: number;
   onZalgoChange: (value: number) => void;
 }
 
-function StyleRow({ style, value, selected, copied, onCopy, zalgoIntensity, onZalgoChange }: StyleRowProps) {
+function StyleRow({
+  style,
+  value,
+  view,
+  selected,
+  copied,
+  onCopy,
+  favorite,
+  onToggleFavorite,
+  zalgoIntensity,
+  onZalgoChange,
+}: StyleRowProps) {
   const sliderId = useId();
   const tooLong = visibleLength(value) > DISCORD_NAME_LIMIT;
+  const grid = view === "grid";
+
+  const label = (
+    <div className="flex min-w-0 items-center gap-1.5 text-xs text-muted sm:w-36 sm:shrink-0">
+      <span className="truncate">{style.name}</span>
+      {tooLong && (
+        <span title={`Over ${DISCORD_NAME_LIMIT} characters`} className="shrink-0 tabular-nums">
+          · {DISCORD_NAME_LIMIT}+
+        </span>
+      )}
+    </div>
+  );
+
+  const actions = (
+    <div className="flex shrink-0 items-center gap-1.5">
+      {onToggleFavorite && (
+        <button
+          type="button"
+          aria-pressed={favorite}
+          aria-label={`${favorite ? "Remove" : "Save"} ${style.name} ${favorite ? "from" : "to"} favorites`}
+          onClick={onToggleFavorite}
+          className={`grid size-9 place-items-center rounded-full transition-colors ${
+            favorite ? "text-rose-600 dark:text-rose-400" : "text-muted hover:bg-surface-2 hover:text-text"
+          }`}
+        >
+          <HeartIcon filled={Boolean(favorite)} />
+        </button>
+      )}
+      <button
+        type="button"
+        onClick={onCopy}
+        className={`rounded-full border px-4 py-1.5 text-sm font-medium transition-colors ${
+          copied
+            ? "border-transparent text-success"
+            : "border-border text-text hover:border-text/30 hover:bg-surface-2"
+        }`}
+      >
+        {copied ? "Copied" : "Copy"}
+        <span className="sr-only"> {style.name} text</span>
+      </button>
+    </div>
+  );
+
+  // Mouse/touch shortcut; keyboard users use the Copy button.
+  const sample = (
+    <p
+      onClick={onCopy}
+      title="Click to copy"
+      className={`fancy-text min-w-0 flex-1 cursor-pointer leading-snug text-text ${
+        grid ? "mt-2 text-xl break-words" : "mt-0.5 text-lg sm:mt-0"
+      }`}
+    >
+      {value}
+    </p>
+  );
+
+  const slider = style.id === "zalgo" && (
+    <div className={`mt-2 flex items-center gap-3 text-xs ${grid ? "" : "sm:pl-40"}`}>
+      <label htmlFor={sliderId} className="shrink-0 text-muted">
+        Intensity
+      </label>
+      <input
+        id={sliderId}
+        type="range"
+        min={ZALGO_MIN}
+        max={ZALGO_MAX}
+        value={zalgoIntensity}
+        onChange={(e) => onZalgoChange(Number(e.target.value))}
+        className="w-full max-w-48 accent-[var(--accent-solid)]"
+      />
+      <span className="w-5 text-right text-muted tabular-nums">{zalgoIntensity}</span>
+    </div>
+  );
+
+  if (grid) {
+    return (
+      <li
+        className={`flex flex-col rounded-2xl border bg-surface p-4 shadow-sm transition-colors ${
+          selected ? "border-accent ring-1 ring-accent/40" : "border-border hover:border-text/25"
+        }`}
+      >
+        <div className="flex items-center justify-between gap-2">
+          {label}
+          {actions}
+        </div>
+        {sample}
+        {slider}
+      </li>
+    );
+  }
 
   return (
     <li
-      className={`px-4 py-3 transition-colors first:rounded-t-xl last:rounded-b-xl sm:px-5 ${
+      className={`px-4 py-3 transition-colors first:rounded-t-2xl last:rounded-b-2xl sm:px-5 ${
         selected ? "bg-surface-2 shadow-[inset_2px_0_0_var(--accent)]" : "hover:bg-surface-2/60"
       }`}
     >
       <div className="flex items-center gap-3 sm:gap-4">
         <div className="min-w-0 flex-1 sm:flex sm:items-center sm:gap-4">
-          <div className="flex items-center gap-1.5 text-xs text-muted sm:w-36 sm:shrink-0">
-            <span className="truncate">{style.name}</span>
-            {tooLong && (
-              <span title={`Over ${DISCORD_NAME_LIMIT} characters`} className="tabular-nums">
-                · {DISCORD_NAME_LIMIT}+
-              </span>
-            )}
-          </div>
-          {/* Mouse/touch shortcut; keyboard users use the Copy button. */}
-          <p
-            onClick={onCopy}
-            title="Click to copy"
-            className="fancy-text mt-0.5 min-w-0 flex-1 cursor-pointer text-lg leading-snug text-text sm:mt-0"
-          >
-            {value}
-          </p>
+          {label}
+          {sample}
         </div>
-        <button
-          type="button"
-          onClick={onCopy}
-          className={`shrink-0 rounded-md border px-3 py-1.5 text-sm font-medium transition-colors ${
-            copied
-              ? "border-transparent text-success"
-              : "border-border text-text hover:border-text/30 hover:bg-surface"
-          }`}
-        >
-          {copied ? "Copied" : "Copy"}
-          <span className="sr-only"> {style.name} text</span>
-        </button>
+        {actions}
       </div>
-
-      {style.id === "zalgo" && (
-        <div className="mt-2 flex items-center gap-3 text-xs sm:pl-40">
-          <label htmlFor={sliderId} className="shrink-0 text-muted">
-            Intensity
-          </label>
-          <input
-            id={sliderId}
-            type="range"
-            min={ZALGO_MIN}
-            max={ZALGO_MAX}
-            value={zalgoIntensity}
-            onChange={(e) => onZalgoChange(Number(e.target.value))}
-            className="w-full max-w-48 accent-[var(--accent-solid)]"
-          />
-          <span className="w-5 text-right text-muted tabular-nums">{zalgoIntensity}</span>
-        </div>
-      )}
+      {slider}
     </li>
+  );
+}
+
+const iconProps = {
+  "aria-hidden": true,
+  viewBox: "0 0 24 24",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: 2,
+  strokeLinecap: "round",
+  strokeLinejoin: "round",
+  className: "size-5",
+} as const;
+
+function ListIcon() {
+  return (
+    <svg {...iconProps}>
+      <path d="M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01" />
+    </svg>
+  );
+}
+
+function GridIcon() {
+  return (
+    <svg {...iconProps}>
+      <rect x="4" y="4" width="6.5" height="6.5" rx="1.5" />
+      <rect x="13.5" y="4" width="6.5" height="6.5" rx="1.5" />
+      <rect x="4" y="13.5" width="6.5" height="6.5" rx="1.5" />
+      <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.5" />
+    </svg>
+  );
+}
+
+function SearchIcon() {
+  return (
+    <svg {...iconProps}>
+      <circle cx="11" cy="11" r="7" />
+      <path d="m20 20-3.5-3.5" />
+    </svg>
+  );
+}
+
+function HeartIcon({ filled }: { filled: boolean }) {
+  return (
+    <svg {...iconProps} fill={filled ? "currentColor" : "none"}>
+      <path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z" />
+    </svg>
+  );
+}
+
+function HistoryIcon() {
+  return (
+    <svg {...iconProps}>
+      <path d="M3.5 12a8.5 8.5 0 1 0 2.5-6M3.5 4v4h4" />
+      <path d="M12 8v4l3 2" />
+    </svg>
   );
 }
