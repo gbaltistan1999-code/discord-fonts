@@ -9,6 +9,7 @@ import {
   fontStyles,
   getStylesByCategory,
   graphemes,
+  randomStyle,
   rangeMap,
   reverseText,
   spaceOut,
@@ -103,6 +104,12 @@ describe("styles", () => {
     expect(convert("middle-dot", "ab c")).toBe("𝒂·𝒃· ·𝒄");
     expect(convert("angle-melody", "ab")).toBe("¸¸♬·¯·♩¸¸♪·¯·♫¸¸ ⟨a⟩⟨b⟩ ¸¸♬·¯·♩¸¸♪·¯·♫¸¸");
     expect(convert("random-bars", "Discord")).toBe(convert("random-bars", "Discord"));
+  });
+
+  it("randomStyle is stable per seed and varies across seeds", () => {
+    expect(randomStyle("Discord", 7)).toBe(randomStyle("Discord", 7));
+    const outputs = new Set(Array.from({ length: 24 }, (_, i) => randomStyle("Discord", i + 1)));
+    expect(outputs.size).toBeGreaterThan(20);
   });
 
   it("throws on unknown style ids", () => {

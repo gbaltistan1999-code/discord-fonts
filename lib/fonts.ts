@@ -257,6 +257,12 @@ export const charMaps = {
   cherokee: alphabetMap("ᎪᏴᏟᎠᎬᖴᏀᎻᏆᎫᏦᏞᎷᏁᎾᏢᎤᏒՏᎢᏌᏉᏔ᙭ᎽᏃ"),
   accented: alphabetMap("áḃćďéḟǵĥíĵḱĺḿńóṕǫŕśťúṽẃẍýź", "ÁḂĆĎÉḞǴĤÍĴḰĹḾŃÓṔǪŔŚŤÚṼẂẌÝŹ"),
   syllabic: alphabetMap("ᗩᗷᑕᗪEᖴGᕼIᒍKᒪᗰᑎOᑭᑫᖇᔕTᑌᐯᗯ᙭Yᘔ"),
+  kanji: alphabetMap("卂乃匚ᗪ乇千Ꮆ卄丨ﾌҜㄥ爪几ㄖ卩Ɋ尺丂ㄒㄩᐯ山乂ㄚ乙"),
+  katakana: alphabetMap("ﾑ乃ᄃりモｷムんﾉﾌズﾚﾶ刀のｱゐ尺丂ｲひ√Wﾒﾘ乙"),
+  hooked: alphabetMap("ąცƈɖɛʄɠɧıʝƙƖɱŋơ℘զཞʂɬų۷ῳҳყʑ"),
+  fantasy: alphabetMap("ᗩᗷᑢᕲᘿᖴᘜᕼᓰᒚᛕᒪᘻᘉᓍᕵᕴᖇSᖶᑘᐺᘺ᙭ᖻᗱ"),
+  thai: alphabetMap("ค๒ς๔єŦﻮђเןкɭ๓ภ๏קợгรՇยשฬאץչ"),
+  stroked: alphabetMap("ⱥƀȼđɇfǥħɨɉꝁłɱŋøᵽꝗɍꞩŧʉꝟⱳӿɏƶ", "ȺɃȻĐɆ₣ǤĦƗɈꝀŁⱮŊØⱣꝖɌꞨŦɄꝞⱲӾɎƵ"),
 } satisfies Record<string, CharMap>;
 
 export type CharMapName = keyof typeof charMaps;
@@ -279,6 +285,12 @@ const wrap =
   (prefix: string, suffix: string, inner: Transform = (t) => t): Transform =>
   (text, options) =>
     `${prefix}${inner(text, options)}${suffix}`;
+
+/** Capital letters only, in the given style. */
+const caps =
+  (name: CharMapName): Transform =>
+  (text) =>
+    applyMap(text.toUpperCase(), charMaps[name]);
 
 /** Put a symbol between every character, spaces included (D✧i✧s✧c). */
 const between =
@@ -308,19 +320,57 @@ const MIX_POOL: readonly CharMapName[] = [
   "italicSerif",
   "softGlyphs",
   "syllabic",
+  "kanji",
+  "hooked",
+  "stroked",
+  "doubleStruck",
+  "boldSans",
 ];
+
+function mixLetters(text: string, random: () => number): string {
+  return graphemes(text)
+    .map((g) =>
+      isWhitespace(g) ? g : applyMap(g, charMaps[MIX_POOL[Math.floor(random() * MIX_POOL.length)]!]),
+    )
+    .join("");
+}
 
 /** "Random" text: each letter gets a different style, seeded so server and client agree. */
 const mixed =
   (seed: number): Transform =>
-  (text) => {
-    const random = mulberry32(seed);
-    return graphemes(text)
-      .map((g) =>
-        isWhitespace(g) ? g : applyMap(g, charMaps[MIX_POOL[Math.floor(random() * MIX_POOL.length)]!]),
-      )
-      .join("");
-  };
+  (text) =>
+    mixLetters(text, mulberry32(seed));
+
+// Plain entries keep roughly a third of random styles unframed.
+const RANDOM_FRAMES: readonly (readonly [string, string])[] = [
+  ["", ""],
+  ["", ""],
+  ["", ""],
+  ["", ""],
+  ["", ""],
+  ["꧁ ", " ꧂"],
+  ["★ ", " ★"],
+  ["♡ ", " ♡"],
+  ["【 ", " 】"],
+  ["✧ ", " ✧"],
+  ["『 ", " 』"],
+  ["〖 ", " 〗"],
+  ["» ", " «"],
+  ["彡 ", " 彡"],
+  ["ıllıllı ", " ıllıllı"],
+  ["•´¯`•. ", " .•´¯`•"],
+  ["◦•●◉✿ ", " ✿◉●•◦"],
+  ["⚡ ", " ⚡"],
+  ["🌸 ", " 🌸"],
+  ["🔥 ", " 🔥"],
+];
+
+/** One of an unlimited set of random styles: mixed letters plus a random frame, fixed per seed. */
+export function randomStyle(text: string, seed: number): string {
+  const random = mulberry32(Math.imul(seed, 0x9e3779b1));
+  const [prefix, suffix] = RANDOM_FRAMES[Math.floor(random() * RANDOM_FRAMES.length)]!;
+  return `${prefix}${mixLetters(text, random)}${suffix}`;
+}
 
 const FRAME_EMOJI = [
   "👺",
@@ -972,6 +1022,252 @@ export const fontStyles: readonly FontStyle[] = [
     categories: ["glitch", "decorative"],
     transform: wrap("•´¯`•. ", " .•´¯`•", mixed(4)),
   },
+
+  // More letter alphabets
+  { id: "kanji", name: "Kanji Style", categories: ["decorative", "aesthetic"], transform: mapWith("kanji") },
+  {
+    id: "katakana",
+    name: "Katakana Style",
+    categories: ["decorative", "aesthetic"],
+    transform: mapWith("katakana"),
+  },
+  { id: "hooked", name: "Hooked", categories: ["decorative", "cursive"], transform: mapWith("hooked") },
+  { id: "fantasy", name: "Fantasy", categories: ["decorative"], transform: mapWith("fantasy") },
+  { id: "thai", name: "Thai Style", categories: ["decorative"], transform: mapWith("thai") },
+  { id: "stroked", name: "Stroked", categories: ["glitch", "decorative"], transform: mapWith("stroked") },
+  { id: "gothic-caps", name: "Gothic Caps", categories: ["gothic", "bold"], transform: caps("boldFraktur") },
+  { id: "script-caps", name: "Script Caps", categories: ["cursive", "bold"], transform: caps("boldScript") },
+  {
+    id: "double-struck-caps",
+    name: "Double-Struck Caps",
+    categories: ["aesthetic"],
+    transform: caps("doubleStruck"),
+  },
+
+  // Bracket frames
+  {
+    id: "white-lenticular",
+    name: "White Lenticular",
+    categories: ["decorative", "bold"],
+    transform: wrap("〖 ", " 〗", mapWith("boldSerif")),
+  },
+  {
+    id: "white-tortoise",
+    name: "White Tortoise Shell",
+    categories: ["decorative"],
+    transform: wrap("〘 ", " 〙", mapWith("sans")),
+  },
+  {
+    id: "tortoise-shell",
+    name: "Tortoise Shell",
+    categories: ["decorative", "aesthetic"],
+    transform: wrap("〔 ", " 〕", mapWith("smallCapsAll")),
+  },
+  {
+    id: "white-square",
+    name: "White Square Brackets",
+    categories: ["decorative"],
+    transform: wrap("⟦ ", " ⟧", mapWith("monospace")),
+  },
+  {
+    id: "double-angle",
+    name: "Double Angle",
+    categories: ["decorative", "bold"],
+    transform: wrap("⟪ ", " ⟫", mapWith("boldSans")),
+  },
+  {
+    id: "guillemets",
+    name: "Guillemets",
+    categories: ["decorative", "cursive"],
+    transform: wrap("« ", " »", mapWith("italicSerif")),
+  },
+  {
+    id: "corner-quotes",
+    name: "Corner Quotes",
+    categories: ["aesthetic", "decorative"],
+    transform: wrap("「 ", " 」", mapWith("smallCapsAll")),
+  },
+  {
+    id: "white-parens",
+    name: "White Parentheses",
+    categories: ["decorative", "cursive"],
+    transform: wrap("⦅ ", " ⦆", mapWith("script")),
+  },
+  {
+    id: "curly-angle",
+    name: "Curly Angle",
+    categories: ["decorative"],
+    transform: wrap("⧼ ", " ⧽", mapWith("italicSans")),
+  },
+  {
+    id: "heavy-angle",
+    name: "Heavy Angle",
+    categories: ["decorative", "bold"],
+    transform: wrap("❰ ", " ❱", mapWith("boldSans")),
+  },
+  {
+    id: "arc-brackets",
+    name: "Arc Brackets",
+    categories: ["decorative"],
+    transform: wrap("⦓ ", " ⦔", mapWith("doubleStruck")),
+  },
+  {
+    id: "shell-brackets",
+    name: "Shell Brackets",
+    categories: ["gothic", "decorative"],
+    transform: wrap("⦗ ", " ⦘", mapWith("fraktur")),
+  },
+
+  // One-sided symbols
+  {
+    id: "moon-prefix",
+    name: "Moon Prefix",
+    categories: ["aesthetic", "cursive"],
+    transform: wrap("☾ ", "", mapWith("script")),
+  },
+  {
+    id: "sun-prefix",
+    name: "Sun Prefix",
+    categories: ["aesthetic"],
+    transform: wrap("☼ ", "", mapWith("smallCapsAll")),
+  },
+  {
+    id: "flower-prefix",
+    name: "Flower Prefix",
+    categories: ["aesthetic", "cursive"],
+    transform: wrap("❀ ", "", mapWith("italicSerif")),
+  },
+  {
+    id: "arrow-prefix",
+    name: "Arrow Prefix",
+    categories: ["aesthetic", "cursive"],
+    transform: wrap("↬ ", "", mapWith("script")),
+  },
+  {
+    id: "pen-prefix",
+    name: "Pen Prefix",
+    categories: ["aesthetic"],
+    transform: wrap("✎ ", "", mapWith("italicSans")),
+  },
+  {
+    id: "cloud-prefix",
+    name: "Cloud Prefix",
+    categories: ["aesthetic"],
+    transform: wrap("☁︎ ", "", mapWith("smallCapsAll")),
+  },
+  {
+    id: "bunny-prefix",
+    name: "Bunny",
+    categories: ["aesthetic", "decorative"],
+    transform: wrap("꒰ᐢ. .ᐢ꒱ ", "", mapWith("smallCapsAll")),
+  },
+  {
+    id: "bear-prefix",
+    name: "Bear Face",
+    categories: ["aesthetic", "decorative"],
+    transform: wrap("ʕ•ᴥ•ʔ ", "", mapWith("sans")),
+  },
+  {
+    id: "heart-suffix",
+    name: "Heart Suffix",
+    categories: ["aesthetic", "cursive"],
+    transform: wrap("", " ♡", mapWith("italicSerif")),
+  },
+  {
+    id: "sparkle-suffix",
+    name: "Sparkle Suffix",
+    categories: ["aesthetic", "cursive"],
+    transform: wrap("", " ⋆˙⟡", mapWith("boldScript")),
+  },
+  {
+    id: "wing-suffix",
+    name: "Wing Suffix",
+    categories: ["cursive", "decorative"],
+    transform: wrap("", " ༄", mapWith("boldScript")),
+  },
+  { id: "verified", name: "Verified", categories: ["bold"], transform: wrap("", " ✓", mapWith("boldSans")) },
+  {
+    id: "trademark",
+    name: "Trademark",
+    categories: ["bold"],
+    transform: wrap("", "™", mapWith("boldSerif")),
+  },
+
+  // More symbols between letters
+  {
+    id: "union-between",
+    name: "Union Between",
+    categories: ["aesthetic"],
+    transform: between("∪", mapWith("smallCapsAll")),
+  },
+  {
+    id: "small-diamond-between",
+    name: "Small Diamond Between",
+    categories: ["cursive"],
+    transform: between("⋄", mapWith("italicSerif")),
+  },
+  {
+    id: "spark-between",
+    name: "Spark Between",
+    categories: ["cursive", "decorative"],
+    transform: between("⊹", mapWith("boldScript")),
+  },
+  {
+    id: "arrow-between",
+    name: "Arrow Between",
+    categories: ["decorative"],
+    transform: between("⟿", mapWith("sans")),
+  },
+  {
+    id: "tilde-between",
+    name: "Tilde Between",
+    categories: ["cursive"],
+    transform: between("~", mapWith("script")),
+  },
+  {
+    id: "heart-between",
+    name: "Heart Between",
+    categories: ["aesthetic", "cursive"],
+    transform: between("♡", mapWith("italicSerif")),
+  },
+  {
+    id: "star-between",
+    name: "Star Between",
+    categories: ["cursive", "decorative"],
+    transform: between("⋆", mapWith("boldScript")),
+  },
+  {
+    id: "pipe-between",
+    name: "Pipe Between",
+    categories: ["aesthetic"],
+    transform: between("┊", mapWith("smallCapsAll")),
+  },
+  {
+    id: "plus-between",
+    name: "Plus Between",
+    categories: ["aesthetic"],
+    transform: between("⁺", mapWith("italicSans")),
+  },
+  {
+    id: "dash-between",
+    name: "Dash Between",
+    categories: ["bold"],
+    transform: between("-", mapWith("boldSans")),
+  },
+
+  // More line effects
+  { id: "double-overline", name: "Double Overline", categories: ["glitch"], transform: marks("̿", true) },
+  { id: "short-strike", name: "Short Strike", categories: ["glitch"], transform: marks("̵", true) },
+  { id: "tilde-strike", name: "Tilde Strike", categories: ["glitch"], transform: marks("̴", true) },
+  { id: "crossed-out", name: "Crossed Out", categories: ["glitch"], transform: marks("̶̸") },
+  { id: "low-underline", name: "Low Underline", categories: ["aesthetic"], transform: marks("̱", true) },
+  { id: "equals-underline", name: "Equals Underline", categories: ["aesthetic"], transform: marks("͇", true) },
+  { id: "boxed-lines", name: "Boxed Lines", categories: ["aesthetic"], transform: marks("̲̅", true) },
+  { id: "dot-above", name: "Dot Above", categories: ["glitch"], transform: marks("̇") },
+  { id: "ring-above", name: "Ring Above", categories: ["glitch"], transform: marks("̊") },
+  { id: "caron", name: "Caron Accent", categories: ["glitch"], transform: marks("̌") },
+  { id: "cross-below", name: "Cross Below", categories: ["glitch"], transform: marks("͓") },
+  { id: "arrow-below", name: "Arrow Below", categories: ["glitch"], transform: marks("͎") },
 ];
 
 // ---------------------------------------------------------------------------

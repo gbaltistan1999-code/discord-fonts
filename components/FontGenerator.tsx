@@ -9,6 +9,7 @@ import {
   fontCategories,
   fontStyles,
   getFontStyle,
+  randomStyle,
   visibleLength,
   type FontCategory,
   type FontStyle,
@@ -19,6 +20,16 @@ import { useCopy } from "./ToastProvider";
 const SAMPLE_TEXT = "Your Text Here";
 const PAGE_SIZE = 24;
 const MAX_INPUT = 1000;
+const RANDOM_PAGE = 12;
+
+function makeRandomStyle(seed: number, index: number): FontStyle {
+  return {
+    id: `random-mix-${seed}`,
+    name: `Random ${index + 1}`,
+    categories: [],
+    transform: (text) => randomStyle(text, seed),
+  };
+}
 
 type Filter = "featured" | "all" | FontCategory;
 
@@ -35,6 +46,7 @@ interface FontGeneratorProps {
 export function FontGenerator({ featured }: FontGeneratorProps) {
   const inputId = useId();
   const hintId = useId();
+  const randomHeadingId = useId();
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const copy = useCopy();
 
@@ -44,6 +56,9 @@ export function FontGenerator({ featured }: FontGeneratorProps) {
   const [zalgoIntensity, setZalgoIntensity] = useState(ZALGO_DEFAULT);
   const [selectedId, setSelectedId] = useState(featured?.ids[0] ?? fontStyles[0]!.id);
   const [copiedId, setCopiedId] = useState<string | null>(null);
+  // Seeds start at a fixed value so server and client render the same first batch.
+  const [randomStart, setRandomStart] = useState(1);
+  const [randomCount, setRandomCount] = useState(RANDOM_PAGE);
 
   // Keep typing responsive: results re-render at lower priority than the input.
   const deferredText = useDeferredValue(text);
@@ -65,7 +80,18 @@ export function FontGenerator({ featured }: FontGeneratorProps) {
     return visible.map((style) => ({ style, value: style.transform(source, { zalgoIntensity }) }));
   }, [filter, filtered, limit, source, zalgoIntensity]);
 
-  const selected = getFontStyle(selectedId) ?? fontStyles[0]!;
+  const randomStyles = useMemo(
+    () => Array.from({ length: randomCount }, (_, i) => makeRandomStyle(randomStart + i, i)),
+    [randomStart, randomCount],
+  );
+
+  const randomResults = useMemo(
+    () => (filter === "all" ? randomStyles.map((style) => ({ style, value: style.transform(source) })) : []),
+    [filter, randomStyles, source],
+  );
+
+  const selected =
+    getFontStyle(selectedId) ?? randomStyles.find((s) => s.id === selectedId) ?? fontStyles[0]!;
   const previewText = selected.transform(source, { zalgoIntensity });
 
   useEffect(() => {
@@ -191,6 +217,55 @@ export function FontGenerator({ featured }: FontGeneratorProps) {
             >
               Show {Math.min(PAGE_SIZE, filtered.length - limit)} more styles
             </button>
+          )}
+
+          {filter === "all" && (
+            <section aria-labelledby={randomHeadingId} className="mt-8">
+              <div className="mb-3 flex flex-wrap items-end justify-between gap-3">
+                <div>
+                  <h2 id={randomHeadingId} className="text-base font-semibold text-text">
+                    Random styles
+                  </h2>
+                  <p className="mt-0.5 text-xs text-muted">
+                    Every letter gets a different style. Generate as many as you like.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setRandomStart((n) => n + randomCount);
+                    setRandomCount(RANDOM_PAGE);
+                  }}
+                  className="shrink-0 rounded-md border border-border px-3 py-1.5 text-sm font-medium text-text transition-colors hover:border-text/30 hover:bg-surface"
+                >
+                  Shuffle
+                </button>
+              </div>
+              <ul
+                aria-label="Random text styles"
+                className="divide-y divide-border rounded-xl border border-border bg-surface"
+              >
+                {randomResults.map(({ style, value }) => (
+                  <StyleRow
+                    key={style.id}
+                    style={style}
+                    value={value}
+                    selected={style.id === selectedId}
+                    copied={style.id === copiedId}
+                    onCopy={() => handleCopy(style, value)}
+                    zalgoIntensity={zalgoIntensity}
+                    onZalgoChange={setZalgoIntensity}
+                  />
+                ))}
+              </ul>
+              <button
+                type="button"
+                onClick={() => setRandomCount((n) => n + RANDOM_PAGE)}
+                className="mt-3 w-full rounded-xl border border-border px-4 py-3 text-sm font-medium text-muted transition-colors hover:bg-surface hover:text-text"
+              >
+                🎲 Generate {RANDOM_PAGE} more
+              </button>
+            </section>
           )}
         </div>
       </div>
