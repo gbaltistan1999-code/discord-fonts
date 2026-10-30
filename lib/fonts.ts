@@ -431,7 +431,6 @@ export const fontStyles: readonly FontStyle[] = [
     name: "Subscript",
     categories: ["aesthetic"],
     transform: mapWith("subscript"),
-    warning: WARN.partial,
   },
   { id: "circled", name: "Circled", categories: ["decorative"], transform: mapWith("circled") },
   { id: "bubble", name: "Bubble", categories: ["decorative", "aesthetic"], transform: mapWith("bubble") },
