@@ -20,9 +20,6 @@ const SAMPLE_TEXT = "Your Text Here";
 const PAGE_SIZE = 24;
 const MAX_INPUT = 1000;
 
-const USERNAME_NOTE =
-  "Discord's unique @username only allows lowercase a–z, 0–9, _ and . (2–32 characters), so fancy fonts go in your display name, server nickname (32 max) or About Me instead.";
-
 type Filter = "featured" | "all" | FontCategory;
 
 export interface FeaturedStyles {
@@ -172,10 +169,9 @@ export function FontGenerator({ featured }: FontGeneratorProps) {
             aria-label="Converted text styles"
             className="divide-y divide-border rounded-xl border border-border bg-surface"
           >
-            {results.map(({ style, value }, index) => (
+            {results.map(({ style, value }) => (
               <StyleRow
                 key={style.id}
-                tooltipUp={index >= 2}
                 style={style}
                 value={value}
                 selected={style.id === selectedId}
@@ -204,8 +200,6 @@ export function FontGenerator({ featured }: FontGeneratorProps) {
 
 interface StyleRowProps {
   style: FontStyle;
-  /** Open the warning tooltip upwards so it stays inside the contained list. */
-  tooltipUp: boolean;
   value: string;
   selected: boolean;
   copied: boolean;
@@ -214,16 +208,7 @@ interface StyleRowProps {
   onZalgoChange: (value: number) => void;
 }
 
-function StyleRow({
-  style,
-  tooltipUp,
-  value,
-  selected,
-  copied,
-  onCopy,
-  zalgoIntensity,
-  onZalgoChange,
-}: StyleRowProps) {
+function StyleRow({ style, value, selected, copied, onCopy, zalgoIntensity, onZalgoChange }: StyleRowProps) {
   const sliderId = useId();
   const tooLong = visibleLength(value) > DISCORD_NAME_LIMIT;
 
@@ -237,7 +222,6 @@ function StyleRow({
         <div className="min-w-0 flex-1 sm:flex sm:items-center sm:gap-4">
           <div className="flex items-center gap-1.5 text-xs text-muted sm:w-36 sm:shrink-0">
             <span className="truncate">{style.name}</span>
-            {style.warning && <WarningBadge text={style.warning} up={tooltipUp} />}
             {tooLong && (
               <span title={`Over ${DISCORD_NAME_LIMIT} characters`} className="tabular-nums">
                 · {DISCORD_NAME_LIMIT}+
@@ -285,32 +269,5 @@ function StyleRow({
         </div>
       )}
     </li>
-  );
-}
-
-function WarningBadge({ text, up }: { text: string; up: boolean }) {
-  const tipId = useId();
-  return (
-    <span className="group relative inline-flex shrink-0">
-      <button
-        type="button"
-        aria-label="Limited support"
-        aria-describedby={tipId}
-        onKeyDown={(e) => e.key === "Escape" && e.currentTarget.blur()}
-        className="inline-flex size-5 items-center justify-center rounded text-warning hover:bg-warning-soft"
-      >
-        <svg aria-hidden="true" viewBox="0 0 20 20" className="size-3.5" fill="currentColor">
-          <path d="M10 2 1 18h18L10 2Zm0 5 .1 0c.5 0 .9.4.9.9l-.3 4.3a.7.7 0 0 1-1.4 0L9 7.9c0-.5.4-.9 1-.9Zm0 9a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z" />
-        </svg>
-      </button>
-      <span
-        role="tooltip"
-        id={tipId}
-        className={`invisible absolute left-0 z-30 ${up ? "bottom-full mb-2" : "top-full mt-2"} w-72 max-w-[80vw] rounded-lg border border-border bg-surface p-3 text-xs leading-relaxed font-normal text-text opacity-0 shadow-xl transition-opacity group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100`}
-      >
-        <strong className="mb-1 block font-semibold">Limited support</strong>
-        {text} {USERNAME_NOTE}
-      </span>
-    </span>
   );
 }

@@ -32,8 +32,6 @@ export interface FontStyle {
   name: string;
   categories: readonly FontCategory[];
   transform: Transform;
-  /** Set when the style may not render everywhere or may be rejected in Discord names. */
-  warning?: string;
 }
 
 const UPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";

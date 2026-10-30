@@ -74,7 +74,7 @@ public/                            Static assets
 ### Adding a font style
 
 1. If it is a 1:1 letter swap, add a `CharMap` to `charMaps` in `lib/fonts.ts` (`rangeMap`, `alphabetMap` and `zipMap` cover most cases).
-2. Add an entry to `fontStyles` with an `id`, `name`, `categories` and `transform`. Set `warning` if it may render as boxes or be rejected in names.
+2. Add an entry to `fontStyles` with an `id`, `name`, `categories` and `transform`.
 3. Run `npm test`. It checks map coverage, unique ids and that every style transforms text.
 
 ### Adding a style landing page
