@@ -258,6 +258,7 @@ export const charMaps = {
   fauxCyrillic: alphabetMap("аьсԁеfɡһіјкӏмпорԛгѕтцvшхуz", "ДБCDЕFGНІЈКLМИОРQЯЅТЦVШЖЧZ"),
   cherokee: alphabetMap("ᎪᏴᏟᎠᎬᖴᏀᎻᏆᎫᏦᏞᎷᏁᎾᏢᎤᏒՏᎢᏌᏉᏔ᙭ᎽᏃ"),
   accented: alphabetMap("áḃćďéḟǵĥíĵḱĺḿńóṕǫŕśťúṽẃẍýź", "ÁḂĆĎÉḞǴĤÍĴḰĹḾŃÓṔǪŔŚŤÚṼẂẌÝŹ"),
+  syllabic: alphabetMap("ᗩᗷᑕᗪEᖴGᕼIᒍKᒪᗰᑎOᑭᑫᖇᔕTᑌᐯᗯ᙭Yᘔ"),
 } satisfies Record<string, CharMap>;
 
 export type CharMapName = keyof typeof charMaps;
@@ -280,6 +281,76 @@ const wrap =
   (prefix: string, suffix: string, inner: Transform = (t) => t): Transform =>
   (text, options) =>
     `${prefix}${inner(text, options)}${suffix}`;
+
+/** Put a symbol between every character, spaces included (D✧i✧s✧c). */
+const between =
+  (separator: string, inner: Transform = (t) => t): Transform =>
+  (text, options) =>
+    inner(text, options)
+      .split("\n")
+      .map((line) => graphemes(line).join(separator))
+      .join("\n");
+
+/** Wrap each non-space character on its own, e.g. ⟨D⟩⟨i⟩. */
+const eachChar =
+  (prefix: string, suffix: string): Transform =>
+  (text) =>
+    graphemes(text)
+      .map((g) => (isWhitespace(g) ? g : `${prefix}${g}${suffix}`))
+      .join("");
+
+const MIX_POOL: readonly CharMapName[] = [
+  "boldSerif",
+  "script",
+  "circled",
+  "smallCapsAll",
+  "currency",
+  "accented",
+  "boldFraktur",
+  "italicSerif",
+  "softGlyphs",
+  "syllabic",
+];
+
+/** "Random" text: each letter gets a different style, seeded so server and client agree. */
+const mixed =
+  (seed: number): Transform =>
+  (text) => {
+    const random = mulberry32(seed);
+    return graphemes(text)
+      .map((g) =>
+        isWhitespace(g) ? g : applyMap(g, charMaps[MIX_POOL[Math.floor(random() * MIX_POOL.length)]!]),
+      )
+      .join("");
+  };
+
+const FRAME_EMOJI = [
+  "👺",
+  "😝",
+  "😍",
+  "🐒",
+  "😈",
+  "💢",
+  "🐯",
+  "😡",
+  "💋",
+  "⛵",
+  "🍭",
+  "♨️",
+  "👽",
+  "🦄",
+  "🎃",
+  "🍒",
+];
+
+/** Mixed letters between two emoji picked from the text itself, so the pair changes as you type. */
+const randomEmoji: Transform = (text) => {
+  let hash = 0;
+  for (const char of text) hash = (hash * 31 + char.codePointAt(0)!) >>> 0;
+  const random = mulberry32(hash);
+  const pick = () => FRAME_EMOJI[Math.floor(random() * FRAME_EMOJI.length)]!;
+  return `${pick()}${pick()} ${mixed(5)(text)} ${pick()}${pick()}`;
+};
 
 const WARN = {
   combining:
@@ -470,6 +541,7 @@ export const fontStyles: readonly FontStyle[] = [
     transform: mapWith("cherokee"),
   },
   { id: "accented", name: "Accented", categories: ["aesthetic"], transform: mapWith("accented") },
+  { id: "syllabic", name: "Syllabic", categories: ["decorative"], transform: mapWith("syllabic") },
 
   // Decorated wrappers (symbols around a base style)
   {
@@ -605,6 +677,335 @@ export const fontStyles: readonly FontStyle[] = [
     name: "Skull",
     categories: ["decorative", "glitch"],
     transform: wrap("💀 ", " 💀", mapWith("boldFraktur")),
+  },
+  {
+    id: "sparkle-frame",
+    name: "Sparkle Frame",
+    categories: ["aesthetic", "decorative"],
+    transform: wrap("✧˖° ", " °˖✧", mapWith("boldScript")),
+  },
+  {
+    id: "heart-frame",
+    name: "Heart Frame",
+    categories: ["cursive", "decorative"],
+    transform: wrap("♥ ", " ♥", mapWith("boldScript")),
+  },
+  {
+    id: "flower-frame",
+    name: "Flower Frame",
+    categories: ["aesthetic", "decorative"],
+    transform: wrap("✿❀ ", " ❀✿", mapWith("smallCapsAll")),
+  },
+  {
+    id: "lightning",
+    name: "Lightning",
+    categories: ["gothic", "decorative"],
+    transform: wrap("⚡ ", " ⚡", mapWith("boldFraktur")),
+  },
+  {
+    id: "butterfly",
+    name: "Butterfly",
+    categories: ["aesthetic", "decorative"],
+    transform: wrap("🦋 ", " 🦋", mapWith("smallCapsAll")),
+  },
+  {
+    id: "retro-wave",
+    name: "Retro Wave",
+    categories: ["cursive", "decorative"],
+    transform: wrap("¸,ø¤º°` ", " ´°º¤ø,¸", mapWith("boldScript")),
+  },
+  {
+    id: "line-frame",
+    name: "Line Frame",
+    categories: ["bold", "decorative"],
+    transform: wrap("——— ", " ———", mapWith("boldItalicSans")),
+  },
+  {
+    id: "dash-frame",
+    name: "Dash Frame",
+    categories: ["cursive", "decorative"],
+    transform: wrap("─── ", " ───", mapWith("boldScript")),
+  },
+  {
+    id: "chain-frame",
+    name: "Chain Frame",
+    categories: ["decorative"],
+    transform: wrap("➰ ", " ➰", mapWith("smallCapsAll")),
+  },
+  {
+    id: "zigzag-frame",
+    name: "Zigzag Frame",
+    categories: ["cursive", "decorative"],
+    transform: wrap("ʢ ", " ʢ", mapWith("italicSans")),
+  },
+  {
+    id: "floral-heart",
+    name: "Floral Heart",
+    categories: ["cursive", "decorative"],
+    transform: wrap("❦ ", " ❦", mapWith("boldScript")),
+  },
+  {
+    id: "starburst",
+    name: "Starburst",
+    categories: ["aesthetic", "decorative"],
+    transform: wrap("🌟·° ", " °·🌟", mapWith("smallCapsAll")),
+  },
+  {
+    id: "hourglass",
+    name: "Hourglass Frame",
+    categories: ["cursive", "decorative"],
+    transform: wrap("⧗ ", " ⧗", mapWith("boldScript")),
+  },
+  {
+    id: "double-diamond",
+    name: "Double Diamond",
+    categories: ["decorative"],
+    transform: wrap("◈ ", " ◈", mapWith("smallCapsAll")),
+  },
+  {
+    id: "lozenge",
+    name: "Lozenge Frame",
+    categories: ["aesthetic", "decorative"],
+    transform: wrap("◊ ", " ◊", mapWith("sans")),
+  },
+  {
+    id: "bowtie",
+    name: "Bowtie Frame",
+    categories: ["cursive", "decorative"],
+    transform: wrap("⋈ ", " ⋈", mapWith("italicSans")),
+  },
+  {
+    id: "reference-mark",
+    name: "Reference Mark",
+    categories: ["gothic", "decorative"],
+    transform: wrap("※ ", " ※", mapWith("boldFraktur")),
+  },
+  {
+    id: "asterism",
+    name: "Asterism Frame",
+    categories: ["cursive", "decorative"],
+    transform: wrap("⁂ ", " ⁂", mapWith("boldScript")),
+  },
+  {
+    id: "circled-spaced",
+    name: "Circled Spaced",
+    categories: ["decorative"],
+    transform: (text) => spaceOut(applyMap(text, charMaps.circled)),
+  },
+
+  // Emoji frames
+  {
+    id: "hibiscus",
+    name: "Hibiscus",
+    categories: ["aesthetic", "decorative"],
+    transform: wrap("🌺 ", " 🌺", mapWith("smallCapsAll")),
+  },
+  {
+    id: "ribbon",
+    name: "Ribbon",
+    categories: ["aesthetic", "cursive"],
+    transform: wrap("🎀 ", " 🎀", mapWith("boldScript")),
+  },
+  {
+    id: "gem",
+    name: "Gem",
+    categories: ["bold", "decorative"],
+    transform: wrap("💎 ", " 💎", mapWith("boldItalicSans")),
+  },
+  {
+    id: "rainbow",
+    name: "Rainbow",
+    categories: ["aesthetic"],
+    transform: wrap("🌈 ", " 🌈", mapWith("sans")),
+  },
+  {
+    id: "crown-emoji",
+    name: "Crown Emoji",
+    categories: ["gothic", "decorative"],
+    transform: wrap("👑 ", " 👑", mapWith("boldFraktur")),
+  },
+  {
+    id: "dizzy",
+    name: "Dizzy",
+    categories: ["cursive", "decorative"],
+    transform: wrap("💫 ", " 💫", mapWith("boldScript")),
+  },
+
+  // Symbol between every letter
+  {
+    id: "sparkle-between",
+    name: "Sparkle Between",
+    categories: ["cursive", "decorative"],
+    transform: between("✧", mapWith("boldScript")),
+  },
+  {
+    id: "diamond-between",
+    name: "Diamond Between",
+    categories: ["decorative"],
+    transform: between("◆", mapWith("smallCapsAll")),
+  },
+  {
+    id: "snow-between",
+    name: "Snow Between",
+    categories: ["cursive", "decorative"],
+    transform: between("❄", mapWith("italicSerif")),
+  },
+  {
+    id: "music-between",
+    name: "Music Between",
+    categories: ["cursive", "decorative"],
+    transform: between("♬", mapWith("boldScript")),
+  },
+  {
+    id: "cross-between",
+    name: "Cross Between",
+    categories: ["gothic", "decorative"],
+    transform: between("†", mapWith("boldFraktur")),
+  },
+  {
+    id: "middle-dot",
+    name: "Middle Dot",
+    categories: ["bold", "cursive"],
+    transform: between("·", mapWith("boldItalicSerif")),
+  },
+  {
+    id: "bullet-between",
+    name: "Bullet Between",
+    categories: ["aesthetic"],
+    transform: between("•", mapWith("smallCapsAll")),
+  },
+  {
+    id: "wave-between",
+    name: "Wave Between",
+    categories: ["cursive", "decorative"],
+    transform: between("⌣", mapWith("boldScript")),
+  },
+  {
+    id: "tulip-between",
+    name: "Tulip Between",
+    categories: ["aesthetic", "decorative"],
+    transform: between("🌷", mapWith("smallCapsAll")),
+  },
+  {
+    id: "blossom-between",
+    name: "Blossom Between",
+    categories: ["cursive", "decorative"],
+    transform: between("🌼", mapWith("boldScript")),
+  },
+
+  // Heart and symbol decorations
+  {
+    id: "sparkle-hearts",
+    name: "Sparkle Hearts",
+    categories: ["decorative"],
+    transform: wrap("💖´ *•.¸♥¸.•** ", " **•.¸♥¸.•*´💖", marks("̇⁞")),
+    warning: WARN.combining,
+  },
+  {
+    id: "heart-arrows",
+    name: "Heart Arrows",
+    categories: ["decorative"],
+    transform: wrap("♥♥♥.¸•♥`.•♥`¸ ", " ¸.•♥`.•♥`¸.♥♥♥", marks("̣̇→")),
+    warning: WARN.combining,
+  },
+  {
+    id: "heart-chain",
+    name: "Heart Chain",
+    categories: ["decorative"],
+    transform: wrap("♥♡♥♡♥♡ ", " ♡♥♡♥♡♥", mixed(1)),
+  },
+  {
+    id: "heart-brackets",
+    name: "Heart Brackets",
+    categories: ["decorative"],
+    transform: wrap("•¤»((¯♥¯))«¤• ", " •¤»((¯♥¯))«¤•"),
+  },
+  {
+    id: "heart-swirl",
+    name: "Heart Swirl",
+    categories: ["decorative"],
+    transform: wrap('♡¨¨~^"°¹~•.„¸* ', ' *¸„.•~¹°"^~¨¨♡', mapWith("syllabic")),
+  },
+  {
+    id: "heart-melody",
+    name: "Heart Melody",
+    categories: ["decorative"],
+    transform: wrap("(¯`'•.¸♥♫♪♥(◠‿◠)♥♫♪♥¸.•'´¯) ", " (¯`'•.¸♥♫♪♥(◠‿◠)♥♫♪♥¸.•'´¯)", mapWith("subscript")),
+    warning: WARN.partial,
+  },
+  {
+    id: "checkered",
+    name: "Checkered",
+    categories: ["decorative"],
+    transform: wrap("▀▄▀▄▀▄ ", " ▀▄▀▄▀▄", mapWith("squared")),
+    warning: WARN.rare,
+  },
+  {
+    id: "squared-melody",
+    name: "Squared Melody",
+    categories: ["decorative"],
+    transform: wrap(".•♫•♬• ", " •♬•♫•.", mapWith("squared")),
+    warning: WARN.rare,
+  },
+  {
+    id: "angle-melody",
+    name: "Angle Melody",
+    categories: ["decorative"],
+    transform: wrap("¸¸♬·¯·♩¸¸♪·¯·♫¸¸ ", " ¸¸♬·¯·♩¸¸♪·¯·♫¸¸", eachChar("⟨", "⟩")),
+  },
+  {
+    id: "stardust",
+    name: "Stardust",
+    categories: ["bold", "decorative"],
+    transform: wrap("★·.·´¯`·.·★ ", " ★·.·´¯`·.·★", mapWith("boldSerif")),
+  },
+  {
+    id: "blade",
+    name: "Blade",
+    categories: ["decorative", "glitch"],
+    transform: wrap("░▒▓█►─═ ", " ═─◄█▓▒░", marks("̇⁞")),
+    warning: WARN.combining,
+  },
+  {
+    id: "rainbow-hearts",
+    name: "Rainbow Hearts",
+    categories: ["decorative"],
+    transform: wrap("💙💜💛🧡❤️ ", " ❤️🧡💛💜💙", marks("̊⁚")),
+    warning: WARN.combining,
+  },
+  {
+    id: "equalizer",
+    name: "Equalizer",
+    categories: ["decorative", "glitch"],
+    transform: wrap("_▂▃▄▅▆▇█ ", " █▇▆▅▄▃▂_", marks("̣̇→")),
+    warning: WARN.combining,
+  },
+  {
+    id: "twinkle",
+    name: "Twinkle",
+    categories: ["decorative"],
+    transform: wrap('~"*°•.~"*°• ', ' •°*"~.•°*"~'),
+  },
+
+  // Random mixes (a different style on every letter)
+  {
+    id: "random-bars",
+    name: "Random Bars",
+    categories: ["glitch", "decorative"],
+    transform: wrap("ıllıllı ", " ıllıllı", mixed(2)),
+  },
+  { id: "random-emoji", name: "Random Emoji", categories: ["glitch", "decorative"], transform: randomEmoji },
+  {
+    id: "random-stars",
+    name: "Random Stars",
+    categories: ["glitch", "decorative"],
+    transform: wrap("¤ (¯´☆✭.¸_)¤ ", " ¤(_¸.✭☆´¯) ¤", mixed(3)),
+  },
+  {
+    id: "random-curls",
+    name: "Random Curls",
+    categories: ["glitch", "decorative"],
+    transform: wrap("•´¯`•. ", " .•´¯`•", mixed(4)),
   },
 ];
 
