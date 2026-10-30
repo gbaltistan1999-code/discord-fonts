@@ -425,7 +425,6 @@ export const fontStyles: readonly FontStyle[] = [
     name: "Superscript",
     categories: ["aesthetic"],
     transform: mapWith("superscript"),
-    warning: WARN.partial,
   },
   {
     id: "subscript",
