@@ -119,7 +119,8 @@ export function FontGenerator({ featured, sampleText = SAMPLE_TEXT }: FontGenera
   // Keep typing responsive: results re-render at lower priority than the input.
   const deferredText = useDeferredValue(text);
   const source = deferredText.trim() ? deferredText : sampleText;
-  const search = useDeferredValue(query).trim().toLowerCase();
+  const deferredQuery = useDeferredValue(query).trim();
+  const search = deferredQuery.toLowerCase();
 
   const featuredStyles = useMemo(
     () => (featured ? featured.ids.map(getFontStyle).filter((s): s is FontStyle => Boolean(s)) : []),
@@ -132,31 +133,42 @@ export function FontGenerator({ featured, sampleText = SAMPLE_TEXT }: FontGenera
     return fontStyles.filter((style) => style.categories.includes(filter));
   }, [filter, featuredStyles]);
 
-  const matched = useMemo(() => {
+  const scoped = useMemo(() => {
     let list = filtered;
     if (scope === "favorites") list = list.filter((style) => favorites.includes(style.id));
     if (scope === "recent") {
       const inFilter = new Map(list.map((style) => [style.id, style]));
       list = recent.map((id) => inFilter.get(id)).filter((s): s is FontStyle => Boolean(s));
     }
-    if (search) {
-      list = list.filter(
-        (style) =>
-          style.name.toLowerCase().includes(search) ||
-          style.id.includes(search) ||
-          style.categories.some((category) => category.includes(search)),
-      );
-    }
     return list;
-  }, [filtered, scope, favorites, recent, search]);
+  }, [filtered, scope, favorites, recent]);
 
-  // Paging and random styles only apply to the full, unsearched list.
-  const browsingAll = filter === "all" && scope === "all" && !search;
+  const nameMatches = useMemo(
+    () =>
+      search
+        ? scoped.filter(
+            (style) =>
+              style.name.toLowerCase().includes(search) ||
+              style.id.includes(search) ||
+              style.categories.some((category) => category.includes(search)),
+          )
+        : scoped,
+    [scoped, search],
+  );
+
+  // Visitors often type the text they want converted into the search box. When it matches no
+  // style name, show that text in every style instead of an empty list.
+  const searchAsText = Boolean(search) && nameMatches.length === 0 && scoped.length > 0;
+  const matched = searchAsText ? scoped : nameMatches;
+  const shownText = searchAsText ? deferredQuery : source;
+
+  // Paging and random styles only apply to the full list.
+  const browsingAll = filter === "all" && scope === "all" && (!search || searchAsText);
 
   const results = useMemo(() => {
     const visible = browsingAll ? matched.slice(0, limit) : matched;
-    return visible.map((style) => ({ style, value: style.transform(source, { zalgoIntensity }) }));
-  }, [browsingAll, matched, limit, source, zalgoIntensity]);
+    return visible.map((style) => ({ style, value: style.transform(shownText, { zalgoIntensity }) }));
+  }, [browsingAll, matched, limit, shownText, zalgoIntensity]);
 
   const randomStyles = useMemo(
     () => Array.from({ length: randomCount }, (_, i) => makeRandomStyle(randomStart + i, i)),
@@ -164,8 +176,8 @@ export function FontGenerator({ featured, sampleText = SAMPLE_TEXT }: FontGenera
   );
 
   const randomResults = useMemo(
-    () => (browsingAll ? randomStyles.map((style) => ({ style, value: style.transform(source) })) : []),
-    [browsingAll, randomStyles, source],
+    () => (browsingAll ? randomStyles.map((style) => ({ style, value: style.transform(shownText) })) : []),
+    [browsingAll, randomStyles, shownText],
   );
 
   useEffect(() => {
@@ -359,43 +371,36 @@ export function FontGenerator({ featured, sampleText = SAMPLE_TEXT }: FontGenera
         </aside>
 
         <div className="cv-list min-w-0 lg:col-start-1 lg:row-start-1">
+          {searchAsText && (
+            <div className="mb-3 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-accent/30 bg-accent-soft px-4 py-3 text-sm text-text">
+              <p>No style is called “{deferredQuery}”, so here is your text in every style.</p>
+              <button
+                type="button"
+                onClick={() => {
+                  setText(deferredQuery);
+                  setQuery("");
+                  inputRef.current?.focus();
+                  inputRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+                }}
+                className="shrink-0 rounded-full bg-accent-solid px-4 py-1.5 text-sm font-semibold text-on-accent transition-opacity hover:opacity-90"
+              >
+                Move to text box
+              </button>
+            </div>
+          )}
+
           {results.length > 0 ? (
             <ul aria-label="Converted text styles" className={listClass}>
               {results.map((result) => renderRow(result, true))}
             </ul>
           ) : (
-            <div className="rounded-2xl border border-dashed border-border bg-surface px-5 py-10 text-center text-sm text-muted">
-              {search ? (
-                <>
-                  <p>
-                    No style is called “{query.trim()}”. This box finds styles by name, such as bold, script
-                    or bubble.
-                  </p>
-                  {/* Visitors often type the text they want converted here, so offer to move it. */}
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setText(query.trim());
-                      setQuery("");
-                      setScope("all");
-                      inputRef.current?.focus();
-                      inputRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
-                    }}
-                    className="mt-4 rounded-full bg-accent-solid px-5 py-2.5 text-sm font-semibold text-on-accent shadow-sm transition-opacity hover:opacity-90"
-                  >
-                    Convert “{query.trim()}” instead
-                  </button>
-                </>
-              ) : (
-                <p>
-                  {scope === "favorites"
-                    ? "No favorites yet. Tap the heart on any style to save it here."
-                    : scope === "recent"
-                      ? "Styles you copy will show up here."
-                      : "No styles in this group."}
-                </p>
-              )}
-            </div>
+            <p className="rounded-2xl border border-dashed border-border bg-surface px-5 py-10 text-center text-sm text-muted">
+              {scope === "favorites"
+                ? "No favorites yet. Tap the heart on any style to save it here."
+                : scope === "recent"
+                  ? "Styles you copy will show up here."
+                  : "No styles in this group."}
+            </p>
           )}
 
           {browsingAll && limit < matched.length && (
