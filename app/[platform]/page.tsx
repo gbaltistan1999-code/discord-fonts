@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { FaqList } from "@/components/FaqList";
 import { FontGenerator } from "@/components/FontGenerator";
 import { JsonLd } from "@/components/JsonLd";
 import { getPlatformPage, platformOutro, platformPages } from "@/content/platforms";
-import { buildMetadata, webApplicationJsonLd } from "@/lib/seo";
+import { buildMetadata, faqJsonLd, webApplicationJsonLd } from "@/lib/seo";
 
 interface PageProps {
   params: Promise<{ platform: string }>;
@@ -35,6 +36,7 @@ export default async function PlatformPageRoute({ params }: PageProps) {
   return (
     <>
       <JsonLd data={webApplicationJsonLd({ name: page.h1, description: page.description, path })} />
+      <JsonLd data={faqJsonLd(page.faqs)} />
 
       <div className="pt-6">
         <Breadcrumbs items={[{ name: `${page.name} Fonts`, path }]} />
@@ -45,7 +47,7 @@ export default async function PlatformPageRoute({ params }: PageProps) {
       </div>
 
       <section aria-label={`${page.name} font generator`}>
-        <FontGenerator />
+        <FontGenerator featured={page.featured} sampleText={page.sampleText} />
       </section>
 
       <article className="prose-content cv-auto mt-12">
@@ -53,6 +55,10 @@ export default async function PlatformPageRoute({ params }: PageProps) {
         {platformOutro}
         <p className="text-sm text-muted">This site is not affiliated with or endorsed by {page.name}.</p>
       </article>
+
+      <div className="cv-auto mt-12">
+        <FaqList faqs={page.faqs} heading={`${page.name} Fonts FAQ`} />
+      </div>
     </>
   );
 }

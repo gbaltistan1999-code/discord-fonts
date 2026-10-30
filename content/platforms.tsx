@@ -1,4 +1,6 @@
 import Link from "next/link";
+import type { FeaturedStyles } from "@/components/FontGenerator";
+import type { Faq } from "./faqs";
 
 export interface PlatformPage {
   /** URL path segment, e.g. "roblox-fonts". */
@@ -9,6 +11,11 @@ export interface PlatformPage {
   title: string;
   description: string;
   intro: string;
+  /** Example text shown in the generator before the visitor types. */
+  sampleText: string;
+  /** Styles picked for this platform, shown first. */
+  featured: FeaturedStyles;
+  faqs: readonly Faq[];
   body: React.ReactNode;
 }
 
@@ -18,6 +25,66 @@ export const platformPages: readonly PlatformPage[] = [
   {
     slug: "roblox-fonts",
     name: "Roblox",
+    sampleText: "Roblox Builder",
+    featured: {
+      label: "Best for Roblox",
+      ids: [
+        "small-caps-all",
+        "small-caps",
+        "wide-spaced",
+        "bold-sans",
+        "bold-serif",
+        "sans",
+        "italic",
+        "sans-italic",
+        "monospace",
+        "double-struck",
+        "fullwidth",
+        "vaporwave-spaced",
+        "superscript",
+        "circled",
+        "bubble",
+        "bold-script",
+        "script",
+        "fraktur",
+        "bold-fraktur",
+        "gothic-caps",
+        "accented",
+        "greekish",
+        "faux-cyrillic",
+        "currency",
+        "stroked",
+        "kanji",
+        "syllabic",
+        "middle-dot",
+        "bullet-between",
+        "dash-between",
+        "verified",
+        "trademark",
+      ],
+    },
+    faqs: [
+      {
+        question: "Can I use fancy fonts in my Roblox username?",
+        answer:
+          "No. Roblox usernames only accept letters, numbers and one underscore, between 3 and 20 characters. Fancy Unicode letters are rejected, so use them in descriptions and your About section instead.",
+      },
+      {
+        question: "Why does Roblox turn my text into hashtags?",
+        answer:
+          "Roblox filters all text, and characters or words its filter can't read are often replaced with hashtags. Simple styles such as Small Caps, Bold and Wide Spaced are the most likely to get through.",
+      },
+      {
+        question: "Which Roblox fonts work best?",
+        answer:
+          "The styles in the Best for Roblox tab are the simplest ones, which survive the filter most often. Heavy decorations, emoji frames and glitch text are more likely to be removed.",
+      },
+      {
+        question: "Can I use these fonts in Roblox chat?",
+        answer:
+          "Sometimes. Chat goes through the same filter, so plain-looking styles have the best chance. If a message is hashed, switch to a simpler style or plain text.",
+      },
+    ],
     h1: "Roblox Fonts Generator",
     title: "Roblox Fonts – Copy & Paste Cool Text for Roblox",
     description:
@@ -52,6 +119,66 @@ export const platformPages: readonly PlatformPage[] = [
   {
     slug: "instagram-fonts",
     name: "Instagram",
+    sampleText: "my aesthetic bio",
+    featured: {
+      label: "Best for Instagram",
+      ids: [
+        "script",
+        "bold-script",
+        "italic",
+        "small-caps-all",
+        "sparkle-frame",
+        "flower-frame",
+        "sparkles",
+        "flower-ribbon",
+        "kawaii",
+        "hearts",
+        "heart-frame",
+        "heart-suffix",
+        "sparkle-suffix",
+        "moon-prefix",
+        "flower-prefix",
+        "bunny-prefix",
+        "bear-prefix",
+        "corner-brackets",
+        "corner-quotes",
+        "fullwidth",
+        "butterfly",
+        "hibiscus",
+        "ribbon",
+        "sakura",
+        "dizzy",
+        "birds",
+        "heart-between",
+        "star-between",
+        "pipe-between",
+        "union-between",
+        "soft-glyphs",
+        "script-caps",
+      ],
+    },
+    faqs: [
+      {
+        question: "How do I change the font in my Instagram bio?",
+        answer:
+          "Instagram has no font setting for bios. Type your text here, copy a style, then open Edit profile on Instagram and paste it into your Bio or Name field.",
+      },
+      {
+        question: "Can I use fancy fonts in my Instagram username?",
+        answer:
+          "No. Your @username only allows letters, numbers, periods and underscores. Use fancy fonts in the Name field instead, which appears in bold on your profile.",
+      },
+      {
+        question: "Do Instagram fonts work in captions and comments?",
+        answer:
+          "Yes. Styled text pastes into captions, comments and story text. Keep hashtags plain, because styled hashtags won't link to the tag.",
+      },
+      {
+        question: "Why do some fonts look different on iPhone and Android?",
+        answer:
+          "Each phone draws Unicode characters with its own system fonts, so some symbols look slightly different or may not appear on older devices. Script, Small Caps and Bold styles display almost everywhere.",
+      },
+    ],
     h1: "Instagram Fonts Generator",
     title: "Instagram Fonts – Copy & Paste Fonts for Bio and Captions",
     description:
@@ -84,6 +211,60 @@ export const platformPages: readonly PlatformPage[] = [
   {
     slug: "snapchat-fonts",
     name: "Snapchat",
+    sampleText: "Snap me",
+    featured: {
+      label: "Best for Snapchat",
+      ids: [
+        "bold-sans",
+        "bubble",
+        "negative-circled",
+        "double-struck",
+        "squared",
+        "negative-squared",
+        "sakura",
+        "butterfly",
+        "rainbow",
+        "gem",
+        "fire",
+        "dizzy",
+        "ribbon",
+        "hibiscus",
+        "kawaii",
+        "hearts",
+        "sparkle-frame",
+        "tulip-between",
+        "blossom-between",
+        "heart-chain",
+        "random-emoji",
+        "upside-down",
+        "clap",
+        "small-caps-all",
+        "script",
+        "bold-script",
+        "star-wings",
+        "rainbow-hearts",
+      ],
+    },
+    faqs: [
+      {
+        question: "Can I change my Snapchat display name font?",
+        answer:
+          "Yes. Copy a style from this page, then open your Snapchat profile, tap your name and paste it in. Your username itself must stay plain letters, numbers, hyphens, underscores and periods.",
+      },
+      {
+        question: "Do fancy fonts work in Snapchat chats?",
+        answer: "Yes. Styled text pastes into chats and the text you add to snaps and stories.",
+      },
+      {
+        question: "Which fonts are easiest to read on a snap?",
+        answer:
+          "Bold and solid styles such as Bold Sans, Bubble and Double-Struck stay readable on top of photos. Thin or glitchy styles can get lost against busy backgrounds.",
+      },
+      {
+        question: "Will a fancy display name stop friends finding me?",
+        answer: "No. People add you by your username, Snapcode or contacts, not by your display name.",
+      },
+    ],
     h1: "Snapchat Fonts Generator",
     title: "Snapchat Fonts – Copy & Paste Cool Text for Snapchat",
     description:
@@ -116,6 +297,62 @@ export const platformPages: readonly PlatformPage[] = [
   {
     slug: "youtube-fonts",
     name: "YouTube",
+    sampleText: "Watch Now",
+    featured: {
+      label: "Best for YouTube",
+      ids: [
+        "bold-sans",
+        "bold-serif",
+        "sans-bold-italic",
+        "bold-italic",
+        "double-struck-caps",
+        "monospace",
+        "small-caps-all",
+        "lenticular",
+        "white-lenticular",
+        "corner-brackets",
+        "white-square",
+        "arrows",
+        "double-angle",
+        "heavy-angle",
+        "gradient-blocks",
+        "fire",
+        "verified",
+        "music",
+        "strikethrough",
+        "underline",
+        "double-underline",
+        "boxed-lines",
+        "checkered",
+        "circled",
+        "squared",
+        "star-wings",
+        "line-frame",
+        "middle-dot",
+      ],
+    },
+    faqs: [
+      {
+        question: "Can I use fancy fonts in YouTube comments?",
+        answer:
+          "Yes. Copy a style and paste it into a comment. Bold or bracketed first lines help a pinned comment stand out.",
+      },
+      {
+        question: "Should I use fancy fonts in video titles?",
+        answer:
+          "Use them sparingly. Search reads styled letters as different characters, so keep your main keywords plain and style only a short label.",
+      },
+      {
+        question: "Can my YouTube channel name use a fancy font?",
+        answer:
+          "Channel names generally accept Unicode, but your @handle only allows letters, numbers, underscores, hyphens and periods.",
+      },
+      {
+        question: "How can fonts help my video descriptions?",
+        answer:
+          "Styled section headings such as 𝗖𝗛𝗔𝗣𝗧𝗘𝗥𝗦 or 【 ʟɪɴᴋꜱ 】 make long descriptions easier to scan. Keep links and timestamps in plain text so they stay clickable.",
+      },
+    ],
     h1: "YouTube Fonts Generator",
     title: "YouTube Fonts – Copy & Paste Fancy Text for YouTube",
     description:
@@ -148,6 +385,62 @@ export const platformPages: readonly PlatformPage[] = [
   {
     slug: "twitter-fonts",
     name: "Twitter",
+    sampleText: "Big news",
+    featured: {
+      label: "Best for Twitter",
+      ids: [
+        "bold-serif",
+        "bold-sans",
+        "italic",
+        "bold-italic",
+        "sans-italic",
+        "sans-bold-italic",
+        "monospace",
+        "double-struck",
+        "script",
+        "bold-script",
+        "small-caps",
+        "small-caps-all",
+        "strikethrough",
+        "underline",
+        "short-strike",
+        "superscript",
+        "subscript",
+        "upside-down",
+        "mirrored",
+        "reversed",
+        "clap",
+        "wide-spaced",
+        "fullwidth",
+        "circled",
+        "verified",
+        "sparkle-suffix",
+        "guillemets",
+        "low-underline",
+      ],
+    },
+    faqs: [
+      {
+        question: "How do I write bold text on Twitter (X)?",
+        answer:
+          "Standard posts have no bold button. Type your text here, copy the Bold or Bold Sans style and paste it into your post.",
+      },
+      {
+        question: "Can I use fancy fonts in my X display name?",
+        answer:
+          "Yes. Display names accept Unicode up to 50 characters. Your @handle only allows letters, numbers and underscores.",
+      },
+      {
+        question: "Do fancy fonts count toward the character limit?",
+        answer:
+          "Yes. Every styled letter counts, and some decorated styles use extra characters, so check the length before posting.",
+      },
+      {
+        question: "Are fancy fonts accessible?",
+        answer:
+          "Not always. Screen readers may read styled letters one at a time or skip them. Style a word or two for emphasis and keep the main message plain.",
+      },
+    ],
     h1: "Twitter (X) Fonts Generator",
     title: "Twitter Fonts – Copy & Paste Fancy Text for X Bios and Posts",
     description:
@@ -179,6 +472,61 @@ export const platformPages: readonly PlatformPage[] = [
   {
     slug: "facebook-fonts",
     name: "Facebook",
+    sampleText: "Happy Birthday",
+    featured: {
+      label: "Best for Facebook",
+      ids: [
+        "bold-sans",
+        "bold-serif",
+        "italic",
+        "bold-italic",
+        "sans-bold-italic",
+        "script",
+        "bold-script",
+        "underline",
+        "double-underline",
+        "strikethrough",
+        "crossed-out",
+        "small-caps-all",
+        "double-struck",
+        "circled",
+        "bubble",
+        "hearts",
+        "sparkles",
+        "star-wings",
+        "sakura",
+        "fire",
+        "ribbon",
+        "heart-frame",
+        "stardust",
+        "wave",
+        "flower-frame",
+        "twinkle",
+        "heart-brackets",
+        "music",
+      ],
+    },
+    faqs: [
+      {
+        question: "How do I make bold text in a Facebook post?",
+        answer:
+          "Personal posts have no formatting buttons. Copy the Bold or Bold Sans style from this page and paste it into your post or comment.",
+      },
+      {
+        question: "Can I use a fancy font for my Facebook name?",
+        answer:
+          "Usually not. Facebook's name standards don't allow symbols, unusual characters or mixed alphabets, so fancy names are rejected.",
+      },
+      {
+        question: "Where do Facebook fonts work?",
+        answer: "In posts, comments, Messenger, your profile Intro, and page and group descriptions.",
+      },
+      {
+        question: "Which styles suit celebration posts?",
+        answer:
+          "Frames such as Hearts, Sparkles, Star Wings and Sakura work well for birthdays, anniversaries and announcements.",
+      },
+    ],
     h1: "Facebook Fonts Generator",
     title: "Facebook Fonts – Copy & Paste Fancy Text for Posts and Bio",
     description:
@@ -211,6 +559,64 @@ export const platformPages: readonly PlatformPage[] = [
   {
     slug: "tiktok-fonts",
     name: "TikTok",
+    sampleText: "for you page",
+    featured: {
+      label: "Best for TikTok",
+      ids: [
+        "fullwidth",
+        "vaporwave-spaced",
+        "small-caps-all",
+        "kawaii",
+        "bunny-prefix",
+        "bear-prefix",
+        "sparkles",
+        "sparkle-frame",
+        "butterfly",
+        "sakura",
+        "ribbon",
+        "hearts",
+        "heart-suffix",
+        "star-wings",
+        "katakana",
+        "kanji",
+        "gothic-cross",
+        "bold-fraktur",
+        "zalgo",
+        "crossed-out",
+        "random-bars",
+        "random-stars",
+        "upside-down",
+        "gradient-blocks",
+        "dizzy",
+        "birds",
+        "corner-brackets",
+        "script",
+        "bold-script",
+        "soft-glyphs",
+      ],
+    },
+    faqs: [
+      {
+        question: "How do I get a fancy font in my TikTok bio?",
+        answer:
+          "Copy a style from this page, then open Edit profile on TikTok and paste it into your Bio or Name field.",
+      },
+      {
+        question: "Can I use fancy fonts in my TikTok username?",
+        answer:
+          "No. Usernames only allow letters, numbers, underscores and periods. Use fonts in your profile name instead.",
+      },
+      {
+        question: "What are the best fonts for a TikTok bio?",
+        answer:
+          "Compact styles such as Small Caps, Bold Sans and Kawaii fit TikTok's 80-character bio. Vaporwave suits edit and fan accounts, while Gothic and Glitch styles fit dark or gaming profiles.",
+      },
+      {
+        question: "Do fancy fonts affect TikTok search?",
+        answer:
+          "Yes. Search reads styled letters as different characters, so keep keywords and hashtags in plain text.",
+      },
+    ],
     h1: "TikTok Fonts Generator",
     title: "TikTok Fonts – Copy & Paste Cool Fonts for TikTok Bio",
     description:
@@ -243,6 +649,64 @@ export const platformPages: readonly PlatformPage[] = [
   {
     slug: "steam-fonts",
     name: "Steam",
+    sampleText: "Gamer Tag",
+    featured: {
+      label: "Best for Steam",
+      ids: [
+        "bold-fraktur",
+        "gothic-caps",
+        "fraktur",
+        "gamer-tag",
+        "crossbones",
+        "gothic-cross",
+        "javanese-frame",
+        "crown",
+        "crown-emoji",
+        "x-mark",
+        "skull",
+        "lightning",
+        "lenticular",
+        "double-angle",
+        "heavy-angle",
+        "double-struck",
+        "double-struck-caps",
+        "monospace",
+        "bold-sans",
+        "sans-bold-italic",
+        "stroked",
+        "currency",
+        "kanji",
+        "katakana",
+        "cherokee",
+        "zalgo",
+        "random-bars",
+        "blade",
+        "equalizer",
+        "reference-mark",
+        "small-caps-all",
+      ],
+    },
+    faqs: [
+      {
+        question: "How do I change my Steam name to a fancy font?",
+        answer:
+          "Copy a style from this page, then open Edit Profile on Steam and paste it into Profile Name. You can change it as often as you like.",
+      },
+      {
+        question: "How long can a Steam profile name be?",
+        answer: "Up to 32 characters. Frames and symbols count toward that, so keep decorated names short.",
+      },
+      {
+        question: "Why does my fancy name look different in games?",
+        answer:
+          "Some games show your Steam name in their own font, which may not include every symbol. Bold, gothic and small caps styles are the safest choices.",
+      },
+      {
+        question: "Can I use fonts in my Steam profile summary?",
+        answer:
+          "Yes. Fancy text works in your summary, reviews, comments and group pages, and Bold Sans headings help organise long sections.",
+      },
+    ],
     h1: "Steam Fonts Generator",
     title: "Steam Fonts – Copy & Paste Cool Steam Name Fonts",
     description:
@@ -275,6 +739,60 @@ export const platformPages: readonly PlatformPage[] = [
   {
     slug: "xbox-fonts",
     name: "Xbox",
+    sampleText: "Game On",
+    featured: {
+      label: "Best for Xbox",
+      ids: [
+        "bold-sans",
+        "bold-serif",
+        "sans-bold-italic",
+        "bold-italic",
+        "double-struck",
+        "monospace",
+        "small-caps-all",
+        "script",
+        "bold-script",
+        "fraktur",
+        "bold-fraktur",
+        "gothic-caps",
+        "gamer-tag",
+        "lenticular",
+        "arrows",
+        "crown",
+        "lightning",
+        "fire",
+        "skull",
+        "x-mark",
+        "stardust",
+        "line-frame",
+        "middle-dot",
+        "dash-between",
+        "verified",
+        "circled",
+        "fullwidth",
+      ],
+    },
+    faqs: [
+      {
+        question: "Can I use fancy fonts in my Xbox gamertag?",
+        answer:
+          "No. Gamertags are limited to 12 characters of letters, numbers and spaces, so fancy Unicode letters are rejected.",
+      },
+      {
+        question: "Where can I use fonts on Xbox?",
+        answer: "In your profile bio, club descriptions and messages.",
+      },
+      {
+        question: "Why do some symbols not show on my console?",
+        answer:
+          "Consoles include fewer fonts than phones and computers, so rare symbols may appear as boxes. Bold, script and small caps styles display most reliably.",
+      },
+      {
+        question: "Which styles suit gaming clubs?",
+        answer:
+          "Bold Gothic, Gamer Tag and Lenticular Brackets make strong club titles. Use plain text for schedules and rules so members can read them easily.",
+      },
+    ],
     h1: "Xbox Fonts Generator",
     title: "Xbox Fonts – Copy & Paste Fancy Text for Xbox Bio and Clubs",
     description:

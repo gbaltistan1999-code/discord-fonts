@@ -41,9 +41,11 @@ export interface FeaturedStyles {
 interface FontGeneratorProps {
   /** Pre-filter the tool, e.g. on a style landing page. */
   featured?: FeaturedStyles;
+  /** Example text shown before the visitor types anything. */
+  sampleText?: string;
 }
 
-export function FontGenerator({ featured }: FontGeneratorProps) {
+export function FontGenerator({ featured, sampleText = SAMPLE_TEXT }: FontGeneratorProps) {
   const inputId = useId();
   const hintId = useId();
   const randomHeadingId = useId();
@@ -62,7 +64,7 @@ export function FontGenerator({ featured }: FontGeneratorProps) {
 
   // Keep typing responsive: results re-render at lower priority than the input.
   const deferredText = useDeferredValue(text);
-  const source = deferredText.trim() ? deferredText : SAMPLE_TEXT;
+  const source = deferredText.trim() ? deferredText : sampleText;
 
   const featuredStyles = useMemo(
     () => (featured ? featured.ids.map(getFontStyle).filter((s): s is FontStyle => Boolean(s)) : []),
