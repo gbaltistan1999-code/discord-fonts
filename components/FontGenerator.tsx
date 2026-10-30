@@ -35,7 +35,6 @@ function makeRandomStyle(seed: number, index: number): FontStyle {
 
 type Filter = "featured" | "all" | FontCategory;
 type Scope = "all" | "favorites" | "recent";
-type View = "list" | "grid";
 
 /** Each filter tab gets its own colour: a soft tint when idle, solid when selected (white text stays above 4.5:1). */
 const FILTER_COLORS: Record<Filter, { idle: string; active: string }> = {
@@ -83,8 +82,6 @@ function parseStyleIds(value: unknown): string[] {
     : NO_IDS;
 }
 
-const parseView = (value: unknown): View => (value === "grid" ? "grid" : "list");
-
 export interface FeaturedStyles {
   label: string;
   ids: readonly string[];
@@ -101,7 +98,6 @@ export function FontGenerator({ featured, sampleText = SAMPLE_TEXT }: FontGenera
   const inputId = useId();
   const hintId = useId();
   const searchId = useId();
-  const resultsHeadingId = useId();
   const randomHeadingId = useId();
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const copy = useCopy();
@@ -110,7 +106,6 @@ export function FontGenerator({ featured, sampleText = SAMPLE_TEXT }: FontGenera
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState<Filter>(featured ? "featured" : "all");
   const [scope, setScope] = useState<Scope>("all");
-  const [view, setView] = useStoredState<View>("df:view", "list", parseView);
   const [favorites, setFavorites] = useStoredState("df:favorites", NO_IDS, parseStyleIds);
   const [recent, setRecent] = useStoredState("df:recent", NO_IDS, parseStyleIds);
   const [limit, setLimit] = useState(PAGE_SIZE);
@@ -208,17 +203,13 @@ export function FontGenerator({ featured, sampleText = SAMPLE_TEXT }: FontGenera
     { id: "recent", label: "Recent", icon: <HistoryIcon /> },
   ];
 
-  const listClass =
-    view === "grid"
-      ? "grid gap-3 sm:grid-cols-2"
-      : "divide-y divide-border rounded-2xl border border-border bg-surface shadow-sm";
+  const listClass = "grid gap-3 sm:grid-cols-2";
 
   const renderRow = ({ style, value }: { style: FontStyle; value: string }, canFavorite: boolean) => (
     <StyleRow
       key={style.id}
       style={style}
       value={value}
-      view={view}
       selected={style.id === selectedId}
       copied={style.id === copiedId}
       onCopy={() => handleCopy(style, value)}
@@ -270,43 +261,8 @@ export function FontGenerator({ featured, sampleText = SAMPLE_TEXT }: FontGenera
         </p>
       </div>
 
-      {/* Results header */}
-      <div className="mt-6 flex items-center justify-between gap-4 rounded-2xl border border-border bg-surface px-4 py-4 shadow-sm sm:px-5">
-        <div className="min-w-0">
-          <span className="inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent-soft px-3 py-1 text-[0.7rem] font-bold tracking-[0.2em] text-accent uppercase">
-            <span aria-hidden="true" className="size-2 rounded-full bg-accent" />
-            Results
-          </span>
-          <h2 id={resultsHeadingId} className="mt-2 text-xl font-bold tracking-tight text-text sm:text-2xl">
-            Choose a style and copy it.
-          </h2>
-        </div>
-        <div
-          role="group"
-          aria-label="Results layout"
-          className="flex shrink-0 gap-1 rounded-full border border-border bg-surface-2/60 p-1"
-        >
-          {(["list", "grid"] as const).map((option) => (
-            <button
-              key={option}
-              type="button"
-              aria-pressed={view === option}
-              aria-label={option === "list" ? "List view" : "Grid view"}
-              onClick={() => setView(option)}
-              className={`grid size-10 place-items-center rounded-full transition-colors ${
-                view === option
-                  ? "bg-accent-soft text-accent ring-1 ring-accent/50"
-                  : "text-muted hover:bg-surface hover:text-text"
-              }`}
-            >
-              {option === "list" ? <ListIcon /> : <GridIcon />}
-            </button>
-          ))}
-        </div>
-      </div>
-
       {/* Filters, search and saved styles */}
-      <div className="mt-3 rounded-2xl border border-border bg-surface p-4 shadow-sm sm:p-5">
+      <div className="mt-6 rounded-2xl border border-border bg-surface p-4 shadow-sm sm:p-5">
         <div
           role="group"
           aria-label="Filter font styles by category"
@@ -404,7 +360,7 @@ export function FontGenerator({ featured, sampleText = SAMPLE_TEXT }: FontGenera
 
         <div className="cv-list min-w-0 lg:col-start-1 lg:row-start-1">
           {results.length > 0 ? (
-            <ul aria-labelledby={resultsHeadingId} className={listClass}>
+            <ul aria-label="Converted text styles" className={listClass}>
               {results.map((result) => renderRow(result, true))}
             </ul>
           ) : (
@@ -495,7 +451,6 @@ export function FontGenerator({ featured, sampleText = SAMPLE_TEXT }: FontGenera
 interface StyleRowProps {
   style: FontStyle;
   value: string;
-  view: View;
   selected: boolean;
   copied: boolean;
   onCopy: () => void;
@@ -509,7 +464,6 @@ interface StyleRowProps {
 function StyleRow({
   style,
   value,
-  view,
   selected,
   copied,
   onCopy,
@@ -520,10 +474,9 @@ function StyleRow({
 }: StyleRowProps) {
   const sliderId = useId();
   const tooLong = visibleLength(value) > DISCORD_NAME_LIMIT;
-  const grid = view === "grid";
 
   const label = (
-    <div className="flex min-w-0 items-center gap-1.5 text-xs text-muted sm:w-36 sm:shrink-0">
+    <div className="flex min-w-0 items-center gap-1.5 text-xs text-muted">
       <span className="truncate">{style.name}</span>
       {tooLong && (
         <span title={`Over ${DISCORD_NAME_LIMIT} characters`} className="shrink-0 tabular-nums">
@@ -568,16 +521,14 @@ function StyleRow({
     <p
       onClick={onCopy}
       title="Click to copy"
-      className={`fancy-text min-w-0 flex-1 cursor-pointer leading-snug text-text ${
-        grid ? "mt-2 text-xl break-words" : "mt-0.5 text-lg sm:mt-0"
-      }`}
+      className="fancy-text mt-2 min-w-0 flex-1 cursor-pointer text-xl leading-snug break-words text-text"
     >
       {value}
     </p>
   );
 
   const slider = style.id === "zalgo" && (
-    <div className={`mt-2 flex items-center gap-3 text-xs ${grid ? "" : "sm:pl-40"}`}>
+    <div className="mt-2 flex items-center gap-3 text-xs">
       <label htmlFor={sliderId} className="shrink-0 text-muted">
         Intensity
       </label>
@@ -594,36 +545,17 @@ function StyleRow({
     </div>
   );
 
-  if (grid) {
-    return (
-      <li
-        className={`flex flex-col rounded-2xl border bg-surface p-4 shadow-sm transition-colors ${
-          selected ? "border-accent ring-1 ring-accent/40" : "border-border hover:border-text/25"
-        }`}
-      >
-        <div className="flex items-center justify-between gap-2">
-          {label}
-          {actions}
-        </div>
-        {sample}
-        {slider}
-      </li>
-    );
-  }
-
   return (
     <li
-      className={`px-4 py-3 transition-colors first:rounded-t-2xl last:rounded-b-2xl sm:px-5 ${
-        selected ? "bg-surface-2 shadow-[inset_2px_0_0_var(--accent)]" : "hover:bg-surface-2/60"
+      className={`flex flex-col rounded-2xl border bg-surface p-4 shadow-sm transition-colors ${
+        selected ? "border-accent ring-1 ring-accent/40" : "border-border hover:border-text/25"
       }`}
     >
-      <div className="flex items-center gap-3 sm:gap-4">
-        <div className="min-w-0 flex-1 sm:flex sm:items-center sm:gap-4">
-          {label}
-          {sample}
-        </div>
+      <div className="flex items-center justify-between gap-2">
+        {label}
         {actions}
       </div>
+      {sample}
       {slider}
     </li>
   );
@@ -639,25 +571,6 @@ const iconProps = {
   strokeLinejoin: "round",
   className: "size-5",
 } as const;
-
-function ListIcon() {
-  return (
-    <svg {...iconProps}>
-      <path d="M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01" />
-    </svg>
-  );
-}
-
-function GridIcon() {
-  return (
-    <svg {...iconProps}>
-      <rect x="4" y="4" width="6.5" height="6.5" rx="1.5" />
-      <rect x="13.5" y="4" width="6.5" height="6.5" rx="1.5" />
-      <rect x="4" y="13.5" width="6.5" height="6.5" rx="1.5" />
-      <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.5" />
-    </svg>
-  );
-}
 
 function SearchIcon() {
   return (
