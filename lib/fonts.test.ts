@@ -100,6 +100,9 @@ describe("styles", () => {
     expect(convert("upside-down", "hello")).toBe("ollǝɥ");
     expect(convert("circled", "Ab1")).toBe("Ⓐⓑ①");
     expect(convert("star-wings", "x")).toBe("★彡 𝔁 彡★");
+    expect(convert("middle-dot", "ab c")).toBe("𝒂·𝒃· ·𝒄");
+    expect(convert("angle-melody", "ab")).toBe("¸¸♬·¯·♩¸¸♪·¯·♫¸¸ ⟨a⟩⟨b⟩ ¸¸♬·¯·♩¸¸♪·¯·♫¸¸");
+    expect(convert("random-bars", "Discord")).toBe(convert("random-bars", "Discord"));
   });
 
   it("throws on unknown style ids", () => {
