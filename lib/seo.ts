@@ -85,6 +85,35 @@ export function webApplicationJsonLd({
   };
 }
 
+export function articleJsonLd({
+  title,
+  description,
+  path,
+  datePublished,
+  dateModified,
+}: {
+  title: string;
+  description: string;
+  path: string;
+  datePublished: string;
+  dateModified: string;
+}): JsonLd {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: title,
+    description,
+    url: absoluteUrl(path),
+    mainEntityOfPage: absoluteUrl(path),
+    image: absoluteUrl(`${path}/opengraph-image`),
+    datePublished,
+    dateModified,
+    inLanguage: siteConfig.language,
+    author: { "@type": "Organization", name: siteConfig.name, url: absoluteUrl("/") },
+    publisher: { "@id": `${siteConfig.url}/#website` },
+  };
+}
+
 export function faqJsonLd(faqs: readonly { question: string; answer: string }[]): JsonLd {
   return {
     "@context": "https://schema.org",

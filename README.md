@@ -97,3 +97,11 @@ To test locally first: `npm run build && npm start`.
 - Unicode styles are characters, not fonts, so how they look depends on the viewer's device. Styles that may show as boxes are flagged in the UI with a "Limited support" badge.
 - Discord's unique @username only accepts `a–z`, `0–9`, `_` and `.`, so fancy text is meant for display names, nicknames (32 characters max), bios and messages. The UI explains this.
 - This site is not affiliated with or endorsed by Discord Inc.
+
+### Adding a blog post
+
+1. Copy `content/blog/how-to-change-font-on-discord.tsx` to a new file named after the post's URL, e.g. `content/blog/best-discord-name-ideas.tsx`.
+2. Change the `slug`, `title`, `description`, dates, `readingMinutes`, `faqs` and `body` (and the optional `outro`).
+3. Import it in `content/blog/index.ts` and add it to the start of `blogPosts` (newest first).
+
+The post page, the /blog listing, the sitemap entry, the share image and the BlogPosting/FAQ structured data are generated automatically.

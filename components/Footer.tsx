@@ -6,6 +6,7 @@ import { siteConfig } from "@/lib/site";
 const siteLinks = [
   { href: "/", label: "Discord Fonts Generator" },
   { href: "/discord-text-formatting", label: "Text Formatting" },
+  { href: "/blog", label: "Blog" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
   { href: "/privacy-policy", label: "Privacy Policy" },

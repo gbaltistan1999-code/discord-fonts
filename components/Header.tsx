@@ -6,6 +6,7 @@ import { ThemeToggle } from "./ThemeToggle";
 const navLinks = [
   { href: "/#font-styles", label: "Font Styles", mobile: false },
   { href: "/discord-text-formatting", label: "Text Formatting", mobile: true },
+  { href: "/blog", label: "Blog", mobile: true },
   { href: "/about", label: "About", mobile: false },
 ] as const;
 
