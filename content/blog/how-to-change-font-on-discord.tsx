@@ -5,7 +5,7 @@ const generator = <Link href="/">Discord Fonts generator</Link>;
 
 export const changeFontOnDiscord: BlogPost = {
   slug: "how-to-change-font-on-discord",
-  title: "How to Change Your Font on Discord (Names, Bios and Messages)",
+  title: "How to Change Your Font on Discord? (Names, Bios and Messages)",
   description:
     "Discord has no font setting, but you can still use fancy fonts in your display name, About Me, messages and server names. Here's exactly how, plus fixes for fonts that show as boxes.",
   datePublished: "2026-11-01",
