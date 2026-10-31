@@ -57,7 +57,7 @@ export const changeFontOnDiscord: BlogPost = {
         boxes on your friend&apos;s phone.
       </p>
 
-      <h2>How the trick actually works</h2>
+      <h2>How does the trick actually work?</h2>
       <p>
         Every letter you type is stored as a code from a giant character list called Unicode. The normal
         &ldquo;A&rdquo; has one code. But Unicode also contains hundreds of letters that look like styled
@@ -274,7 +274,7 @@ export const changeFontOnDiscord: BlogPost = {
         stuff for the fun ones.
       </p>
 
-      <h2>Why your font shows up as boxes (and how to fix it)</h2>
+      <h2>Why does your font show up as boxes, and how do you fix it?</h2>
       <p>
         You paste a gorgeous name, it looks perfect on your screen, and then a friend asks why your name is a
         row of empty squares. This is the most common problem with Discord fonts, and it&apos;s almost never
