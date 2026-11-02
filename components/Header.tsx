@@ -3,11 +3,14 @@ import { siteConfig } from "@/lib/site";
 import { Logo } from "./Logo";
 import { ThemeToggle } from "./ThemeToggle";
 
+/** `show` hides a link until the header is wide enough to fit it. */
 const navLinks = [
-  { href: "/#font-styles", label: "Font Styles", mobile: false },
-  { href: "/discord-text-formatting", label: "Text Formatting", mobile: true },
-  { href: "/blog", label: "Blog", mobile: true },
-  { href: "/about", label: "About", mobile: false },
+  { href: "/#font-styles", label: "Font Styles", show: "hidden sm:block" },
+  { href: "/fancy-text-generator", label: "Fancy Text Generator", show: "hidden lg:block" },
+  { href: "/discord-name-generator", label: "Discord Name Generator", show: "hidden lg:block" },
+  { href: "/discord-text-formatting", label: "Text Formatting", show: "" },
+  { href: "/blog", label: "Blog", show: "" },
+  { href: "/about", label: "About", show: "hidden sm:block" },
 ] as const;
 
 export function Header() {
@@ -24,9 +27,7 @@ export function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className={`rounded-lg px-2 py-2 text-sm font-medium whitespace-nowrap text-muted transition-colors hover:text-text sm:px-3 ${
-                link.mobile ? "" : "hidden sm:block"
-              }`}
+              className={`rounded-lg px-2 py-2 text-sm font-medium whitespace-nowrap text-muted transition-colors hover:text-text sm:px-3 ${link.show}`}
             >
               {link.label}
             </Link>
