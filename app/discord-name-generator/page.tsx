@@ -20,7 +20,7 @@ export const metadata = buildMetadata({
 
 export default function DiscordNameGeneratorPage() {
   return (
-    <>
+    <div className="accent-teal">
       <JsonLd
         data={webApplicationJsonLd({ name: page.h1, description: page.description, path: page.path })}
       />
@@ -28,19 +28,24 @@ export default function DiscordNameGeneratorPage() {
 
       <div className="pt-6">
         <Breadcrumbs items={[{ name: page.name, path: page.path }]} />
-        <h1 className="max-w-4xl text-3xl leading-tight font-extrabold tracking-tight text-balance sm:text-4xl">
-          {page.h1}
-        </h1>
-        <p className="mt-3 mb-6 max-w-3xl text-base text-muted sm:text-lg">{page.intro}</p>
       </div>
 
       <section aria-label="Discord name generator">
         <FontGenerator
+          variant="list"
           sampleText={page.sampleText}
           order={page.order}
           randomAfter={page.order.length}
           showSupport
           namePreview
+          hero={
+            <div className="mx-auto mb-6 max-w-3xl text-center">
+              <h1 className="bg-linear-to-r from-teal-600 to-cyan-600 bg-clip-text text-3xl leading-tight font-extrabold tracking-tight text-balance text-transparent sm:text-5xl dark:from-teal-300 dark:to-cyan-300">
+                {page.h1}
+              </h1>
+              <p className="mt-4 text-base text-pretty text-muted sm:text-lg">{page.intro}</p>
+            </div>
+          }
         />
       </section>
 
@@ -62,6 +67,6 @@ export default function DiscordNameGeneratorPage() {
           ))}
         </ul>
       </section>
-    </>
+    </div>
   );
 }

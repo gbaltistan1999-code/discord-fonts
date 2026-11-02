@@ -38,6 +38,18 @@
   color-scheme: dark;
 }
 
+/* Teal accent for pages that need their own look (e.g. the Discord name generator). */
+.accent-teal {
+  --accent: #0f766e;
+  --accent-solid: #0f766e;
+  --accent-soft: #d5f5ef;
+}
+.dark .accent-teal {
+  --accent: #5eead4;
+  --accent-solid: #0f766e;
+  --accent-soft: #0f2e2c;
+}
+
 @theme inline {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --color-bg: var(--bg);

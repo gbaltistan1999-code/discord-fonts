@@ -708,7 +708,7 @@ function NamePreview({
   const avatar = (size: string) => (
     <span
       aria-hidden="true"
-      className={`grid shrink-0 place-items-center rounded-full bg-linear-to-br from-violet-500 to-fuchsia-500 font-semibold text-white ${size}`}
+      className={`grid shrink-0 place-items-center rounded-full bg-accent-solid font-semibold text-on-accent ${size}`}
     >
       {initial}
     </span>
