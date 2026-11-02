@@ -3,9 +3,20 @@
 import Link from "next/link";
 import { useEffect, useId, useRef, useState } from "react";
 
+export interface NavMenuLink {
+  href: string;
+  label: string;
+  /** One-line summary under the label. */
+  description?: string;
+  /** Sample glyph shown in a coloured tile. */
+  icon?: string;
+  /** Tile colour classes (background + text, light and dark). */
+  tone?: string;
+}
+
 interface NavMenuProps {
   label: string;
-  links: readonly { href: string; label: string }[];
+  links: readonly NavMenuLink[];
 }
 
 /** Header dropdown (disclosure pattern): opens on click or tap, closes on Escape, outside click or navigation. */
@@ -69,16 +80,30 @@ export function NavMenu({ label, links }: NavMenuProps) {
       <ul
         id={menuId}
         hidden={!open}
-        className="absolute right-0 z-30 mt-2 w-60 rounded-xl border border-border bg-surface p-1.5 shadow-lg"
+        // Phones: span the viewport with a 16px gutter; wider screens: hang under the button.
+        className="fixed inset-x-4 top-[4.25rem] z-30 max-h-[calc(100dvh-5rem)] overflow-y-auto rounded-xl border border-border bg-surface p-1.5 shadow-lg sm:absolute sm:inset-x-auto sm:top-full sm:right-0 sm:mt-2 sm:w-72"
       >
         {links.map((link) => (
           <li key={link.href}>
             <Link
               href={link.href}
               onClick={() => setOpen(false)}
-              className="block rounded-lg px-3 py-2.5 text-sm font-medium text-text transition-colors hover:bg-surface-2"
+              className="flex items-center gap-3 rounded-lg px-2.5 py-2 text-text transition-colors hover:bg-surface-2"
             >
-              {link.label}
+              {link.icon && (
+                <span
+                  aria-hidden="true"
+                  className={`fancy-text grid size-9 shrink-0 place-items-center rounded-lg text-lg leading-none font-semibold ${link.tone ?? "bg-surface-2"}`}
+                >
+                  {link.icon}
+                </span>
+              )}
+              <span className="min-w-0">
+                <span className="block text-sm font-medium">{link.label}</span>
+                {link.description && (
+                  <span className="block truncate text-xs text-muted">{link.description}</span>
+                )}
+              </span>
             </Link>
           </li>
         ))}

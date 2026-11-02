@@ -1,20 +1,57 @@
 import Link from "next/link";
 import { siteConfig } from "@/lib/site";
 import { Logo } from "./Logo";
-import { NavMenu } from "./NavMenu";
+import { NavMenu, type NavMenuLink } from "./NavMenu";
 import { ThemeToggle } from "./ThemeToggle";
 
 const linkClass =
   "rounded-lg px-2 py-2 text-sm font-medium whitespace-nowrap text-muted transition-colors hover:text-text sm:px-3";
 
-const toolLinks = [
-  { href: "/discord-text-formatting", label: "Text Formatting" },
-  { href: "/fancy-text-generator", label: "Fancy Text Generator" },
-  { href: "/discord-name-generator", label: "Discord Name Generator" },
-  { href: "/discord-font-generator/bold", label: "Bold Font Generator" },
-  { href: "/discord-font-generator/cursive", label: "Cursive Font Generator" },
-  { href: "/discord-font-generator/small-caps", label: "Small Caps Generator" },
-] as const;
+// Tile colours match each page's own accent theme.
+const toolLinks: readonly NavMenuLink[] = [
+  {
+    href: "/discord-text-formatting",
+    label: "Text Formatting",
+    description: "Bold, spoilers, colors and markdown",
+    icon: "**",
+    tone: "bg-indigo-100 text-indigo-700 dark:bg-indigo-500/20 dark:text-indigo-300",
+  },
+  {
+    href: "/fancy-text-generator",
+    label: "Fancy Text Generator",
+    description: "170+ fonts to copy and paste",
+    icon: "𝓕",
+    tone: "bg-violet-100 text-violet-700 dark:bg-violet-500/20 dark:text-violet-300",
+  },
+  {
+    href: "/discord-name-generator",
+    label: "Discord Name Generator",
+    description: "Stylish display names with preview",
+    icon: "@",
+    tone: "bg-teal-100 text-teal-700 dark:bg-teal-500/20 dark:text-teal-300",
+  },
+  {
+    href: "/discord-font-generator/bold",
+    label: "Bold Font Generator",
+    description: "Heavy letters for names and titles",
+    icon: "𝐁",
+    tone: "bg-orange-100 text-orange-700 dark:bg-orange-500/20 dark:text-orange-300",
+  },
+  {
+    href: "/discord-font-generator/cursive",
+    label: "Cursive Font Generator",
+    description: "Script and italic letters",
+    icon: "𝒞",
+    tone: "bg-pink-100 text-pink-700 dark:bg-pink-500/20 dark:text-pink-300",
+  },
+  {
+    href: "/discord-font-generator/small-caps",
+    label: "Small Caps Generator",
+    description: "Tiny, minimal text",
+    icon: "ꜱᴄ",
+    tone: "bg-blue-100 text-blue-700 dark:bg-blue-500/20 dark:text-blue-300",
+  },
+];
 
 export function Header() {
   return (
