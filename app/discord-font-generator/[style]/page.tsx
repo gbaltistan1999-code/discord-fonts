@@ -34,21 +34,48 @@ export default async function StylePageRoute({ params }: PageProps) {
   if (!page) notFound();
   const path = `/discord-font-generator/${page.slug}`;
 
+  const { look } = page;
+
   return (
-    <>
+    <div className={look?.accent}>
       <JsonLd data={webApplicationJsonLd({ name: page.h1, description: page.description, path })} />
 
-      <div className="pt-6">
-        <Breadcrumbs items={[{ name: `${page.name} Font Generator`, path }]} />
-        <h1 className="max-w-4xl text-3xl leading-tight font-extrabold tracking-tight text-balance sm:text-4xl">
-          {page.h1}
-        </h1>
-        <p className="mt-3 mb-6 max-w-3xl text-base text-muted sm:text-lg">{page.intro}</p>
-      </div>
-
-      <section aria-label={`${page.name} Discord font generator`}>
-        <FontGenerator featured={page.featured} />
-      </section>
+      {look ? (
+        <>
+          <div className="pt-6">
+            <Breadcrumbs items={[{ name: `${page.name} Font Generator`, path }]} />
+          </div>
+          <section aria-label={`${page.name} Discord font generator`}>
+            <FontGenerator
+              variant="list"
+              featured={page.featured}
+              hero={
+                <div className="mx-auto mb-6 max-w-3xl text-center">
+                  <h1
+                    className={`bg-linear-to-r bg-clip-text text-3xl leading-tight font-extrabold tracking-tight text-balance text-transparent sm:text-5xl ${look.heading}`}
+                  >
+                    {page.h1}
+                  </h1>
+                  <p className="mt-4 text-base text-pretty text-muted sm:text-lg">{page.intro}</p>
+                </div>
+              }
+            />
+          </section>
+        </>
+      ) : (
+        <>
+          <div className="pt-6">
+            <Breadcrumbs items={[{ name: `${page.name} Font Generator`, path }]} />
+            <h1 className="max-w-4xl text-3xl leading-tight font-extrabold tracking-tight text-balance sm:text-4xl">
+              {page.h1}
+            </h1>
+            <p className="mt-3 mb-6 max-w-3xl text-base text-muted sm:text-lg">{page.intro}</p>
+          </div>
+          <section aria-label={`${page.name} Discord font generator`}>
+            <FontGenerator featured={page.featured} />
+          </section>
+        </>
+      )}
 
       <article className="prose-content cv-auto mt-12">
         {page.body}
@@ -64,6 +91,6 @@ export default async function StylePageRoute({ params }: PageProps) {
         </h2>
         <StyleLinks exclude={page.slug} />
       </section>
-    </>
+    </div>
   );
 }

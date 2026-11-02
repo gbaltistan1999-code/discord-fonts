@@ -38,7 +38,8 @@
   color-scheme: dark;
 }
 
-/* Teal accent for pages that need their own look (e.g. the Discord name generator). */
+/* Accent themes for pages that need their own look (e.g. the Discord name generator).
+   Light accents keep 4.5:1 on white; dark accents keep it on the dark surface. */
 .accent-teal {
   --accent: #0f766e;
   --accent-solid: #0f766e;
@@ -48,6 +49,36 @@
   --accent: #5eead4;
   --accent-solid: #0f766e;
   --accent-soft: #0f2e2c;
+}
+.accent-orange {
+  --accent: #c2410c;
+  --accent-solid: #c2410c;
+  --accent-soft: #ffedd5;
+}
+.dark .accent-orange {
+  --accent: #fdba74;
+  --accent-solid: #c2410c;
+  --accent-soft: #3a1d0c;
+}
+.accent-pink {
+  --accent: #be185d;
+  --accent-solid: #be185d;
+  --accent-soft: #fce7f3;
+}
+.dark .accent-pink {
+  --accent: #f9a8d4;
+  --accent-solid: #be185d;
+  --accent-soft: #3b1027;
+}
+.accent-blue {
+  --accent: #1d4ed8;
+  --accent-solid: #1d4ed8;
+  --accent-soft: #dbeafe;
+}
+.dark .accent-blue {
+  --accent: #93c5fd;
+  --accent-solid: #1d4ed8;
+  --accent-soft: #13234a;
 }
 
 @theme inline {

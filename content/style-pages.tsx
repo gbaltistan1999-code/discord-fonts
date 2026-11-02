@@ -13,6 +13,13 @@ export interface StylePage {
   featured: FeaturedStyles;
   body: React.ReactNode;
   related: readonly string[];
+  /** Own colour theme with the hero + list layout; pages without it use the standard layout. */
+  look?: {
+    /** Accent theme class from globals.css, e.g. "accent-orange". */
+    accent: string;
+    /** Gradient classes for the heading text. */
+    heading: string;
+  };
 }
 
 const fromCategory = (category: FontCategory, label: string): FeaturedStyles => ({
@@ -32,6 +39,10 @@ export const stylePages: readonly StylePage[] = [
       "Type below to turn your text into bold Unicode letters that stay bold wherever you paste them, including Discord display names and server nicknames where markdown doesn’t work.",
     featured: fromCategory("bold", "Bold styles"),
     related: ["cursive", "gothic", "small-caps"],
+    look: {
+      accent: "accent-orange",
+      heading: "from-orange-600 to-red-600 dark:from-orange-300 dark:to-red-300",
+    },
     body: (
       <>
         <h2>Why Use a Bold Discord Font?</h2>
@@ -97,6 +108,10 @@ export const stylePages: readonly StylePage[] = [
       "Write your text once and get flowing script, bold script and italic letters ready to copy into your Discord display name, About Me or server name.",
     featured: fromCategory("cursive", "Cursive styles"),
     related: ["bold", "aesthetic", "small-caps"],
+    look: {
+      accent: "accent-pink",
+      heading: "from-pink-600 to-rose-600 dark:from-pink-300 dark:to-rose-300",
+    },
     body: (
       <>
         <h2>What Is a Discord Cursive Font?</h2>
@@ -222,6 +237,10 @@ export const stylePages: readonly StylePage[] = [
       ids: ["small-caps", "small-caps-all", "corner-brackets", "hearts", "superscript", "subscript"],
     },
     related: ["aesthetic", "cursive", "bold"],
+    look: {
+      accent: "accent-blue",
+      heading: "from-blue-700 to-sky-600 dark:from-blue-300 dark:to-sky-300",
+    },
     body: (
       <>
         <h2>What Are Small Caps?</h2>
