@@ -25,7 +25,7 @@ export const siteConfig = {
   /** Google Search Console HTML-tag verification token (rendered as google-site-verification). */
   googleSiteVerification: "9s4EYvOAQb0JA1TvevOu3OSVYPhO9LHHWHpWL1-qan0",
   /** Used as dateModified / sitemap lastModified. Update when content changes. */
-  lastUpdated: "2026-10-31",
+  lastUpdated: "2026-11-02",
 } as const;
 
 export function absoluteUrl(path = "/"): string {

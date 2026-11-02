@@ -1,10 +1,12 @@
 import Link from "next/link";
+import { generatorPages } from "@/content/generator-pages";
 import { platformPages } from "@/content/platforms";
 import { stylePages } from "@/content/style-pages";
 import { siteConfig } from "@/lib/site";
 
 const siteLinks = [
   { href: "/", label: "Discord Fonts Generator" },
+  ...generatorPages.map((page) => ({ href: page.path, label: page.name })),
   { href: "/discord-text-formatting", label: "Text Formatting" },
   { href: "/blog", label: "Blog" },
   { href: "/about", label: "About" },

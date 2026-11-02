@@ -1,6 +1,8 @@
 export interface Faq {
   question: string;
   answer: string;
+  /** Same answer with links, shown on the page. `answer` still feeds the JSON-LD. */
+  answerContent?: React.ReactNode;
 }
 
 /** Homepage FAQ. Plain text so the same copy feeds the page and the FAQPage JSON-LD. */

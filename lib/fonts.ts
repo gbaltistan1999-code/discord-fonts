@@ -32,6 +32,8 @@ export interface FontStyle {
   name: string;
   categories: readonly FontCategory[];
   transform: Transform;
+  /** Often shows as boxes on older phones, TVs and consoles. */
+  limitedSupport?: boolean;
 }
 
 const UPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -477,18 +479,21 @@ export const fontStyles: readonly FontStyle[] = [
     name: "Bubble Dark",
     categories: ["decorative", "bold"],
     transform: mapWith("negativeCircled"),
+    limitedSupport: true,
   },
   {
     id: "squared",
     name: "Squared",
     categories: ["decorative"],
     transform: mapWith("squared"),
+    limitedSupport: true,
   },
   {
     id: "negative-squared",
     name: "Squared Dark",
     categories: ["decorative", "bold"],
     transform: mapWith("negativeSquared"),
+    limitedSupport: true,
   },
   {
     id: "parenthesized",
@@ -536,6 +541,7 @@ export const fontStyles: readonly FontStyle[] = [
     name: "Zalgo Glitch",
     categories: ["glitch"],
     transform: (text, options) => zalgo(text, options?.zalgoIntensity),
+    limitedSupport: true,
   },
   { id: "wide-spaced", name: "Wide Spaced", categories: ["aesthetic"], transform: (text) => spaceOut(text) },
   {

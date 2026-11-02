@@ -92,9 +92,28 @@ interface FontGeneratorProps {
   featured?: FeaturedStyles;
   /** Example text shown before the visitor types anything. */
   sampleText?: string;
+  /** Style ids listed first, in this order; the rest follow in registry order. */
+  order?: readonly string[];
+  /** Show the random styles after this many results instead of below the whole list. */
+  randomAfter?: number;
+  /** Mark styles that often show as boxes on older devices. */
+  showSupport?: boolean;
 }
 
-export function FontGenerator({ featured, sampleText = SAMPLE_TEXT }: FontGeneratorProps) {
+/** Move the given ids to the front, keeping every other style in its usual place. */
+function orderStyles(order: readonly string[] | undefined): readonly FontStyle[] {
+  if (!order?.length) return fontStyles;
+  const first = order.map(getFontStyle).filter((s): s is FontStyle => Boolean(s));
+  return [...first, ...fontStyles.filter((style) => !order.includes(style.id))];
+}
+
+export function FontGenerator({
+  featured,
+  sampleText = SAMPLE_TEXT,
+  order,
+  randomAfter,
+  showSupport = false,
+}: FontGeneratorProps) {
   const inputId = useId();
   const hintId = useId();
   const searchId = useId();
@@ -110,7 +129,8 @@ export function FontGenerator({ featured, sampleText = SAMPLE_TEXT }: FontGenera
   const [recent, setRecent] = useStoredState("df:recent", NO_IDS, parseStyleIds);
   const [limit, setLimit] = useState(PAGE_SIZE);
   const [zalgoIntensity, setZalgoIntensity] = useState(ZALGO_DEFAULT);
-  const [selectedId, setSelectedId] = useState(featured?.ids[0] ?? fontStyles[0]!.id);
+  const orderedStyles = useMemo(() => orderStyles(order), [order]);
+  const [selectedId, setSelectedId] = useState(featured?.ids[0] ?? orderedStyles[0]!.id);
   const [copiedId, setCopiedId] = useState<string | null>(null);
   // Seeds start at a fixed value so server and client render the same first batch.
   const [randomStart, setRandomStart] = useState(1);
@@ -129,9 +149,9 @@ export function FontGenerator({ featured, sampleText = SAMPLE_TEXT }: FontGenera
 
   const filtered = useMemo(() => {
     if (filter === "featured") return featuredStyles;
-    if (filter === "all") return fontStyles;
-    return fontStyles.filter((style) => style.categories.includes(filter));
-  }, [filter, featuredStyles]);
+    if (filter === "all") return orderedStyles;
+    return orderedStyles.filter((style) => style.categories.includes(filter));
+  }, [filter, featuredStyles, orderedStyles]);
 
   const scoped = useMemo(() => {
     let list = filtered;
@@ -216,6 +236,8 @@ export function FontGenerator({ featured, sampleText = SAMPLE_TEXT }: FontGenera
   ];
 
   const listClass = "grid gap-3 sm:grid-cols-2";
+  // Random styles can sit between the first few results and the rest, only while browsing the full list.
+  const splitAt = browsingAll && randomAfter !== undefined ? randomAfter : undefined;
 
   const renderRow = ({ style, value }: { style: FontStyle; value: string }, canFavorite: boolean) => (
     <StyleRow
@@ -227,9 +249,45 @@ export function FontGenerator({ featured, sampleText = SAMPLE_TEXT }: FontGenera
       onCopy={() => handleCopy(style, value)}
       favorite={canFavorite ? favorites.includes(style.id) : undefined}
       onToggleFavorite={canFavorite ? () => toggleFavorite(style.id) : undefined}
+      limitedSupport={showSupport && Boolean(style.limitedSupport)}
       zalgoIntensity={zalgoIntensity}
       onZalgoChange={setZalgoIntensity}
     />
+  );
+
+  const randomSection = browsingAll && (
+    <section aria-labelledby={randomHeadingId} className={splitAt === undefined ? "mt-8" : "my-8"}>
+      <div className="mb-3 flex flex-wrap items-end justify-between gap-3">
+        <div>
+          <h2 id={randomHeadingId} className="text-base font-semibold text-text">
+            Random styles
+          </h2>
+          <p className="mt-0.5 text-xs text-muted">
+            Every letter gets a different style. Generate as many as you like.
+          </p>
+        </div>
+        <button
+          type="button"
+          onClick={() => {
+            setRandomStart((n) => n + randomCount);
+            setRandomCount(RANDOM_PAGE);
+          }}
+          className="shrink-0 rounded-full border border-border px-4 py-1.5 text-sm font-medium text-text transition-colors hover:border-text/30 hover:bg-surface"
+        >
+          Shuffle
+        </button>
+      </div>
+      <ul aria-label="Random text styles" className={listClass}>
+        {randomResults.map((result) => renderRow(result, false))}
+      </ul>
+      <button
+        type="button"
+        onClick={() => setRandomCount((n) => n + RANDOM_PAGE)}
+        className="mt-3 w-full rounded-xl border border-border px-4 py-3 text-sm font-medium text-muted transition-colors hover:bg-surface hover:text-text"
+      >
+        🎲 Generate {RANDOM_PAGE} more
+      </button>
+    </section>
   );
 
   return (
@@ -390,9 +448,19 @@ export function FontGenerator({ featured, sampleText = SAMPLE_TEXT }: FontGenera
           )}
 
           {results.length > 0 ? (
-            <ul aria-label="Converted text styles" className={listClass}>
-              {results.map((result) => renderRow(result, true))}
-            </ul>
+            <>
+              <ul aria-label="Converted text styles" className={listClass}>
+                {results.slice(0, splitAt).map((result) => renderRow(result, true))}
+              </ul>
+              {splitAt !== undefined && (
+                <>
+                  {randomSection}
+                  <ul aria-label="More converted text styles" className={listClass}>
+                    {results.slice(splitAt).map((result) => renderRow(result, true))}
+                  </ul>
+                </>
+              )}
+            </>
           ) : (
             <p className="rounded-2xl border border-dashed border-border bg-surface px-5 py-10 text-center text-sm text-muted">
               {scope === "favorites"
@@ -413,40 +481,7 @@ export function FontGenerator({ featured, sampleText = SAMPLE_TEXT }: FontGenera
             </button>
           )}
 
-          {browsingAll && (
-            <section aria-labelledby={randomHeadingId} className="mt-8">
-              <div className="mb-3 flex flex-wrap items-end justify-between gap-3">
-                <div>
-                  <h2 id={randomHeadingId} className="text-base font-semibold text-text">
-                    Random styles
-                  </h2>
-                  <p className="mt-0.5 text-xs text-muted">
-                    Every letter gets a different style. Generate as many as you like.
-                  </p>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setRandomStart((n) => n + randomCount);
-                    setRandomCount(RANDOM_PAGE);
-                  }}
-                  className="shrink-0 rounded-full border border-border px-4 py-1.5 text-sm font-medium text-text transition-colors hover:border-text/30 hover:bg-surface"
-                >
-                  Shuffle
-                </button>
-              </div>
-              <ul aria-label="Random text styles" className={listClass}>
-                {randomResults.map((result) => renderRow(result, false))}
-              </ul>
-              <button
-                type="button"
-                onClick={() => setRandomCount((n) => n + RANDOM_PAGE)}
-                className="mt-3 w-full rounded-xl border border-border px-4 py-3 text-sm font-medium text-muted transition-colors hover:bg-surface hover:text-text"
-              >
-                🎲 Generate {RANDOM_PAGE} more
-              </button>
-            </section>
-          )}
+          {splitAt === undefined && randomSection}
         </div>
       </div>
     </div>
@@ -462,6 +497,7 @@ interface StyleRowProps {
   /** Undefined hides the heart (random styles can't be saved). */
   favorite?: boolean;
   onToggleFavorite?: () => void;
+  limitedSupport: boolean;
   zalgoIntensity: number;
   onZalgoChange: (value: number) => void;
 }
@@ -474,6 +510,7 @@ function StyleRow({
   onCopy,
   favorite,
   onToggleFavorite,
+  limitedSupport,
   zalgoIntensity,
   onZalgoChange,
 }: StyleRowProps) {
@@ -483,6 +520,14 @@ function StyleRow({
   const label = (
     <div className="flex min-w-0 items-center gap-1.5 text-xs text-muted">
       <span className="truncate">{style.name}</span>
+      {limitedSupport && (
+        <span
+          title="May show as boxes on older phones, TVs and consoles"
+          className="shrink-0 rounded-full bg-amber-50 px-2 py-0.5 font-semibold text-amber-800 dark:bg-amber-500/15 dark:text-amber-300"
+        >
+          Limited support
+        </span>
+      )}
       {tooLong && (
         <span title={`Over ${DISCORD_NAME_LIMIT} characters`} className="shrink-0 tabular-nums">
           · {DISCORD_NAME_LIMIT}+

@@ -5,6 +5,7 @@ import { FormattingTool } from "@/components/FormattingTool";
 import { JsonLd } from "@/components/JsonLd";
 import { StyleLinks } from "@/components/StyleLinks";
 import { homeFaqs } from "@/content/faqs";
+import { generatorPages } from "@/content/generator-pages";
 import { HomeArticle } from "@/content/home";
 import { fontStyles } from "@/lib/fonts";
 import { buildMetadata, faqJsonLd, webApplicationJsonLd, websiteJsonLd } from "@/lib/seo";
@@ -77,6 +78,17 @@ export default function HomePage() {
             Focused generators for one look at a time, each with tips on where it works best.
           </SectionHeader>
           <StyleLinks />
+          <p className="mt-4 text-sm text-muted">
+            More generators:{" "}
+            {generatorPages.map((page, i) => (
+              <span key={page.path}>
+                {i > 0 && " · "}
+                <Link href={page.path} className="text-text underline underline-offset-4 hover:text-accent">
+                  {page.name}
+                </Link>
+              </span>
+            ))}
+          </p>
         </section>
 
         <div className="cv-auto mt-20 border-t border-border pt-4">

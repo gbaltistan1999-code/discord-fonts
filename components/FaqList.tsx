@@ -18,7 +18,9 @@ export function FaqList({
         {faqs.map((faq) => (
           <div key={faq.question} className="py-5">
             <h3 className="font-semibold">{faq.question}</h3>
-            <p className="mt-1.5 leading-relaxed text-muted">{faq.answer}</p>
+            <p className="mt-1.5 leading-relaxed text-muted [&_a]:text-accent [&_a]:underline [&_a]:underline-offset-3">
+              {faq.answerContent ?? faq.answer}
+            </p>
           </div>
         ))}
       </div>
