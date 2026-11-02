@@ -28,14 +28,23 @@ export default function FancyTextGeneratorPage() {
 
       <div className="pt-6">
         <Breadcrumbs items={[{ name: page.name, path: page.path }]} />
-        <h1 className="max-w-4xl text-3xl leading-tight font-extrabold tracking-tight text-balance sm:text-4xl">
-          {page.h1}
-        </h1>
-        <p className="mt-3 mb-6 max-w-3xl text-base text-muted sm:text-lg">{page.intro}</p>
       </div>
 
       <section aria-label="Fancy text generator">
-        <FontGenerator sampleText={page.sampleText} order={page.order} showSupport />
+        <FontGenerator
+          variant="list"
+          sampleText={page.sampleText}
+          order={page.order}
+          showSupport
+          hero={
+            <div className="mx-auto mb-6 max-w-3xl text-center">
+              <h1 className="bg-linear-to-r from-violet-600 to-fuchsia-600 bg-clip-text text-3xl leading-tight font-extrabold tracking-tight text-balance text-transparent sm:text-5xl dark:from-violet-300 dark:to-fuchsia-300">
+                {page.h1}
+              </h1>
+              <p className="mt-4 text-base text-pretty text-muted sm:text-lg">{page.intro}</p>
+            </div>
+          }
+        />
       </section>
 
       <article className="prose-content cv-auto mt-12">

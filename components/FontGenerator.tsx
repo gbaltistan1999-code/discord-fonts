@@ -98,7 +98,15 @@ interface FontGeneratorProps {
   randomAfter?: number;
   /** Mark styles that often show as boxes on older devices. */
   showSupport?: boolean;
+  /** "cards" is the homepage grid; "list" puts the input in a hero panel and shows one row per style. */
+  variant?: Variant;
+  /** Heading content shown above the input inside the hero panel (list variant only). */
+  hero?: React.ReactNode;
+  /** Show the selected style as a name in a mock chat message and member list. */
+  namePreview?: boolean;
 }
+
+type Variant = "cards" | "list";
 
 /** Move the given ids to the front, keeping every other style in its usual place. */
 function orderStyles(order: readonly string[] | undefined): readonly FontStyle[] {
@@ -113,7 +121,11 @@ export function FontGenerator({
   order,
   randomAfter,
   showSupport = false,
+  variant = "cards",
+  hero,
+  namePreview = false,
 }: FontGeneratorProps) {
+  const isList = variant === "list";
   const inputId = useId();
   const hintId = useId();
   const searchId = useId();
@@ -235,13 +247,24 @@ export function FontGenerator({
     { id: "recent", label: "Recent", icon: <HistoryIcon /> },
   ];
 
-  const listClass = "grid gap-3 sm:grid-cols-2";
+  const listClass = isList
+    ? "divide-y divide-border overflow-hidden rounded-2xl border border-border bg-surface shadow-sm"
+    : "grid gap-3 sm:grid-cols-2";
   // Random styles can sit between the first few results and the rest, only while browsing the full list.
   const splitAt = browsingAll && randomAfter !== undefined ? randomAfter : undefined;
+
+  // The selected style may be a random one, which only exists in the current random batch.
+  const selectedResult =
+    [...results, ...randomResults].find((r) => r.style.id === selectedId) ??
+    (() => {
+      const style = getFontStyle(selectedId) ?? orderedStyles[0]!;
+      return { style, value: style.transform(shownText, { zalgoIntensity }) };
+    })();
 
   const renderRow = ({ style, value }: { style: FontStyle; value: string }, canFavorite: boolean) => (
     <StyleRow
       key={style.id}
+      variant={variant}
       style={style}
       value={value}
       selected={style.id === selectedId}
@@ -292,8 +315,16 @@ export function FontGenerator({
 
   return (
     <div className="relative">
-      {/* Input: sticks to the top on small screens while scrolling results */}
-      <div className="sticky top-[env(safe-area-inset-top)] z-20 -mx-4 border-b border-border bg-bg/95 px-4 py-3 backdrop-blur supports-[backdrop-filter]:bg-bg/85 sm:static sm:mx-0 sm:border-0 sm:bg-transparent sm:p-0 sm:backdrop-blur-none">
+      {/* Cards: the input sticks to the top on small screens while scrolling results.
+          List: the input sits inside a tinted hero panel under the page heading. */}
+      <div
+        className={
+          isList
+            ? "-mx-4 border-y border-accent/20 bg-linear-to-br from-accent-soft via-surface to-accent-soft px-4 pt-6 pb-7 sm:mx-0 sm:rounded-3xl sm:border sm:px-10 sm:pt-8 sm:pb-9"
+            : "sticky top-[env(safe-area-inset-top)] z-20 -mx-4 border-b border-border bg-bg/95 px-4 py-3 backdrop-blur supports-[backdrop-filter]:bg-bg/85 sm:static sm:mx-0 sm:border-0 sm:bg-transparent sm:p-0 sm:backdrop-blur-none"
+        }
+      >
+        {isList && hero}
         <label htmlFor={inputId} className="sr-only">
           Type or paste your text
         </label>
@@ -332,11 +363,17 @@ export function FontGenerator({
       </div>
 
       {/* Filters, search and saved styles */}
-      <div className="mt-6 rounded-2xl border border-border bg-surface p-4 shadow-sm sm:p-5">
+      <div
+        className={isList ? "mt-8" : "mt-6 rounded-2xl border border-border bg-surface p-4 shadow-sm sm:p-5"}
+      >
         <div
           role="group"
           aria-label="Filter font styles by category"
-          className="-mx-4 flex gap-2 overflow-x-auto px-4 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:px-0"
+          className={
+            isList
+              ? "-mx-4 flex gap-1 overflow-x-auto border-b border-border px-4 [scrollbar-width:none] sm:mx-0 sm:px-0"
+              : "-mx-4 flex gap-2 overflow-x-auto px-4 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:px-0"
+          }
         >
           {filters.map((f) => {
             const active = filter === f.id;
@@ -349,9 +386,15 @@ export function FontGenerator({
                   setFilter(f.id);
                   setLimit(PAGE_SIZE);
                 }}
-                className={`shrink-0 rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
-                  active ? `${FILTER_COLORS[f.id].active} shadow-sm` : FILTER_COLORS[f.id].idle
-                }`}
+                className={
+                  isList
+                    ? `-mb-px shrink-0 border-b-2 px-3 py-3 text-sm font-semibold transition-colors ${
+                        active ? "border-accent text-accent" : "border-transparent text-muted hover:text-text"
+                      }`
+                    : `shrink-0 rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
+                        active ? `${FILTER_COLORS[f.id].active} shadow-sm` : FILTER_COLORS[f.id].idle
+                      }`
+                }
               >
                 {f.label}
                 <span className={`ml-1.5 tabular-nums ${active ? "opacity-80" : "opacity-70"}`}>
@@ -421,12 +464,24 @@ export function FontGenerator({
         </div>
       </div>
 
-      <div className="mt-4 grid gap-6 lg:grid-cols-[minmax(0,1fr)_18rem]">
-        <aside className="order-last lg:order-none lg:col-start-2 lg:row-start-1">
-          <div className="lg:sticky lg:top-6">
-            <PlatformLinks />
-          </div>
-        </aside>
+      {namePreview && (
+        <NamePreview
+          name={selectedResult.value}
+          styleName={selectedResult.style.name}
+          initial={shownText.trim().charAt(0).toUpperCase() || "?"}
+          copied={copiedId === selectedResult.style.id}
+          onCopy={() => handleCopy(selectedResult.style, selectedResult.value)}
+        />
+      )}
+
+      <div className={isList ? "mt-6" : "mt-4 grid gap-6 lg:grid-cols-[minmax(0,1fr)_18rem]"}>
+        {!isList && (
+          <aside className="order-last lg:order-none lg:col-start-2 lg:row-start-1">
+            <div className="lg:sticky lg:top-6">
+              <PlatformLinks />
+            </div>
+          </aside>
+        )}
 
         <div className="cv-list min-w-0 lg:col-start-1 lg:row-start-1">
           {searchAsText && (
@@ -489,6 +544,7 @@ export function FontGenerator({
 }
 
 interface StyleRowProps {
+  variant: Variant;
   style: FontStyle;
   value: string;
   selected: boolean;
@@ -503,6 +559,7 @@ interface StyleRowProps {
 }
 
 function StyleRow({
+  variant,
   style,
   value,
   selected,
@@ -516,9 +573,10 @@ function StyleRow({
 }: StyleRowProps) {
   const sliderId = useId();
   const tooLong = visibleLength(value) > DISCORD_NAME_LIMIT;
+  const isList = variant === "list";
 
   const label = (
-    <div className="flex min-w-0 items-center gap-1.5 text-xs text-muted">
+    <div className={`flex min-w-0 items-center gap-1.5 text-xs text-muted ${isList ? "flex-wrap" : ""}`}>
       <span className="truncate">{style.name}</span>
       {limitedSupport && (
         <span
@@ -571,7 +629,9 @@ function StyleRow({
     <p
       onClick={onCopy}
       title="Click to copy"
-      className="fancy-text mt-2 min-w-0 flex-1 cursor-pointer text-xl leading-snug break-words text-text"
+      className={`fancy-text min-w-0 flex-1 cursor-pointer text-xl leading-snug break-words text-text ${
+        isList ? "" : "mt-2"
+      }`}
     >
       {value}
     </p>
@@ -595,6 +655,22 @@ function StyleRow({
     </div>
   );
 
+  // List rows: name and actions on top with the text below on phones; name | text | actions from sm up.
+  if (isList) {
+    return (
+      <li
+        className={`grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-3 gap-y-1.5 px-4 py-3 transition-colors sm:grid-cols-[11rem_minmax(0,1fr)_auto] sm:gap-x-5 sm:px-5 ${
+          selected ? "bg-accent-soft" : "hover:bg-surface-2"
+        }`}
+      >
+        <div className="min-w-0 sm:order-1">{label}</div>
+        <div className="sm:order-3">{actions}</div>
+        <div className="col-span-2 min-w-0 sm:order-2 sm:col-span-1">{sample}</div>
+        {slider && <div className="col-span-full sm:order-4">{slider}</div>}
+      </li>
+    );
+  }
+
   return (
     <li
       className={`flex flex-col rounded-2xl border bg-surface p-4 shadow-sm transition-colors ${
@@ -608,6 +684,97 @@ function StyleRow({
       {sample}
       {slider}
     </li>
+  );
+}
+
+/** The selected style shown the way a display name appears in chat and in a member list. */
+function NamePreview({
+  name,
+  styleName,
+  initial,
+  copied,
+  onCopy,
+}: {
+  name: string;
+  styleName: string;
+  initial: string;
+  copied: boolean;
+  onCopy: () => void;
+}) {
+  const headingId = useId();
+  const length = visibleLength(name);
+  const tooLong = length > DISCORD_NAME_LIMIT;
+
+  const avatar = (size: string) => (
+    <span
+      aria-hidden="true"
+      className={`grid shrink-0 place-items-center rounded-full bg-linear-to-br from-violet-500 to-fuchsia-500 font-semibold text-white ${size}`}
+    >
+      {initial}
+    </span>
+  );
+
+  return (
+    <section
+      aria-labelledby={headingId}
+      className="mt-4 rounded-2xl border border-border bg-surface p-4 shadow-sm sm:p-5"
+    >
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div className="min-w-0">
+          <h2 id={headingId} className="text-base font-semibold text-text">
+            Name preview
+          </h2>
+          <p className="mt-0.5 text-xs text-muted">
+            Showing <span className="font-medium text-text">{styleName}</span>. Tap any style below to preview
+            and copy it.
+          </p>
+        </div>
+        <div className="flex shrink-0 items-center gap-3">
+          <span
+            className={`text-sm font-medium tabular-nums ${tooLong ? "text-rose-600 dark:text-rose-400" : "text-muted"}`}
+          >
+            {length}/{DISCORD_NAME_LIMIT}
+          </span>
+          <button
+            type="button"
+            onClick={onCopy}
+            className="rounded-full bg-accent-solid px-4 py-1.5 text-sm font-semibold text-on-accent transition-opacity hover:opacity-90"
+          >
+            {copied ? "Copied" : "Copy name"}
+          </button>
+        </div>
+      </div>
+
+      {tooLong && (
+        <p className="mt-3 text-sm text-rose-600 dark:text-rose-400">
+          This is over the {DISCORD_NAME_LIMIT}-character limit, so it won’t fit as a display name. Try a
+          shorter name or fewer symbols.
+        </p>
+      )}
+
+      <div className="mt-4 grid gap-3 sm:grid-cols-[minmax(0,1fr)_15rem]">
+        <div className="flex gap-3 rounded-xl bg-bg p-4">
+          {avatar("size-10 text-base")}
+          <div className="min-w-0">
+            <p className="flex flex-wrap items-baseline gap-x-2">
+              <span className="fancy-text font-semibold break-words text-accent">{name}</span>
+              <span className="text-xs text-muted">Today at 4:20 PM</span>
+            </p>
+            <p className="mt-0.5 text-sm text-text">hey everyone 👋</p>
+          </div>
+        </div>
+        <div className="rounded-xl bg-bg p-4">
+          <p className="text-[11px] font-semibold tracking-wide text-muted uppercase">Online — 1</p>
+          <div className="mt-2.5 flex items-center gap-2.5">
+            <span className="relative">
+              {avatar("size-8 text-sm")}
+              <span className="absolute -right-0.5 -bottom-0.5 size-3 rounded-full border-2 border-bg bg-emerald-500" />
+            </span>
+            <span className="fancy-text truncate text-sm font-medium text-text">{name}</span>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 

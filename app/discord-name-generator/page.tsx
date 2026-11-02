@@ -40,6 +40,7 @@ export default function DiscordNameGeneratorPage() {
           order={page.order}
           randomAfter={page.order.length}
           showSupport
+          namePreview
         />
       </section>
 
