@@ -68,7 +68,7 @@ export const fr: BaseStrings = {
       glitch: "Glitch",
     },
     searchLabel: "Chercher un style par son nom",
-    searchPlaceholder: "Cherchez un style, ex. bold ou script",
+    searchPlaceholder: "Cherchez un style, ex. gras ou cursive",
     scopeGroup: "Afficher les styles",
     scopeAll: "Tous les styles",
     favorites: "Favoris",

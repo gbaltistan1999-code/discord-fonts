@@ -68,7 +68,7 @@ export const ja: BaseStrings = {
       glitch: "グリッチ",
     },
     searchLabel: "スタイル名で検索",
-    searchPlaceholder: "スタイル名で検索（例：bold、script）",
+    searchPlaceholder: "スタイルを検索（例：太字、筆記体）",
     scopeGroup: "表示するスタイル",
     scopeAll: "すべてのスタイル",
     favorites: "お気に入り",

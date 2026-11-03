@@ -35,6 +35,11 @@ function makeRandomStyle(seed: number, index: number, nameTemplate: string): Fon
   };
 }
 
+/** Lowercase without accents, so "Gótica" matches "gotica". */
+function normalizeSearch(text: string): string {
+  return text.toLowerCase().normalize("NFD").replace(/\p{M}/gu, "");
+}
+
 type Filter = "featured" | "all" | FontCategory;
 type Scope = "all" | "favorites" | "recent";
 
@@ -160,7 +165,7 @@ export function FontGenerator({
   const deferredText = useDeferredValue(text);
   const source = deferredText.trim() ? deferredText : sampleText;
   const deferredQuery = useDeferredValue(query).trim();
-  const search = deferredQuery.toLowerCase();
+  const search = normalizeSearch(deferredQuery);
 
   const featuredStyles = useMemo(
     () => (featured ? featured.ids.map(getFontStyle).filter((s): s is FontStyle => Boolean(s)) : []),
@@ -188,12 +193,16 @@ export function FontGenerator({
       search
         ? scoped.filter(
             (style) =>
-              style.name.toLowerCase().includes(search) ||
+              normalizeSearch(style.name).includes(search) ||
               style.id.includes(search) ||
-              style.categories.some((category) => category.includes(search)),
+              // Category ids are English; the labels match in the page's language ("negrita", "太字").
+              style.categories.some(
+                (category) =>
+                  category.includes(search) || normalizeSearch(t.categories[category]).includes(search),
+              ),
           )
         : scoped,
-    [scoped, search],
+    [scoped, search, t.categories],
   );
 
   // Visitors often type the text they want converted into the search box. When it matches no

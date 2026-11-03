@@ -68,7 +68,7 @@ export const ptBr: BaseStrings = {
       glitch: "Glitch",
     },
     searchLabel: "Buscar um estilo pelo nome",
-    searchPlaceholder: "Busque um estilo, ex.: bold ou script",
+    searchPlaceholder: "Busque um estilo, ex.: negrito ou cursiva",
     scopeGroup: "Mostrar estilos",
     scopeAll: "Todos os estilos",
     favorites: "Favoritos",

@@ -69,7 +69,7 @@ export const es: BaseStrings = {
       glitch: "Glitch",
     },
     searchLabel: "Buscar un estilo por nombre",
-    searchPlaceholder: "Busca un estilo, p. ej. bold o script",
+    searchPlaceholder: "Busca un estilo, p. ej. negrita o cursiva",
     scopeGroup: "Mostrar estilos",
     scopeAll: "Todos los estilos",
     favorites: "Favoritos",
