@@ -1,20 +1,45 @@
 import Link from "next/link";
+import { platformPages } from "@/content/platforms";
+import { stylePages } from "@/content/style-pages";
 import { siteConfig } from "@/lib/site";
 import { Logo } from "./Logo";
-import { NavMenu, type NavMenuLink } from "./NavMenu";
+import { MegaMenu, type MenuGroup } from "./MegaMenu";
 import { ThemeToggle } from "./ThemeToggle";
 
-const linkClass =
-  "rounded-lg px-2 py-2 text-sm font-medium whitespace-nowrap text-muted transition-colors hover:text-text sm:px-3";
-
-const toolLinks: readonly NavMenuLink[] = [
-  { href: "/discord-text-formatting", label: "Text Formatting" },
-  { href: "/fancy-text-generator", label: "Fancy Text Generator" },
-  { href: "/discord-name-generator", label: "Discord Name Generator" },
-  { href: "/discord-timestamp-generator", label: "Timestamp Generator" },
-  { href: "/discord-font-generator/bold", label: "Bold Font Generator" },
-  { href: "/discord-font-generator/cursive", label: "Cursive Font Generator" },
-  { href: "/discord-font-generator/small-caps", label: "Small Caps Generator" },
+const menuGroups: readonly MenuGroup[] = [
+  {
+    title: "Generators",
+    links: [
+      { href: "/fancy-text-generator", label: "Fancy Text Generator" },
+      { href: "/discord-name-generator", label: "Discord Name Generator" },
+      ...stylePages.map((page) => ({
+        href: `/discord-font-generator/${page.slug}`,
+        label: `${page.name} Font`,
+      })),
+    ],
+  },
+  {
+    title: "Platforms",
+    links: [
+      { href: "/", label: "Discord Fonts" },
+      ...platformPages.map((page) => ({ href: `/${page.slug}`, label: `${page.name} Fonts` })),
+    ],
+  },
+  {
+    title: "Tools",
+    links: [
+      { href: "/discord-text-formatting", label: "Text Formatting" },
+      { href: "/discord-timestamp-generator", label: "Timestamp Generator" },
+    ],
+  },
+  {
+    title: "More",
+    links: [
+      { href: "/blog", label: "Blog" },
+      { href: "/about", label: "About" },
+      { href: "/contact", label: "Contact" },
+    ],
+  },
 ];
 
 export function Header() {
@@ -26,16 +51,10 @@ export function Header() {
           <span className="hidden text-lg min-[400px]:inline">{siteConfig.name}</span>
           <span className="sr-only min-[400px]:hidden">{siteConfig.name} home</span>
         </Link>
-        <nav aria-label="Main" className="flex items-center gap-1 sm:gap-2">
-          <Link href="/#font-styles" className={`hidden sm:block ${linkClass}`}>
-            Font Styles
-          </Link>
-          <NavMenu label="Tools" links={toolLinks} />
-          <Link href="/blog" className={linkClass}>
-            Blog
-          </Link>
+        <div className="flex items-center gap-2">
+          <MegaMenu label="Menu" groups={menuGroups} />
           <ThemeToggle />
-        </nav>
+        </div>
       </div>
     </header>
   );
