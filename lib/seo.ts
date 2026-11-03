@@ -35,9 +35,13 @@ export function buildMetadata({ title, description, path, imageAlt }: PageSeo): 
   };
 }
 
-/** Style pages have their own generated image; everything else shares the home image. */
+/** Pages with an opengraph-image.tsx of their own; the rest share the home image. */
+const OWN_OG_IMAGE = ["/discord-font-generator/", "/discord-timestamp-generator"];
+
 function ogImagePath(path: string): string {
-  return path.startsWith("/discord-font-generator/") ? `${path}/opengraph-image` : "/opengraph-image";
+  return OWN_OG_IMAGE.some((prefix) => path.startsWith(prefix))
+    ? `${path}/opengraph-image`
+    : "/opengraph-image";
 }
 
 // ---------------------------------------------------------------------------

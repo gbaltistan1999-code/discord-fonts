@@ -53,6 +53,11 @@ export function FormattingGuide() {
           </tbody>
         </table>
       </div>
+      <p>
+        Dates and times have their own syntax: <code>&lt;t:1793740800:R&gt;</code> becomes a live countdown
+        that shows in each reader’s time zone. Make one with the{" "}
+        <Link href="/discord-timestamp-generator">Discord timestamp generator</Link>.
+      </p>
 
       <h2 id="headers-and-subtext">Headers and Subtext</h2>
       <p>

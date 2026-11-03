@@ -66,6 +66,10 @@ export default function HomePage() {
             <Link href="/discord-text-formatting" className="text-text underline underline-offset-4">
               full formatting guide
             </Link>
+            . For event times and countdowns, try the{" "}
+            <Link href="/discord-timestamp-generator" className="text-text underline underline-offset-4">
+              timestamp generator
+            </Link>
             .
           </SectionHeader>
           <div className="max-w-3xl">

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 260" width="640" height="260" role="img">
+  <title>Three steps: pick a date and time, choose a format, copy and paste</title>
+  <rect width="640" height="260" rx="18" fill="#14151e"/>
+  <g font-family="system-ui, sans-serif">
+    <rect x="20" y="24" width="188" height="212" rx="14" fill="#1b1d29"/>
+    <circle cx="56" cy="64" r="22" fill="#5a50ee"/>
+    <text x="56" y="72" font-size="22" font-weight="700" fill="#ffffff" text-anchor="middle">1</text>
+    <text x="36" y="124" font-size="22" font-weight="700" fill="#ececf4">Pick a date</text>
+    <text x="36" y="152" font-size="22" font-weight="700" fill="#ececf4">and time</text>
+    <text x="36" y="188" font-size="15" fill="#a4a8bd">Set the time zone</text>
+    <text x="36" y="210" font-size="15" fill="#a4a8bd">it’s happening in</text>
+
+    <path d="M214 130 h12 m-6 -6 l6 6 l-6 6" fill="none" stroke="#7c6dff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <rect x="226" y="24" width="188" height="212" rx="14" fill="#1b1d29"/>
+    <circle cx="262" cy="64" r="22" fill="#5a50ee"/>
+    <text x="262" y="72" font-size="22" font-weight="700" fill="#ffffff" text-anchor="middle">2</text>
+    <text x="242" y="124" font-size="22" font-weight="700" fill="#ececf4">Choose a</text>
+    <text x="242" y="152" font-size="22" font-weight="700" fill="#ececf4">format</text>
+    <text x="242" y="188" font-size="15" fill="#a4a8bd">Full date, time or</text>
+    <text x="242" y="210" font-size="15" fill="#a4a8bd">a live countdown</text>
+
+    <path d="M420 130 h12 m-6 -6 l6 6 l-6 6" fill="none" stroke="#7c6dff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <rect x="432" y="24" width="188" height="212" rx="14" fill="#1b1d29"/>
+    <circle cx="468" cy="64" r="22" fill="#5a50ee"/>
+    <text x="468" y="72" font-size="22" font-weight="700" fill="#ffffff" text-anchor="middle">3</text>
+    <text x="448" y="124" font-size="22" font-weight="700" fill="#ececf4">Copy and</text>
+    <text x="448" y="152" font-size="22" font-weight="700" fill="#ececf4">paste</text>
+    <text x="448" y="188" font-size="15" fill="#9d97ff" font-family="ui-monospace, Consolas, monospace">&lt;t:1793740800:R&gt;</text>
+    <text x="448" y="210" font-size="15" fill="#a4a8bd">into your message</text>
+  </g>
+</svg>

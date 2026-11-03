@@ -11,6 +11,7 @@ const toolLinks: readonly NavMenuLink[] = [
   { href: "/discord-text-formatting", label: "Text Formatting" },
   { href: "/fancy-text-generator", label: "Fancy Text Generator" },
   { href: "/discord-name-generator", label: "Discord Name Generator" },
+  { href: "/discord-timestamp-generator", label: "Timestamp Generator" },
   { href: "/discord-font-generator/bold", label: "Bold Font Generator" },
   { href: "/discord-font-generator/cursive", label: "Cursive Font Generator" },
   { href: "/discord-font-generator/small-caps", label: "Small Caps Generator" },

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 380" width="640" height="380" role="img">
+  <title>A Discord timestamp code and how it appears in a message</title>
+  <rect width="640" height="380" rx="18" fill="#14151e"/>
+  <g font-family="system-ui, sans-serif">
+    <text x="32" y="44" font-size="15" font-weight="600" fill="#a4a8bd">YOU TYPE</text>
+    <rect x="24" y="58" width="592" height="88" rx="12" fill="#1b1d29" stroke="#2a2c3c"/>
+    <text x="44" y="94" font-size="18" fill="#ececf4">Event starts</text>
+    <text x="44" y="126" font-size="17" fill="#9d97ff" font-family="ui-monospace, Consolas, monospace">&lt;t:1793740800:F&gt; (&lt;t:1793740800:R&gt;)</text>
+
+    <path d="M320 160 v28 m-10 -10 l10 12 l10 -12" fill="none" stroke="#7c6dff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <text x="32" y="222" font-size="15" font-weight="600" fill="#a4a8bd">EVERYONE SEES (VIEWER IN NEW YORK)</text>
+    <rect x="24" y="236" width="592" height="120" rx="12" fill="#1b1d29" stroke="#2a2c3c"/>
+    <circle cx="66" cy="278" r="20" fill="#5a50ee"/>
+    <text x="66" y="284" font-size="17" font-weight="700" fill="#ffffff" text-anchor="middle">M</text>
+    <text x="100" y="272" font-size="17" font-weight="700" fill="#ececf4">Mod Team</text>
+    <text x="194" y="272" font-size="13" fill="#a4a8bd">Today</text>
+    <text x="100" y="304" font-size="18" fill="#ececf4">Event starts</text>
+    <rect x="98" y="314" width="372" height="30" rx="6" fill="#2a2c3c"/>
+    <text x="108" y="335" font-size="17" fill="#ececf4">Tuesday, November 3, 2026 at 4:20 PM</text>
+    <rect x="480" y="314" width="112" height="30" rx="6" fill="#2a2c3c"/>
+    <text x="490" y="335" font-size="17" fill="#ececf4">in 2 hours</text>
+  </g>
+</svg>

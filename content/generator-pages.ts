@@ -2,4 +2,5 @@
 export const generatorPages = [
   { path: "/fancy-text-generator", name: "Fancy Text Generator" },
   { path: "/discord-name-generator", name: "Discord Name Generator" },
+  { path: "/discord-timestamp-generator", name: "Discord Timestamp Generator" },
 ] as const;
