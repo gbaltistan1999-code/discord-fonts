@@ -72,6 +72,20 @@ export function Footer() {
             © {new Date().getFullYear()} {siteConfig.name}. Text is converted in your browser and never
             stored.
           </p>
+          <a
+            href="https://sellwithboost.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ display: "inline-block", marginTop: "15px" }}
+          >
+            {/* External SVG badge: next/image would need remotePatterns and adds nothing for an SVG. */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="https://sellwithboost.com/badge/listing.svg"
+              alt="Listed on Sell With Boost"
+              style={{ height: "40px", width: "auto" }}
+            />
+          </a>
         </div>
       </div>
     </footer>
