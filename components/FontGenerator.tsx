@@ -391,7 +391,7 @@ export function FontGenerator({
           className={
             isList
               ? "-mx-4 flex gap-1 overflow-x-auto border-b border-border px-4 [scrollbar-width:none] sm:mx-0 sm:px-0"
-              : "-mx-4 flex gap-2 overflow-x-auto px-4 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:px-0"
+              : "grid grid-cols-2 gap-2 sm:flex sm:flex-wrap"
           }
         >
           {filters.map((f) => {
@@ -410,7 +410,8 @@ export function FontGenerator({
                     ? `-mb-px shrink-0 border-b-2 px-3 py-3 text-sm font-semibold transition-colors ${
                         active ? "border-accent text-accent" : "border-transparent text-muted hover:text-text"
                       }`
-                    : `shrink-0 rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
+                    : // Two-column boxes on phones (an odd last one spans both), pills from sm up.
+                      `flex min-w-0 items-center justify-between rounded-xl px-4 py-2.5 text-left text-sm font-semibold transition-colors last:odd:col-span-2 sm:inline-block sm:shrink-0 sm:rounded-full sm:py-2 ${
                         active ? `${FILTER_COLORS[f.id].active} shadow-sm` : FILTER_COLORS[f.id].idle
                       }`
                 }
