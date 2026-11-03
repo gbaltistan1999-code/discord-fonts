@@ -2,7 +2,7 @@ import Link from "next/link";
 import { en } from "@/content/i18n/strings/en";
 import { stylePages } from "@/content/style-pages";
 import { convert } from "@/lib/fonts";
-import { fill } from "@/lib/i18n";
+import { defaultLocale, fill, hrefFor, type Locale } from "@/lib/i18n";
 
 /** Sample style shown on each landing-page card. */
 const cardSamples: Record<string, string> = {
@@ -19,10 +19,12 @@ const cardSamples: Record<string, string> = {
 /** Internal links to every style generator page, each with a live sample. */
 export function StyleLinks({
   exclude,
+  locale = defaultLocale,
   names = en.ui.styleNames,
   cardLabel = en.styleCard,
 }: {
   exclude?: string;
+  locale?: Locale;
   /** Style names in the page's language, by slug. */
   names?: Record<string, string>;
   /** "{name} font generator" in the page's language. */
@@ -34,7 +36,7 @@ export function StyleLinks({
       {pages.map((page) => (
         <li key={page.slug} className="bg-surface">
           <Link
-            href={`/discord-font-generator/${page.slug}`}
+            href={hrefFor(locale, `/discord-font-generator/${page.slug}`)}
             className="group flex h-full flex-col gap-1 p-4 transition-colors hover:bg-surface-2 sm:p-5"
           >
             {/* The sample stays in English: the Unicode alphabets only cover A–Z. */}

@@ -1,4 +1,3 @@
-import Link from "next/link";
 import type { FormattingPageContent } from "../../types";
 import { AnsiExample, LocalLink, MarkdownCheatSheet } from "../shared";
 
@@ -93,8 +92,15 @@ function Guide() {
         <LocalLink locale={L} path="/">
           Discord-Schriftarten-Generator
         </LocalLink>{" "}
-        aus oder spring direkt zu einem Stil wie <Link href="/discord-font-generator/bold">Fettschrift</Link>{" "}
-        oder <Link href="/discord-font-generator/cursive">Schreibschrift</Link> (auf Englisch).
+        aus oder spring direkt zu einem Stil wie{" "}
+        <LocalLink locale={L} path="/discord-font-generator/bold">
+          Fettschrift
+        </LocalLink>{" "}
+        oder{" "}
+        <LocalLink locale={L} path="/discord-font-generator/cursive">
+          Schreibschrift
+        </LocalLink>
+        .
       </p>
 
       <h2 id="tipps">Tipps für gut lesbare Formatierung</h2>

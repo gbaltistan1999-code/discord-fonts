@@ -262,7 +262,7 @@ export const stylePages: readonly StylePage[] = [
           <strong>Superscript</strong> raises letters above the line (ᵗⁱⁿʸ) and <strong>subscript</strong>{" "}
           lowers them. They are fun for whispers, footnotes and cute bios, but Unicode only includes some
           letters: there is no superscript q, and subscript is missing about a third of the alphabet. Those
-          letters stay plain, which is why these styles carry a Limited support badge.
+          letters stay plain, so check the result before you use it.
         </p>
         <h2>Best Uses for Small Caps on Discord</h2>
         <ul>
@@ -522,8 +522,8 @@ export const stylePages: readonly StylePage[] = [
         </ul>
         <h2>Limits to Keep in Mind</h2>
         <p>
-          A few flipped capitals use rare characters that older devices cannot display, which is why these
-          styles have a Limited support badge. Punctuation and numbers are flipped too, but some have no good
+          A few flipped capitals use rare characters that older devices cannot display, so test your text on
+          another phone before relying on it. Punctuation and numbers are flipped too, but some have no good
           match and stay as they are. Flipped names are also very hard to search for or @mention, so they are
           better as a short-term joke than a permanent identity.
         </p>

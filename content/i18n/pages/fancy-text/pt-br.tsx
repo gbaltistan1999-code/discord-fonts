@@ -52,8 +52,9 @@ function Article() {
         identificar antes de colar.
       </p>
       <p>
-        Quer um estilo só? Experimente os geradores específicos (em inglês):{" "}
+        Quer um estilo só? Experimente os geradores específicos:{" "}
         <StyleGeneratorLinks
+          locale={L}
           lastSeparator=" e "
           labels={[
             ["cursive", "cursiva"],

@@ -149,8 +149,8 @@ export const discordNameJa: ToolPageContent = {
   related: [
     { href: hrefFor(L, "/fancy-text-generator"), label: "おしゃれ文字ジェネレーター" },
     { href: hrefFor(L, "/"), label: "Discordフォント ジェネレーター" },
-    { href: "/discord-font-generator/bold", label: "太字フォント ジェネレーター（英語）" },
-    { href: "/discord-font-generator/cursive", label: "筆記体フォント ジェネレーター（英語）" },
-    { href: "/discord-font-generator/small-caps", label: "スモールキャピタル ジェネレーター（英語）" },
+    { href: "/ja/discord-font-generator/bold", label: "太字フォント ジェネレーター" },
+    { href: "/ja/discord-font-generator/cursive", label: "筆記体フォント ジェネレーター" },
+    { href: "/ja/discord-font-generator/small-caps", label: "スモールキャピタル ジェネレーター" },
   ],
 };

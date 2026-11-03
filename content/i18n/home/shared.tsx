@@ -1,14 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
 import { convert } from "@/lib/fonts";
+import { localePath, type Locale } from "@/lib/i18n";
 
 /** A word in a Unicode style, generated rather than typed so the characters are always right. */
 export const fancy = (styleId: string, text: string) => convert(styleId, text);
 
-/** Link to a style generator page (those pages are in English). */
-export const styleLink = (slug: string, label: string) => (
-  <Link href={`/discord-font-generator/${slug}`}>{label}</Link>
-);
+/** Link maker for the style generator pages in one language. */
+export function styleLinkFor(locale: Locale) {
+  return function styleLink(slug: string, label: string) {
+    return <Link href={localePath(locale, `/discord-font-generator/${slug}`)}>{label}</Link>;
+  };
+}
 
 export const inlineLink = "text-text underline underline-offset-4";
 

@@ -1,4 +1,3 @@
-import Link from "next/link";
 import type { FormattingPageContent } from "../../types";
 import { AnsiExample, LocalLink, MarkdownCheatSheet } from "../shared";
 
@@ -95,8 +94,15 @@ function Guide() {
         <LocalLink locale={L} path="/">
           générateur de polices Discord
         </LocalLink>{" "}
-        ou passez directement à un style comme le <Link href="/discord-font-generator/bold">gras</Link> ou la{" "}
-        <Link href="/discord-font-generator/cursive">cursive</Link> (en anglais).
+        ou passez directement à un style comme le{" "}
+        <LocalLink locale={L} path="/discord-font-generator/bold">
+          gras
+        </LocalLink>{" "}
+        ou la{" "}
+        <LocalLink locale={L} path="/discord-font-generator/cursive">
+          cursive
+        </LocalLink>
+        .
       </p>
 
       <h2 id="conseils">Conseils pour une mise en forme lisible</h2>

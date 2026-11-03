@@ -32,7 +32,7 @@ export function Footer({ locale = defaultLocale }: { locale?: Locale }) {
             {stylePages.map((page) => (
               <li key={page.slug}>
                 <Link
-                  href={`/discord-font-generator/${page.slug}`}
+                  href={hrefFor(locale, `/discord-font-generator/${page.slug}`)}
                   className="inline-block py-1 text-muted hover:text-accent"
                 >
                   {fill(ui.styleFont, { name: ui.styleNames[page.slug] ?? page.name })}
@@ -48,7 +48,10 @@ export function Footer({ locale = defaultLocale }: { locale?: Locale }) {
           <ul className="mt-2 grid grid-cols-2 gap-x-4 gap-y-0.5 text-sm">
             {platformPages.map((page) => (
               <li key={page.slug}>
-                <Link href={`/${page.slug}`} className="inline-block py-1 text-muted hover:text-accent">
+                <Link
+                  href={hrefFor(locale, `/${page.slug}`)}
+                  className="inline-block py-1 text-muted hover:text-accent"
+                >
                   {fill(ui.platformFonts, { name: page.name })}
                 </Link>
               </li>

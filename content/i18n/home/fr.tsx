@@ -1,6 +1,8 @@
 import Link from "next/link";
 import type { HomeContent } from "../types";
-import { ExamplesFigure, fancy, inlineLink, styleLink } from "./shared";
+import { ExamplesFigure, fancy, inlineLink, styleLinkFor } from "./shared";
+
+const styleLink = styleLinkFor("fr");
 
 function Article() {
   return (

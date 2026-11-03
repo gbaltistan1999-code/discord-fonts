@@ -260,3 +260,48 @@ export interface FormattingPageContent {
   appName: string;
   Guide: () => React.ReactNode;
 }
+
+/** One style page (bold, cursive, ...) in a language. Server-only (it holds JSX). */
+export interface StylePageText {
+  /** Breadcrumb label, e.g. "Bold Font Generator". */
+  name: string;
+  h1: string;
+  title: string;
+  description: string;
+  intro: string;
+  /** Label of the generator's tab with this page's styles. */
+  featuredLabel: string;
+  body: React.ReactNode;
+}
+
+/** All style pages in a language, plus the text every style page shares. */
+export interface StylePagesContent {
+  pages: Record<string, StylePageText>;
+  /** Accessible name of the tool section; "{name}" is the page name. */
+  toolLabel: string;
+  /** Closing paragraph pointing back to the main generator. */
+  outro: React.ReactNode;
+  moreHeading: string;
+}
+
+/** One platform page (Roblox, Instagram, ...) in a language. Server-only (it holds JSX). */
+export interface PlatformPageText {
+  h1: string;
+  title: string;
+  description: string;
+  intro: string;
+  sampleText: string;
+  featuredLabel: string;
+  faqs: readonly Faq[];
+  body: React.ReactNode;
+}
+
+/** All platform pages in a language, plus the text every platform page shares. "{name}" is the platform. */
+export interface PlatformPagesContent {
+  pages: Record<string, PlatformPageText>;
+  breadcrumb: string;
+  toolLabel: string;
+  faqHeading: string;
+  notAffiliated: string;
+  outro: React.ReactNode;
+}

@@ -165,8 +165,8 @@ export const discordNameDe: ToolPageContent = {
   related: [
     { href: hrefFor(L, "/fancy-text-generator"), label: "Generator für schöne Schrift" },
     { href: hrefFor(L, "/"), label: "Discord-Schriftarten-Generator" },
-    { href: "/discord-font-generator/bold", label: "Fettschrift-Generator (auf Englisch)" },
-    { href: "/discord-font-generator/cursive", label: "Schreibschrift-Generator (auf Englisch)" },
-    { href: "/discord-font-generator/small-caps", label: "Kapitälchen-Generator (auf Englisch)" },
+    { href: "/de/discord-font-generator/bold", label: "Fettschrift-Generator" },
+    { href: "/de/discord-font-generator/cursive", label: "Schreibschrift-Generator" },
+    { href: "/de/discord-font-generator/small-caps", label: "Kapitälchen-Generator" },
   ],
 };

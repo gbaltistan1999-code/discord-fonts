@@ -61,8 +61,9 @@ function Article() {
         que vous les repériez avant de coller.
       </p>
       <p>
-        Vous voulez un seul style ? Essayez les générateurs dédiés (en anglais) :{" "}
+        Vous voulez un seul style ? Essayez les générateurs dédiés :{" "}
         <StyleGeneratorLinks
+          locale={L}
           lastSeparator=" et "
           labels={[
             ["cursive", "cursive"],

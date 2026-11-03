@@ -168,8 +168,8 @@ export const discordNamePtBr: ToolPageContent = {
   related: [
     { href: hrefFor(L, "/fancy-text-generator"), label: "Gerador de letras diferentes" },
     { href: hrefFor(L, "/"), label: "Gerador de letras para Discord" },
-    { href: "/discord-font-generator/bold", label: "Gerador de letra em negrito (em inglês)" },
-    { href: "/discord-font-generator/cursive", label: "Gerador de letra cursiva (em inglês)" },
-    { href: "/discord-font-generator/small-caps", label: "Gerador de versalete (em inglês)" },
+    { href: "/pt-br/discord-font-generator/bold", label: "Gerador de letra em negrito" },
+    { href: "/pt-br/discord-font-generator/cursive", label: "Gerador de letra cursiva" },
+    { href: "/pt-br/discord-font-generator/small-caps", label: "Gerador de versalete" },
   ],
 };

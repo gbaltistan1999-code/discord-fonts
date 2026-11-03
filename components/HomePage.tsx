@@ -88,7 +88,7 @@ export function HomePage({ locale }: { locale: Locale }) {
           <SectionHeader id="popular-styles" title={home.popularTitle}>
             {home.popularIntro}
           </SectionHeader>
-          <StyleLinks names={ui.styleNames} cardLabel={styleCard} />
+          <StyleLinks locale={locale} names={ui.styleNames} cardLabel={styleCard} />
           <p className="mt-4 text-sm text-muted">
             {home.moreGenerators}{" "}
             {generatorPages.map((page, i) => (

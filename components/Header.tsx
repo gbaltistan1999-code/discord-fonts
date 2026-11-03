@@ -19,7 +19,7 @@ function menuGroups(locale: Locale): MenuGroup[] {
         { href: hrefFor(locale, "/fancy-text-generator"), label: ui.links.fancyText },
         { href: hrefFor(locale, "/discord-name-generator"), label: ui.links.nameGenerator },
         ...stylePages.map((page) => ({
-          href: `/discord-font-generator/${page.slug}`,
+          href: hrefFor(locale, `/discord-font-generator/${page.slug}`),
           label: fill(ui.styleFont, { name: ui.styleNames[page.slug] ?? page.name }),
         })),
       ],
@@ -29,7 +29,7 @@ function menuGroups(locale: Locale): MenuGroup[] {
       links: [
         { href: localePath(locale, "/"), label: ui.links.discordFonts },
         ...platformPages.map((page) => ({
-          href: `/${page.slug}`,
+          href: hrefFor(locale, `/${page.slug}`),
           label: fill(ui.platformFonts, { name: page.name }),
         })),
       ],

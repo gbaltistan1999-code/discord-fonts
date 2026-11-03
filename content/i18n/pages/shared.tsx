@@ -58,12 +58,14 @@ export function FancyStyleTable({
   );
 }
 
-/** Links to the focused style generators (English pages), joined like a sentence list. */
+/** Links to the focused style generators, joined like a sentence list. */
 export function StyleGeneratorLinks({
+  locale,
   labels,
   separator = ", ",
   lastSeparator,
 }: {
+  locale: Locale;
   /** Label per style slug, in display order. */
   labels: readonly (readonly [slug: string, label: string])[];
   separator?: string;
@@ -75,7 +77,9 @@ export function StyleGeneratorLinks({
       {labels.map(([slug, label], i) => (
         <span key={slug}>
           {i > 0 && (i === labels.length - 1 ? lastSeparator : separator)}
-          <Link href={`/discord-font-generator/${slug}`}>{label}</Link>
+          <LocalLink locale={locale} path={`/discord-font-generator/${slug}`}>
+            {label}
+          </LocalLink>
         </span>
       ))}
     </>

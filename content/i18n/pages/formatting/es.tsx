@@ -1,4 +1,3 @@
-import Link from "next/link";
 import type { FormattingPageContent } from "../../types";
 import { AnsiExample, LocalLink, MarkdownCheatSheet } from "../shared";
 
@@ -94,8 +93,15 @@ function Guide() {
         <LocalLink locale={L} path="/">
           generador de letras para Discord
         </LocalLink>{" "}
-        o ve directamente a un estilo como <Link href="/discord-font-generator/bold">negrita</Link> o{" "}
-        <Link href="/discord-font-generator/cursive">cursiva</Link> (en inglés).
+        o ve directamente a un estilo como{" "}
+        <LocalLink locale={L} path="/discord-font-generator/bold">
+          negrita
+        </LocalLink>{" "}
+        o{" "}
+        <LocalLink locale={L} path="/discord-font-generator/cursive">
+          cursiva
+        </LocalLink>
+        .
       </p>
 
       <h2 id="consejos">Consejos para un formato legible</h2>

@@ -1,4 +1,3 @@
-import Link from "next/link";
 import type { FormattingPageContent } from "../../types";
 import { AnsiExample, LocalLink, MarkdownCheatSheet } from "../shared";
 
@@ -82,8 +81,15 @@ function Guide() {
         <LocalLink locale={L} path="/">
           Discordフォント ジェネレーター
         </LocalLink>
-        で試すか、<Link href="/discord-font-generator/bold">太字</Link>や
-        <Link href="/discord-font-generator/cursive">筆記体</Link>のページ（英語）へどうぞ。
+        で試すか、
+        <LocalLink locale={L} path="/discord-font-generator/bold">
+          太字
+        </LocalLink>
+        や
+        <LocalLink locale={L} path="/discord-font-generator/cursive">
+          筆記体
+        </LocalLink>
+        のページへどうぞ。
       </p>
 
       <h2 id="tips">読みやすく書式を使うコツ</h2>

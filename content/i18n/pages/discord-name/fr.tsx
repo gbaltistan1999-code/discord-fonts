@@ -177,8 +177,8 @@ export const discordNameFr: ToolPageContent = {
   related: [
     { href: hrefFor(L, "/fancy-text-generator"), label: "Générateur d’écriture stylée" },
     { href: hrefFor(L, "/"), label: "Générateur de polices Discord" },
-    { href: "/discord-font-generator/bold", label: "Générateur de police grasse (en anglais)" },
-    { href: "/discord-font-generator/cursive", label: "Générateur de police cursive (en anglais)" },
-    { href: "/discord-font-generator/small-caps", label: "Générateur de petites capitales (en anglais)" },
+    { href: "/fr/discord-font-generator/bold", label: "Générateur de police grasse" },
+    { href: "/fr/discord-font-generator/cursive", label: "Générateur de police cursive" },
+    { href: "/fr/discord-font-generator/small-caps", label: "Générateur de petites capitales" },
   ],
 };

@@ -58,8 +58,9 @@ function Article() {
         damit du sie vor dem Einfügen erkennst.
       </p>
       <p>
-        Nur ein bestimmter Look? Probiere die speziellen Generatoren (auf Englisch):{" "}
+        Nur ein bestimmter Look? Probiere die speziellen Generatoren:{" "}
         <StyleGeneratorLinks
+          locale={L}
           lastSeparator=" und "
           labels={[
             ["cursive", "Schreibschrift"],
