@@ -3,7 +3,7 @@ import { getStrings } from "@/content/i18n";
 import { getHome } from "@/content/i18n/home";
 import { generatorPages } from "@/content/generator-pages";
 import { fontStyles } from "@/lib/fonts";
-import { fill, localePath, type Locale } from "@/lib/i18n";
+import { fill, hrefFor, localePath, type Locale } from "@/lib/i18n";
 import { buildMetadata, faqJsonLd, webApplicationJsonLd, websiteJsonLd } from "@/lib/seo";
 import { FaqList } from "./FaqList";
 import { FontGenerator } from "./FontGenerator";
@@ -94,7 +94,10 @@ export function HomePage({ locale }: { locale: Locale }) {
             {generatorPages.map((page, i) => (
               <span key={page.path}>
                 {i > 0 && " · "}
-                <Link href={page.path} className="text-text underline underline-offset-4 hover:text-accent">
+                <Link
+                  href={hrefFor(locale, page.path)}
+                  className="text-text underline underline-offset-4 hover:text-accent"
+                >
                   {generatorNames[page.path] ?? page.name}
                 </Link>
               </span>

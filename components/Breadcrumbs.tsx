@@ -1,14 +1,17 @@
 import Link from "next/link";
+import { getStrings } from "@/content/i18n";
+import { defaultLocale, localePath, type Locale } from "@/lib/i18n";
 import { breadcrumbJsonLd, type Crumb } from "@/lib/seo";
 import { JsonLd } from "./JsonLd";
 
 /** Visible breadcrumb trail plus matching BreadcrumbList structured data. */
-export function Breadcrumbs({ items }: { items: readonly Crumb[] }) {
-  const trail: Crumb[] = [{ name: "Home", path: "/" }, ...items];
+export function Breadcrumbs({ items, locale = defaultLocale }: { items: readonly Crumb[]; locale?: Locale }) {
+  const { ui } = getStrings(locale);
+  const trail: Crumb[] = [{ name: ui.home, path: localePath(locale, "/") }, ...items];
   return (
     <>
       <JsonLd data={breadcrumbJsonLd(trail)} />
-      <nav aria-label="Breadcrumb" className="mb-4 text-sm text-muted">
+      <nav aria-label={ui.breadcrumb} className="mb-4 text-sm text-muted">
         <ol className="flex flex-wrap items-center gap-1.5">
           {trail.map((crumb, i) =>
             i === trail.length - 1 ? (

@@ -8,6 +8,9 @@ import type { Faq } from "../faqs";
  */
 export interface UiStrings {
   locale: Locale;
+  /** Breadcrumb label for the homepage. */
+  home: string;
+  breadcrumb: string;
   skipToContent: string;
   /** Screen-reader name of the logo link, e.g. "{name} home". */
   homeLink: string;
@@ -129,6 +132,25 @@ export interface Strings {
   formatting: FormattingStrings;
   /** Style card label on the homepage, "{name} font generator". */
   styleCard: string;
+}
+
+/** Copy for a tool page (Fancy Text, Name, Timestamp, Formatting). Server-only (it holds JSX). */
+export interface ToolPageContent {
+  /** Breadcrumb label. */
+  name: string;
+  title: string;
+  description: string;
+  h1: string;
+  intro: string;
+  /** Example text in the generator before the visitor types. */
+  sampleText?: string;
+  /** Accessible name of the tool section. */
+  toolLabel: string;
+  faqHeading: string;
+  faqs: readonly Faq[];
+  Article: () => React.ReactNode;
+  relatedHeading: string;
+  related: readonly { href: string; label: string }[];
 }
 
 /** Homepage copy. Server-only (it holds JSX). */

@@ -76,6 +76,9 @@ const styleGuideRows = [
   ["Glitch / Zalgo", "F̸a̵n̷c̶y̴", "Low", "Varies", "Jokes and memes only"],
 ] as const;
 
+/** The example column, shared with the translated tables (the samples are Unicode, not words). */
+export const fancyExamples: readonly string[] = styleGuideRows.map((row) => row[1]);
+
 export function FancyTextArticle() {
   return (
     <>

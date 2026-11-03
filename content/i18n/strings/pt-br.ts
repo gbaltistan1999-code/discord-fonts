@@ -3,6 +3,8 @@ import type { Strings } from "../types";
 export const ptBr: Strings = {
   ui: {
     locale: "pt-br",
+    home: "Início",
+    breadcrumb: "Trilha de navegação",
     skipToContent: "Pular para o conteúdo",
     homeLink: "Página inicial do {name}",
     menu: "Menu",

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { getStrings } from "@/content/i18n";
 import { platformPages } from "@/content/platforms";
 import { stylePages } from "@/content/style-pages";
-import { defaultLocale, fill, localePath, type Locale } from "@/lib/i18n";
+import { defaultLocale, fill, hrefFor, localePath, type Locale } from "@/lib/i18n";
 import { siteConfig } from "@/lib/site";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { Logo } from "./Logo";
@@ -16,8 +16,8 @@ function menuGroups(locale: Locale): MenuGroup[] {
     {
       title: ui.groups.generators,
       links: [
-        { href: "/fancy-text-generator", label: ui.links.fancyText },
-        { href: "/discord-name-generator", label: ui.links.nameGenerator },
+        { href: hrefFor(locale, "/fancy-text-generator"), label: ui.links.fancyText },
+        { href: hrefFor(locale, "/discord-name-generator"), label: ui.links.nameGenerator },
         ...stylePages.map((page) => ({
           href: `/discord-font-generator/${page.slug}`,
           label: fill(ui.styleFont, { name: ui.styleNames[page.slug] ?? page.name }),
@@ -37,8 +37,8 @@ function menuGroups(locale: Locale): MenuGroup[] {
     {
       title: ui.groups.tools,
       links: [
-        { href: "/discord-text-formatting", label: ui.links.textFormatting },
-        { href: "/discord-timestamp-generator", label: ui.links.timestamp },
+        { href: hrefFor(locale, "/discord-text-formatting"), label: ui.links.textFormatting },
+        { href: hrefFor(locale, "/discord-timestamp-generator"), label: ui.links.timestamp },
       ],
     },
     {

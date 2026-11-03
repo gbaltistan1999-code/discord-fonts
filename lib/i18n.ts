@@ -33,7 +33,7 @@ export const localeInfo: Record<
 };
 
 /** Pages published in every locale (English paths). */
-export const translatedPaths: readonly string[] = ["/"];
+export const translatedPaths: readonly string[] = ["/", "/fancy-text-generator"];
 
 export function isLocale(value: string): value is Locale {
   return (locales as readonly string[]).includes(value);
@@ -47,6 +47,11 @@ export function isTranslated(path: string): boolean {
 export function localePath(locale: Locale, path: string): string {
   if (locale === defaultLocale) return path;
   return path === "/" ? `/${locale}` : `/${locale}${path}`;
+}
+
+/** Link target for a page from a page in `locale`: its translation if there is one, otherwise English. */
+export function hrefFor(locale: Locale, path: string): string {
+  return isTranslated(path) ? localePath(locale, path) : path;
 }
 
 /** Splits "/es/x" into { locale: "es", path: "/x" }. English paths have no prefix. */

@@ -3,6 +3,8 @@ import type { Strings } from "../types";
 export const es: Strings = {
   ui: {
     locale: "es",
+    home: "Inicio",
+    breadcrumb: "Ruta de navegación",
     skipToContent: "Saltar al contenido",
     homeLink: "Inicio de {name}",
     menu: "Menú",

@@ -3,6 +3,8 @@ import type { Strings } from "../types";
 export const ja: Strings = {
   ui: {
     locale: "ja",
+    home: "ホーム",
+    breadcrumb: "パンくずリスト",
     skipToContent: "本文へスキップ",
     homeLink: "{name} ホーム",
     menu: "メニュー",

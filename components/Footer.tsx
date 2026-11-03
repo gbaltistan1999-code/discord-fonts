@@ -2,7 +2,7 @@ import Link from "next/link";
 import { getStrings } from "@/content/i18n";
 import { platformPages } from "@/content/platforms";
 import { stylePages } from "@/content/style-pages";
-import { defaultLocale, fill, localePath, type Locale } from "@/lib/i18n";
+import { defaultLocale, fill, hrefFor, localePath, type Locale } from "@/lib/i18n";
 import { siteConfig } from "@/lib/site";
 
 export function Footer({ locale = defaultLocale }: { locale?: Locale }) {
@@ -10,10 +10,10 @@ export function Footer({ locale = defaultLocale }: { locale?: Locale }) {
   // Untranslated pages link to their English version.
   const siteLinks = [
     { href: localePath(locale, "/"), label: ui.links.discordFontsGenerator },
-    { href: "/fancy-text-generator", label: ui.links.fancyText },
-    { href: "/discord-name-generator", label: ui.links.nameGenerator },
-    { href: "/discord-timestamp-generator", label: ui.links.timestampGenerator },
-    { href: "/discord-text-formatting", label: ui.links.textFormatting },
+    { href: hrefFor(locale, "/fancy-text-generator"), label: ui.links.fancyText },
+    { href: hrefFor(locale, "/discord-name-generator"), label: ui.links.nameGenerator },
+    { href: hrefFor(locale, "/discord-timestamp-generator"), label: ui.links.timestampGenerator },
+    { href: hrefFor(locale, "/discord-text-formatting"), label: ui.links.textFormatting },
     { href: "/blog", label: ui.links.blog },
     { href: "/about", label: ui.links.about },
     { href: "/contact", label: ui.links.contact },
