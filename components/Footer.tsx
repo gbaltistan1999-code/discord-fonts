@@ -90,32 +90,6 @@ export function Footer() {
                 style={{ height: "40px", width: "auto" }}
               />
             </a>
-            <a
-              href="https://ailaun.ch/projects/discordfonts?utm_source=badge"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block"
-            >
-              {/* Light and dark versions; the hidden one is never downloaded because it's lazy. */}
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="https://ailaun.ch/ailaunch/images/badges/featured-on-light.svg"
-                alt="Featured on AI Launch"
-                loading="lazy"
-                decoding="async"
-                className="dark:hidden"
-                style={{ height: "44px", width: "auto" }}
-              />
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="https://ailaun.ch/ailaunch/images/badges/featured-on-dark.svg"
-                alt="Featured on AI Launch"
-                loading="lazy"
-                decoding="async"
-                className="hidden dark:block"
-                style={{ height: "44px", width: "auto" }}
-              />
-            </a>
           </div>
         </div>
       </div>
