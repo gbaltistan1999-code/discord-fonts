@@ -130,11 +130,13 @@
 }
 
 @layer components {
-  /* Converted text uses system fonts (broad symbol coverage) so it never pulls in extra web-font subsets. */
+  /* Converted text uses system fonts (broad symbol coverage) so it never pulls in extra web-font subsets.
+     Colour emoji fonts come before Segoe UI Symbol, or Windows draws emoji as black outlines. */
   .fancy-text {
     font-family:
-      system-ui, "Segoe UI", "Segoe UI Symbol", "Segoe UI Emoji", "Apple Symbols", "Noto Sans Math",
-      "Noto Sans Symbols", "Noto Sans Symbols 2", "Cambria Math", "STIX Two Math", sans-serif;
+      system-ui, "Segoe UI", "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Segoe UI Symbol",
+      "Apple Symbols", "Noto Sans Math", "Noto Sans Symbols", "Noto Sans Symbols 2", "Cambria Math",
+      "STIX Two Math", sans-serif;
     overflow-wrap: anywhere;
   }
 

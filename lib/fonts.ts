@@ -276,7 +276,17 @@ export const charMaps = {
   bubble: mergeMaps(rangeMap(0x24d0, 0x24d0), circledDigits),
   negativeCircled: mergeMaps(rangeMap(0x1f150, 0x1f150), { "0": "⓿" }, zipMap("123456789", "❶❷❸❹❺❻❼❽❾")),
   squared: rangeMap(0x1f130, 0x1f130),
-  negativeSquared: rangeMap(0x1f170, 0x1f170),
+  // A, B, O and P are also emoji; the text selector (U+FE0E) keeps them black like the other letters.
+  negativeSquared: rangeMap(0x1f170, 0x1f170, null, {
+    A: "🅰︎",
+    B: "🅱︎",
+    O: "🅾︎",
+    P: "🅿︎",
+    a: "🅰︎",
+    b: "🅱︎",
+    o: "🅾︎",
+    p: "🅿︎",
+  }),
   parenthesized: mergeMaps(rangeMap(0x1f110, 0x249c), zipMap("123456789", "⑴⑵⑶⑷⑸⑹⑺⑻⑼")),
   upsideDown: mergeMaps(
     alphabetMap("ɐqɔpǝɟƃɥᴉɾʞlɯuodbɹsʇnʌʍxʎz", "∀ꓭƆꓷƎℲ⅁HIſꓘ˥WNOԀΌᴚS⊥∩ΛMX⅄Z"),
