@@ -150,7 +150,7 @@ function Article() {
         Le markdown ne fonctionne que dans les messages (et quelques champs du profil). Il n’a aucun effet sur
         les noms, et c’est justement pour ça que les polices Unicode existent. Essayez les deux avec l’outil
         de mise en forme ci-dessus, ou lisez le{" "}
-        <Link href="/discord-text-formatting">guide complet de mise en forme</Link> (en anglais).
+        <Link href="/fr/discord-text-formatting">guide complet de mise en forme</Link>.
       </p>
 
       <h2 id="carres">Pourquoi certaines polices s’affichent en carrés</h2>
@@ -208,11 +208,11 @@ export const homeFr: HomeContent = {
     <>
       Le gras, les spoilers, les titres et le texte en couleur utilisent le markdown intégré de Discord. Tapez
       une fois et copiez la syntaxe, ou lisez le{" "}
-      <Link href="/discord-text-formatting" className={inlineLink}>
+      <Link href="/fr/discord-text-formatting" className={inlineLink}>
         guide complet de mise en forme
-      </Link>{" "}
-      (en anglais). Pour les heures d’événements et les comptes à rebours, essayez le{" "}
-      <Link href="/discord-timestamp-generator" className={inlineLink}>
+      </Link>
+      . Pour les heures d’événements et les comptes à rebours, essayez le{" "}
+      <Link href="/fr/discord-timestamp-generator" className={inlineLink}>
         générateur de timestamp
       </Link>
       .

@@ -38,6 +38,7 @@ export const translatedPaths: readonly string[] = [
   "/fancy-text-generator",
   "/discord-name-generator",
   "/discord-timestamp-generator",
+  "/discord-text-formatting",
 ];
 
 export function isLocale(value: string): value is Locale {

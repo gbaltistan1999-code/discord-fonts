@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { nameIdeaExamples } from "@/content/discord-name";
 import { fancyExamples } from "@/content/fancy-text";
+import { markdownSyntaxes } from "@/content/formatting";
 import { timestampStyles, type TimestampStyleCode } from "@/lib/discord-timestamp";
 import { hrefFor, type Locale } from "@/lib/i18n";
 
@@ -214,5 +215,50 @@ export function TimestampStyleTable({
         </tbody>
       </table>
     </div>
+  );
+}
+
+/** The Discord markdown cheat sheet with translated labels. Rows are [style, good for], in the English order. */
+export function MarkdownCheatSheet({
+  headers,
+  rows,
+}: {
+  headers: readonly [string, string, string];
+  rows: readonly (readonly [string, string])[];
+}) {
+  return (
+    <div className="overflow-x-auto">
+      <table>
+        <thead>
+          <tr>
+            {headers.map((header) => (
+              <th key={header} scope="col">
+                {header}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map(([style, use], i) => (
+            <tr key={style}>
+              <td>{style}</td>
+              <td>
+                <code>{markdownSyntaxes[i]}</code>
+              </td>
+              <td>{use}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+/** The ansi colour block example used in every formatting guide. */
+export function AnsiExample({ text }: { text: string }) {
+  return (
+    <pre className="overflow-x-auto rounded-lg border border-border bg-surface-2 p-3 font-mono text-sm">
+      {`\`\`\`ansi\n[ESC][0;34m${text}[ESC][0m\n\`\`\``}
+    </pre>
   );
 }

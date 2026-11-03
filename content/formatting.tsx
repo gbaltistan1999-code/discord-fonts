@@ -17,6 +17,9 @@ const syntaxRows: [string, string, string][] = [
   ["Masked link", "[label](https://example.com)", "Clickable text links"],
 ];
 
+/** The syntax column, shared with the translated cheat sheets. */
+export const markdownSyntaxes: readonly string[] = syntaxRows.map((row) => row[1]);
+
 /** Guide copy for /discord-text-formatting, rendered below the tool. */
 export function FormattingGuide() {
   return (

@@ -131,7 +131,7 @@ function Article() {
       </p>
       <p>
         マークダウンが使えるのはメッセージ（と一部のプロフィール欄）だけで、名前には効きません。だからこそUnicodeのフォントが使われているのです。上の書式ツールで両方を試すか、
-        <Link href="/discord-text-formatting">テキスト書式の詳しいガイド</Link>（英語）をご覧ください。
+        <Link href="/ja/discord-text-formatting">テキスト書式の詳しいガイド</Link>をご覧ください。
       </p>
 
       <h2 id="tofu">フォントが四角（□）で表示される理由</h2>
@@ -182,11 +182,11 @@ export const homeJa: HomeContent = {
   formattingIntro: (
     <>
       太字、スポイラー、見出し、色付きテキストは、Discordに組み込まれたマークダウンで作れます。1回入力して書式をコピーするか、
-      <Link href="/discord-text-formatting" className={inlineLink}>
+      <Link href="/ja/discord-text-formatting" className={inlineLink}>
         書式の詳しいガイド
       </Link>
-      （英語）をご覧ください。イベントの日時やカウントダウンには
-      <Link href="/discord-timestamp-generator" className={inlineLink}>
+      をご覧ください。イベントの日時やカウントダウンには
+      <Link href="/ja/discord-timestamp-generator" className={inlineLink}>
         タイムスタンプ ジェネレーター
       </Link>
       が便利です。

@@ -246,3 +246,17 @@ export interface HomeContent {
 
 /** What each per-language strings file holds; the timestamp strings are joined in by getStrings(). */
 export type BaseStrings = Omit<Strings, "timestamp">;
+
+/** Copy for the Text Formatting page. Server-only (it holds JSX). */
+export interface FormattingPageContent {
+  /** Breadcrumb label. */
+  name: string;
+  title: string;
+  description: string;
+  h1: string;
+  intro: string;
+  toolLabel: string;
+  /** Name of the tool in structured data. */
+  appName: string;
+  Guide: () => React.ReactNode;
+}

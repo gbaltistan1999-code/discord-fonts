@@ -145,8 +145,7 @@ function Article() {
       <p>
         O markdown só funciona nas mensagens (e em alguns campos do perfil). Nos nomes ele não faz nada, e é
         exatamente por isso que existem as letras Unicode. Teste os dois com a ferramenta de formatação acima
-        ou leia o <Link href="/discord-text-formatting">guia completo de formatação de texto</Link> (em
-        inglês).
+        ou leia o <Link href="/pt-br/discord-text-formatting">guia completo de formatação de texto</Link>.
       </p>
 
       <h2 id="quadrados">Por que algumas letras aparecem como quadrados</h2>
@@ -203,11 +202,11 @@ export const homePtBr: HomeContent = {
     <>
       Negrito, spoilers, títulos e texto colorido usam o markdown nativo do Discord. Digite uma vez e copie a
       formatação, ou leia o{" "}
-      <Link href="/discord-text-formatting" className={inlineLink}>
+      <Link href="/pt-br/discord-text-formatting" className={inlineLink}>
         guia completo de formatação
-      </Link>{" "}
-      (em inglês). Para horários de eventos e contagens regressivas, use o{" "}
-      <Link href="/discord-timestamp-generator" className={inlineLink}>
+      </Link>
+      . Para horários de eventos e contagens regressivas, use o{" "}
+      <Link href="/pt-br/discord-timestamp-generator" className={inlineLink}>
         gerador de timestamp
       </Link>
       .

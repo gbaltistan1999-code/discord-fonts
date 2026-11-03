@@ -147,8 +147,7 @@ function Article() {
       <p>
         Markdown funktioniert nur in Nachrichten (und ein paar Profilfeldern). In Namen bewirkt es nichts –
         genau deshalb gibt es Unicode-Schriftarten. Probiere beides mit dem Formatierungstool oben aus oder
-        lies die <Link href="/discord-text-formatting">vollständige Anleitung zur Textformatierung</Link> (auf
-        Englisch).
+        lies die <Link href="/de/discord-text-formatting">vollständige Anleitung zur Textformatierung</Link>.
       </p>
 
       <h2 id="kaestchen">Warum manche Schriftarten als Kästchen erscheinen</h2>
@@ -205,11 +204,11 @@ export const homeDe: HomeContent = {
     <>
       Fett, Spoiler, Überschriften und farbiger Text nutzen das eingebaute Markdown von Discord. Einmal tippen
       und die Syntax kopieren – oder die{" "}
-      <Link href="/discord-text-formatting" className={inlineLink}>
+      <Link href="/de/discord-text-formatting" className={inlineLink}>
         vollständige Formatierungsanleitung
       </Link>{" "}
-      (auf Englisch) lesen. Für Event-Zeiten und Countdowns gibt es den{" "}
-      <Link href="/discord-timestamp-generator" className={inlineLink}>
+      lesen. Für Event-Zeiten und Countdowns gibt es den{" "}
+      <Link href="/de/discord-timestamp-generator" className={inlineLink}>
         Timestamp-Generator
       </Link>
       .
