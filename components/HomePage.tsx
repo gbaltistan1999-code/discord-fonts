@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getStrings } from "@/content/i18n";
 import { getHome } from "@/content/i18n/home";
+import { homeStyleOrder } from "@/content/i18n/style-order";
 import { generatorPages } from "@/content/generator-pages";
 import { fontStyles } from "@/lib/fonts";
 import { fill, hrefFor, type Locale } from "@/lib/i18n";
@@ -64,7 +65,11 @@ export function HomePage({ locale }: { locale: Locale }) {
       </section>
 
       <section id="font-styles" aria-label={home.generatorLabel} className="mx-auto max-w-5xl scroll-mt-4">
-        <FontGenerator strings={generator} platformLinks={platformLinksProps(locale)} />
+        <FontGenerator
+          strings={generator}
+          order={homeStyleOrder[locale]}
+          platformLinks={platformLinksProps(locale)}
+        />
       </section>
 
       <div className="mx-auto max-w-5xl">
