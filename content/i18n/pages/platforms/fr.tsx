@@ -37,7 +37,7 @@ export const platformsFr: PlatformPagesContent = {
         {
           question: "Pourquoi Roblox transforme-t-il mon texte en dièses ?",
           answer:
-            "Roblox filtre tout le texte, et les caractères ou mots que son filtre ne sait pas lire sont souvent remplacés par des dièses (#). Les styles simples comme Small Caps, Bold et Wide Spaced passent le plus souvent.",
+            "Roblox filtre tout le texte, et les caractères ou mots que son filtre ne sait pas lire sont souvent remplacés par des dièses (#). Les styles simples comme Petites capitales, Gras et Espacé passent le plus souvent.",
         },
         {
           question: "Quelles polices marchent le mieux sur Roblox ?",
@@ -64,8 +64,8 @@ export const platformsFr: PlatformPagesContent = {
           <p>
             Roblox fait passer chaque texte par son filtre de chat. Les caractères qu’il ne reconnaît pas, ou
             le texte que le filtre ne sait pas lire, sont souvent remplacés par des dièses (####) ou
-            supprimés. Les styles simples comme <strong>Small Caps</strong>, <strong>Bold</strong> et{" "}
-            <strong>Wide Spaced</strong> s’en sortent mieux que les décorations chargées ou le texte glitch.
+            supprimés. Les styles simples comme <strong>Petites capitales</strong>, <strong>Gras</strong> et{" "}
+            <strong>Espacé</strong> s’en sortent mieux que les décorations chargées ou le texte glitch.
             Vérifiez toujours votre texte après l’enregistrement.
           </p>
           <h2>Conseils pour le texte sur Roblox</h2>
@@ -110,7 +110,7 @@ export const platformsFr: PlatformPagesContent = {
         {
           question: "Pourquoi certaines polices sont-elles différentes sur iPhone et Android ?",
           answer:
-            "Chaque téléphone dessine les caractères Unicode avec ses propres polices système : certains symboles changent un peu ou n’apparaissent pas sur les anciens appareils. Les styles Script, Small Caps et Bold s’affichent presque partout.",
+            "Chaque téléphone dessine les caractères Unicode avec ses propres polices système : certains symboles changent un peu ou n’apparaissent pas sur les anciens appareils. Les styles Cursive, Petites capitales et Gras s’affichent presque partout.",
         },
       ],
       body: (
@@ -125,8 +125,8 @@ export const platformsFr: PlatformPagesContent = {
           <p>
             Les bios Instagram sont limitées à 150 caractères, et les styles décorés prennent plus de place.
             Une bonne formule : une ligne stylée pour votre nom ou votre slogan, puis du texte normal pour les
-            liens et les détails. La cursive, les petites capitales et les styles aesthetic comme Sparkle
-            Frame ou Flower Frame sont très populaires.
+            liens et les détails. La cursive, les petites capitales et les styles aesthetic comme Cadre
+            étincelant ou Cadre fleuri sont très populaires.
           </p>
           <h2>Polices et visibilité</h2>
           <p>
@@ -161,7 +161,7 @@ export const platformsFr: PlatformPagesContent = {
         {
           question: "Quelles polices se lisent le mieux sur un snap ?",
           answer:
-            "Les styles épais et pleins comme Bold Sans, Bubble et Double-Struck restent lisibles sur les photos. Les styles fins ou glitch peuvent se perdre sur un fond chargé.",
+            "Les styles épais et pleins comme Gras sans empattement, Bulle et Double trait restent lisibles sur les photos. Les styles fins ou glitch peuvent se perdre sur un fond chargé.",
         },
         {
           question: "Un nom d’affichage stylé empêchera-t-il mes amis de me trouver ?",
@@ -181,8 +181,8 @@ export const platformsFr: PlatformPagesContent = {
           <h2>Choisir un style pour vos snaps</h2>
           <p>
             Les textes des snaps se posent sur des photos : les styles épais et nets se lisent mieux que les
-            styles fins ou glitch. Bold Sans, Double-Struck et Bubble ressortent bien, tandis que les petites
-            capitales et la cursive vont bien aux noms d’affichage.
+            styles fins ou glitch. Gras sans empattement, Double trait et Bulle ressortent bien, tandis que
+            les petites capitales et la cursive vont bien aux noms d’affichage.
           </p>
           <h2>Conseils</h2>
           <ul>
@@ -190,7 +190,7 @@ export const platformsFr: PlatformPagesContent = {
               Vos amis cherchent par nom d’utilisateur : un nom d’affichage stylé ne vous rendra pas plus
               difficile à ajouter.
             </li>
-            <li>Les cadres en emoji comme Sakura ou Butterfly collent au côté ludique de Snapchat.</li>
+            <li>Les cadres en emoji comme Sakura ou Papillon collent au côté ludique de Snapchat.</li>
             <li>
               Vérifiez le rendu sur le snap avant l’envoi : certains téléphones affichent moins de symboles.
             </li>
@@ -267,7 +267,7 @@ export const platformsFr: PlatformPagesContent = {
         {
           question: "Comment écrire en gras sur Twitter (X) ?",
           answer:
-            "Les posts classiques n’ont pas de bouton gras. Tapez votre texte ici, copiez le style Bold ou Bold Sans et collez-le dans votre post.",
+            "Les posts classiques n’ont pas de bouton gras. Tapez votre texte ici, copiez le style Gras ou Gras sans empattement et collez-le dans votre post.",
         },
         {
           question: "Puis-je utiliser des polices stylées dans mon nom sur X ?",
@@ -295,9 +295,9 @@ export const platformsFr: PlatformPagesContent = {
           </p>
           <h2>Posts en gras et en italique</h2>
           <p>
-            Les posts classiques n’ont pas de bouton gras ni italique : les lettres Bold, Italic et Bold Sans
-            sont donc un moyen courant de mettre l’accent. Chaque lettre stylée compte dans la limite de
-            caractères, et certains styles décorés comptent pour plus d’un caractère.
+            Les posts classiques n’ont pas de bouton gras ni italique : les lettres Gras, Italique et Gras
+            sans empattement sont donc un moyen courant de mettre l’accent. Chaque lettre stylée compte dans
+            la limite de caractères, et certains styles décorés comptent pour plus d’un caractère.
           </p>
           <h2>Accessibilité</h2>
           <p>
@@ -321,7 +321,7 @@ export const platformsFr: PlatformPagesContent = {
         {
           question: "Comment écrire en gras dans une publication Facebook ?",
           answer:
-            "Les publications personnelles n’ont pas de boutons de mise en forme. Copiez le style Bold ou Bold Sans sur cette page et collez-le dans votre publication ou commentaire.",
+            "Les publications personnelles n’ont pas de boutons de mise en forme. Copiez le style Gras ou Gras sans empattement sur cette page et collez-le dans votre publication ou commentaire.",
         },
         {
           question: "Puis-je utiliser une police stylée pour mon nom Facebook ?",
@@ -336,7 +336,7 @@ export const platformsFr: PlatformPagesContent = {
         {
           question: "Quels styles conviennent aux publications de fête ?",
           answer:
-            "Les cadres comme Hearts, Sparkles, Star Wings et Sakura vont très bien aux anniversaires, fêtes et annonces.",
+            "Les cadres comme Cœurs, Paillettes, Ailes d’étoile et Sakura vont très bien aux anniversaires, fêtes et annonces.",
         },
       ],
       body: (
@@ -351,8 +351,8 @@ export const platformsFr: PlatformPagesContent = {
           <h2>Mettre en forme vos publications</h2>
           <p>
             Les publications personnelles n’ont pas d’option gras ou italique : les lettres stylées sont un
-            moyen simple d’ajouter un titre ou de faire ressortir une ligne clé. Bold Sans marche bien pour
-            les titres, et Strikethrough ou Underline peuvent signaler un changement dans une publication de
+            moyen simple d’ajouter un titre ou de faire ressortir une ligne clé. Gras sans empattement marche
+            bien pour les titres, et Barré ou Souligné peuvent signaler un changement dans une publication de
             promo ou d’événement.
           </p>
           <h2>Conseils</h2>
@@ -362,7 +362,7 @@ export const platformsFr: PlatformPagesContent = {
               Laissez les liens, prix et dates en texte normal pour qu’ils restent faciles à lire et à
               rechercher.
             </li>
-            <li>Les cadres comme Hearts ou Sparkles vont bien aux anniversaires et aux fêtes.</li>
+            <li>Les cadres comme Cœurs ou Paillettes vont bien aux anniversaires et aux fêtes.</li>
           </ul>
         </>
       ),
@@ -390,7 +390,7 @@ export const platformsFr: PlatformPagesContent = {
         {
           question: "Quelles sont les meilleures polices pour une bio TikTok ?",
           answer:
-            "Les styles compacts comme Small Caps, Bold Sans et Kawaii tiennent dans la bio de 80 caractères de TikTok. Vaporwave va bien aux comptes d’edits et de fans, Gothic et Glitch aux profils sombres ou gaming.",
+            "Les styles compacts comme Petites capitales, Gras sans empattement et Kawaii tiennent dans la bio de 80 caractères de TikTok. Vaporwave va bien aux comptes d’edits et de fans, Gothique et Glitch aux profils sombres ou gaming.",
         },
         {
           question: "Les polices stylées ont-elles un effet sur la recherche TikTok ?",
@@ -409,9 +409,9 @@ export const platformsFr: PlatformPagesContent = {
           <h2>Une bio de 80 caractères</h2>
           <p>
             Les bios TikTok sont courtes, et les styles décorés utilisent des caractères en plus. Choisissez
-            un style compact comme Small Caps, Bold Sans ou Kawaii, et gardez les cadres et emojis pour un
-            seul mot. Les styles aesthetic comme Vaporwave Fullwidth vont bien aux comptes d’edits et de fans,
-            tandis que Gothic et Glitch conviennent aux profils gaming et à l’esthétique sombre.
+            un style compact comme Petites capitales, Gras sans empattement ou Kawaii, et gardez les cadres et
+            emojis pour un seul mot. Les styles aesthetic comme Vaporwave large vont bien aux comptes d’edits
+            et de fans, tandis que Gothique et Glitch conviennent aux profils gaming et à l’esthétique sombre.
           </p>
           <h2>Légendes et recherche</h2>
           <p>
@@ -449,7 +449,7 @@ export const platformsFr: PlatformPagesContent = {
         {
           question: "Puis-je utiliser des polices dans le résumé de mon profil Steam ?",
           answer:
-            "Oui. Le texte stylé fonctionne dans votre résumé, vos évaluations, commentaires et pages de groupe, et des titres en Bold Sans aident à organiser les longues sections.",
+            "Oui. Le texte stylé fonctionne dans votre résumé, vos évaluations, commentaires et pages de groupe, et des titres en Gras sans empattement aident à organiser les longues sections.",
         },
       ],
       body: (
@@ -464,9 +464,9 @@ export const platformsFr: PlatformPagesContent = {
           <h2>Idées de pseudos gamer</h2>
           <p>
             Les noms courts avec un seul style fort rendent le mieux dans la liste d’amis et les salons de
-            jeu. Bold Gothic, Gamer Tag (亗) et Crossbones (×͜×) sont appréciés des joueurs compétitifs, tandis
-            que Small Caps et Double-Struck donnent un rendu plus net. Surveillez la limite de 32 caractères
-            quand vous ajoutez des cadres.
+            jeu. Gothique grasse, Tag gamer (亗) et Os croisés (×͜×) sont appréciés des joueurs compétitifs,
+            tandis que Petites capitales et Double trait donnent un rendu plus net. Surveillez la limite de 32
+            caractères quand vous ajoutez des cadres.
           </p>
           <h2>Conseils</h2>
           <ul>
@@ -478,7 +478,10 @@ export const platformsFr: PlatformPagesContent = {
               Vos amis vous trouvent toujours via l’URL de votre profil ou votre code ami, même avec un nom
               stylé.
             </li>
-            <li>Utilisez des titres en Bold Sans pour organiser un long résumé de profil ou un guide.</li>
+            <li>
+              Utilisez des titres en Gras sans empattement pour organiser un long résumé de profil ou un
+              guide.
+            </li>
           </ul>
         </>
       ),
@@ -510,7 +513,7 @@ export const platformsFr: PlatformPagesContent = {
         {
           question: "Quels styles conviennent aux clubs de jeu ?",
           answer:
-            "Bold Gothic, Gamer Tag et Lenticular Brackets font des titres de club percutants. Gardez le texte normal pour les horaires et les règles afin que les membres les lisent facilement.",
+            "Gothique grasse, Tag gamer et Crochets lenticulaires font des titres de club percutants. Gardez le texte normal pour les horaires et les règles afin que les membres les lisent facilement.",
         },
       ],
       body: (

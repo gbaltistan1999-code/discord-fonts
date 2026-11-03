@@ -44,25 +44,25 @@ export const stylesJa: StylePagesContent = {
           <h2>どの太字を選べばいい？</h2>
           <ul>
             <li>
-              <strong>Bold（セリフ付き）</strong>
+              <strong>太字（セリフ付き）</strong>
               は小さな飾りのある本のような文字。かっちりしたサーバー名やなりきりキャラに合います。
             </li>
             <li>
-              <strong>Bold Sans</strong>
+              <strong>太字サンセリフ</strong>
               はすっきりモダンで、ゲーム用の名前やチャンネル名にいちばん読みやすい選択です。
             </li>
             <li>
-              <strong>Bold Italic</strong>と<strong>Sans Bold Italic</strong>
+              <strong>太字斜体</strong>と<strong>サンセリフ太字斜体</strong>
               は勢いが出るので、盛り上げ用のチャンネルやeスポーツのチームタグにぴったりです。
             </li>
             <li>
-              <strong>Bold Script</strong>と<strong>Bold Gothic</strong>
+              <strong>太字の筆記体</strong>と<strong>太字ゴシック体</strong>
               は、ふつうの太字では物足りないときに、太さと個性を両立できます。
             </li>
           </ul>
           <h2>太字の名前のコツ</h2>
           <p>
-            太字はおしゃれ文字の中でも特に対応が広く、最新のWindows、Mac、iPhone、Androidで正しく表示されます。BoldとBold
+            太字はおしゃれ文字の中でも特に対応が広く、最新のWindows、Mac、iPhone、Androidで正しく表示されます。太字と太字
             Sansには数字もあるので、{fancy("bold-serif", "Team 7")}
             のようなクランタグにも便利です。表示名とニックネームは32文字までなので、入力欄の下の文字数カウンターで確認しましょう。
           </p>
@@ -81,8 +81,8 @@ export const stylesJa: StylePagesContent = {
             {fancy("bold-serif", "Squad 7")}
             」などがおすすめです。サーバーの管理者は、チャンネル一覧のカテゴリー名を「
             {fancy("bold-sans", "VOICE CHANNELS")}
-            」のように太字にして、下のチャンネルと区別することがよくあります。Bold
-            Italicは、読みやすさを保ちながらチャットで元気な印象を出せるので、配信者やクリエイターに人気です。
+            」のように太字にして、下のチャンネルと区別することがよくあります。太字
+            斜体は、読みやすさを保ちながらチャットで元気な印象を出せるので、配信者やクリエイターに人気です。
           </p>
         </>
       ),
@@ -103,23 +103,23 @@ export const stylesJa: StylePagesContent = {
             {fancy("script", "Starlight")}や{fancy("bold-script", "Starlight")}
             のような筆記体（スクリプト）は、Unicodeのスクリプト文字から来ています。もとは数式用に作られた文字ですが、手書き風の見た目のおかげで、Discordの名前を飾るいちばん人気の方法のひとつになりました。書式ではなく文字そのものなので、マークダウンの斜体が使えないニックネームやチャンネル名でも曲線が残ります。
           </p>
-          <h2>Script・Bold Script・Italicの違い</h2>
+          <h2>筆記体・太字の筆記体・斜体の違い</h2>
           <p>
-            <strong>Script Cursive</strong>
+            <strong>筆記体</strong>
             は軽やかで上品。エモい系のプロフィールやアート系サーバー、やわらかい雰囲気にぴったりです。一部の大文字（B、E、F、H、I、L、M、R）と小文字のe、g、oはUnicodeの古いブロックから来ているので、フォントによっては周りの文字と少し違って見えることがあります。
           </p>
           <p>
-            <strong>Bold Script</strong>
+            <strong>太字の筆記体</strong>
             は太めの線でそろっているので、小さいサイズでも読みやすく、メンバー一覧でもきれいに見えます。名前用に筆記体を1つだけ選ぶなら、これがおすすめです。
           </p>
           <p>
-            <strong>Italic</strong>と<strong>Sans Italic</strong>
+            <strong>斜体</strong>と<strong>サンセリフ斜体</strong>
             はつながった字ではなく傾いた字なので、筆記体だと派手すぎるときの控えめな選択肢です。
           </p>
           <h2>筆記体が映える場所</h2>
           <ul>
             <li>アーティスト、作家、なりきりキャラの表示名。</li>
-            <li>自己紹介。特にOrnateやSparklesなどの飾りと組み合わせると素敵です。</li>
+            <li>自己紹介。特に華やかやキラキラなどの飾りと組み合わせると素敵です。</li>
             <li>ほっこり系・クリエイティブ系・コミュニティ系のサーバー名。</li>
             <li>ようこそチャンネルやルールのチャンネル名（説明文はふつうの文字で）。</li>
           </ul>
@@ -157,19 +157,19 @@ export const stylesJa: StylePagesContent = {
           <h2>このジェネレーターのゴシックスタイル</h2>
           <ul>
             <li>
-              <strong>Gothic Fraktur</strong>
+              <strong>ゴシック体（フラクトゥール）</strong>
               は軽めのクラシックなブラックレター。上品ですが、小さいサイズでは読みにくくなります。
             </li>
             <li>
-              <strong>Bold Gothic</strong>
+              <strong>太字ゴシック体</strong>
               は太くてメンバー一覧でもずっと読みやすく、ゴシック体の表示名にはいちばんのおすすめです。
             </li>
             <li>
-              <strong>Gothic Cross</strong>、<strong>Crowned</strong>、<strong>Royal Frame</strong>、
-              <strong>Crossed Swords</strong>は、文字を記号で囲んで中世風やクラン風に仕上げます。
+              <strong>ゴシッククロス</strong>、<strong>王冠</strong>、<strong>ロイヤルフレーム</strong>、
+              <strong>交差した剣</strong>は、文字を記号で囲んで中世風やクラン風に仕上げます。
             </li>
             <li>
-              <strong>Runic Style</strong>
+              <strong>ルーン風</strong>
               はチェロキー文字の似た文字を使い、古代の彫刻のような雰囲気を出します。
             </li>
           </ul>
@@ -180,7 +180,7 @@ export const stylesJa: StylePagesContent = {
             」のように1単語だけゴシックにすれば、ほかは読みやすいまま雰囲気を出せます。
           </p>
           <p>
-            フラクトゥールには数字がないので、数字はふつうのままです。軽いスタイルの一部の大文字（C、H、I、R、Z）は別のUnicodeブロックから来ていて、端末によっては少し違って見えることがあります。もっと強烈にしたいならBold
+            フラクトゥールには数字がないので、数字はふつうのままです。軽いスタイルの一部の大文字（C、H、I、R、Z）は別のUnicodeブロックから来ていて、端末によっては少し違って見えることがあります。もっと強烈にしたいなら太字
             Gothicと{g("glitch", "グリッチ文字 ジェネレーター")}
             を組み合わせて呪われた雰囲気に、すっきりさせたいなら
             {g("bold", "太字フォント ジェネレーター")}がおすすめです。
@@ -214,11 +214,11 @@ export const stylesJa: StylePagesContent = {
             {fancy("small-caps-all", "midnight")}
             のように、名前を落ち着いたミニマルな印象にしてくれます。Unicodeには完全なスモールキャピタルのセットがないため、ジェネレーターは発音記号から似た文字を集めています。ほとんどはぴったりですが、qとxには本物のスモールキャピタルがないので、いちばん近い読みやすい文字を使っています。
           </p>
-          <h2>Small CapsとTiny Capsの違い</h2>
+          <h2>スモールキャピタルとミニキャピタルの違い</h2>
           <p>
-            <strong>Small Caps</strong>
+            <strong>スモールキャピタル</strong>
             は大文字をそのままの大きさにして残りを小さくするので、名前として自然に読めます：
-            {fancy("small-caps", "Midnight")}。<strong>Tiny Caps</strong>
+            {fancy("small-caps", "Midnight")}。<strong>ミニキャピタル</strong>
             はすべてを小さくして、そろった控えめな印象に：
             {fancy("small-caps-all", "Midnight")}
             。どちらも最近のスマホやパソコンでよく表示されるので、表示名に使えるおしゃれ文字の中でも特に安全です。
@@ -239,7 +239,7 @@ export const stylesJa: StylePagesContent = {
             <li>
               {fancy("small-caps-all", "moderator")}のような短いロール名も、メンバー一覧できれいに見えます。
             </li>
-            <li>Corner BracketsやHeartsの飾りと組み合わせた、エモい自己紹介。</li>
+            <li>かぎカッコやハートの飾りと組み合わせた、エモい自己紹介。</li>
           </ul>
           <p>
             スモールキャピタルは発音記号の一部なので、スクリーンリーダーが変な読み方をすることがあります。大事な情報はふつうの文字で書きましょう。ほかのやわらかいスタイルは
@@ -272,28 +272,27 @@ export const stylesJa: StylePagesContent = {
           <h2>人気のエモいスタイル</h2>
           <ul>
             <li>
-              <strong>Vaporwave Fullwidth</strong>（{fancy("fullwidth", "aesthetic")}
-              ）は、全角の英字を使って80〜90年代のレトロな雰囲気を出します。<strong>Vaporwave Spaced</strong>
+              <strong>ヴェイパーウェイヴ（全角）</strong>（{fancy("fullwidth", "aesthetic")}
+              ）は、全角の英字を使って80〜90年代のレトロな雰囲気を出します。
+              <strong>ヴェイパーウェイヴ（スペース）</strong>
               はさらに余白を広げます。
             </li>
             <li>
-              <strong>Small Caps</strong>と<strong>Tiny Caps</strong>
+              <strong>スモールキャピタル</strong>と<strong>ミニキャピタル</strong>
               は落ち着いたミニマルな印象で、どんなテーマにもなじみます。
             </li>
             <li>
-              <strong>Kawaii</strong>、<strong>Sparkles</strong>、<strong>Flower Ribbon</strong>、
-              <strong>Hearts</strong>、<strong>Sakura</strong>は、かわいい記号や絵文字で文字を包みます。
+              <strong>かわいい</strong>、<strong>キラキラ</strong>、<strong>花のリボン</strong>、
+              <strong>ハート</strong>、<strong>桜</strong>は、かわいい記号や絵文字で文字を包みます。
             </li>
             <li>
-              <strong>Double-Struck</strong>、<strong>Monospace</strong>、<strong>Wide Spaced</strong>
+              <strong>二重線文字</strong>、<strong>等幅</strong>、<strong>スペース入り</strong>
               は、テック系やミニマルなプロフィールにぴったりのすっきりした選択肢です。
             </li>
           </ul>
           <h2>エモいDiscordプロフィールの作り方</h2>
           <p>
-            スタイルは1〜2種類に決めて、統一して使いましょう。たとえば、表示名はTiny
-            Caps、自己紹介のいちばん上の見出しはFlower
-            Ribbon、残りはふつうの文字にする、という具合です。一度にたくさんのスタイルを使うとごちゃごちゃして読みにくくなります。自己紹介は190文字までで、飾りや余白ですぐに埋まってしまうので、文字数を確認しながら作りましょう。
+            スタイルは1〜2種類に決めて、統一して使いましょう。たとえば、表示名はミニキャピタル、自己紹介のいちばん上の見出しは花のリボン、残りはふつうの文字にする、という具合です。一度にたくさんのスタイルを使うとごちゃごちゃして読みにくくなります。自己紹介は190文字までで、飾りや余白ですぐに埋まってしまうので、文字数を確認しながら作りましょう。
           </p>
           <p>
             全角の文字はふつうの文字の2倍の幅があるので、長いヴェイパーウェイヴ風の名前はメンバー一覧で折り返されたり切れたりすることがあります。絵文字の飾りはほとんどの端末でカラー表示されますが、見た目はプラットフォームごとの絵文字によって変わります。丸い文字がよければ
@@ -327,16 +326,16 @@ export const stylesJa: StylePagesContent = {
           <h2>コピーできるグリッチスタイル</h2>
           <ul>
             <li>
-              <strong>Zalgo Glitch</strong>
+              <strong>ザルゴ（グリッチ）</strong>
               ：強さのスライダーで1（軽いちらつき）から10（完全なカオス）まで調整できます。毎回同じように生成されるので、あとで同じ結果をもう一度作れます。
             </li>
             <li>
-              <strong>Strikethrough</strong>、<strong>Slashed</strong>、<strong>Overline</strong>、
-              <strong>Wavy</strong>、<strong>Dotted</strong>
+              <strong>取り消し線</strong>、<strong>斜線</strong>、<strong>上線</strong>、<strong>Wavy</strong>
+              、<strong>点付き</strong>
               は、各文字に記号を1つだけ付けて、控えめな壊れ方を表現します。
             </li>
             <li>
-              <strong>Upside Down</strong>、<strong>Mirrored</strong>、<strong>Reversed</strong>
+              <strong>逆さま</strong>、<strong>鏡文字</strong>、<strong>逆順</strong>
               は文字をひっくり返して、混乱させるネタ投稿やミームに使えます。
             </li>
           </ul>
@@ -383,22 +382,21 @@ export const stylesJa: StylePagesContent = {
           <h2>バブルスタイルの種類</h2>
           <ul>
             <li>
-              <strong>Bubble</strong>は丸囲みの小文字で、やわらかくそろった印象になります。
+              <strong>バブル</strong>は丸囲みの小文字で、やわらかくそろった印象になります。
             </li>
             <li>
-              <strong>Circled</strong>は大文字も残すので、名前が読みやすいままです：{fancy("circled", "Max")}
-              。
+              <strong>丸囲み</strong>は大文字も残すので、名前が読みやすいままです：{fancy("circled", "Max")}。
             </li>
             <li>
-              <strong>Bubble Dark</strong>は丸を塗りつぶして（{fancy("negative-circled", "bubble")}
+              <strong>黒バブル</strong>は丸を塗りつぶして（{fancy("negative-circled", "bubble")}
               ）、コントラストの強いインパクトを出します。
             </li>
             <li>
-              <strong>Squared</strong>と<strong>Squared Dark</strong>
+              <strong>四角囲み</strong>と<strong>黒四角</strong>
               は丸の代わりに四角で囲み、ゲームのタグに合うブロック風の見た目になります。
             </li>
             <li>
-              <strong>Parenthesized</strong>は1文字ずつカッコで囲み、タイプライターのようなレトロな雰囲気に。
+              <strong>カッコ囲み</strong>は1文字ずつカッコで囲み、タイプライターのようなレトロな雰囲気に。
             </li>
           </ul>
           <h2>対応端末についての注意</h2>
@@ -416,7 +414,7 @@ export const stylesJa: StylePagesContent = {
             バブル文字は、「{fancy("bubble", "lol")}」「{fancy("negative-circled", "GG")}
             」のようなリアクション、「{fancy("circled", "Mochi")}
             」のようなかわいいニックネーム、イベントチャンネルのラベルなど、短くて勢いのある言葉にぴったりです。丸囲み数字も便利で、①
-            ② ③ でルールや手順に番号を振ると、きれいにそろって読みやすくなります。Squaredスタイルは「
+            ② ③ でルールや手順に番号を振ると、きれいにそろって読みやすくなります。四角囲みスタイルは「
             {fancy("negative-squared", "AFK")}
             」のようなゲームのタグにかっこいいですが、四角い文字をカラー絵文字で表示する端末もあるので、先にスマホで確認しましょう。
           </p>
@@ -440,17 +438,17 @@ export const stylesJa: StylePagesContent = {
             ジェネレーターは、各文字を180度回転させたように見える文字を探し、順番を逆に並べます。ぴったりのもの（nがu、pがdに）もあれば、発音記号（ɐ、ǝ、ɹ）やほかの文字から借りているものもあります。スマホを逆さにすると正しく読めます：
             {fancy("upside-down", "hello discord!")}。
           </p>
-          <h2>Upside Down・Mirrored・Reversedの違い</h2>
+          <h2>逆さま・鏡文字・逆順の違い</h2>
           <ul>
             <li>
-              <strong>Upside Down</strong>
+              <strong>逆さま</strong>
               は文字を上下に反転して逆順に並べます。ページをひっくり返すイメージです。
             </li>
             <li>
-              <strong>Mirrored</strong>は鏡に映したように左右に反転するので、右から左へ読む形になります。
+              <strong>鏡文字</strong>は鏡に映したように左右に反転するので、右から左へ読む形になります。
             </li>
             <li>
-              <strong>Reversed</strong>
+              <strong>逆順</strong>
               は文字はそのままで、順番だけを逆にします。3つの中でいちばん表示されやすいスタイルです。
             </li>
           </ul>

@@ -36,7 +36,7 @@ export const platformsDe: PlatformPagesContent = {
         {
           question: "Warum macht Roblox aus meinem Text Rautenzeichen?",
           answer:
-            "Roblox filtert jeden Text, und Zeichen oder Wörter, die der Filter nicht lesen kann, werden oft durch Rautenzeichen (#) ersetzt. Einfache Stile wie Small Caps, Bold und Wide Spaced kommen am ehesten durch.",
+            "Roblox filtert jeden Text, und Zeichen oder Wörter, die der Filter nicht lesen kann, werden oft durch Rautenzeichen (#) ersetzt. Einfache Stile wie Kapitälchen, Fett und Gesperrt kommen am ehesten durch.",
         },
         {
           question: "Welche Roblox-Schriftarten funktionieren am besten?",
@@ -63,7 +63,7 @@ export const platformsDe: PlatformPagesContent = {
           <p>
             Roblox schickt jeden Text durch seinen Chatfilter. Zeichen, die er nicht kennt, oder Text, den der
             Filter nicht lesen kann, werden oft durch Rauten (####) ersetzt oder entfernt. Einfache Stile wie{" "}
-            <strong>Small Caps</strong>, <strong>Bold</strong> und <strong>Wide Spaced</strong> überstehen das
+            <strong>Kapitälchen</strong>, <strong>Fett</strong> und <strong>Gesperrt</strong> überstehen das
             besser als starke Verzierungen oder Glitch-Text. Prüf deinen Text nach dem Speichern immer noch
             einmal.
           </p>
@@ -107,7 +107,7 @@ export const platformsDe: PlatformPagesContent = {
         {
           question: "Warum sehen manche Schriften auf iPhone und Android anders aus?",
           answer:
-            "Jedes Handy zeichnet Unicode-Zeichen mit seinen eigenen Systemschriften, deshalb sehen manche Symbole etwas anders aus oder fehlen auf älteren Geräten. Script, Small Caps und Bold werden fast überall angezeigt.",
+            "Jedes Handy zeichnet Unicode-Zeichen mit seinen eigenen Systemschriften, deshalb sehen manche Symbole etwas anders aus oder fehlen auf älteren Geräten. Schreibschrift, Kapitälchen und Fett werden fast überall angezeigt.",
         },
       ],
       body: (
@@ -122,7 +122,7 @@ export const platformsDe: PlatformPagesContent = {
           <p>
             Instagram-Bios sind auf 150 Zeichen begrenzt, und verzierte Stile brauchen mehr Platz. Ein gutes
             Muster ist eine gestylte Zeile für deinen Namen oder Slogan, gefolgt von normalem Text für Links
-            und Details. Schreibschrift, Kapitälchen und Aesthetic-Stile wie Sparkle Frame oder Flower Frame
+            und Details. Schreibschrift, Kapitälchen und Aesthetic-Stile wie Glitzerrahmen oder Blumenrahmen
             sind beliebt.
           </p>
           <h2>Schriften und Auffindbarkeit</h2>
@@ -156,7 +156,7 @@ export const platformsDe: PlatformPagesContent = {
         {
           question: "Welche Schriften sind auf einem Snap am besten lesbar?",
           answer:
-            "Fette, kräftige Stile wie Bold Sans, Bubble und Double-Struck bleiben auf Fotos lesbar. Dünne oder Glitch-Stile gehen vor unruhigem Hintergrund leicht unter.",
+            "Fette, kräftige Stile wie Fett serifenlos, Blasen und Doppelstrich bleiben auf Fotos lesbar. Dünne oder Glitch-Stile gehen vor unruhigem Hintergrund leicht unter.",
         },
         {
           question: "Finden mich Freunde mit einem gestylten Anzeigenamen schlechter?",
@@ -176,7 +176,7 @@ export const platformsDe: PlatformPagesContent = {
           <h2>Einen Stil für Snaps wählen</h2>
           <p>
             Snap-Texte liegen über Fotos, deshalb sind fette, klare Stile besser lesbar als dünne oder
-            glitchige. Bold Sans, Double-Struck und Bubble heben sich gut ab, während Kapitälchen und
+            glitchige. Fett serifenlos, Doppelstrich und Blasen heben sich gut ab, während Kapitälchen und
             Schreibschrift zu Anzeigenamen passen.
           </p>
           <h2>Tipps</h2>
@@ -185,7 +185,7 @@ export const platformsDe: PlatformPagesContent = {
               Freunde suchen per Benutzername – ein gestylter Anzeigename macht dich nicht schwerer
               auffindbar.
             </li>
-            <li>Emoji-Rahmen wie Sakura oder Butterfly passen zum verspielten Stil von Snapchat.</li>
+            <li>Emoji-Rahmen wie Sakura oder Schmetterling passen zum verspielten Stil von Snapchat.</li>
             <li>
               Prüf vor dem Senden, wie der Text auf dem Snap aussieht – manche Handys zeigen weniger Symbole.
             </li>
@@ -261,7 +261,7 @@ export const platformsDe: PlatformPagesContent = {
         {
           question: "Wie schreibe ich fett auf Twitter (X)?",
           answer:
-            "Normale Posts haben keinen Fett-Button. Gib deinen Text hier ein, kopiere den Stil Bold oder Bold Sans und füge ihn in deinen Post ein.",
+            "Normale Posts haben keinen Fett-Button. Gib deinen Text hier ein, kopiere den Stil Fett oder Fett serifenlos und füge ihn in deinen Post ein.",
         },
         {
           question: "Kann ich Zierschriften in meinem X-Anzeigenamen verwenden?",
@@ -315,7 +315,7 @@ export const platformsDe: PlatformPagesContent = {
         {
           question: "Wie schreibe ich fett in einem Facebook-Beitrag?",
           answer:
-            "Private Beiträge haben keine Formatierungsbuttons. Kopiere den Stil Bold oder Bold Sans von dieser Seite und füge ihn in deinen Beitrag oder Kommentar ein.",
+            "Private Beiträge haben keine Formatierungsbuttons. Kopiere den Stil Fett oder Fett serifenlos von dieser Seite und füge ihn in deinen Beitrag oder Kommentar ein.",
         },
         {
           question: "Kann ich eine Zierschrift für meinen Facebook-Namen nutzen?",
@@ -330,7 +330,7 @@ export const platformsDe: PlatformPagesContent = {
         {
           question: "Welche Stile passen zu Glückwunsch-Posts?",
           answer:
-            "Rahmen wie Hearts, Sparkles, Star Wings und Sakura passen gut zu Geburtstagen, Jubiläen und Ankündigungen.",
+            "Rahmen wie Herzen, Glitzer, Sternenflügel und Sakura passen gut zu Geburtstagen, Jubiläen und Ankündigungen.",
         },
       ],
       body: (
@@ -345,15 +345,15 @@ export const platformsDe: PlatformPagesContent = {
           <h2>Beiträge formatieren</h2>
           <p>
             Private Beiträge haben keine Fett- oder Kursiv-Option, deshalb sind gestylte Buchstaben ein
-            einfacher Weg, eine Überschrift einzufügen oder eine wichtige Zeile hervorzuheben. Bold Sans
-            eignet sich gut für Überschriften, Strikethrough oder Underline markieren Änderungen in einem
-            Angebots- oder Event-Beitrag.
+            einfacher Weg, eine Überschrift einzufügen oder eine wichtige Zeile hervorzuheben. Fett serifenlos
+            eignet sich gut für Überschriften, Durchgestrichen oder Unterstrichen markieren Änderungen in
+            einem Angebots- oder Event-Beitrag.
           </p>
           <h2>Tipps</h2>
           <ul>
             <li>Halte deine Profil-Vorstellung kurz – Facebook begrenzt sie auf eine knappe Zeile.</li>
             <li>Lass Links, Preise und Daten normal, damit sie leicht lesbar und auffindbar bleiben.</li>
-            <li>Rahmen wie Hearts oder Sparkles passen zu Geburtstags- und Feier-Posts.</li>
+            <li>Rahmen wie Herzen oder Glitzer passen zu Geburtstags- und Feier-Posts.</li>
           </ul>
         </>
       ),
@@ -381,7 +381,7 @@ export const platformsDe: PlatformPagesContent = {
         {
           question: "Welche Schriften eignen sich am besten für eine TikTok-Bio?",
           answer:
-            "Kompakte Stile wie Small Caps, Bold Sans und Kawaii passen in die 80-Zeichen-Bio von TikTok. Vaporwave passt zu Edit- und Fan-Accounts, Gothic und Glitch zu düsteren oder Gaming-Profilen.",
+            "Kompakte Stile wie Kapitälchen, Fett serifenlos und Kawaii passen in die 80-Zeichen-Bio von TikTok. Vaporwave passt zu Edit- und Fan-Accounts, Fraktur und Glitch zu düsteren oder Gaming-Profilen.",
         },
         {
           question: "Beeinflussen Zierschriften die TikTok-Suche?",
@@ -400,8 +400,8 @@ export const platformsDe: PlatformPagesContent = {
           <h2>Eine Bio mit 80 Zeichen</h2>
           <p>
             TikTok-Bios sind kurz, und verzierte Stile brauchen zusätzliche Zeichen. Wähl einen kompakten Stil
-            wie Small Caps, Bold Sans oder Kawaii und spar dir Rahmen und Emojis für ein einzelnes Wort.
-            Aesthetic-Stile wie Vaporwave Fullwidth passen zu Edit- und Fan-Accounts, Gothic und Glitch zu
+            wie Kapitälchen, Fett serifenlos oder Kawaii und spar dir Rahmen und Emojis für ein einzelnes
+            Wort. Aesthetic-Stile wie Vaporwave breit passen zu Edit- und Fan-Accounts, Fraktur und Glitch zu
             Gaming- und Dark-Aesthetic-Profilen.
           </p>
           <h2>Captions und Suche</h2>
@@ -439,7 +439,7 @@ export const platformsDe: PlatformPagesContent = {
         {
           question: "Kann ich Schriften in meiner Steam-Profilzusammenfassung nutzen?",
           answer:
-            "Ja. Zierschrift funktioniert in deiner Zusammenfassung, in Rezensionen, Kommentaren und auf Gruppenseiten, und Überschriften in Bold Sans helfen, lange Abschnitte zu gliedern.",
+            "Ja. Zierschrift funktioniert in deiner Zusammenfassung, in Rezensionen, Kommentaren und auf Gruppenseiten, und Überschriften in Fett serifenlos helfen, lange Abschnitte zu gliedern.",
         },
       ],
       body: (
@@ -452,9 +452,9 @@ export const platformsDe: PlatformPagesContent = {
           </p>
           <h2>Ideen für Gamer-Namen</h2>
           <p>
-            Kurze Namen mit einem starken Stil wirken in Freundeslisten und Lobbys am besten. Bold Gothic,
-            Gamer Tag (亗) und Crossbones (×͜×) sind bei kompetitiven Spielern beliebt, Small Caps und
-            Double-Struck wirken klarer. Behalte beim Hinzufügen von Rahmen das Limit von 32 Zeichen im Blick.
+            Kurze Namen mit einem starken Stil wirken in Freundeslisten und Lobbys am besten. Fette Fraktur,
+            Gamer-Tag (亗) und Gekreuzte Knochen (×͜×) sind bei kompetitiven Spielern beliebt, Kapitälchen und
+            Doppelstrich wirken klarer. Behalte beim Hinzufügen von Rahmen das Limit von 32 Zeichen im Blick.
           </p>
           <h2>Tipps</h2>
           <ul>
@@ -467,7 +467,7 @@ export const platformsDe: PlatformPagesContent = {
               Freundescode.
             </li>
             <li>
-              Gliedere eine lange Profilzusammenfassung oder einen Guide mit Überschriften in Bold Sans.
+              Gliedere eine lange Profilzusammenfassung oder einen Guide mit Überschriften in Fett serifenlos.
             </li>
           </ul>
         </>
@@ -500,7 +500,7 @@ export const platformsDe: PlatformPagesContent = {
         {
           question: "Welche Stile passen zu Gaming-Clubs?",
           answer:
-            "Bold Gothic, Gamer Tag und Lenticular Brackets ergeben starke Clubtitel. Lass Zeitpläne und Regeln normal, damit Mitglieder sie leicht lesen können.",
+            "Fette Fraktur, Gamer-Tag und Linsenklammern ergeben starke Clubtitel. Lass Zeitpläne und Regeln normal, damit Mitglieder sie leicht lesen können.",
         },
       ],
       body: (

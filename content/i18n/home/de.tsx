@@ -119,7 +119,7 @@ function Article() {
             </tr>
             <tr>
               <td>Kanalnamen</td>
-              <td>Kapitälchen, fette serifenlose Schrift, Monospace</td>
+              <td>Kapitälchen, fette serifenlose Schrift, Festbreite</td>
               <td>Kompakte Stile, die die Kanalliste übersichtlich halten.</td>
             </tr>
             <tr>

@@ -36,7 +36,7 @@ export const platformsEs: PlatformPagesContent = {
         {
           question: "¿Por qué Roblox convierte mi texto en almohadillas?",
           answer:
-            "Roblox filtra todo el texto, y los caracteres o palabras que su filtro no puede leer suelen sustituirse por almohadillas (#). Los estilos sencillos como Small Caps, Bold y Wide Spaced son los que más pasan.",
+            "Roblox filtra todo el texto, y los caracteres o palabras que su filtro no puede leer suelen sustituirse por almohadillas (#). Los estilos sencillos como Versalitas, Negrita y Espaciado son los que más pasan.",
         },
         {
           question: "¿Qué letras funcionan mejor en Roblox?",
@@ -63,7 +63,7 @@ export const platformsEs: PlatformPagesContent = {
           <p>
             Roblox pasa cada texto por su filtro de chat. Los caracteres que no reconoce, o el texto que el
             filtro no puede leer, suelen sustituirse por almohadillas (####) o eliminarse. Los estilos
-            sencillos como <strong>Small Caps</strong>, <strong>Bold</strong> y <strong>Wide Spaced</strong>{" "}
+            sencillos como <strong>Versalitas</strong>, <strong>Negrita</strong> y <strong>Espaciado</strong>{" "}
             suelen sobrevivir mejor que las decoraciones recargadas o el texto glitch. Revisa siempre el texto
             después de guardarlo.
           </p>
@@ -106,7 +106,7 @@ export const platformsEs: PlatformPagesContent = {
         {
           question: "¿Por qué algunas letras se ven distintas en iPhone y Android?",
           answer:
-            "Cada teléfono dibuja los caracteres Unicode con sus propias fuentes del sistema, así que algunos símbolos cambian un poco o no aparecen en dispositivos antiguos. Los estilos Script, Small Caps y Bold se ven casi en todas partes.",
+            "Cada teléfono dibuja los caracteres Unicode con sus propias fuentes del sistema, así que algunos símbolos cambian un poco o no aparecen en dispositivos antiguos. Los estilos Cursiva, Versalitas y Negrita se ven casi en todas partes.",
         },
       ],
       body: (
@@ -121,8 +121,8 @@ export const platformsEs: PlatformPagesContent = {
           <p>
             Las biografías de Instagram tienen un límite de 150 caracteres, y los estilos decorados ocupan más
             espacio. Un buen esquema es una línea con estilo para tu nombre o lema, seguida de texto normal
-            para enlaces y detalles. Las letras cursivas, las versalitas y estilos estéticos como Sparkle
-            Frame o Flower Frame son opciones muy populares.
+            para enlaces y detalles. Las letras cursivas, las versalitas y estilos estéticos como Marco de
+            brillos o Marco de flores son opciones muy populares.
           </p>
           <h2>Letras y visibilidad</h2>
           <p>
@@ -157,7 +157,7 @@ export const platformsEs: PlatformPagesContent = {
         {
           question: "¿Qué letras se leen mejor en un snap?",
           answer:
-            "Los estilos gruesos y sólidos como Bold Sans, Bubble y Double-Struck se leen bien sobre las fotos. Los estilos finos o glitch pueden perderse en fondos recargados.",
+            "Los estilos gruesos y sólidos como Negrita sin serifa, Burbuja y Doble trazo se leen bien sobre las fotos. Los estilos finos o glitch pueden perderse en fondos recargados.",
         },
         {
           question: "¿Un nombre visible con estilo impedirá que mis amigos me encuentren?",
@@ -176,8 +176,8 @@ export const platformsEs: PlatformPagesContent = {
           <h2>Elegir un estilo para tus snaps</h2>
           <p>
             Los textos de los snaps van encima de las fotos, así que los estilos gruesos y limpios se leen
-            mejor que los finos o glitch. Bold Sans, Double-Struck y Bubble destacan bien, mientras que las
-            versalitas y la cursiva quedan genial en los nombres visibles.
+            mejor que los finos o glitch. Negrita sin serifa, Doble trazo y Burbuja destacan bien, mientras
+            que las versalitas y la cursiva quedan genial en los nombres visibles.
           </p>
           <h2>Consejos</h2>
           <ul>
@@ -185,9 +185,7 @@ export const platformsEs: PlatformPagesContent = {
               Tus amigos buscan por nombre de usuario, así que un nombre visible con estilo no te hará más
               difícil de añadir.
             </li>
-            <li>
-              Los marcos con emojis como Sakura o Butterfly encajan con el estilo divertido de Snapchat.
-            </li>
+            <li>Los marcos con emojis como Sakura o Mariposa encajan con el estilo divertido de Snapchat.</li>
             <li>
               Revisa cómo se ve tu texto en el snap antes de enviarlo: algunos teléfonos muestran menos
               símbolos.
@@ -265,7 +263,7 @@ export const platformsEs: PlatformPagesContent = {
         {
           question: "¿Cómo escribo en negrita en Twitter (X)?",
           answer:
-            "Los posts normales no tienen botón de negrita. Escribe aquí tu texto, copia el estilo Bold o Bold Sans y pégalo en tu post.",
+            "Los posts normales no tienen botón de negrita. Escribe aquí tu texto, copia el estilo Negrita o Negrita sin serifa y pégalo en tu post.",
         },
         {
           question: "¿Puedo usar letras bonitas en mi nombre de X?",
@@ -293,9 +291,9 @@ export const platformsEs: PlatformPagesContent = {
           </p>
           <h2>Posts en negrita y cursiva</h2>
           <p>
-            Los posts normales no tienen botón de negrita ni de cursiva, así que las letras Bold, Italic y
-            Bold Sans son una forma habitual de dar énfasis. Cada letra con estilo cuenta para el límite de
-            caracteres, y algunos estilos decorados cuentan como más de un carácter.
+            Los posts normales no tienen botón de negrita ni de cursiva, así que las letras Negrita, Itálica y
+            Negrita sin serifa son una forma habitual de dar énfasis. Cada letra con estilo cuenta para el
+            límite de caracteres, y algunos estilos decorados cuentan como más de un carácter.
           </p>
           <h2>Accesibilidad</h2>
           <p>
@@ -319,7 +317,7 @@ export const platformsEs: PlatformPagesContent = {
         {
           question: "¿Cómo pongo texto en negrita en una publicación de Facebook?",
           answer:
-            "Las publicaciones personales no tienen botones de formato. Copia el estilo Bold o Bold Sans de esta página y pégalo en tu publicación o comentario.",
+            "Las publicaciones personales no tienen botones de formato. Copia el estilo Negrita o Negrita sin serifa de esta página y pégalo en tu publicación o comentario.",
         },
         {
           question: "¿Puedo usar letras decoradas en mi nombre de Facebook?",
@@ -334,7 +332,7 @@ export const platformsEs: PlatformPagesContent = {
         {
           question: "¿Qué estilos van bien para publicaciones de celebración?",
           answer:
-            "Los marcos como Hearts, Sparkles, Star Wings y Sakura quedan genial en cumpleaños, aniversarios y anuncios.",
+            "Los marcos como Corazones, Brillos, Alas de estrella y Sakura quedan genial en cumpleaños, aniversarios y anuncios.",
         },
       ],
       body: (
@@ -349,9 +347,9 @@ export const platformsEs: PlatformPagesContent = {
           <h2>Dar formato a las publicaciones</h2>
           <p>
             Las publicaciones personales no tienen opción de negrita ni cursiva, así que las letras con estilo
-            son una forma fácil de añadir un título o resaltar una línea clave. Bold Sans va muy bien para los
-            títulos, y Strikethrough o Underline sirven para marcar cambios en una publicación de ofertas o de
-            un evento.
+            son una forma fácil de añadir un título o resaltar una línea clave. Negrita sin serifa va muy bien
+            para los títulos, y Tachado o Subrayado sirven para marcar cambios en una publicación de ofertas o
+            de un evento.
           </p>
           <h2>Consejos</h2>
           <ul>
@@ -359,7 +357,7 @@ export const platformsEs: PlatformPagesContent = {
             <li>
               Usa texto normal para enlaces, precios y fechas para que sigan siendo fáciles de leer y buscar.
             </li>
-            <li>Los marcos como Hearts o Sparkles quedan bien en cumpleaños y celebraciones.</li>
+            <li>Los marcos como Corazones o Brillos quedan bien en cumpleaños y celebraciones.</li>
           </ul>
         </>
       ),
@@ -387,7 +385,7 @@ export const platformsEs: PlatformPagesContent = {
         {
           question: "¿Cuáles son las mejores letras para una biografía de TikTok?",
           answer:
-            "Los estilos compactos como Small Caps, Bold Sans y Kawaii caben en la biografía de 80 caracteres de TikTok. Vaporwave queda bien en cuentas de edits y fans, y los estilos Gothic y Glitch en perfiles oscuros o gamer.",
+            "Los estilos compactos como Versalitas, Negrita sin serifa y Kawaii caben en la biografía de 80 caracteres de TikTok. Vaporwave queda bien en cuentas de edits y fans, y los estilos Gótica y Glitch en perfiles oscuros o gamer.",
         },
         {
           question: "¿Las letras decoradas afectan a la búsqueda de TikTok?",
@@ -406,9 +404,9 @@ export const platformsEs: PlatformPagesContent = {
           <h2>Una biografía de 80 caracteres</h2>
           <p>
             Las biografías de TikTok son cortas, y los estilos decorados usan caracteres de más. Elige un
-            estilo compacto como Small Caps, Bold Sans o Kawaii, y reserva los marcos y emojis para una sola
-            palabra. Los estilos estéticos como Vaporwave Fullwidth quedan bien en cuentas de edits y fans,
-            mientras que Gothic y Glitch encajan en perfiles gamer y de estética oscura.
+            estilo compacto como Versalitas, Negrita sin serifa o Kawaii, y reserva los marcos y emojis para
+            una sola palabra. Los estilos estéticos como Vaporwave ancha quedan bien en cuentas de edits y
+            fans, mientras que Gótica y Glitch encajan en perfiles gamer y de estética oscura.
           </p>
           <h2>Descripciones y búsqueda</h2>
           <p>
@@ -447,7 +445,7 @@ export const platformsEs: PlatformPagesContent = {
         {
           question: "¿Puedo usar letras en el resumen de mi perfil de Steam?",
           answer:
-            "Sí. El texto decorado funciona en tu resumen, reseñas, comentarios y páginas de grupo, y los títulos en Bold Sans ayudan a organizar secciones largas.",
+            "Sí. El texto decorado funciona en tu resumen, reseñas, comentarios y páginas de grupo, y los títulos en Negrita sin serifa ayudan a organizar secciones largas.",
         },
       ],
       body: (
@@ -462,9 +460,9 @@ export const platformsEs: PlatformPagesContent = {
           <h2>Ideas de nombres gamer</h2>
           <p>
             Los nombres cortos con un solo estilo fuerte quedan mejor en las listas de amigos y en las salas
-            de juego. Bold Gothic, Gamer Tag (亗) y Crossbones (×͜×) son populares entre los jugadores
-            competitivos, mientras que Small Caps y Double-Struck dan un aspecto más limpio. Vigila el límite
-            de 32 caracteres al añadir marcos.
+            de juego. Gótica en negrita, Tag gamer (亗) y Huesos cruzados (×͜×) son populares entre los
+            jugadores competitivos, mientras que Versalitas y Doble trazo dan un aspecto más limpio. Vigila el
+            límite de 32 caracteres al añadir marcos.
           </p>
           <h2>Consejos</h2>
           <ul>
@@ -476,7 +474,7 @@ export const platformsEs: PlatformPagesContent = {
               Tus amigos te siguen encontrando por la URL de tu perfil o tu código de amigo, aunque tengas un
               nombre decorado.
             </li>
-            <li>Usa títulos en Bold Sans para organizar un resumen de perfil o una guía larga.</li>
+            <li>Usa títulos en Negrita sin serifa para organizar un resumen de perfil o una guía larga.</li>
           </ul>
         </>
       ),
@@ -508,7 +506,7 @@ export const platformsEs: PlatformPagesContent = {
         {
           question: "¿Qué estilos van bien para clubes de juego?",
           answer:
-            "Bold Gothic, Gamer Tag y Lenticular Brackets dan títulos de club con fuerza. Usa texto normal para horarios y normas para que los miembros los lean fácilmente.",
+            "Gótica en negrita, Tag gamer y Corchetes lenticulares dan títulos de club con fuerza. Usa texto normal para horarios y normas para que los miembros los lean fácilmente.",
         },
       ],
       body: (

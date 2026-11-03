@@ -45,29 +45,29 @@ export const stylesDe: StylePagesContent = {
           <h2>Welcher fette Stil passt?</h2>
           <ul>
             <li>
-              <strong>Bold (mit Serifen)</strong> hat klassische Buchschrift-Buchstaben mit kleinen Füßchen.
+              <strong>Fett (mit Serifen)</strong> hat klassische Buchschrift-Buchstaben mit kleinen Füßchen.
               Passt zu seriösen Servernamen und Rollenspielfiguren.
             </li>
             <li>
-              <strong>Bold Sans</strong> ist klar und modern – die am besten lesbare Wahl für Gaming-Namen und
-              Kanaltitel.
+              <strong>Fett serifenlos</strong> ist klar und modern – die am besten lesbare Wahl für
+              Gaming-Namen und Kanaltitel.
             </li>
             <li>
-              <strong>Bold Italic</strong> und <strong>Sans Bold Italic</strong> bringen Bewegung rein, ideal
-              für Hype-Kanäle und Esport-Teamtags.
+              <strong>Fett kursiv</strong> und <strong>Fett kursiv serifenlos</strong> bringen Bewegung rein,
+              ideal für Hype-Kanäle und Esport-Teamtags.
             </li>
             <li>
-              <strong>Bold Script</strong> und <strong>Bold Gothic</strong> verbinden Gewicht mit Charakter,
-              wenn schlichtes Fett zu brav wirkt.
+              <strong>Fette Schreibschrift</strong> und <strong>Fette Fraktur</strong> verbinden Gewicht mit
+              Charakter, wenn schlichtes Fett zu brav wirkt.
             </li>
           </ul>
           <h2>Tipps für fette Discord-Namen</h2>
           <p>
             Fette Buchstaben gehören zu den am besten unterstützten Sonderzeichen und werden auf aktuellen
-            Windows-, Mac-, iPhone- und Android-Geräten richtig angezeigt. Bold und Bold Sans enthalten auch
-            Ziffern – praktisch für Clan-Tags wie {fancy("bold-serif", "Team 7")}. Denk daran: Anzeigenamen
-            und Nicknames sind auf 32 Zeichen begrenzt; der Zähler unter dem Textfeld zeigt dir, wie viele du
-            schon hast.
+            Windows-, Mac-, iPhone- und Android-Geräten richtig angezeigt. Fett und Fett serifenlos enthalten
+            auch Ziffern – praktisch für Clan-Tags wie {fancy("bold-serif", "Team 7")}. Denk daran:
+            Anzeigenamen und Nicknames sind auf 32 Zeichen begrenzt; der Zähler unter dem Textfeld zeigt dir,
+            wie viele du schon hast.
           </p>
           <p>
             Beachte: Wer in der Mitgliederliste nach „Gamer“ sucht, findet „{fancy("bold-serif", "Gamer")}“
@@ -85,7 +85,7 @@ export const stylesDe: StylePagesContent = {
             lass den Tag normal, etwa „{fancy("bold-sans", "Nova")} | FPS“, oder nutze fette Ziffern für eine
             Teamnummer wie „{fancy("bold-serif", "Squad 7")}“. Serverbesitzer setzen oft die Kategorien in der
             Kanalliste fett, zum Beispiel „{fancy("bold-sans", "SPRACHKANAELE")}“, damit sie sich von den
-            Kanälen darunter abheben. Bold Italic ist bei Streamern und Creators beliebt, weil es im Chat
+            Kanälen darunter abheben. Fett kursiv ist bei Streamern und Creators beliebt, weil es im Chat
             energiegeladen wirkt, ohne schwer lesbar zu sein.
           </p>
         </>
@@ -111,26 +111,26 @@ export const stylesDe: StylePagesContent = {
             Formatierung sind, bleiben die Schwünge auch dort erhalten, wo Markdown-Kursiv nicht hinkommt,
             etwa in Nicknames und Kanalnamen.
           </p>
-          <h2>Script, Bold Script und Italic</h2>
+          <h2>Schreibschrift, Fette Schreibschrift und Kursiv</h2>
           <p>
-            <strong>Script Cursive</strong> ist leicht und elegant, perfekt für Aesthetic-Profile, Kunstserver
+            <strong>Schreibschrift</strong> ist leicht und elegant, perfekt für Aesthetic-Profile, Kunstserver
             und sanfte Themen. Einige Großbuchstaben (B, E, F, H, I, L, M und R) sowie die kleinen e, g und o
             stammen aus einem älteren Unicode-Block und können in manchen Schriften etwas anders aussehen als
             ihre Nachbarn.
           </p>
           <p>
-            <strong>Bold Script</strong> nutzt einen einheitlichen Satz kräftigerer Striche – klein besser
-            lesbar und in der Mitgliederliste meist schöner. Wenn du nur eine Schreibschrift für einen Namen
-            wählst, dann diese.
+            <strong>Fette Schreibschrift</strong> nutzt einen einheitlichen Satz kräftigerer Striche – klein
+            besser lesbar und in der Mitgliederliste meist schöner. Wenn du nur eine Schreibschrift für einen
+            Namen wählst, dann diese.
           </p>
           <p>
-            <strong>Italic</strong> und <strong>Sans Italic</strong> sind geneigt statt verbunden – eine
+            <strong>Kursiv</strong> und <strong>Kursiv serifenlos</strong> sind geneigt statt verbunden – eine
             dezente Wahl, wenn volle Schreibschrift zu verspielt wirkt.
           </p>
           <h2>Wo Schreibschrift am besten aussieht</h2>
           <ul>
             <li>Anzeigenamen von Künstlern, Autoren und Rollenspielfiguren.</li>
-            <li>„Über mich“-Texte, besonders mit Verzierungen wie Ornate oder Sparkles.</li>
+            <li>„Über mich“-Texte, besonders mit Verzierungen wie Verziert oder Glitzer.</li>
             <li>Servernamen für gemütliche, kreative oder Community-Räume.</li>
             <li>Titel von Willkommens- und Regelkanälen, kombiniert mit einer normalen Beschreibung.</li>
           </ul>
@@ -142,12 +142,12 @@ export const stylesDe: StylePagesContent = {
           </p>
           <h2>Namensideen in Schreibschrift</h2>
           <p>
-            Kurze Namen sehen in Script am besten aus. Ein einzelnes Wort wie „{fancy("bold-script", "Luna")}“
-            oder „{fancy("script", "Velvet")}“ liest sich wunderschön, lange Sätze werden schnell zum
-            Schnörkel-Knäuel. Viele kombinieren einen Schreibschrift-Namen mit einem schlichten Symbol, etwa
-            „༺ {fancy("bold-script", "Rose")} ༻“, oder nutzen Script nur für den ersten Buchstaben. Hat dein
-            Server ein sanftes oder kreatives Thema, schafft ein Servername in Schreibschrift mit normalen
-            Kanalnamen Stimmung, ohne die Lesbarkeit zu opfern.
+            Kurze Namen sehen in Schreibschrift am besten aus. Ein einzelnes Wort wie „
+            {fancy("bold-script", "Luna")}“ oder „{fancy("script", "Velvet")}“ liest sich wunderschön, lange
+            Sätze werden schnell zum Schnörkel-Knäuel. Viele kombinieren einen Schreibschrift-Namen mit einem
+            schlichten Symbol, etwa „༺ {fancy("bold-script", "Rose")} ༻“, oder nutzen Schreibschrift nur für
+            den ersten Buchstaben. Hat dein Server ein sanftes oder kreatives Thema, schafft ein Servername in
+            Schreibschrift mit normalen Kanalnamen Stimmung, ohne die Lesbarkeit zu opfern.
           </p>
         </>
       ),
@@ -173,21 +173,21 @@ export const stylesDe: StylePagesContent = {
           <h2>Fraktur-Stile in diesem Generator</h2>
           <ul>
             <li>
-              <strong>Gothic Fraktur</strong> ist die klassische, leichtere Fraktur. Elegant, aber klein
-              schwer zu lesen.
+              <strong>Fraktur</strong> ist die klassische, leichtere Fraktur. Elegant, aber klein schwer zu
+              lesen.
             </li>
             <li>
-              <strong>Bold Gothic</strong> ist kräftiger und in Mitgliederlisten viel besser lesbar – die
+              <strong>Fette Fraktur</strong> ist kräftiger und in Mitgliederlisten viel besser lesbar – die
               beste Wahl für einen Anzeigenamen in Fraktur.
             </li>
             <li>
-              <strong>Gothic Cross</strong>, <strong>Crowned</strong>, <strong>Royal Frame</strong> und{" "}
-              <strong>Crossed Swords</strong> rahmen die Buchstaben mit Symbolen für einen mittelalterlichen
-              oder Clan-Look.
+              <strong>Gotisches Kreuz</strong>, <strong>Gekrönt</strong>, <strong>Königsrahmen</strong> und{" "}
+              <strong>Gekreuzte Schwerter</strong> rahmen die Buchstaben mit Symbolen für einen
+              mittelalterlichen oder Clan-Look.
             </li>
             <li>
-              <strong>Runic Style</strong> leiht sich ähnliche Zeichen aus der Cherokee-Silbenschrift für
-              einen alten, eingemeißelten Eindruck.
+              <strong>Runen-Stil</strong> leiht sich ähnliche Zeichen aus der Cherokee-Silbenschrift für einen
+              alten, eingemeißelten Eindruck.
             </li>
           </ul>
           <h2>Ideen für Fraktur auf Discord</h2>
@@ -200,7 +200,7 @@ export const stylesDe: StylePagesContent = {
           <p>
             Fraktur hat keine Ziffern, Zahlen bleiben also normal. Einige Großbuchstaben (C, H, I, R und Z) im
             leichten Stil stammen aus einem anderen Unicode-Block und können auf manchen Geräten etwas anders
-            aussehen. Wenn du es noch heftiger willst, kombiniere Bold Gothic mit dem{" "}
+            aussehen. Wenn du es noch heftiger willst, kombiniere Fette Fraktur mit dem{" "}
             {g("glitch", "Glitch-Schrift-Generator")} für einen verfluchten Look – oder bleib klar mit dem{" "}
             {g("bold", "Fettschrift-Generator")}.
           </p>
@@ -235,10 +235,10 @@ export const stylesDe: StylePagesContent = {
             dem phonetischen Alphabet. Die meisten passen perfekt; q und x haben keine echten Kapitälchen,
             also nehmen wir die ähnlichsten lesbaren Zeichen.
           </p>
-          <h2>Small Caps und Tiny Caps</h2>
+          <h2>Kapitälchen und Mini-Kapitälchen</h2>
           <p>
-            <strong>Small Caps</strong> lässt deine Großbuchstaben groß und verkleinert den Rest – bei Namen
-            liest sich das natürlich: {fancy("small-caps", "Midnight")}. <strong>Tiny Caps</strong>{" "}
+            <strong>Kapitälchen</strong> lässt deine Großbuchstaben groß und verkleinert den Rest – bei Namen
+            liest sich das natürlich: {fancy("small-caps", "Midnight")}. <strong>Mini-Kapitälchen</strong>{" "}
             verkleinert alles für einen einheitlichen, zurückhaltenden Look:{" "}
             {fancy("small-caps-all", "Midnight")}. Beide werden auf modernen Handys und Computern gut
             unterstützt und gehören damit zu den sichersten Zierschriften für Anzeigenamen.
@@ -262,7 +262,7 @@ export const stylesDe: StylePagesContent = {
               Rollennamen, bei denen kurze Labels wie {fancy("small-caps-all", "moderator")} in der
               Mitgliederliste sauber aussehen.
             </li>
-            <li>Aesthetic-Bios in Kombination mit den Verzierungen Corner Brackets oder Hearts.</li>
+            <li>Aesthetic-Bios in Kombination mit den Verzierungen Eckklammern oder Herzen.</li>
           </ul>
           <p>
             Weil Kapitälchen zum phonetischen Alphabet gehören, lesen Screenreader sie mitunter seltsam vor –
@@ -301,28 +301,28 @@ export const stylesDe: StylePagesContent = {
           <h2>Beliebte Aesthetic-Stile</h2>
           <ul>
             <li>
-              <strong>Vaporwave Fullwidth</strong> ({fancy("fullwidth", "aesthetic")}) nutzt die breiten
+              <strong>Vaporwave breit</strong> ({fancy("fullwidth", "aesthetic")}) nutzt die breiten
               Buchstaben ostasiatischer Schriften für den Retro-Look der 80er und 90er.{" "}
-              <strong>Vaporwave Spaced</strong> sorgt für noch mehr Luft.
+              <strong>Vaporwave gesperrt</strong> sorgt für noch mehr Luft.
             </li>
             <li>
-              <strong>Small Caps</strong> und <strong>Tiny Caps</strong> wirken ruhig und minimalistisch und
-              passen zu fast jedem Thema.
+              <strong>Kapitälchen</strong> und <strong>Mini-Kapitälchen</strong> wirken ruhig und
+              minimalistisch und passen zu fast jedem Thema.
             </li>
             <li>
-              <strong>Kawaii</strong>, <strong>Sparkles</strong>, <strong>Flower Ribbon</strong>,{" "}
-              <strong>Hearts</strong> und <strong>Sakura</strong> umrahmen deinen Text mit süßen Symbolen und
+              <strong>Kawaii</strong>, <strong>Glitzer</strong>, <strong>Blumenband</strong>,{" "}
+              <strong>Herzen</strong> und <strong>Sakura</strong> umrahmen deinen Text mit süßen Symbolen und
               Emojis.
             </li>
             <li>
-              <strong>Double-Struck</strong>, <strong>Monospace</strong> und <strong>Wide Spaced</strong> sind
+              <strong>Doppelstrich</strong>, <strong>Festbreite</strong> und <strong>Gesperrt</strong> sind
               klare Optionen für ein technisches oder minimalistisches Profil.
             </li>
           </ul>
           <h2>Ein Aesthetic-Discord-Profil gestalten</h2>
           <p>
-            Wähl ein oder zwei Stile und bleib dabei. Zum Beispiel ein Anzeigename in Tiny Caps, eine
-            Überschrift mit Flower Ribbon oben in deinem „Über mich“ und normaler Text für den Rest. Zu viele
+            Wähl ein oder zwei Stile und bleib dabei. Zum Beispiel ein Anzeigename in Mini-Kapitälchen, eine
+            Überschrift mit Blumenband oben in deinem „Über mich“ und normaler Text für den Rest. Zu viele
             Stile gleichzeitig wirken unruhig und sind schwer zu lesen. Deine Bio ist auf 190 Zeichen
             begrenzt, und Verzierungen und Abstände verbrauchen sie schnell – behalte die Länge im Blick.
           </p>
@@ -366,16 +366,16 @@ export const stylesDe: StylePagesContent = {
           <h2>Glitch-Stile zum Kopieren</h2>
           <ul>
             <li>
-              <strong>Zalgo Glitch</strong>: Stell die Stärke von 1 (leichtes Flackern) bis 10 (totales Chaos)
+              <strong>Zalgo-Glitch</strong>: Stell die Stärke von 1 (leichtes Flackern) bis 10 (totales Chaos)
               ein. Das Ergebnis wird jedes Mal gleich erzeugt, du bekommst also wieder dasselbe.
             </li>
             <li>
-              <strong>Strikethrough</strong>, <strong>Slashed</strong>, <strong>Overline</strong>,{" "}
-              <strong>Wavy</strong> und <strong>Dotted</strong> setzen ein einzelnes Zeichen auf jeden
-              Buchstaben für einen dezenteren beschädigten Effekt.
+              <strong>Durchgestrichen</strong>, <strong>Schräg durchgestrichen</strong>,{" "}
+              <strong>Überstrichen</strong>, <strong>Wavy</strong> und <strong>Gepunktet</strong> setzen ein
+              einzelnes Zeichen auf jeden Buchstaben für einen dezenteren beschädigten Effekt.
             </li>
             <li>
-              <strong>Upside Down</strong>, <strong>Mirrored</strong> und <strong>Reversed</strong> drehen
+              <strong>Umgedreht</strong>, <strong>Gespiegelt</strong> und <strong>Rückwärts</strong> drehen
               deinen Text um – für verwirrende, memetaugliche Nachrichten.
             </li>
           </ul>
@@ -423,30 +423,30 @@ export const stylesDe: StylePagesContent = {
           <h2>Was ist Blasenschrift?</h2>
           <p>
             Blasenschrift setzt jeden Buchstaben in einen Kreis, etwa {fancy("bubble", "bubble")} oder{" "}
-            {fancy("circled", "Bubble")}. Unicode enthält diese „eingekreisten alphanumerischen Zeichen“ für
+            {fancy("circled", "Blasen")}. Unicode enthält diese „eingekreisten alphanumerischen Zeichen“ für
             nummerierte Listen und Diagramme, und sie sind zu einem verspielten Favoriten für Discord-Namen
             geworden. Anders als Emojis übernehmen sie deine Textfarbe und fügen sich so ins Chat-Design ein.
           </p>
           <h2>Die Blasen-Stile erklärt</h2>
           <ul>
             <li>
-              <strong>Bubble</strong> nutzt eingekreiste Kleinbuchstaben für einen weichen, einheitlichen
+              <strong>Blasen</strong> nutzt eingekreiste Kleinbuchstaben für einen weichen, einheitlichen
               Look.
             </li>
             <li>
-              <strong>Circled</strong> behält deine Großbuchstaben, damit Namen gut lesbar bleiben:{" "}
+              <strong>Eingekreist</strong> behält deine Großbuchstaben, damit Namen gut lesbar bleiben:{" "}
               {fancy("circled", "Max")}.
             </li>
             <li>
-              <strong>Bubble Dark</strong> füllt jeden Kreis ({fancy("negative-circled", "bubble")}) für einen
-              kräftigen Kontrast-Effekt.
+              <strong>Dunkle Blasen</strong> füllt jeden Kreis ({fancy("negative-circled", "bubble")}) für
+              einen kräftigen Kontrast-Effekt.
             </li>
             <li>
-              <strong>Squared</strong> und <strong>Squared Dark</strong> ersetzen Kreise durch Kästchen – ein
-              blockiger Look, der zu Gaming-Tags passt.
+              <strong>Quadrate</strong> und <strong>Dunkle Quadrate</strong> ersetzen Kreise durch Kästchen –
+              ein blockiger Look, der zu Gaming-Tags passt.
             </li>
             <li>
-              <strong>Parenthesized</strong> setzt jeden Buchstaben in Klammern für ein
+              <strong>In Klammern</strong> setzt jeden Buchstaben in Klammern für ein
               Retro-Schreibmaschinen-Gefühl.
             </li>
           </ul>
@@ -496,19 +496,19 @@ export const stylesDe: StylePagesContent = {
             phonetischen Alphabet (ɐ, ǝ, ɹ) oder anderen Schriften. Das Ergebnis liest sich richtig, wenn du
             dein Handy drehst: {fancy("upside-down", "hello discord!")}.
           </p>
-          <h2>Upside Down, Mirrored und Reversed</h2>
+          <h2>Umgedreht, Gespiegelt und Rückwärts</h2>
           <ul>
             <li>
-              <strong>Upside Down</strong> dreht Buchstaben vertikal und kehrt sie um – wie eine umgedrehte
+              <strong>Umgedreht</strong> dreht Buchstaben vertikal und kehrt sie um – wie eine umgedrehte
               Seite.
             </li>
             <li>
-              <strong>Mirrored</strong> spiegelt Buchstaben horizontal, als hielte man sie vor einen Spiegel;
-              der Text liest sich von rechts nach links.
+              <strong>Gespiegelt</strong> spiegelt Buchstaben horizontal, als hielte man sie vor einen
+              Spiegel; der Text liest sich von rechts nach links.
             </li>
             <li>
-              <strong>Reversed</strong> schreibt deinen Text einfach rückwärts, ohne die Buchstaben zu ändern.
-              Die kompatibelste der drei Varianten.
+              <strong>Rückwärts</strong> schreibt deinen Text einfach rückwärts, ohne die Buchstaben zu
+              ändern. Die kompatibelste der drei Varianten.
             </li>
           </ul>
           <h2>Lustige Ideen für umgedrehten Text auf Discord</h2>

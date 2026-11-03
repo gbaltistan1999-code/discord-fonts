@@ -45,29 +45,29 @@ export const stylesEs: StylePagesContent = {
           <h2>¿Qué estilo de negrita elegir?</h2>
           <ul>
             <li>
-              <strong>Bold (con serifa)</strong> tiene letras clásicas de libro con pequeños remates. Va bien
-              con nombres de servidor formales y personajes de rol.
+              <strong>Negrita (con serifa)</strong> tiene letras clásicas de libro con pequeños remates. Va
+              bien con nombres de servidor formales y personajes de rol.
             </li>
             <li>
-              <strong>Bold Sans</strong> es limpia y moderna, y es la opción más legible para nombres gamer y
-              títulos de canal.
+              <strong>Negrita sin serifa</strong> es limpia y moderna, y es la opción más legible para nombres
+              gamer y títulos de canal.
             </li>
             <li>
-              <strong>Bold Italic</strong> y <strong>Sans Bold Italic</strong> añaden movimiento, ideal para
-              canales de hype y tags de equipos de esports.
+              <strong>Negrita itálica</strong> y <strong>Negrita itálica sin serifa</strong> añaden
+              movimiento, ideal para canales de hype y tags de equipos de esports.
             </li>
             <li>
-              <strong>Bold Script</strong> y <strong>Bold Gothic</strong> combinan grosor y personalidad
-              cuando la negrita simple se queda corta.
+              <strong>Cursiva en negrita</strong> y <strong>Gótica en negrita</strong> combinan grosor y
+              personalidad cuando la negrita simple se queda corta.
             </li>
           </ul>
           <h2>Consejos para nombres en negrita</h2>
           <p>
             Las letras en negrita están entre los caracteres decorados mejor soportados, así que se ven bien
-            en Windows, Mac, iPhone y Android actuales. Bold y Bold Sans también incluyen números, perfectos
-            para tags de clan como {fancy("bold-serif", "Team 7")}. Recuerda que los nombres visibles y los
-            apodos tienen un máximo de 32 caracteres; el contador bajo el cuadro de texto te muestra cuántos
-            llevas.
+            en Windows, Mac, iPhone y Android actuales. Negrita y Negrita sin serifa también incluyen números,
+            perfectos para tags de clan como {fancy("bold-serif", "Team 7")}. Recuerda que los nombres
+            visibles y los apodos tienen un máximo de 32 caracteres; el contador bajo el cuadro de texto te
+            muestra cuántos llevas.
           </p>
           <p>
             Ten en cuenta que quien busque «Gamer» en la lista de miembros no encontrará «
@@ -86,8 +86,8 @@ export const stylesEs: StylePagesContent = {
             principal y dejar el tag normal, como «{fancy("bold-sans", "Nova")} | FPS», o usa números en
             negrita para un equipo, como «{fancy("bold-serif", "Squad 7")}». Los dueños de servidores suelen
             poner en negrita las categorías de la lista de canales, por ejemplo «
-            {fancy("bold-sans", "CANALES DE VOZ")}», para que destaquen sobre los canales. Bold Italic es muy
-            popular entre streamers y creadores porque se ve enérgica en el chat sin costar de leer.
+            {fancy("bold-sans", "CANALES DE VOZ")}», para que destaquen sobre los canales. Negrita itálica es
+            muy popular entre streamers y creadores porque se ve enérgica en el chat sin costar de leer.
           </p>
         </>
       ),
@@ -111,26 +111,26 @@ export const stylesEs: StylePagesContent = {
             de decorar un nombre de Discord. Como son caracteres y no formato, las curvas sobreviven donde las
             cursivas del markdown no llegan, como los apodos y los nombres de canal.
           </p>
-          <h2>Script, Bold Script e Italic</h2>
+          <h2>Cursiva, Cursiva en negrita e Itálica</h2>
           <p>
-            <strong>Script Cursive</strong> es ligera y elegante, ideal para perfiles estéticos, servidores de
-            arte y temas suaves. Algunas de sus mayúsculas (B, E, F, H, I, L, M y R) y las minúsculas e, g y o
-            vienen de un bloque de Unicode más antiguo, así que pueden verse algo distintas de sus vecinas con
+            <strong>Cursiva</strong> es ligera y elegante, ideal para perfiles estéticos, servidores de arte y
+            temas suaves. Algunas de sus mayúsculas (B, E, F, H, I, L, M y R) y las minúsculas e, g y o vienen
+            de un bloque de Unicode más antiguo, así que pueden verse algo distintas de sus vecinas con
             algunas fuentes.
           </p>
           <p>
-            <strong>Bold Script</strong> usa un único juego de trazos más gruesos, así que se lee mejor en
-            tamaño pequeño y suele quedar mejor en la lista de miembros. Si solo eliges una letra cursiva para
-            un nombre, que sea esta.
+            <strong>Cursiva en negrita</strong> usa un único juego de trazos más gruesos, así que se lee mejor
+            en tamaño pequeño y suele quedar mejor en la lista de miembros. Si solo eliges una letra cursiva
+            para un nombre, que sea esta.
           </p>
           <p>
-            <strong>Italic</strong> y <strong>Sans Italic</strong> están inclinadas en lugar de enlazadas, una
-            opción discreta cuando la script completa resulta demasiado recargada.
+            <strong>Itálica</strong> y <strong>Itálica sin serifa</strong> están inclinadas en lugar de
+            enlazadas, una opción discreta cuando la script completa resulta demasiado recargada.
           </p>
           <h2>Dónde queda mejor el texto cursivo</h2>
           <ul>
             <li>Nombres visibles de artistas, escritores y personajes de rol.</li>
-            <li>Biografías «Sobre mí», sobre todo combinadas con decoraciones como Ornate o Sparkles.</li>
+            <li>Biografías «Sobre mí», sobre todo combinadas con decoraciones como Ornamentado o Brillos.</li>
             <li>Nombres de servidores acogedores, creativos o de comunidad.</li>
             <li>Títulos de canales de bienvenida y normas, junto a una descripción normal.</li>
           </ul>
@@ -173,20 +173,20 @@ export const stylesEs: StylePagesContent = {
           <h2>Estilos góticos de este generador</h2>
           <ul>
             <li>
-              <strong>Gothic Fraktur</strong> es la letra gótica clásica y más ligera. Es elegante, pero
-              cuesta leerla en tamaño pequeño.
+              <strong>Gótica</strong> es la letra gótica clásica y más ligera. Es elegante, pero cuesta leerla
+              en tamaño pequeño.
             </li>
             <li>
-              <strong>Bold Gothic</strong> es más gruesa y mucho más legible en la lista de miembros; es la
-              mejor opción para un nombre visible gótico.
+              <strong>Gótica en negrita</strong> es más gruesa y mucho más legible en la lista de miembros; es
+              la mejor opción para un nombre visible gótico.
             </li>
             <li>
-              <strong>Gothic Cross</strong>, <strong>Crowned</strong>, <strong>Royal Frame</strong> y{" "}
-              <strong>Crossed Swords</strong> rodean las letras de símbolos para un aire medieval o de clan.
+              <strong>Cruz gótica</strong>, <strong>Coronado</strong>, <strong>Marco real</strong> y{" "}
+              <strong>Espadas cruzadas</strong> rodean las letras de símbolos para un aire medieval o de clan.
             </li>
             <li>
-              <strong>Runic Style</strong> toma letras parecidas del silabario cheroqui para dar sensación de
-              algo antiguo y tallado.
+              <strong>Estilo rúnico</strong> toma letras parecidas del silabario cheroqui para dar sensación
+              de algo antiguo y tallado.
             </li>
           </ul>
           <h2>Ideas para usar texto gótico en Discord</h2>
@@ -199,7 +199,7 @@ export const stylesEs: StylePagesContent = {
           <p>
             Ten en cuenta que Fraktur no tiene números, así que se quedan normales. Algunas mayúsculas (C, H,
             I, R y Z) del estilo ligero vienen de otro bloque de Unicode y pueden verse algo distintas en
-            ciertos dispositivos. Si quieres algo aún más fuerte, combina Bold Gothic con el{" "}
+            ciertos dispositivos. Si quieres algo aún más fuerte, combina Gótica en negrita con el{" "}
             {g("glitch", "generador de texto glitch")} para un aire maldito, o mantenlo limpio con el{" "}
             {g("bold", "generador de letra negrita")}.
           </p>
@@ -235,13 +235,13 @@ export const stylesEs: StylePagesContent = {
             caracteres parecidos del alfabeto fonético. Casi todos encajan perfecto; la q y la x no tienen
             versalita real, así que usamos los caracteres legibles más parecidos.
           </p>
-          <h2>Small Caps y Tiny Caps</h2>
+          <h2>Versalitas y Versalitas mini</h2>
           <p>
-            <strong>Small Caps</strong> mantiene tus mayúsculas a tamaño completo y encoge el resto, algo
-            natural para los nombres: {fancy("small-caps", "Midnight")}. <strong>Tiny Caps</strong> lo encoge
-            todo para un aspecto uniforme y discreto: {fancy("small-caps-all", "Midnight")}. Ambas funcionan
-            bien en móviles y ordenadores modernos, así que son de los estilos decorados más seguros para
-            nombres visibles.
+            <strong>Versalitas</strong> mantiene tus mayúsculas a tamaño completo y encoge el resto, algo
+            natural para los nombres: {fancy("small-caps", "Midnight")}. <strong>Versalitas mini</strong> lo
+            encoge todo para un aspecto uniforme y discreto: {fancy("small-caps-all", "Midnight")}. Ambas
+            funcionan bien en móviles y ordenadores modernos, así que son de los estilos decorados más seguros
+            para nombres visibles.
           </p>
           <h2>Superíndice y subíndice</h2>
           <p>
@@ -262,7 +262,7 @@ export const stylesEs: StylePagesContent = {
               Nombres de rol, donde etiquetas cortas como {fancy("small-caps-all", "moderator")} quedan
               limpias en la lista de miembros.
             </li>
-            <li>Biografías estéticas combinadas con las decoraciones Corner Brackets o Hearts.</li>
+            <li>Biografías estéticas combinadas con las decoraciones Corchetes de esquina o Corazones.</li>
           </ul>
           <p>
             Como las versalitas forman parte del alfabeto fonético, los lectores de pantalla pueden leerlas de
@@ -302,30 +302,31 @@ export const stylesEs: StylePagesContent = {
           <h2>Estilos estéticos populares</h2>
           <ul>
             <li>
-              <strong>Vaporwave Fullwidth</strong> ({fancy("fullwidth", "aesthetic")}) usa las letras anchas
-              de las fuentes de Asia oriental para ese aire retro de los 80 y 90.{" "}
-              <strong>Vaporwave Spaced</strong> añade aún más espacio.
+              <strong>Vaporwave ancha</strong> ({fancy("fullwidth", "aesthetic")}) usa las letras anchas de
+              las fuentes de Asia oriental para ese aire retro de los 80 y 90.{" "}
+              <strong>Vaporwave espaciada</strong> añade aún más espacio.
             </li>
             <li>
-              <strong>Small Caps</strong> y <strong>Tiny Caps</strong> dan un toque tranquilo y minimalista
-              que va con casi cualquier tema.
+              <strong>Versalitas</strong> y <strong>Versalitas mini</strong> dan un toque tranquilo y
+              minimalista que va con casi cualquier tema.
             </li>
             <li>
-              <strong>Kawaii</strong>, <strong>Sparkles</strong>, <strong>Flower Ribbon</strong>,{" "}
-              <strong>Hearts</strong> y <strong>Sakura</strong> envuelven tu texto en símbolos y emojis monos.
+              <strong>Kawaii</strong>, <strong>Brillos</strong>, <strong>Lazo de flores</strong>,{" "}
+              <strong>Corazones</strong> y <strong>Sakura</strong> envuelven tu texto en símbolos y emojis
+              monos.
             </li>
             <li>
-              <strong>Double-Struck</strong>, <strong>Monospace</strong> y <strong>Wide Spaced</strong> son
+              <strong>Doble trazo</strong>, <strong>Monoespaciada</strong> y <strong>Espaciado</strong> son
               opciones limpias para un perfil tecnológico o minimalista.
             </li>
           </ul>
           <h2>Cómo crear un perfil estético en Discord</h2>
           <p>
-            Elige uno o dos estilos y úsalos con coherencia. Por ejemplo, un nombre visible en Tiny Caps, un
-            titular con Flower Ribbon al principio de tu «Sobre mí» y texto normal para el resto. Demasiados
-            estilos a la vez quedan desordenados y cuestan de leer. Tu biografía tiene un límite de 190
-            caracteres, y las decoraciones y los espacios lo gastan rápido, así que revisa la longitud sobre
-            la marcha.
+            Elige uno o dos estilos y úsalos con coherencia. Por ejemplo, un nombre visible en Versalitas
+            mini, un titular con Lazo de flores al principio de tu «Sobre mí» y texto normal para el resto.
+            Demasiados estilos a la vez quedan desordenados y cuestan de leer. Tu biografía tiene un límite de
+            190 caracteres, y las decoraciones y los espacios lo gastan rápido, así que revisa la longitud
+            sobre la marcha.
           </p>
           <p>
             Las letras anchas ocupan el doble que las normales, así que un nombre vaporwave largo puede
@@ -367,17 +368,17 @@ export const stylesEs: StylePagesContent = {
           <h2>Estilos glitch que puedes copiar</h2>
           <ul>
             <li>
-              <strong>Zalgo Glitch</strong>: usa el control de intensidad de 1 (un ligero parpadeo) a 10 (caos
+              <strong>Glitch Zalgo</strong>: usa el control de intensidad de 1 (un ligero parpadeo) a 10 (caos
               total). El resultado se genera siempre igual, así que puedes volver y obtener lo mismo.
             </li>
             <li>
-              <strong>Strikethrough</strong>, <strong>Slashed</strong>, <strong>Overline</strong>,{" "}
-              <strong>Wavy</strong> y <strong>Dotted</strong> añaden una sola marca a cada letra para un
+              <strong>Tachado</strong>, <strong>Barrado</strong>, <strong>Sobrerrayado</strong>,{" "}
+              <strong>Wavy</strong> y <strong>Punteado</strong> añaden una sola marca a cada letra para un
               efecto dañado más sutil.
             </li>
             <li>
-              <strong>Upside Down</strong>, <strong>Mirrored</strong> y <strong>Reversed</strong> dan la
-              vuelta a tu texto para mensajes desconcertantes y de meme.
+              <strong>Al revés</strong>, <strong>Espejo</strong> y <strong>Invertido</strong> dan la vuelta a
+              tu texto para mensajes desconcertantes y de meme.
             </li>
           </ul>
           <h2>Usar zalgo con responsabilidad en Discord</h2>
@@ -424,30 +425,30 @@ export const stylesEs: StylePagesContent = {
           <h2>¿Qué es el texto burbuja?</h2>
           <p>
             El texto burbuja pone cada letra dentro de un círculo, como {fancy("bubble", "bubble")} o{" "}
-            {fancy("circled", "Bubble")}. Unicode incluye estos «caracteres alfanuméricos encerrados» para
+            {fancy("circled", "Burbuja")}. Unicode incluye estos «caracteres alfanuméricos encerrados» para
             numerar listas y diagramas, y se han vuelto un favorito divertido para los nombres de Discord. A
             diferencia de los emojis, heredan el color de tu texto, así que se integran en el tema del chat.
           </p>
           <h2>Los estilos burbuja</h2>
           <ul>
             <li>
-              <strong>Bubble</strong> usa letras minúsculas en círculos para un aspecto suave y uniforme.
+              <strong>Burbuja</strong> usa letras minúsculas en círculos para un aspecto suave y uniforme.
             </li>
             <li>
-              <strong>Circled</strong> mantiene tus mayúsculas, así que los nombres siguen leyéndose fácil:{" "}
-              {fancy("circled", "Max")}.
+              <strong>En círculos</strong> mantiene tus mayúsculas, así que los nombres siguen leyéndose
+              fácil: {fancy("circled", "Max")}.
             </li>
             <li>
-              <strong>Bubble Dark</strong> rellena cada círculo ({fancy("negative-circled", "bubble")}) para
-              un efecto intenso y de alto contraste.
+              <strong>Burbuja oscura</strong> rellena cada círculo ({fancy("negative-circled", "bubble")})
+              para un efecto intenso y de alto contraste.
             </li>
             <li>
-              <strong>Squared</strong> y <strong>Squared Dark</strong> cambian los círculos por cajas, un
-              aspecto de bloque que va bien con los tags gamer.
+              <strong>En cuadros</strong> y <strong>Cuadros oscuros</strong> cambian los círculos por cajas,
+              un aspecto de bloque que va bien con los tags gamer.
             </li>
             <li>
-              <strong>Parenthesized</strong> pone cada letra entre paréntesis para un aire retro de máquina de
-              escribir.
+              <strong>Entre paréntesis</strong> pone cada letra entre paréntesis para un aire retro de máquina
+              de escribir.
             </li>
           </ul>
           <h2>Notas de compatibilidad</h2>
@@ -471,7 +472,7 @@ export const stylesEs: StylePagesContent = {
             {fancy("bubble", "lol")}» o «{fancy("negative-circled", "GG")}», apodos monos como «
             {fancy("circled", "Mochi")}» o etiquetas para canales de eventos. Los números en círculos también
             son útiles: usa ① ② ③ para numerar normas o pasos en un mensaje, porque quedan alineados y se leen
-            de un vistazo. El estilo Squared queda genial en tags de juego como «
+            de un vistazo. El estilo En cuadros queda genial en tags de juego como «
             {fancy("negative-squared", "AFK")}», pero revisa antes cómo se ve en el móvil, porque algunos
             dispositivos muestran las letras cuadradas como emojis de colores.
           </p>
@@ -497,18 +498,17 @@ export const stylesEs: StylePagesContent = {
             fonético (ɐ, ǝ, ɹ) o de otras escrituras. El resultado se lee bien si giras el móvil:{" "}
             {fancy("upside-down", "hello discord!")}.
           </p>
-          <h2>Upside Down, Mirrored y Reversed</h2>
+          <h2>Al revés, Espejo e Invertido</h2>
           <ul>
             <li>
-              <strong>Upside Down</strong> voltea las letras en vertical y las invierte, como girar una
-              página.
+              <strong>Al revés</strong> voltea las letras en vertical y las invierte, como girar una página.
             </li>
             <li>
-              <strong>Mirrored</strong> voltea las letras en horizontal, como en un espejo, así que el texto
-              se lee de derecha a izquierda.
+              <strong>Espejo</strong> voltea las letras en horizontal, como en un espejo, así que el texto se
+              lee de derecha a izquierda.
             </li>
             <li>
-              <strong>Reversed</strong> simplemente escribe tu texto al revés sin cambiar las letras. Es el
+              <strong>Invertido</strong> simplemente escribe tu texto al revés sin cambiar las letras. Es el
               más compatible de los tres.
             </li>
           </ul>

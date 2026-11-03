@@ -193,7 +193,9 @@ export function FontGenerator({
       search
         ? scoped.filter(
             (style) =>
+              // Match the English name too, so "bold" still finds "Negrita".
               normalizeSearch(style.name).includes(search) ||
+              normalizeSearch(styleName(style, t)).includes(search) ||
               style.id.includes(search) ||
               // Category ids are English; the labels match in the page's language ("negrita", "太字").
               style.categories.some(
@@ -202,7 +204,7 @@ export function FontGenerator({
               ),
           )
         : scoped,
-    [scoped, search, t.categories],
+    [scoped, search, t],
   );
 
   // Visitors often type the text they want converted into the search box. When it matches no
@@ -237,7 +239,7 @@ export function FontGenerator({
 
   async function handleCopy(style: FontStyle, value: string) {
     setSelectedId(style.id);
-    if (!(await copy(value, style.name))) return;
+    if (!(await copy(value, styleName(style, t)))) return;
     setCopiedId(style.id);
     if (getFontStyle(style.id)) {
       setRecent([style.id, ...recent.filter((id) => id !== style.id)].slice(0, RECENT_LIMIT));
@@ -484,7 +486,7 @@ export function FontGenerator({
       {namePreview && (
         <NamePreview
           name={selectedResult.value}
-          styleName={selectedResult.style.name}
+          styleName={styleName(selectedResult.style, t)}
           initial={shownText.trim().charAt(0).toUpperCase() || "?"}
           copied={copiedId === selectedResult.style.id}
           onCopy={() => handleCopy(selectedResult.style, selectedResult.value)}
@@ -573,6 +575,11 @@ interface StyleRowProps {
   strings: GeneratorStrings;
 }
 
+/** A style's name in the page's language. */
+function styleName(style: FontStyle, t: GeneratorStrings): string {
+  return t.styleNames?.[style.id] ?? style.name;
+}
+
 function StyleRow({
   strings: t,
   variant,
@@ -593,7 +600,7 @@ function StyleRow({
 
   const label = (
     <div className={`flex min-w-0 items-center gap-1.5 text-xs text-muted ${isList ? "flex-wrap" : ""}`}>
-      <span className="truncate">{style.name}</span>
+      <span className="truncate">{styleName(style, t)}</span>
       {limitedSupport && (
         <span
           title={t.limitedSupportTitle}
@@ -616,7 +623,7 @@ function StyleRow({
         <button
           type="button"
           aria-pressed={favorite}
-          aria-label={fill(favorite ? t.removeFavorite : t.saveFavorite, { name: style.name })}
+          aria-label={fill(favorite ? t.removeFavorite : t.saveFavorite, { name: styleName(style, t) })}
           onClick={onToggleFavorite}
           className={`grid size-9 place-items-center rounded-full transition-colors ${
             favorite ? "text-rose-600 dark:text-rose-400" : "text-muted hover:bg-surface-2 hover:text-text"
@@ -635,7 +642,7 @@ function StyleRow({
         }`}
       >
         {copied ? t.copied : t.copy}
-        <span className="sr-only"> {fill(t.copySr, { name: style.name })}</span>
+        <span className="sr-only"> {fill(t.copySr, { name: styleName(style, t) })}</span>
       </button>
     </div>
   );

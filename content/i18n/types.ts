@@ -50,6 +50,8 @@ export interface ToastStrings {
 
 export interface GeneratorStrings {
   sampleText: string;
+  /** Translated style names by style id; English uses the names in lib/fonts. */
+  styleNames?: Record<string, string>;
   inputLabel: string;
   placeholder: string;
   clear: string;

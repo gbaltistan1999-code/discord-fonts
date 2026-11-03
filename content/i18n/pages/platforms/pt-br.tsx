@@ -36,7 +36,7 @@ export const platformsPtBr: PlatformPagesContent = {
         {
           question: "Por que o Roblox transforma meu texto em hashtags?",
           answer:
-            "O Roblox filtra todo texto, e caracteres ou palavras que o filtro não consegue ler costumam virar hashtags (#). Estilos simples como Small Caps, Bold e Wide Spaced são os que mais passam.",
+            "O Roblox filtra todo texto, e caracteres ou palavras que o filtro não consegue ler costumam virar hashtags (#). Estilos simples como Versalete, Negrito e Espaçado são os que mais passam.",
         },
         {
           question: "Quais letras funcionam melhor no Roblox?",
@@ -62,7 +62,7 @@ export const platformsPtBr: PlatformPagesContent = {
           <p>
             O Roblox passa todo texto pelo filtro de chat. Caracteres que ele não reconhece, ou texto que o
             filtro não consegue ler, costumam ser trocados por hashtags (####) ou removidos. Estilos simples
-            como <strong>Small Caps</strong>, <strong>Bold</strong> e <strong>Wide Spaced</strong> sobrevivem
+            como <strong>Versalete</strong>, <strong>Negrito</strong> e <strong>Espaçado</strong> sobrevivem
             melhor que decorações pesadas ou texto glitch. Sempre confira o texto depois de salvar.
           </p>
           <h2>Dicas para texto no Roblox</h2>
@@ -104,7 +104,7 @@ export const platformsPtBr: PlatformPagesContent = {
         {
           question: "Por que algumas letras ficam diferentes no iPhone e no Android?",
           answer:
-            "Cada celular desenha os caracteres Unicode com as próprias fontes do sistema, então alguns símbolos mudam um pouco ou não aparecem em aparelhos antigos. Os estilos Script, Small Caps e Bold aparecem em quase todo lugar.",
+            "Cada celular desenha os caracteres Unicode com as próprias fontes do sistema, então alguns símbolos mudam um pouco ou não aparecem em aparelhos antigos. Os estilos Cursiva, Versalete e Negrito aparecem em quase todo lugar.",
         },
       ],
       body: (
@@ -119,8 +119,8 @@ export const platformsPtBr: PlatformPagesContent = {
           <p>
             A bio do Instagram tem limite de 150 caracteres, e estilos decorados ocupam mais espaço. Um bom
             esquema é uma linha estilizada para seu nome ou frase, seguida de texto normal para links e
-            detalhes. Cursiva, versalete e estilos aesthetic como Sparkle Frame ou Flower Frame são escolhas
-            populares.
+            detalhes. Cursiva, versalete e estilos aesthetic como Moldura de brilhos ou Moldura de flores são
+            escolhas populares.
           </p>
           <h2>Letras e descoberta</h2>
           <p>
@@ -154,7 +154,7 @@ export const platformsPtBr: PlatformPagesContent = {
         {
           question: "Quais letras são mais fáceis de ler em um snap?",
           answer:
-            "Estilos grossos e sólidos como Bold Sans, Bubble e Double-Struck continuam legíveis em cima das fotos. Estilos finos ou glitch podem sumir em fundos movimentados.",
+            "Estilos grossos e sólidos como Negrito sem serifa, Bolha e Traço duplo continuam legíveis em cima das fotos. Estilos finos ou glitch podem sumir em fundos movimentados.",
         },
         {
           question: "Um nome de exibição estilizado impede que meus amigos me encontrem?",
@@ -173,8 +173,8 @@ export const platformsPtBr: PlatformPagesContent = {
           <h2>Escolhendo um estilo para os snaps</h2>
           <p>
             As legendas dos snaps ficam por cima das fotos, então estilos grossos e limpos são mais fáceis de
-            ler que os finos ou glitch. Bold Sans, Double-Struck e Bubble se destacam bem, enquanto versalete
-            e cursiva combinam com nomes de exibição.
+            ler que os finos ou glitch. Negrito sem serifa, Traço duplo e Bolha se destacam bem, enquanto
+            versalete e cursiva combinam com nomes de exibição.
           </p>
           <h2>Dicas</h2>
           <ul>
@@ -182,7 +182,7 @@ export const platformsPtBr: PlatformPagesContent = {
               Amigos buscam pelo nome de usuário, então um nome de exibição estilizado não dificulta te
               adicionar.
             </li>
-            <li>Molduras com emoji como Sakura ou Butterfly combinam com o jeito divertido do Snapchat.</li>
+            <li>Molduras com emoji como Sakura ou Borboleta combinam com o jeito divertido do Snapchat.</li>
             <li>
               Confira como o texto fica no snap antes de enviar: alguns celulares mostram menos símbolos.
             </li>
@@ -257,7 +257,7 @@ export const platformsPtBr: PlatformPagesContent = {
         {
           question: "Como escrevo em negrito no Twitter (X)?",
           answer:
-            "Posts comuns não têm botão de negrito. Digite seu texto aqui, copie o estilo Bold ou Bold Sans e cole no seu post.",
+            "Posts comuns não têm botão de negrito. Digite seu texto aqui, copie o estilo Negrito ou Negrito sem serifa e cole no seu post.",
         },
         {
           question: "Posso usar letras diferentes no meu nome do X?",
@@ -285,9 +285,9 @@ export const platformsPtBr: PlatformPagesContent = {
           </p>
           <h2>Posts em negrito e itálico</h2>
           <p>
-            Posts comuns não têm botão de negrito nem de itálico, então as letras Bold, Italic e Bold Sans são
-            um jeito comum de dar ênfase. Cada letra estilizada conta no limite de caracteres, e alguns
-            estilos decorados contam como mais de um caractere.
+            Posts comuns não têm botão de negrito nem de itálico, então as letras Negrito, Itálico e Negrito
+            sem serifa são um jeito comum de dar ênfase. Cada letra estilizada conta no limite de caracteres,
+            e alguns estilos decorados contam como mais de um caractere.
           </p>
           <h2>Acessibilidade</h2>
           <p>
@@ -311,7 +311,7 @@ export const platformsPtBr: PlatformPagesContent = {
         {
           question: "Como coloco texto em negrito em um post do Facebook?",
           answer:
-            "Posts pessoais não têm botões de formatação. Copie o estilo Bold ou Bold Sans desta página e cole no seu post ou comentário.",
+            "Posts pessoais não têm botões de formatação. Copie o estilo Negrito ou Negrito sem serifa desta página e cole no seu post ou comentário.",
         },
         {
           question: "Posso usar letras estilizadas no meu nome do Facebook?",
@@ -326,7 +326,7 @@ export const platformsPtBr: PlatformPagesContent = {
         {
           question: "Quais estilos combinam com posts de comemoração?",
           answer:
-            "Molduras como Hearts, Sparkles, Star Wings e Sakura ficam ótimas em aniversários, datas especiais e anúncios.",
+            "Molduras como Corações, Brilhos, Asas de estrela e Sakura ficam ótimas em aniversários, datas especiais e anúncios.",
         },
       ],
       body: (
@@ -341,14 +341,14 @@ export const platformsPtBr: PlatformPagesContent = {
           <h2>Formatando posts</h2>
           <p>
             Posts pessoais não têm opção de negrito ou itálico, então letras estilizadas são um jeito fácil de
-            colocar um título ou destacar uma linha importante. Bold Sans funciona bem para títulos, e
-            Strikethrough ou Underline servem para marcar mudanças em um post de promoção ou evento.
+            colocar um título ou destacar uma linha importante. Negrito sem serifa funciona bem para títulos,
+            e Tachado ou Sublinhado servem para marcar mudanças em um post de promoção ou evento.
           </p>
           <h2>Dicas</h2>
           <ul>
             <li>Mantenha a apresentação do perfil curta: o Facebook limita a uma linha breve.</li>
             <li>Use texto normal para links, preços e datas para continuarem fáceis de ler e buscar.</li>
-            <li>Molduras como Hearts ou Sparkles combinam com aniversários e comemorações.</li>
+            <li>Molduras como Corações ou Brilhos combinam com aniversários e comemorações.</li>
           </ul>
         </>
       ),
@@ -375,7 +375,7 @@ export const platformsPtBr: PlatformPagesContent = {
         {
           question: "Quais são as melhores letras para a bio do TikTok?",
           answer:
-            "Estilos compactos como Small Caps, Bold Sans e Kawaii cabem na bio de 80 caracteres do TikTok. Vaporwave combina com contas de edits e fãs, e os estilos Gothic e Glitch com perfis dark ou gamer.",
+            "Estilos compactos como Versalete, Negrito sem serifa e Kawaii cabem na bio de 80 caracteres do TikTok. Vaporwave combina com contas de edits e fãs, e os estilos Gótica e Glitch com perfis dark ou gamer.",
         },
         {
           question: "As letras estilizadas afetam a busca do TikTok?",
@@ -394,9 +394,9 @@ export const platformsPtBr: PlatformPagesContent = {
           <h2>Uma bio de 80 caracteres</h2>
           <p>
             As bios do TikTok são curtas, e estilos decorados usam caracteres extras. Escolha um estilo
-            compacto como Small Caps, Bold Sans ou Kawaii, e guarde molduras e emojis para uma única palavra.
-            Estilos aesthetic como Vaporwave Fullwidth combinam com contas de edits e fãs, enquanto Gothic e
-            Glitch ficam bem em perfis gamer e dark.
+            compacto como Versalete, Negrito sem serifa ou Kawaii, e guarde molduras e emojis para uma única
+            palavra. Estilos aesthetic como Vaporwave larga combinam com contas de edits e fãs, enquanto
+            Gótica e Glitch ficam bem em perfis gamer e dark.
           </p>
           <h2>Legendas e busca</h2>
           <p>
@@ -433,7 +433,7 @@ export const platformsPtBr: PlatformPagesContent = {
         {
           question: "Posso usar letras no resumo do meu perfil da Steam?",
           answer:
-            "Sim. Texto estilizado funciona no resumo, em análises, comentários e páginas de grupo, e títulos em Bold Sans ajudam a organizar seções longas.",
+            "Sim. Texto estilizado funciona no resumo, em análises, comentários e páginas de grupo, e títulos em Negrito sem serifa ajudam a organizar seções longas.",
         },
       ],
       body: (
@@ -446,10 +446,10 @@ export const platformsPtBr: PlatformPagesContent = {
           </p>
           <h2>Ideias de nomes gamer</h2>
           <p>
-            Nomes curtos com um estilo forte ficam melhores na lista de amigos e nos lobbies. Bold Gothic,
-            Gamer Tag (亗) e Crossbones (×͜×) são populares entre jogadores competitivos, enquanto Small Caps e
-            Double-Struck dão um visual mais limpo. Fique de olho no limite de 32 caracteres ao adicionar
-            molduras.
+            Nomes curtos com um estilo forte ficam melhores na lista de amigos e nos lobbies. Gótica em
+            negrito, Tag gamer (亗) e Ossos cruzados (×͜×) são populares entre jogadores competitivos, enquanto
+            Versalete e Traço duplo dão um visual mais limpo. Fique de olho no limite de 32 caracteres ao
+            adicionar molduras.
           </p>
           <h2>Dicas</h2>
           <ul>
@@ -461,7 +461,7 @@ export const platformsPtBr: PlatformPagesContent = {
               Amigos ainda encontram você pela URL do perfil ou pelo código de amigo, mesmo com um nome
               estilizado.
             </li>
-            <li>Use títulos em Bold Sans para organizar um resumo de perfil ou guia longo.</li>
+            <li>Use títulos em Negrito sem serifa para organizar um resumo de perfil ou guia longo.</li>
           </ul>
         </>
       ),
@@ -493,7 +493,7 @@ export const platformsPtBr: PlatformPagesContent = {
         {
           question: "Quais estilos combinam com clubes de jogos?",
           answer:
-            "Bold Gothic, Gamer Tag e Lenticular Brackets dão títulos de clube marcantes. Use texto normal para horários e regras para os membros lerem com facilidade.",
+            "Gótica em negrito, Tag gamer e Colchetes lenticulares dão títulos de clube marcantes. Use texto normal para horários e regras para os membros lerem com facilidade.",
         },
       ],
       body: (
