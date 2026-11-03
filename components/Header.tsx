@@ -62,13 +62,12 @@ export function Header({ locale = defaultLocale }: { locale?: Locale }) {
           className="flex shrink-0 items-center gap-2.5 font-bold tracking-tight"
         >
           <Logo />
-          <span className="hidden text-lg min-[400px]:inline">{siteConfig.name}</span>
-          <span className="sr-only min-[400px]:hidden">{fill(ui.homeLink, { name: siteConfig.name })}</span>
+          <span className="text-lg">{siteConfig.name}</span>
         </Link>
         <div className="flex items-center gap-2">
           <LanguageSwitcher label={ui.language} />
-          <MegaMenu label={ui.menu} groups={menuGroups(locale)} />
           <ThemeToggle />
+          <MegaMenu label={ui.menu} groups={menuGroups(locale)} />
         </div>
       </div>
     </header>

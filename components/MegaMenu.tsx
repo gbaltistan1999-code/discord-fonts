@@ -65,7 +65,8 @@ export function MegaMenu({ label, groups }: MegaMenuProps) {
         aria-expanded={open}
         aria-controls={panelId}
         onClick={() => setOpen((o) => !o)}
-        className={`inline-flex h-10 items-center gap-2 rounded-full border px-4 text-sm font-semibold transition-colors ${
+        // Phones show just the icon; the word Menu joins it from sm up.
+        className={`inline-flex size-10 items-center justify-center gap-2 rounded-full border text-sm font-semibold transition-colors sm:w-auto sm:px-4 ${
           open
             ? "border-accent bg-accent-solid text-on-accent"
             : "border-border bg-surface text-text hover:border-text/30 hover:bg-surface-2"
@@ -82,7 +83,7 @@ export function MegaMenu({ label, groups }: MegaMenuProps) {
         >
           {open ? <path d="M6 6l12 12M18 6 6 18" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
         </svg>
-        {label}
+        <span className="sr-only sm:not-sr-only">{label}</span>
       </button>
 
       <div

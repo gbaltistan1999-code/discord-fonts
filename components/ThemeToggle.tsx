@@ -50,7 +50,7 @@ export function ThemeToggle() {
       }}
       aria-label={`Switch to ${next} mode`}
       title={`Switch to ${next} mode`}
-      className="inline-flex size-10 items-center justify-center rounded-lg border border-border bg-surface text-text transition-colors hover:bg-surface-2"
+      className="inline-flex size-10 items-center justify-center rounded-full border border-border bg-surface text-text transition-colors hover:border-text/30 hover:bg-surface-2"
     >
       {theme === "dark" ? (
         <svg
