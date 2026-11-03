@@ -72,20 +72,51 @@ export function Footer() {
             © {new Date().getFullYear()} {siteConfig.name}. Text is converted in your browser and never
             stored.
           </p>
-          <a
-            href="https://sellwithboost.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ display: "inline-block", marginTop: "15px" }}
-          >
-            {/* External SVG badge: next/image would need remotePatterns and adds nothing for an SVG. */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="https://sellwithboost.com/badge/listing.svg"
-              alt="Listed on Sell With Boost"
-              style={{ height: "40px", width: "auto" }}
-            />
-          </a>
+          {/* External SVG badges: next/image would need remotePatterns and adds nothing for an SVG.
+              Lazy so they only download when the footer scrolls into view. */}
+          <div className="flex flex-wrap items-center gap-3" style={{ marginTop: "15px" }}>
+            <a
+              href="https://sellwithboost.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://sellwithboost.com/badge/listing.svg"
+                alt="Listed on Sell With Boost"
+                loading="lazy"
+                decoding="async"
+                style={{ height: "40px", width: "auto" }}
+              />
+            </a>
+            <a
+              href="https://ailaun.ch/projects/discordfonts?utm_source=badge"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block"
+            >
+              {/* Light and dark versions; the hidden one is never downloaded because it's lazy. */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://ailaun.ch/ailaunch/images/badges/featured-on-light.svg"
+                alt="Featured on AI Launch"
+                loading="lazy"
+                decoding="async"
+                className="dark:hidden"
+                style={{ height: "44px", width: "auto" }}
+              />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://ailaun.ch/ailaunch/images/badges/featured-on-dark.svg"
+                alt="Featured on AI Launch"
+                loading="lazy"
+                decoding="async"
+                className="hidden dark:block"
+                style={{ height: "44px", width: "auto" }}
+              />
+            </a>
+          </div>
         </div>
       </div>
     </footer>
