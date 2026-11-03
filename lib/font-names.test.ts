@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { homeStyleOrder, simpleLast, stylishFirst } from "@/content/i18n/style-order";
+import { homeStyleOrder, simpleLast, stylishFirst, themeStyles } from "@/content/i18n/style-order";
 import { fontStyles, getFontStyle } from "@/lib/fonts";
 import { prefixedLocales } from "@/lib/i18n";
 import { getStrings } from "@/content/i18n";
@@ -29,5 +29,10 @@ describe("homepage style order", () => {
     const both = [...stylishFirst, ...simpleLast];
     expect(both.filter((id) => !getFontStyle(id))).toEqual([]);
     expect(new Set(both).size).toBe(both.length);
+  });
+
+  it.each(Object.entries(themeStyles))("%s theme lists real styles once each", (_, ids) => {
+    expect(ids.filter((id) => !getFontStyle(id))).toEqual([]);
+    expect(new Set(ids).size).toBe(ids.length);
   });
 });

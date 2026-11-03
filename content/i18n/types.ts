@@ -1,4 +1,5 @@
 import type { TimestampIssue, TimestampStyleCode } from "@/lib/discord-timestamp";
+import type { Theme } from "./style-order";
 import type { FontCategory } from "@/lib/fonts";
 import type { Locale } from "@/lib/i18n";
 import type { Faq } from "../faqs";
@@ -62,8 +63,9 @@ export interface GeneratorStrings {
   filterGroup: string;
   all: string;
   categories: Record<FontCategory, string>;
-  searchLabel: string;
-  searchPlaceholder: string;
+  themeGroup: string;
+  /** Button label and the example text shown until the visitor types. */
+  themes: Record<Theme, { label: string; sample: string }>;
   scopeGroup: string;
   scopeAll: string;
   favorites: string;
@@ -71,9 +73,6 @@ export interface GeneratorStrings {
   /** "{count} style" / "{count} styles" */
   countOne: string;
   countMany: string;
-  /** "No style is called “{query}”, so here is your text in every style." */
-  noMatch: string;
-  moveToTextBox: string;
   emptyFavorites: string;
   emptyRecent: string;
   emptyGroup: string;

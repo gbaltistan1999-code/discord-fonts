@@ -15,7 +15,7 @@ import {
   type FontStyle,
 } from "@/lib/fonts";
 import { en } from "@/content/i18n/strings/en";
-import { simpleLast, stylishFirst } from "@/content/i18n/style-order";
+import { simpleLast, stylishFirst, themeStyles, type Theme } from "@/content/i18n/style-order";
 import type { GeneratorStrings } from "@/content/i18n/types";
 import { fill } from "@/lib/i18n";
 import { useStoredState } from "@/lib/useStoredState";
@@ -36,12 +36,15 @@ function makeRandomStyle(seed: number, index: number, nameTemplate: string): Fon
   };
 }
 
-/** Lowercase without accents, so "Gótica" matches "gotica". */
-function normalizeSearch(text: string): string {
-  return text.toLowerCase().normalize("NFD").replace(/\p{M}/gu, "");
-}
+type Filter = "featured" | "all" | FontCategory | Theme;
 
-type Filter = "featured" | "all" | FontCategory;
+const THEMES: readonly { id: Theme; emoji: string }[] = [
+  { id: "love", emoji: "❤️" },
+  { id: "night", emoji: "🌙" },
+  { id: "morning", emoji: "☀️" },
+];
+
+const isTheme = (filter: Filter): filter is Theme => filter in themeStyles;
 type Scope = "all" | "favorites" | "recent";
 
 /** Each filter tab gets its own colour: a soft tint when idle, solid when selected (white text stays above 4.5:1). */
@@ -77,6 +80,18 @@ const FILTER_COLORS: Record<Filter, { idle: string; active: string }> = {
   glitch: {
     idle: "bg-emerald-50 text-emerald-700 hover:bg-emerald-100 dark:bg-emerald-500/15 dark:text-emerald-300 dark:hover:bg-emerald-500/25",
     active: "bg-emerald-700 text-white",
+  },
+  love: {
+    idle: "bg-red-50 text-red-700 hover:bg-red-100 dark:bg-red-500/15 dark:text-red-300 dark:hover:bg-red-500/25",
+    active: "bg-red-600 text-white",
+  },
+  night: {
+    idle: "bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-500/20 dark:text-slate-200 dark:hover:bg-slate-500/30",
+    active: "bg-slate-800 text-white",
+  },
+  morning: {
+    idle: "bg-orange-50 text-orange-800 hover:bg-orange-100 dark:bg-orange-500/15 dark:text-orange-300 dark:hover:bg-orange-500/25",
+    active: "bg-orange-700 text-white",
   },
 };
 
@@ -149,13 +164,11 @@ export function FontGenerator({
   const isList = variant === "list";
   const inputId = useId();
   const hintId = useId();
-  const searchId = useId();
   const randomHeadingId = useId();
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const copy = useCopy();
 
   const [text, setText] = useState("");
-  const [query, setQuery] = useState("");
   const [filter, setFilter] = useState<Filter>(featured ? "featured" : "all");
   const [scope, setScope] = useState<Scope>("all");
   const [favorites, setFavorites] = useStoredState("df:favorites", NO_IDS, parseStyleIds);
@@ -171,9 +184,11 @@ export function FontGenerator({
 
   // Keep typing responsive: results re-render at lower priority than the input.
   const deferredText = useDeferredValue(text);
-  const source = deferredText.trim() ? deferredText : sampleText;
-  const deferredQuery = useDeferredValue(query).trim();
-  const search = normalizeSearch(deferredQuery);
+  const shownText = deferredText.trim()
+    ? deferredText
+    : isTheme(filter)
+      ? t.themes[filter].sample
+      : sampleText;
 
   const featuredStyles = useMemo(
     () => (featured ? featured.ids.map(getFontStyle).filter((s): s is FontStyle => Boolean(s)) : []),
@@ -183,6 +198,7 @@ export function FontGenerator({
   const filtered = useMemo(() => {
     if (filter === "featured") return featuredStyles;
     if (filter === "all") return orderedStyles;
+    if (isTheme(filter)) return toStyles(themeStyles[filter]);
     return orderedStyles.filter((style) => style.categories.includes(filter));
   }, [filter, featuredStyles, orderedStyles]);
 
@@ -196,33 +212,10 @@ export function FontGenerator({
     return list;
   }, [filtered, scope, favorites, recent]);
 
-  const nameMatches = useMemo(
-    () =>
-      search
-        ? scoped.filter(
-            (style) =>
-              // Match the English name too, so "bold" still finds "Negrita".
-              normalizeSearch(style.name).includes(search) ||
-              normalizeSearch(styleName(style, t)).includes(search) ||
-              style.id.includes(search) ||
-              // Category ids are English; the labels match in the page's language ("negrita", "太字").
-              style.categories.some(
-                (category) =>
-                  category.includes(search) || normalizeSearch(t.categories[category]).includes(search),
-              ),
-          )
-        : scoped,
-    [scoped, search, t],
-  );
-
-  // Visitors often type the text they want converted into the search box. When it matches no
-  // style name, show that text in every style instead of an empty list.
-  const searchAsText = Boolean(search) && nameMatches.length === 0 && scoped.length > 0;
-  const matched = searchAsText ? scoped : nameMatches;
-  const shownText = searchAsText ? deferredQuery : source;
+  const matched = scoped;
 
   // Paging and random styles only apply to the full list.
-  const browsingAll = filter === "all" && scope === "all" && (!search || searchAsText);
+  const browsingAll = filter === "all" && scope === "all";
 
   const results = useMemo(() => {
     const visible = browsingAll ? matched.slice(0, limit) : matched;
@@ -434,25 +427,34 @@ export function FontGenerator({
         </div>
 
         <div className="mt-4 flex flex-col gap-3 lg:flex-row lg:items-center">
-          <div className="relative flex-1">
-            <label htmlFor={searchId} className="sr-only">
-              {t.searchLabel}
-            </label>
-            <span className="pointer-events-none absolute top-1/2 left-3.5 -translate-y-1/2 text-muted">
-              <SearchIcon />
-            </span>
-            <input
-              id={searchId}
-              type="search"
-              value={query}
-              onChange={(e) => {
-                setQuery(e.target.value);
-                setLimit(PAGE_SIZE);
-              }}
-              placeholder={t.searchPlaceholder}
-              autoComplete="off"
-              className="h-12 w-full rounded-xl border border-border bg-bg pr-4 pl-11 text-base text-text outline-none placeholder:text-muted focus:border-accent focus:ring-4 focus:ring-accent/15"
-            />
+          {/* Message themes: three equal boxes on phones, pills from sm up. */}
+          <div
+            role="group"
+            aria-label={t.themeGroup}
+            className="grid flex-1 grid-cols-3 gap-2 sm:flex sm:flex-wrap"
+          >
+            {THEMES.map((theme) => {
+              const active = filter === theme.id;
+              return (
+                <button
+                  key={theme.id}
+                  type="button"
+                  aria-pressed={active}
+                  onClick={() => {
+                    setFilter(active ? "all" : theme.id);
+                    setLimit(PAGE_SIZE);
+                  }}
+                  className={`flex min-w-0 flex-col items-center justify-center gap-1 rounded-xl px-2 py-2.5 text-center text-xs leading-tight font-semibold transition-colors sm:h-12 sm:flex-row sm:gap-2 sm:rounded-full sm:px-4 sm:py-0 sm:text-sm ${
+                    active ? `${FILTER_COLORS[theme.id].active} shadow-sm` : FILTER_COLORS[theme.id].idle
+                  }`}
+                >
+                  <span aria-hidden="true" className="text-base leading-none">
+                    {theme.emoji}
+                  </span>
+                  {t.themes[theme.id].label}
+                </button>
+              );
+            })}
           </div>
 
           <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
@@ -520,24 +522,6 @@ export function FontGenerator({
         )}
 
         <div className="cv-list min-w-0 lg:col-start-1 lg:row-start-1">
-          {searchAsText && (
-            <div className="mb-3 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-accent/30 bg-accent-soft px-4 py-3 text-sm text-text">
-              <p>{fill(t.noMatch, { query: deferredQuery })}</p>
-              <button
-                type="button"
-                onClick={() => {
-                  setText(deferredQuery);
-                  setQuery("");
-                  inputRef.current?.focus();
-                  inputRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
-                }}
-                className="shrink-0 rounded-full bg-accent-solid px-4 py-1.5 text-sm font-semibold text-on-accent transition-opacity hover:opacity-90"
-              >
-                {t.moveToTextBox}
-              </button>
-            </div>
-          )}
-
           {results.length > 0 ? (
             <>
               <ul aria-label={t.resultsLabel} className={listClass}>
@@ -831,15 +815,6 @@ const iconProps = {
   strokeLinejoin: "round",
   className: "size-5",
 } as const;
-
-function SearchIcon() {
-  return (
-    <svg {...iconProps}>
-      <circle cx="11" cy="11" r="7" />
-      <path d="m20 20-3.5-3.5" />
-    </svg>
-  );
-}
 
 function HeartIcon({ filled }: { filled: boolean }) {
   return (
