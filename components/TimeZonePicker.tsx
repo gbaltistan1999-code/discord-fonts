@@ -1,7 +1,10 @@
 "use client";
 
 import { useId, useMemo, useRef, useState } from "react";
+import { timestampStrings } from "@/content/i18n/strings/timestamp";
+import type { TimestampStrings } from "@/content/i18n/types";
 import { offsetLabel } from "@/lib/discord-timestamp";
+import { fill } from "@/lib/i18n";
 
 interface TimeZonePickerProps {
   id: string;
@@ -15,6 +18,8 @@ interface TimeZonePickerProps {
   instant: number;
   localZone: string;
   className: string;
+  /** Interface text in the page's language (English by default). */
+  strings?: TimestampStrings["zonePicker"];
 }
 
 /** "America/New_York" → "America / New York" for display; the value keeps the IANA name. */
@@ -34,6 +39,7 @@ export function TimeZonePicker({
   instant,
   localZone,
   className,
+  strings: t = timestampStrings.en.zonePicker,
 }: TimeZonePickerProps) {
   const listId = useId();
   const listRef = useRef<HTMLUListElement>(null);
@@ -104,7 +110,7 @@ export function TimeZonePicker({
         aria-activedescendant={open && results.length ? optionId(active) : undefined}
         aria-describedby={describedBy}
         value={open ? query : pretty(value)}
-        placeholder={open ? `Search ${zones.length} time zones, e.g. Karachi` : ""}
+        placeholder={open ? fill(t.search, { count: zones.length }) : ""}
         onFocus={openList}
         onClick={() => !open && openList()}
         onChange={(e) => {
@@ -152,7 +158,7 @@ export function TimeZonePicker({
         ref={listRef}
         id={listId}
         role="listbox"
-        aria-label="Time zones"
+        aria-label={t.listLabel}
         hidden={!open}
         className="absolute inset-x-0 top-full z-30 mt-1.5 max-h-72 overflow-y-auto rounded-xl border border-border bg-surface p-1 shadow-lg"
       >
@@ -174,7 +180,7 @@ export function TimeZonePicker({
               <span className="min-w-0 truncate">
                 {pretty(entry.zone)}
                 {entry.zone === localZone && (
-                  <span className="ml-1.5 text-xs font-normal text-muted">(yours)</span>
+                  <span className="ml-1.5 text-xs font-normal text-muted">{t.yours}</span>
                 )}
               </span>
               <span className="shrink-0 text-xs text-muted tabular-nums">{entry.offset}</span>
@@ -187,7 +193,7 @@ export function TimeZonePicker({
             aria-disabled="true"
             className="px-3 py-2 text-sm text-muted"
           >
-            No time zone matches “{query}”.
+            {fill(t.noMatch, { query })}
           </li>
         )}
       </ul>

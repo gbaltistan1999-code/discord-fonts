@@ -5,9 +5,17 @@ import { es } from "./strings/es";
 import { fr } from "./strings/fr";
 import { ja } from "./strings/ja";
 import { ptBr } from "./strings/pt-br";
-import type { Strings } from "./types";
+import { timestampStrings } from "./strings/timestamp";
+import type { BaseStrings, Strings } from "./types";
 
-const strings: Record<Locale, Strings> = { en, es, "pt-br": ptBr, fr, de, ja };
+const base: Record<Locale, BaseStrings> = { en, es, "pt-br": ptBr, fr, de, ja };
+
+const strings = Object.fromEntries(
+  Object.entries(base).map(([locale, s]) => [
+    locale,
+    { ...s, timestamp: timestampStrings[locale as Locale] },
+  ]),
+) as Record<Locale, Strings>;
 
 /** Interface strings for a locale. */
 export function getStrings(locale: Locale): Strings {

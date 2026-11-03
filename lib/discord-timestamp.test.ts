@@ -121,7 +121,11 @@ describe("parseDateTime", () => {
   it("rejects missing or impossible values", () => {
     expect(parseDateTime("", "16:20").ok).toBe(false);
     expect(parseDateTime("2026-11-03", "").ok).toBe(false);
-    expect(parseDateTime("2026-02-30", "10:00")).toEqual({ ok: false, error: "That date doesn’t exist." });
+    expect(parseDateTime("2026-02-30", "10:00")).toEqual({
+      ok: false,
+      error: "That date doesn’t exist.",
+      code: "dateDoesNotExist",
+    });
     expect(parseDateTime("2026-11-03", "25:00").ok).toBe(false);
   });
 

@@ -1,3 +1,4 @@
+import type { TimestampIssue, TimestampStyleCode } from "@/lib/discord-timestamp";
 import type { FontCategory } from "@/lib/fonts";
 import type { Locale } from "@/lib/i18n";
 import type { Faq } from "../faqs";
@@ -140,11 +141,68 @@ export interface FormattingStrings {
   colorNames: Record<number, string>;
 }
 
+export interface TimestampStrings {
+  date: string;
+  time: string;
+  timeZone: string;
+  zoneHint: string;
+  /** "{zone}" is the visitor's own zone. */
+  useMyZone: string;
+  now: string;
+  plus15Min: string;
+  plus1Hour: string;
+  plus1Day: string;
+  plus1Week: string;
+  reset: string;
+  includeSeconds: string;
+  unixLabel: string;
+  unixUnits: string;
+  unixPlaceholder: string;
+  load: string;
+  unixHint: string;
+  /** "{seconds}" */
+  unixLoaded: string;
+  unixReadAsMs: string;
+  /** "{time}", "{zone}", "{shown}" */
+  skipped: string;
+  /** "{time}", "{zone}", "{offset}" */
+  repeated: string;
+  /** Messages by TimestampIssue; "farFuture" has "{year}". */
+  issues: Record<TimestampIssue, string>;
+  resultsTitle: string;
+  resultsNote: string;
+  unixTime: string;
+  copy: string;
+  copied: string;
+  unixCopyLabel: string;
+  /** "{name} code" */
+  codeCopyLabel: string;
+  styles: Record<TimestampStyleCode, { name: string; use: string }>;
+  messagePreview: string;
+  sampleAuthor: string;
+  today: string;
+  eventStarts: string;
+  combinedTitle: string;
+  combinedDescription: string;
+  copyCombined: string;
+  combinedLabel: string;
+  zonePicker: {
+    /** "{count}" zones */
+    search: string;
+    yours: string;
+    /** "{query}" */
+    noMatch: string;
+    listLabel: string;
+  };
+}
+
 export interface Strings {
   ui: UiStrings;
   toast: ToastStrings;
   generator: GeneratorStrings;
   formatting: FormattingStrings;
+  /** Kept in strings/timestamp.ts and joined in by getStrings(). */
+  timestamp: TimestampStrings;
   /** Style card label on the homepage, "{name} font generator". */
   styleCard: string;
 }
@@ -185,3 +243,6 @@ export interface HomeContent {
   faqs: readonly Faq[];
   Article: () => React.ReactNode;
 }
+
+/** What each per-language strings file holds; the timestamp strings are joined in by getStrings(). */
+export type BaseStrings = Omit<Strings, "timestamp">;

@@ -1,6 +1,6 @@
-import type { Strings } from "../types";
+import type { BaseStrings } from "../types";
 
-export const en: Strings = {
+export const en: BaseStrings = {
   ui: {
     locale: "en",
     home: "Home",

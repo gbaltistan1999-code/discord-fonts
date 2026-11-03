@@ -33,7 +33,12 @@ export const localeInfo: Record<
 };
 
 /** Pages published in every locale (English paths). */
-export const translatedPaths: readonly string[] = ["/", "/fancy-text-generator", "/discord-name-generator"];
+export const translatedPaths: readonly string[] = [
+  "/",
+  "/fancy-text-generator",
+  "/discord-name-generator",
+  "/discord-timestamp-generator",
+];
 
 export function isLocale(value: string): value is Locale {
   return (locales as readonly string[]).includes(value);

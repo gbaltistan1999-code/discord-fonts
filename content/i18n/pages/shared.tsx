@@ -1,6 +1,8 @@
+import Image from "next/image";
 import Link from "next/link";
 import { nameIdeaExamples } from "@/content/discord-name";
 import { fancyExamples } from "@/content/fancy-text";
+import { timestampStyles, type TimestampStyleCode } from "@/lib/discord-timestamp";
 import { hrefFor, type Locale } from "@/lib/i18n";
 
 /** Link to a page in the reader's language when it's translated, otherwise to the English page. */
@@ -137,6 +139,76 @@ export function NameIdeasTable({
               <td>{vibe}</td>
               <td>{formula}</td>
               <td className="fancy-text whitespace-nowrap">{nameIdeaExamples[i]}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+const timestampImages = {
+  example: { src: "/discord-timestamp-example.svg", width: 640, height: 380 },
+  steps: { src: "/discord-timestamp-generator-steps.svg", width: 640, height: 260 },
+  formats: { src: "/discord-timestamp-formats.svg", width: 640, height: 600 },
+  zones: { src: "/discord-timestamp-time-zones.svg", width: 640, height: 400 },
+} as const;
+
+/** One of the Timestamp page illustrations with translated alt text and caption. */
+export function TimestampFigure({
+  image,
+  alt,
+  caption,
+}: {
+  image: keyof typeof timestampImages;
+  alt: string;
+  caption: string;
+}) {
+  const { src, width, height } = timestampImages[image];
+  return (
+    <figure>
+      <Image
+        src={src}
+        alt={alt}
+        width={width}
+        height={height}
+        unoptimized
+        className="h-auto w-full max-w-xl rounded-xl"
+      />
+      <figcaption className="mt-2 text-sm text-muted">{caption}</figcaption>
+    </figure>
+  );
+}
+
+/** The timestamp style table with translated names and uses; examples come from Discord's docs. */
+export function TimestampStyleTable({
+  headers,
+  styles,
+}: {
+  headers: readonly [string, string, string, string];
+  styles: Record<TimestampStyleCode, { name: string; use: string }>;
+}) {
+  return (
+    <div className="overflow-x-auto">
+      <table className="min-w-[36rem]">
+        <thead>
+          <tr>
+            {headers.map((header) => (
+              <th key={header} scope="col">
+                {header}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {timestampStyles.map((style) => (
+            <tr key={style.code}>
+              <td>{styles[style.code].name}</td>
+              <td className="whitespace-nowrap">
+                <code>&lt;t:…:{style.code}&gt;</code>
+              </td>
+              <td>{style.docsExample}</td>
+              <td>{styles[style.code].use}</td>
             </tr>
           ))}
         </tbody>

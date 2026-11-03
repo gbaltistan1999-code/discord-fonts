@@ -177,14 +177,26 @@ export function zonedToUtc(fields: DateTimeFields, timeZone: string): { ms: numb
 // Input parsing
 // ---------------------------------------------------------------------------
 
-export type Parsed<T> = { ok: true; value: T } | { ok: false; error: string };
+/** Stable ids for every message below, so the page can show them in the reader's language. */
+export type TimestampIssue =
+  | "invalidDate"
+  | "invalidTime"
+  | "dateDoesNotExist"
+  | "unixEmpty"
+  | "unixNotNumber"
+  | "unixTooLarge"
+  | "outOfRange"
+  | "before1970"
+  | "farFuture";
+
+export type Parsed<T> = { ok: true; value: T } | { ok: false; error: string; code: TimestampIssue };
 
 /** Reads the value of an `<input type="date">` and `<input type="time">`. */
 export function parseDateTime(date: string, time: string): Parsed<DateTimeFields> {
   const d = /^(-?\d{4,6})-(\d{2})-(\d{2})$/.exec(date.trim());
-  if (!d) return { ok: false, error: "Enter a valid date." };
+  if (!d) return { ok: false, error: "Enter a valid date.", code: "invalidDate" };
   const t = /^(\d{2}):(\d{2})(?::(\d{2})(?:\.\d+)?)?$/.exec(time.trim());
-  if (!t) return { ok: false, error: "Enter a valid time." };
+  if (!t) return { ok: false, error: "Enter a valid time.", code: "invalidTime" };
 
   const fields: DateTimeFields = {
     year: Number(d[1]),
@@ -195,7 +207,7 @@ export function parseDateTime(date: string, time: string): Parsed<DateTimeFields
     second: Number(t[3] ?? 0),
   };
   if (fields.hour > 23 || fields.minute > 59 || fields.second > 59) {
-    return { ok: false, error: "Enter a valid time." };
+    return { ok: false, error: "Enter a valid time.", code: "invalidTime" };
   }
   // Rejects dates such as February 30 by checking they survive a round trip.
   const check = new Date(fieldsAsUtc(fields));
@@ -204,7 +216,7 @@ export function parseDateTime(date: string, time: string): Parsed<DateTimeFields
     check.getUTCMonth() !== fields.month - 1 ||
     check.getUTCDate() !== fields.day
   ) {
-    return { ok: false, error: "That date doesn’t exist." };
+    return { ok: false, error: "That date doesn’t exist.", code: "dateDoesNotExist" };
   }
   return { ok: true, value: fields };
 }
@@ -222,31 +234,47 @@ export interface UnixInput {
  */
 export function parseUnixInput(input: string): Parsed<UnixInput> {
   const cleaned = input.trim().replace(/[\s,_]/g, "");
-  if (!cleaned) return { ok: false, error: "Paste a Unix timestamp first." };
+  if (!cleaned) return { ok: false, error: "Paste a Unix timestamp first.", code: "unixEmpty" };
   if (!/^-?\d+$/.test(cleaned)) {
-    return { ok: false, error: "A Unix timestamp is a whole number, like 1793740800." };
+    return {
+      ok: false,
+      error: "A Unix timestamp is a whole number, like 1793740800.",
+      code: "unixNotNumber",
+    };
   }
   const digits = cleaned.replace("-", "").length;
   const unit = digits >= 12 ? "milliseconds" : "seconds";
   const ms = unit === "milliseconds" ? Number(cleaned) : Number(cleaned) * 1000;
   if (!Number.isSafeInteger(ms) || Math.abs(ms) > MAX_MS) {
-    return { ok: false, error: "That number is too large to be a date." };
+    return { ok: false, error: "That number is too large to be a date.", code: "unixTooLarge" };
   }
   return { ok: true, value: { seconds: toUnixSeconds(ms), unit } };
 }
 
 /** Error for instants JavaScript can't represent, or a warning for unusual ones. */
-export function checkRange(ms: number): { error?: string; warning?: string } {
-  if (!Number.isFinite(ms) || Math.abs(ms) > MAX_MS) return { error: "That date is out of range." };
+export function checkRange(ms: number): {
+  error?: string;
+  warning?: string;
+  code?: TimestampIssue;
+  year?: number;
+} {
+  if (!Number.isFinite(ms) || Math.abs(ms) > MAX_MS) {
+    return { error: "That date is out of range.", code: "outOfRange" };
+  }
   const year = new Date(ms).getUTCFullYear();
   if (ms < 0) {
     return {
+      code: "before1970",
       warning:
         "This is before January 1, 1970, so the Unix timestamp is negative. It may not display as expected in Discord.",
     };
   }
   if (year > 2100)
-    return { warning: `This is in the year ${year}. Double-check the date before you post it.` };
+    return {
+      code: "farFuture",
+      year,
+      warning: `This is in the year ${year}. Double-check the date before you post it.`,
+    };
   return {};
 }
 

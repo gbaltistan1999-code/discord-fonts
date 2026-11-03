@@ -17,8 +17,12 @@ import {
   toUnixSeconds,
   zonedFields,
   zonedToUtc,
+  type TimestampIssue,
   type ZonedStatus,
 } from "@/lib/discord-timestamp";
+import { timestampStrings } from "@/content/i18n/strings/timestamp";
+import type { TimestampStrings } from "@/content/i18n/types";
+import { fill } from "@/lib/i18n";
 import { useStoredState } from "@/lib/useStoredState";
 import { TimeZonePicker } from "./TimeZonePicker";
 import { useCopy } from "./ToastProvider";
@@ -54,10 +58,10 @@ const getClock = () => (clock ||= Date.now());
 const parseZone = (value: unknown) => (typeof value === "string" && isValidTimeZone(value) ? value : "");
 
 const OFFSETS = [
-  { label: "+15 min", ms: 15 * 60_000 },
-  { label: "+1 hour", ms: 3_600_000 },
-  { label: "+1 day", ms: 86_400_000 },
-  { label: "+1 week", ms: 7 * 86_400_000 },
+  { key: "plus15Min", ms: 15 * 60_000 },
+  { key: "plus1Hour", ms: 3_600_000 },
+  { key: "plus1Day", ms: 86_400_000 },
+  { key: "plus1Week", ms: 7 * 86_400_000 },
 ] as const;
 
 interface InputValues {
@@ -66,8 +70,8 @@ interface InputValues {
 }
 
 type Result =
-  | { ok: false; error: string }
-  | { ok: true; ms: number; seconds: number; status: ZonedStatus; warning?: string };
+  | { ok: false; code: TimestampIssue }
+  | { ok: true; ms: number; seconds: number; status: ZonedStatus; warning?: TimestampIssue; year?: number };
 
 const fieldClass =
   "h-12 w-full rounded-xl border border-border bg-surface px-3.5 text-base text-text shadow-sm outline-none focus:border-accent focus:ring-4 focus:ring-accent/15";
@@ -77,7 +81,14 @@ const chipClass =
 const copyClass =
   "shrink-0 rounded-full border border-border px-4 py-1.5 text-sm font-medium text-text transition-colors hover:border-text/30 hover:bg-surface-2";
 
-export function TimestampGenerator({ hero }: { hero?: React.ReactNode }) {
+export function TimestampGenerator({
+  hero,
+  strings: t = timestampStrings.en,
+}: {
+  hero?: React.ReactNode;
+  /** Interface text in the page's language (English by default). */
+  strings?: TimestampStrings;
+}) {
   const ids = {
     date: useId(),
     time: useId(),
@@ -119,11 +130,18 @@ export function TimestampGenerator({ hero }: { hero?: React.ReactNode }) {
   const result = useMemo((): Result | null => {
     if (!inputs.date || !inputs.time) return null;
     const parsed = parseDateTime(inputs.date, inputs.time);
-    if (!parsed.ok) return { ok: false, error: parsed.error };
+    if (!parsed.ok) return { ok: false, code: parsed.code };
     const { ms, status } = zonedToUtc(parsed.value, zone);
     const range = checkRange(ms);
-    if (range.error) return { ok: false, error: range.error };
-    return { ok: true, ms, seconds: toUnixSeconds(ms), status, warning: range.warning };
+    if (range.error) return { ok: false, code: range.code ?? "outOfRange" };
+    return {
+      ok: true,
+      ms,
+      seconds: toUnixSeconds(ms),
+      status,
+      warning: range.warning ? range.code : undefined,
+      year: range.year,
+    };
   }, [inputs.date, inputs.time, zone]);
 
   const ok = result?.ok ? result : null;
@@ -156,7 +174,7 @@ export function TimestampGenerator({ hero }: { hero?: React.ReactNode }) {
   function loadUnix() {
     const parsed = parseUnixInput(unixText);
     if (!parsed.ok) {
-      setUnixMessage({ error: true, text: parsed.error });
+      setUnixMessage({ error: true, text: t.issues[parsed.code] });
       return;
     }
     const { seconds: pasted, unit } = parsed.value;
@@ -165,10 +183,7 @@ export function TimestampGenerator({ hero }: { hero?: React.ReactNode }) {
     setFromInstant(pasted * 1000, true, needsSeconds);
     setUnixMessage({
       error: false,
-      text:
-        unit === "milliseconds"
-          ? `Read as milliseconds and converted to ${pasted} seconds.`
-          : `Loaded ${pasted} into the date and time above.`,
+      text: fill(unit === "milliseconds" ? t.unixReadAsMs : t.unixLoaded, { seconds: pasted }),
     });
   }
 
@@ -177,13 +192,13 @@ export function TimestampGenerator({ hero }: { hero?: React.ReactNode }) {
   if (ok) {
     const shown = toInputValues(zonedFields(ok.ms, zone), withSeconds).time;
     if (ok.status === "skipped") {
-      notice = `${inputs.time} doesn’t exist in ${zone} on that date because the clocks jump forward, so ${shown} is used instead.`;
+      notice = fill(t.skipped, { time: inputs.time, zone, shown });
     } else if (ok.status === "repeated") {
-      notice = `${inputs.time} happens twice in ${zone} on that date because the clocks go back. The first one (${offsetLabel(ok.ms, zone)}) is used.`;
+      notice = fill(t.repeated, { time: inputs.time, zone, offset: offsetLabel(ok.ms, zone) });
     }
   }
-  const error = result && !result.ok ? result.error : null;
-  const warning = ok?.warning;
+  const error = result && !result.ok ? t.issues[result.code] : null;
+  const warning = ok?.warning ? fill(t.issues[ok.warning], { year: ok.year ?? "" }) : undefined;
 
   const preview = (code: (typeof timestampStyles)[number]["code"]) =>
     ms === null || !hydrated ? "…" : formatPreview(ms, code, { now });
@@ -197,7 +212,7 @@ export function TimestampGenerator({ hero }: { hero?: React.ReactNode }) {
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-[1fr_1fr_1.4fr]">
           <div>
             <label htmlFor={ids.date} className={labelClass}>
-              Date
+              {t.date}
             </label>
             <input
               id={ids.date}
@@ -210,7 +225,7 @@ export function TimestampGenerator({ hero }: { hero?: React.ReactNode }) {
           </div>
           <div>
             <label htmlFor={ids.time} className={labelClass}>
-              Time
+              {t.time}
             </label>
             <input
               id={ids.time}
@@ -224,7 +239,7 @@ export function TimestampGenerator({ hero }: { hero?: React.ReactNode }) {
           </div>
           <div className="sm:col-span-2 lg:col-span-1">
             <label htmlFor={ids.zone} className={labelClass}>
-              Time zone
+              {t.timeZone}
             </label>
             <TimeZonePicker
               id={ids.zone}
@@ -235,20 +250,17 @@ export function TimestampGenerator({ hero }: { hero?: React.ReactNode }) {
               instant={ms ?? loadTime ?? 0}
               localZone={localZone}
               className={fieldClass}
+              strings={t.zonePicker}
             />
             <p id={ids.zoneHint} className="mt-1.5 flex flex-wrap gap-x-3 px-1 text-xs text-muted">
-              <span>
-                {hydrated && ms !== null
-                  ? `${zone} · ${offsetLabel(ms, zone)}`
-                  : "Click to see every time zone, or type a city"}
-              </span>
+              <span>{hydrated && ms !== null ? `${zone} · ${offsetLabel(ms, zone)}` : t.zoneHint}</span>
               {hydrated && zone !== localZone && (
                 <button
                   type="button"
                   onClick={() => setSavedZone("")}
                   className="font-medium text-accent underline underline-offset-2"
                 >
-                  Use my time zone ({localZone})
+                  {fill(t.useMyZone, { zone: localZone })}
                 </button>
               )}
             </p>
@@ -263,17 +275,17 @@ export function TimestampGenerator({ hero }: { hero?: React.ReactNode }) {
             }
             className="inline-flex h-11 items-center rounded-full bg-accent-solid px-5 text-sm font-semibold text-on-accent transition-opacity hover:opacity-90"
           >
-            Now
+            {t.now}
           </button>
           {OFFSETS.map((offset) => (
             <button
-              key={offset.label}
+              key={offset.key}
               type="button"
               disabled={ms === null}
               onClick={() => ms !== null && setFromInstant(ms + offset.ms, false)}
               className={chipClass}
             >
-              {offset.label}
+              {t[offset.key]}
             </button>
           ))}
           <button
@@ -282,7 +294,7 @@ export function TimestampGenerator({ hero }: { hero?: React.ReactNode }) {
             onClick={() => setValue(base)}
             className={chipClass}
           >
-            Reset
+            {t.reset}
           </button>
           <label
             htmlFor={ids.seconds}
@@ -298,7 +310,7 @@ export function TimestampGenerator({ hero }: { hero?: React.ReactNode }) {
               }}
               className="size-4 accent-[var(--accent-solid)]"
             />
-            Include seconds
+            {t.includeSeconds}
           </label>
         </div>
 
@@ -316,7 +328,7 @@ export function TimestampGenerator({ hero }: { hero?: React.ReactNode }) {
           }}
         >
           <label htmlFor={ids.unix} className={labelClass}>
-            Paste a Unix timestamp <span className="font-normal text-muted">(seconds or milliseconds)</span>
+            {t.unixLabel} <span className="font-normal text-muted">{t.unixUnits}</span>
           </label>
           <div className="flex gap-2">
             <input
@@ -328,14 +340,14 @@ export function TimestampGenerator({ hero }: { hero?: React.ReactNode }) {
                 setUnixText(e.target.value);
                 setUnixMessage(null);
               }}
-              placeholder="e.g. 1793740800"
+              placeholder={t.unixPlaceholder}
               autoComplete="off"
               aria-describedby={ids.unixHint}
               aria-invalid={unixMessage?.error ?? false}
               className={`${fieldClass} font-mono`}
             />
             <button type="submit" className={`${chipClass} h-12 shrink-0`}>
-              Load
+              {t.load}
             </button>
           </div>
           <p id={ids.unixHint} aria-live="polite" className="mt-1.5 px-1 text-xs">
@@ -344,7 +356,7 @@ export function TimestampGenerator({ hero }: { hero?: React.ReactNode }) {
                 {unixMessage.text}
               </span>
             ) : (
-              <span className="text-muted">Numbers with 12 or more digits are read as milliseconds.</span>
+              <span className="text-muted">{t.unixHint}</span>
             )}
           </p>
         </form>
@@ -355,23 +367,21 @@ export function TimestampGenerator({ hero }: { hero?: React.ReactNode }) {
         <div className="flex flex-wrap items-end justify-between gap-3">
           <div>
             <h2 id={ids.results} className="text-xl font-semibold tracking-tight">
-              Your Discord timestamp codes
+              {t.resultsTitle}
             </h2>
-            <p className="mt-1 text-sm text-muted">
-              Previews use your device’s language and time zone. Each viewer sees their own.
-            </p>
+            <p className="mt-1 text-sm text-muted">{t.resultsNote}</p>
           </div>
           <div className="flex items-center gap-2 rounded-xl border border-border bg-surface px-3 py-2 shadow-sm">
-            <span className="text-xs text-muted">Unix time</span>
+            <span className="text-xs text-muted">{t.unixTime}</span>
             <code className="font-mono text-base font-semibold text-text tabular-nums">{seconds ?? "…"}</code>
             <button
               type="button"
               disabled={seconds === null}
-              onClick={() => seconds !== null && handleCopy("unix", String(seconds), "Unix timestamp")}
+              onClick={() => seconds !== null && handleCopy("unix", String(seconds), t.unixCopyLabel)}
               className={copyClass}
             >
-              {copiedKey === "unix" ? "Copied" : "Copy"}
-              <span className="sr-only"> Unix timestamp</span>
+              {copiedKey === "unix" ? t.copied : t.copy}
+              <span className="sr-only"> {t.unixCopyLabel}</span>
             </button>
           </div>
         </div>
@@ -379,24 +389,26 @@ export function TimestampGenerator({ hero }: { hero?: React.ReactNode }) {
         <ul className="mt-4 divide-y divide-border overflow-hidden rounded-2xl border border-border bg-surface shadow-sm">
           {timestampStyles.map((style) => {
             const code = seconds === null ? "…" : discordTag(seconds, style.code);
+            const { name, use } = t.styles[style.code];
+            const copyLabel = fill(t.codeCopyLabel, { name });
             return (
               <li
                 key={style.code}
                 className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-3 gap-y-1.5 px-4 py-3 sm:grid-cols-[11rem_minmax(0,1fr)_minmax(0,13rem)_auto] sm:gap-x-5 sm:px-5"
               >
                 <div className="min-w-0">
-                  <p className="text-sm font-medium text-text">{style.name}</p>
-                  <p className="text-xs text-muted">{style.use}</p>
+                  <p className="text-sm font-medium text-text">{name}</p>
+                  <p className="text-xs text-muted">{use}</p>
                 </div>
                 <div className="sm:order-4">
                   <button
                     type="button"
                     disabled={seconds === null}
-                    onClick={() => seconds !== null && handleCopy(style.code, code, `${style.name} code`)}
+                    onClick={() => seconds !== null && handleCopy(style.code, code, copyLabel)}
                     className={copyClass}
                   >
-                    {copiedKey === style.code ? "Copied" : "Copy"}
-                    <span className="sr-only"> {style.name} code</span>
+                    {copiedKey === style.code ? t.copied : t.copy}
+                    <span className="sr-only"> {copyLabel}</span>
                   </button>
                 </div>
                 <p className="col-span-2 min-w-0 text-lg break-words text-text sm:order-2 sm:col-span-1">
@@ -413,32 +425,33 @@ export function TimestampGenerator({ hero }: { hero?: React.ReactNode }) {
         {/* Generic dark chat mockup (not Discord's interface) showing the combined pattern. */}
         <div className="mt-6 grid items-start gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,22rem)]">
           <div className="rounded-2xl bg-zinc-900 p-4 text-zinc-100 shadow-sm sm:p-5">
-            <p className="text-[11px] font-semibold tracking-wide text-zinc-400 uppercase">Message preview</p>
+            <p className="text-[11px] font-semibold tracking-wide text-zinc-400 uppercase">
+              {t.messagePreview}
+            </p>
             <div className="mt-3 flex gap-3">
               <span
                 aria-hidden="true"
                 className="grid size-10 shrink-0 place-items-center rounded-full bg-accent-solid font-semibold text-on-accent"
               >
-                M
+                {t.sampleAuthor.charAt(0)}
               </span>
               <div className="min-w-0">
                 <p className="flex flex-wrap items-baseline gap-x-2">
-                  <span className="font-semibold text-zinc-50">Mod Team</span>
-                  <span className="text-xs text-zinc-400">Today</span>
+                  <span className="font-semibold text-zinc-50">{t.sampleAuthor}</span>
+                  <span className="text-xs text-zinc-400">{t.today}</span>
                 </p>
                 <p className="mt-0.5 leading-relaxed">
-                  Event starts <strong className="rounded bg-zinc-700/70 px-1 py-0.5">{preview("F")}</strong>{" "}
-                  (<span className="rounded bg-zinc-700/70 px-1 py-0.5">{preview("R")}</span>)
+                  {t.eventStarts}{" "}
+                  <strong className="rounded bg-zinc-700/70 px-1 py-0.5">{preview("F")}</strong> (
+                  <span className="rounded bg-zinc-700/70 px-1 py-0.5">{preview("R")}</span>)
                 </p>
               </div>
             </div>
           </div>
           <div className="flex flex-col justify-between gap-3 rounded-2xl border border-border bg-surface p-4 shadow-sm sm:p-5">
             <div>
-              <p className="text-sm font-semibold text-text">Copy combined</p>
-              <p className="mt-0.5 text-xs text-muted">
-                Full date plus a live countdown, the most common pattern.
-              </p>
+              <p className="text-sm font-semibold text-text">{t.combinedTitle}</p>
+              <p className="mt-0.5 text-xs text-muted">{t.combinedDescription}</p>
               <code className="mt-3 block font-mono text-sm break-all text-muted">
                 {seconds === null ? "…" : combinedTag(seconds)}
               </code>
@@ -447,11 +460,11 @@ export function TimestampGenerator({ hero }: { hero?: React.ReactNode }) {
               type="button"
               disabled={seconds === null}
               onClick={() =>
-                seconds !== null && handleCopy("combined", combinedTag(seconds), "combined code")
+                seconds !== null && handleCopy("combined", combinedTag(seconds), t.combinedLabel)
               }
               className="inline-flex h-11 items-center justify-center rounded-full bg-accent-solid px-5 text-sm font-semibold text-on-accent transition-opacity hover:opacity-90 disabled:opacity-50"
             >
-              {copiedKey === "combined" ? "Copied" : "Copy combined code"}
+              {copiedKey === "combined" ? t.copied : t.copyCombined}
             </button>
           </div>
         </div>
