@@ -21,6 +21,11 @@ export const siteConfig = {
     "Free Discord Fonts generator: turn text into 170+ cool styles to copy and paste. Pick a Discord font for your name, nickname, server, bio or messages.",
   ogImageAlt: "Discord Fonts generator – copy and paste cool Discord font styles",
   contactEmail: "eshfaqihmed@gmail.com",
+  /**
+   * Web3Forms access key for the contact form (public by design; it only lets the form email you).
+   * Empty means the form opens the visitor's email app instead.
+   */
+  web3formsKey: "",
   disclaimer: "This site is not affiliated with or endorsed by Discord Inc.",
   /** Google Search Console HTML-tag verification token (rendered as google-site-verification). */
   googleSiteVerification: "9s4EYvOAQb0JA1TvevOu3OSVYPhO9LHHWHpWL1-qan0",

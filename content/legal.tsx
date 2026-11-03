@@ -39,29 +39,6 @@ export function AboutContent() {
   );
 }
 
-export function ContactContent() {
-  return (
-    <>
-      <p>
-        We’d love to hear from you. Whether you have a question, a font style request, a bug report or a
-        business enquiry, email us at {email}.
-      </p>
-      <h2>What to include</h2>
-      <ul>
-        <li>For bug reports: your device, browser, and the style or text that caused the problem.</li>
-        <li>For style requests: an example of the look you want, pasted as text or described in words.</li>
-        <li>For copyright or legal matters: the page URL and the details of your request.</li>
-      </ul>
-      <p>We usually reply within a few business days.</p>
-      <h2>Please note</h2>
-      <p>
-        We are not Discord and cannot help with Discord accounts, bans, billing or server issues. For those,
-        please contact Discord’s official support. {siteConfig.disclaimer}
-      </p>
-    </>
-  );
-}
-
 export function PrivacyContent() {
   return (
     <>
@@ -88,6 +65,13 @@ export function PrivacyContent() {
         These logs are used for security and to keep the site running, and are retained only as long as the
         provider requires.
       </p>
+      <h2>Contact form</h2>
+      <p>
+        If you use our <Link href="/contact">contact form</Link>, the name, email address and message you
+        enter are sent to us through Web3Forms, a form delivery service, which emails them to our inbox. We
+        use them only to reply to you and delete them when they are no longer needed. You can also email us
+        directly at {email}.
+      </p>
       <h2>Advertising and analytics</h2>
       <p>
         We do not currently run advertising or third-party analytics. If we add them in the future, they may
@@ -102,8 +86,8 @@ export function PrivacyContent() {
       <h2>Your rights</h2>
       <p>
         Depending on where you live (for example under the UK GDPR, Canada’s PIPEDA, Australia’s Privacy Act
-        or US state laws), you may have rights to access or delete personal information. Because we don’t
-        collect personal information through the tools, there is usually nothing to access, but you can
+        or US state laws), you may have rights to access or delete personal information. Apart from messages
+        you send us, we don’t collect personal information, so there is usually nothing to access, but you can
         contact us with any request at {email}.
       </p>
       <h2>Changes</h2>
