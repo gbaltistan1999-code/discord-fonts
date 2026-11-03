@@ -185,6 +185,42 @@ for (let code = 0x21; code <= 0x7e; code++) {
 
 const circledDigits = { "0": "⓪", ...zipMap("123456789", "①②③④⑤⑥⑦⑧⑨") };
 
+// Emoji are several code points each, so this one is zipped by hand.
+const EMOJI_LETTERS = [
+  "🅰️",
+  "🅱️",
+  "☪️",
+  "↩️",
+  "📧",
+  "🎏",
+  "🌀",
+  "♓",
+  "ℹ️",
+  "🗾",
+  "🎋",
+  "👢",
+  "Ⓜ️",
+  "🎵",
+  "⭕",
+  "🅿️",
+  "🍳",
+  "🌱",
+  "💲",
+  "🌴",
+  "⛎",
+  "✅",
+  "〰️",
+  "❌",
+  "💹",
+  "💤",
+];
+const emojiLetters: CharMap = Object.fromEntries(
+  EMOJI_LETTERS.flatMap((emoji, i) => [
+    [LOWER[i]!, emoji],
+    [UPPER[i]!, emoji],
+  ]),
+);
+
 export const charMaps = {
   boldSerif: rangeMap(0x1d400, 0x1d41a, 0x1d7ce),
   italicSerif: rangeMap(0x1d434, 0x1d44e, null, { h: "ℎ" }),
@@ -265,6 +301,15 @@ export const charMaps = {
   fantasy: alphabetMap("ᗩᗷᑢᕲᘿᖴᘜᕼᓰᒚᛕᒪᘻᘉᓍᕵᕴᖇSᖶᑘᐺᘺ᙭ᖻᗱ"),
   thai: alphabetMap("ค๒ς๔єŦﻮђเןкɭ๓ภ๏קợгรՇยשฬאץչ"),
   stroked: alphabetMap("ⱥƀȼđɇfǥħɨɉꝁłɱŋøᵽꝗɍꞩŧʉꝟⱳӿɏƶ", "ȺɃȻĐɆ₣ǤĦƗɈꝀŁⱮŊØⱣꝖɌꞨŦɄꝞⱲӾɎƵ"),
+  squiggleGreek: alphabetMap("αɓçɗɛƒɠɦɩʝƙℓɱɲσρφɾʂƭµѵωχყʑ"),
+  squiggleCurls: alphabetMap("ąცɔժɛƒցհìʝҟӀʍղօթզɾʂէմѵաχվʐ"),
+  squiggleScript: alphabetMap("ค๒ς๔૯Բ૭ҺɿʆқՆɱՈ૦ƿҩՐς੮υ౮ω૪עઽ"),
+  russianCaps: alphabetMap("ДБҀDЄFGНIJКŁМИФРQЯSГЦVЩЖУZ"),
+  russianMix: alphabetMap("абсдєfgнїјкlмпөрqя$тцvшжуz", "ДБCDЄFGНЇЈКLМИӨРQЯ$ТЦVШЖУZ"),
+  crownedCaps: alphabetMap("ǎƀčďěƒǧȟǐǰǩľḿňőṗʠřšťűṽŵẍŷž", "ǍɃČĎĚƑǦȞǏĴǨĽḾŇŐṖQŘŠŤŰṼŴẌŶŽ"),
+  symbolLetters: alphabetMap("♠♭☾∂☰₣❡♓♀⌡☈↳♚♫☉℘♛☋ⓢ☂∪✔♕✖☿☡"),
+  emojiLetters,
+  runic: alphabetMap("ᚨᛒᚲᛞᛖᚠᚷᚺᛁᛃᚴᛚᛗᚾᛟᛈᛩᚱᛋᛏᚢᚡᚹᛪᚤᛉ"),
 } satisfies Record<string, CharMap>;
 
 export type CharMapName = keyof typeof charMaps;
@@ -1274,6 +1319,185 @@ export const fontStyles: readonly FontStyle[] = [
   { id: "caron", name: "Caron Accent", categories: ["glitch"], transform: marks("̌") },
   { id: "cross-below", name: "Cross Below", categories: ["glitch"], transform: marks("͓") },
   { id: "arrow-below", name: "Arrow Below", categories: ["glitch"], transform: marks("͎") },
+
+  // More letter sets
+  {
+    id: "squiggle-greek",
+    name: "Squiggle Greek",
+    categories: ["decorative"],
+    transform: mapWith("squiggleGreek"),
+  },
+  {
+    id: "squiggle-curls",
+    name: "Squiggle Curls",
+    categories: ["decorative"],
+    transform: mapWith("squiggleCurls"),
+  },
+  {
+    id: "squiggle-script",
+    name: "Squiggle Script",
+    categories: ["decorative"],
+    transform: mapWith("squiggleScript"),
+  },
+  { id: "russian-caps", name: "Russian Caps", categories: ["decorative"], transform: caps("russianCaps") },
+  { id: "russian-mix", name: "Russian Mix", categories: ["decorative"], transform: mapWith("russianMix") },
+  { id: "crowned-caps", name: "Crowned Caps", categories: ["decorative"], transform: caps("crownedCaps") },
+  {
+    id: "symbol-letters",
+    name: "Symbol Letters",
+    categories: ["decorative"],
+    transform: mapWith("symbolLetters"),
+  },
+  {
+    id: "emoji-letters",
+    name: "Emoji Letters",
+    categories: ["decorative"],
+    transform: mapWith("emojiLetters"),
+  },
+  {
+    id: "runic",
+    name: "Runic",
+    categories: ["gothic", "decorative"],
+    transform: mapWith("runic"),
+    limitedSupport: true,
+  },
+  {
+    id: "flipped-letters",
+    name: "Flipped Letters",
+    categories: ["glitch"],
+    transform: mapWith("upsideDown"),
+  },
+
+  // Weird marks under and over letters
+  { id: "bridge-below", name: "Bridge Below", categories: ["glitch"], transform: marks("\u033a") },
+  { id: "asterisk-below", name: "Asterisk Below", categories: ["glitch"], transform: marks("\u0359") },
+  { id: "plus-below", name: "Plus Below", categories: ["glitch"], transform: marks("\u031f") },
+  { id: "line-below", name: "Line Below", categories: ["glitch"], transform: marks("\u0329") },
+  { id: "x-above-below", name: "X Above & Below", categories: ["glitch"], transform: marks("\u033d\u0353") },
+
+  // Message frames: good morning, good night, love, kiss, gym and attitude
+  {
+    id: "ribbon-blossom",
+    name: "Ribbon Blossom",
+    categories: ["aesthetic", "cursive"],
+    transform: wrap("🎀🌸 ", " 🌸🎀", mapWith("italicSerif")),
+  },
+  {
+    id: "sunny-strike",
+    name: "Sunny Strike",
+    categories: ["aesthetic", "glitch"],
+    transform: wrap("🌞“", "”🌞", marks("̶", true)),
+  },
+  {
+    id: "star-trail",
+    name: "Star Trail",
+    categories: ["decorative"],
+    transform: wrap("★¸.•°*”˜˜”*°•.¸☆ ✿ ", " ✿ ☆¸.•°*”˜˜”*°•.¸★", mapWith("currency")),
+  },
+  {
+    id: "golden-heart",
+    name: "Golden Heart",
+    categories: ["cursive", "bold"],
+    transform: wrap("💛 ", " 💛", mapWith("boldItalicSerif")),
+  },
+  {
+    id: "sleepy-moon",
+    name: "Sleepy Moon",
+    categories: ["aesthetic"],
+    transform: wrap("💤🌙 ", " 🌙💤", (text) => spaceOut(text.toUpperCase())),
+  },
+  {
+    id: "shooting-star",
+    name: "Shooting Star",
+    categories: ["aesthetic", "decorative"],
+    transform: wrap("🌠⋆☽ ", " ☾⋆🌠", mapWith("bubble")),
+  },
+  {
+    id: "kiss-lips",
+    name: "Kiss Lips",
+    categories: ["gothic", "bold"],
+    transform: wrap("💋 ", " 💋", mapWith("boldFraktur")),
+  },
+  {
+    id: "kissy-face",
+    name: "Kissy Face",
+    categories: ["cursive", "aesthetic"],
+    transform: wrap("( ˘ ³˘)♥ ", "", mapWith("italicSerif")),
+  },
+  {
+    id: "cloud-spaced",
+    name: "Cloud Spaced",
+    categories: ["aesthetic"],
+    transform: wrap("☁☁ ", " ☁☁", (text) => spaceOut(text.toUpperCase())),
+  },
+  {
+    id: "rainbow-paws",
+    name: "Rainbow Paws",
+    categories: ["gothic", "aesthetic"],
+    transform: wrap("🐾🌈 ", " 🌈🐾", mapWith("fraktur")),
+  },
+  {
+    id: "unicorn",
+    name: "Unicorn",
+    categories: ["decorative"],
+    transform: wrap("🦄🌈 ", " 🌈🦄", mapWith("stroked")),
+  },
+  {
+    id: "cherry-cake",
+    name: "Cherry Cake",
+    categories: ["aesthetic"],
+    transform: wrap("🍒🍰 ", " 🍰🍒", mapWith("doubleStruck")),
+  },
+  {
+    id: "gym-power",
+    name: "Gym Power",
+    categories: ["bold"],
+    transform: wrap("💥⚡💪 ", " 💪⚡💥", caps("boldSans")),
+  },
+  {
+    id: "beast-mode",
+    name: "Beast Mode",
+    categories: ["bold", "cursive"],
+    transform: wrap("🏋️🔥 ", " 🔥🏋️", mapWith("boldScript")),
+  },
+  {
+    id: "devil-kiss",
+    name: "Devil Kiss",
+    categories: ["cursive", "bold"],
+    transform: wrap("😈🖤💋 ", " 💋🖤😈", mapWith("boldScript")),
+  },
+  {
+    id: "sniper",
+    name: "Sniper",
+    categories: ["gothic"],
+    transform: wrap("▄︻デ══━一 🔥 ", " 🔥", mapWith("fraktur")),
+  },
+  {
+    id: "sword-shield",
+    name: "Sword & Shield",
+    categories: ["aesthetic"],
+    transform: wrap("⚔️🛡️ ", " 🛡️⚔️", marks("̲", true)),
+  },
+  {
+    id: "boss-stars",
+    name: "Boss Stars",
+    categories: ["bold", "decorative"],
+    transform: wrap("╰☆☆ ", " ☆☆╮", mapWith("negativeSquared")),
+    limitedSupport: true,
+  },
+  {
+    id: "love-brackets",
+    name: "Love Brackets",
+    categories: ["decorative"],
+    // One 【word】 per word, with hearts between: ღ 【I】 ❤️ 【LOVE】 ღ
+    transform: wrap("ღ ", " ღ", (text) =>
+      text
+        .trim()
+        .split(/\s+/)
+        .map((word) => `【${word.toUpperCase()}】`)
+        .join(" ❤️ "),
+    ),
+  },
 ];
 
 // ---------------------------------------------------------------------------
