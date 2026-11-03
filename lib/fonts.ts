@@ -356,6 +356,24 @@ const eachChar =
       .map((g) => (isWhitespace(g) ? g : `${prefix}${g}${suffix}`))
       .join("");
 
+/** The text twice in two styles, e.g. "𝕴 𝖑𝖔𝖛𝖊 𝖞𝖔𝖚 💋 ł ŁØVɆ ɎØɄ". */
+const pair =
+  (first: Transform, middle: string, second: Transform): Transform =>
+  (text, options) =>
+    `${first(text, options)}${middle}${second(text, options)}`;
+
+/** Each word keeps its first letter and shrinks the rest: I Lₒᵥₑ Yₒᵤ. */
+const tailSubscript: Transform = (text) =>
+  text
+    .split(" ")
+    .map((word) => {
+      const [first = "", ...rest] = graphemes(word);
+      return first + applyMap(rest.join(""), charMaps.subscript);
+    })
+    .join(" ");
+
+const WORD_HEARTS = ["💗", "💝", "❤️"];
+
 const MIX_POOL: readonly CharMapName[] = [
   "boldSerif",
   "script",
@@ -1484,6 +1502,93 @@ export const fontStyles: readonly FontStyle[] = [
     categories: ["bold", "decorative"],
     transform: wrap("╰☆☆ ", " ☆☆╮", mapWith("negativeSquared")),
     limitedSupport: true,
+  },
+  {
+    id: "kiss-gothic",
+    name: "Kiss Gothic",
+    categories: ["gothic", "bold"],
+    transform: wrap("💋 ", "", pair(mapWith("boldFraktur"), " 💋 ", caps("stroked"))),
+  },
+  {
+    id: "heart-sticker",
+    name: "Heart Sticker",
+    categories: ["cursive", "decorative"],
+    transform: wrap("💟 ", "", pair(mapWith("script"), " 💟 ", mixed(11))),
+  },
+  {
+    id: "black-heart",
+    name: "Black Heart",
+    categories: ["aesthetic"],
+    transform: wrap("🖤 ", " 🖤", tailSubscript),
+  },
+  {
+    id: "sparkle-heart-caps",
+    name: "Sparkle Heart Caps",
+    categories: ["aesthetic", "decorative"],
+    transform: wrap("💖 ", "", pair(mapWith("smallCapsAll"), " 💖 | ", mapWith("kanji"))),
+  },
+  {
+    id: "planet-love",
+    name: "Planet Love",
+    categories: ["bold", "cursive"],
+    transform: wrap("🪐 ", "", pair(mapWith("greekish"), " 🪐 ", mapWith("boldItalicSerif"))),
+  },
+  {
+    id: "heart-words",
+    name: "Heart Words",
+    categories: ["decorative"],
+    // ღ 💗【I】💝【LOVE】❤️【YOU】ღ 𝐼 𝐿𝑜𝑣𝑒 𝑌𝑜𝑢
+    transform: (text) => {
+      const words = text.trim().split(/\s+/);
+      const boxed = words.map((word, i) => `${WORD_HEARTS[i % WORD_HEARTS.length]}【${word.toUpperCase()}】`);
+      return `ღ ${boxed.join("")} ღ ${applyMap(text, charMaps.script)}`;
+    },
+  },
+  {
+    id: "teddy-dreams",
+    name: "Teddy Dreams",
+    categories: ["cursive"],
+    transform: wrap("🧸💤 ", "", pair(mapWith("boldScript"), " 💭 ", mapWith("monospace"))),
+  },
+  {
+    id: "dream-bed",
+    name: "Dream Bed",
+    categories: ["aesthetic"],
+    transform: wrap(
+      "🎶🛏️ ",
+      "",
+      pair((text) => text, " 💤🌀 ", mapWith("doubleStruck")),
+    ),
+  },
+  {
+    id: "sleepy-mix",
+    name: "Sleepy Mix",
+    categories: ["decorative"],
+    transform: wrap("😴🌠 ", "", pair(mapWith("monospace"), " 🌀🛏️ ", mixed(13))),
+  },
+  {
+    id: "sleep-tight",
+    name: "Sleep Tight",
+    categories: ["bold"],
+    transform: wrap("⭐ 💤 ", "", pair(mapWith("sans"), " 😄 ", caps("negativeCircled"))),
+  },
+  {
+    id: "galaxy-gothic",
+    name: "Galaxy Gothic",
+    categories: ["gothic"],
+    transform: wrap("🌀 ঔৣ☬ ", " ☬ঔৣ 🌀", mapWith("fraktur")),
+  },
+  {
+    id: "sunshine-mix",
+    name: "Sunshine Mix",
+    categories: ["decorative"],
+    transform: wrap("🌞✨ ", " ✨🌞", mixed(17)),
+  },
+  {
+    id: "coffee-time",
+    name: "Coffee Time",
+    categories: ["decorative"],
+    transform: wrap("☕ ", "! ☕", caps("circled")),
   },
   {
     id: "love-brackets",
