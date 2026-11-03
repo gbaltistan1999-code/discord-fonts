@@ -261,7 +261,7 @@ export function FontGenerator({
   ];
 
   const scopes: { id: Scope; label: string; icon?: React.ReactNode; badge?: number }[] = [
-    { id: "all", label: t.scopeAll },
+    { id: "all", label: t.scopeAll, icon: <GridIcon /> },
     { id: "favorites", label: t.favorites, icon: <HeartIcon filled={false} />, badge: favorites.length },
     { id: "recent", label: t.recent, icon: <HistoryIcon /> },
   ];
@@ -447,8 +447,13 @@ export function FontGenerator({
             />
           </div>
 
-          <div className="-mx-4 flex items-center gap-2 overflow-x-auto px-4 [scrollbar-width:none] sm:mx-0 sm:px-0">
-            <div role="group" aria-label={t.scopeGroup} className="flex shrink-0 gap-2">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+            {/* Three equal boxes on phones, pills from sm up. */}
+            <div
+              role="group"
+              aria-label={t.scopeGroup}
+              className="grid grid-cols-3 gap-2 sm:flex sm:shrink-0"
+            >
               {scopes.map((s) => {
                 const active = scope === s.id;
                 return (
@@ -460,24 +465,26 @@ export function FontGenerator({
                       setScope(s.id);
                       setLimit(PAGE_SIZE);
                     }}
-                    className={`inline-flex h-12 shrink-0 items-center gap-2 rounded-full border px-4 text-sm font-semibold transition-colors ${
+                    className={`flex min-w-0 flex-col items-center justify-center gap-1.5 rounded-xl border px-1.5 py-2.5 text-center text-xs leading-tight font-semibold transition-colors sm:h-12 sm:shrink-0 sm:flex-row sm:gap-2 sm:rounded-full sm:px-4 sm:py-0 sm:text-sm ${
                       active
                         ? "border-accent/50 bg-accent-soft text-accent"
                         : "border-border text-text hover:border-text/30 hover:bg-surface-2"
                     }`}
                   >
                     {s.icon}
-                    {s.label}
-                    {s.badge !== undefined && (
-                      <span className="grid min-w-6 place-items-center rounded-full bg-surface-2 px-1.5 text-xs tabular-nums text-text">
-                        {s.badge}
-                      </span>
-                    )}
+                    <span className="inline-flex items-center gap-1.5 sm:gap-2">
+                      {s.label}
+                      {s.badge !== undefined && (
+                        <span className="grid min-w-5 place-items-center rounded-full bg-surface-2 px-1.5 text-xs tabular-nums text-text sm:min-w-6">
+                          {s.badge}
+                        </span>
+                      )}
+                    </span>
                   </button>
                 );
               })}
             </div>
-            <p aria-live="polite" className="shrink-0 pl-1 text-sm font-medium text-muted tabular-nums">
+            <p aria-live="polite" className="pl-1 text-sm sm:shrink-0 font-medium text-muted tabular-nums">
               {fill(matched.length === 1 ? t.countOne : t.countMany, { count: matched.length })}
             </p>
           </div>
@@ -830,6 +837,17 @@ function HeartIcon({ filled }: { filled: boolean }) {
   return (
     <svg {...iconProps} fill={filled ? "currentColor" : "none"}>
       <path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z" />
+    </svg>
+  );
+}
+
+function GridIcon() {
+  return (
+    <svg {...iconProps}>
+      <rect x="4" y="4" width="6.5" height="6.5" rx="1.5" />
+      <rect x="13.5" y="4" width="6.5" height="6.5" rx="1.5" />
+      <rect x="4" y="13.5" width="6.5" height="6.5" rx="1.5" />
+      <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.5" />
     </svg>
   );
 }
