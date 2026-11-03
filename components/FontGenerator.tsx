@@ -15,6 +15,7 @@ import {
   type FontStyle,
 } from "@/lib/fonts";
 import { en } from "@/content/i18n/strings/en";
+import { simpleLast, stylishFirst } from "@/content/i18n/style-order";
 import type { GeneratorStrings } from "@/content/i18n/types";
 import { fill } from "@/lib/i18n";
 import { useStoredState } from "@/lib/useStoredState";
@@ -99,7 +100,7 @@ interface FontGeneratorProps {
   featured?: FeaturedStyles;
   /** Example text shown before the visitor types anything. */
   sampleText?: string;
-  /** Style ids listed first, in this order; the rest follow in registry order. */
+  /** Style ids listed first, in this order; then the stylish defaults, the rest, and plain effects last. */
   order?: readonly string[];
   /** Show the random styles after this many results instead of below the whole list. */
   randomAfter?: number;
@@ -119,11 +120,18 @@ interface FontGeneratorProps {
 
 type Variant = "cards" | "list";
 
-/** Move the given ids to the front, keeping every other style in its usual place. */
-function orderStyles(order: readonly string[] | undefined): readonly FontStyle[] {
-  if (!order?.length) return fontStyles;
-  const first = order.map(getFontStyle).filter((s): s is FontStyle => Boolean(s));
-  return [...first, ...fontStyles.filter((style) => !order.includes(style.id))];
+const toStyles = (ids: readonly string[]) => ids.map(getFontStyle).filter((s): s is FontStyle => Boolean(s));
+
+/** The page's own ids, then the stylish defaults, then everything else, with plain effects at the end. */
+function orderStyles(order: readonly string[] = []): readonly FontStyle[] {
+  const firstIds = [...order, ...stylishFirst.filter((id) => !order.includes(id))];
+  const lastIds = simpleLast.filter((id) => !firstIds.includes(id));
+  const placed = new Set([...firstIds, ...lastIds]);
+  return [
+    ...toStyles(firstIds),
+    ...fontStyles.filter((style) => !placed.has(style.id)),
+    ...toStyles(lastIds),
+  ];
 }
 
 export function FontGenerator({
