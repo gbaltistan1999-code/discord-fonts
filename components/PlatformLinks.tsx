@@ -2,21 +2,39 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { en } from "@/content/i18n/strings/en";
 import { platformPages } from "@/content/platforms";
+import { fill } from "@/lib/i18n";
 
-const links = [
-  { href: "/", label: "Discord Fonts" },
-  ...platformPages.map((page) => ({ href: `/${page.slug}`, label: `${page.name} Fonts` })),
-];
+export interface PlatformLinksProps {
+  title?: string;
+  /** The Discord fonts home in the page's language. */
+  homeHref?: string;
+  homeLabel?: string;
+  /** "{name} Fonts" */
+  platformFonts?: string;
+}
 
 /** Sidebar panel linking to the font generator for each social platform. */
-export function PlatformLinks() {
+export function PlatformLinks({
+  title = en.generator.platformsTitle,
+  homeHref = "/",
+  homeLabel = en.ui.links.discordFonts,
+  platformFonts = en.ui.platformFonts,
+}: PlatformLinksProps) {
   const pathname = usePathname();
+  const links = [
+    { href: homeHref, label: homeLabel },
+    ...platformPages.map((page) => ({
+      href: `/${page.slug}`,
+      label: fill(platformFonts, { name: page.name }),
+    })),
+  ];
 
   return (
     <nav aria-labelledby="platform-links" className="rounded-xl border border-border bg-surface p-4">
       <h2 id="platform-links" className="mb-3 text-xs font-semibold tracking-wider text-muted uppercase">
-        Social platforms
+        {title}
       </h2>
       <ul className="space-y-1.5">
         {links.map((link) => {

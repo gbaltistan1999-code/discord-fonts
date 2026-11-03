@@ -1,10 +1,11 @@
 "use client";
 
 import { useId, useState } from "react";
+import { en } from "@/content/i18n/strings/en";
+import type { FormattingStrings } from "@/content/i18n/types";
 import { ansiBackgroundColors, ansiBlock, ansiTextColors, markdownFormats } from "@/lib/formatting";
+import { fill } from "@/lib/i18n";
 import { useCopy } from "./ToastProvider";
-
-const SAMPLE_TEXT = "GG everyone";
 
 /** How each format renders in a chat message, for the visual preview only. */
 function renderPreview(id: string, text: string): React.ReactNode {
@@ -59,8 +60,18 @@ function renderPreview(id: string, text: string): React.ReactNode {
 const copyButtonClass =
   "shrink-0 rounded-md border border-border px-3 py-1.5 text-sm font-medium text-text transition-colors hover:border-text/30 hover:bg-surface";
 
-export function FormattingTool({ headingLevel = "h3" }: { headingLevel?: "h2" | "h3" }) {
+export function FormattingTool({
+  headingLevel = "h3",
+  strings: t = en.formatting,
+}: {
+  headingLevel?: "h2" | "h3";
+  /** Interface text in the page's language (English by default). */
+  strings?: FormattingStrings;
+}) {
   const Heading = headingLevel;
+  const name = (id: string, fallback: string) => t.formatNames[id] ?? fallback;
+  const colorName = (code: number, fallback: string) => t.colorNames[code] ?? fallback;
+  const [ansiBefore, ansiAfter = ""] = t.coloredDescription.split("{ansi}");
   const inputId = useId();
   const copy = useCopy();
   const [text, setText] = useState("");
@@ -69,7 +80,7 @@ export function FormattingTool({ headingLevel = "h3" }: { headingLevel?: "h2" | 
   const [bold, setBold] = useState(false);
   const [underline, setUnderline] = useState(false);
 
-  const source = text.trim() ? text : SAMPLE_TEXT;
+  const source = text.trim() ? text : t.sampleText;
   const ansi = ansiBlock(source, { color, background, bold, underline });
   const colorHex = ansiTextColors.find((c) => c.code === color)?.hex;
   const backgroundHex = ansiBackgroundColors.find((c) => c.code === background)?.hex;
@@ -77,29 +88,30 @@ export function FormattingTool({ headingLevel = "h3" }: { headingLevel?: "h2" | 
   return (
     <div>
       <label htmlFor={inputId} className="sr-only">
-        Text to format
+        {t.inputLabel}
       </label>
       <textarea
         id={inputId}
         value={text}
         onChange={(e) => setText(e.target.value)}
-        placeholder={`Type a message, e.g. “${SAMPLE_TEXT}”`}
+        placeholder={fill(t.placeholder, { sample: t.sampleText })}
         rows={1}
         maxLength={2000}
         className="block min-h-14 w-full resize-none rounded-xl border border-border bg-surface px-4 py-3.5 text-lg text-text shadow-sm transition-[border-color,box-shadow] outline-none placeholder:text-muted focus:border-accent focus:ring-4 focus:ring-accent/15 [field-sizing:content]"
       />
 
       <ul
-        aria-label="Discord markdown formats"
+        aria-label={t.formatsLabel}
         className="mt-4 divide-y divide-border rounded-xl border border-border bg-surface"
       >
         {markdownFormats.map((format) => {
           const output = format.apply(source);
+          const label = name(format.id, format.name);
           return (
             <li key={format.id} className="flex items-center gap-3 px-4 py-3 sm:gap-4 sm:px-5">
               <div className="min-w-0 flex-1 sm:flex sm:items-center sm:gap-4">
                 <p className="flex items-baseline gap-2 text-xs sm:w-36 sm:shrink-0 sm:flex-col sm:gap-0.5">
-                  <span className="text-muted">{format.name}</span>
+                  <span className="text-muted">{label}</span>
                   <code className="font-mono text-[0.7rem] text-muted/90">{format.syntax}</code>
                 </p>
                 <div
@@ -109,8 +121,9 @@ export function FormattingTool({ headingLevel = "h3" }: { headingLevel?: "h2" | 
                   {renderPreview(format.id, source)}
                 </div>
               </div>
-              <button type="button" onClick={() => copy(output, format.name)} className={copyButtonClass}>
-                Copy<span className="sr-only"> {format.name} markdown</span>
+              <button type="button" onClick={() => copy(output, label)} className={copyButtonClass}>
+                {t.copy}
+                <span className="sr-only"> {fill(t.copySr, { name: label })}</span>
               </button>
             </li>
           );
@@ -124,23 +137,25 @@ export function FormattingTool({ headingLevel = "h3" }: { headingLevel?: "h2" | 
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
             <Heading id={`${inputId}-ansi`} className="text-sm font-semibold">
-              Colored text
+              {t.coloredTitle}
             </Heading>
             <p className="mt-0.5 text-xs text-muted">
-              Uses an <code className="font-mono">ansi</code> code block. Colors show on desktop and web, not
-              in the mobile apps.
+              {ansiBefore}
+              <code className="font-mono">ansi</code>
+              {ansiAfter}
             </p>
           </div>
-          <button type="button" onClick={() => copy(ansi, "colored text")} className={copyButtonClass}>
-            Copy<span className="sr-only"> colored text</span>
+          <button type="button" onClick={() => copy(ansi, t.coloredLabel)} className={copyButtonClass}>
+            {t.copy}
+            <span className="sr-only"> {t.coloredLabel}</span>
           </button>
         </div>
 
         <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-3">
           <fieldset className="flex items-center gap-2">
-            <legend className="sr-only">Text color</legend>
+            <legend className="sr-only">{t.textColor}</legend>
             {ansiTextColors.map((c) => (
-              <label key={c.code} title={c.name} className="relative cursor-pointer">
+              <label key={c.code} title={colorName(c.code, c.name)} className="relative cursor-pointer">
                 <input
                   type="radio"
                   name={`${inputId}-color`}
@@ -149,7 +164,7 @@ export function FormattingTool({ headingLevel = "h3" }: { headingLevel?: "h2" | 
                   onChange={() => setColor(c.code)}
                   className="peer sr-only"
                 />
-                <span className="sr-only">{c.name}</span>
+                <span className="sr-only">{colorName(c.code, c.name)}</span>
                 <span
                   aria-hidden="true"
                   className="block size-6 rounded-full border border-black/15 ring-offset-2 ring-offset-surface peer-checked:ring-2 peer-checked:ring-text peer-focus-visible:ring-2 peer-focus-visible:ring-accent"
@@ -159,16 +174,16 @@ export function FormattingTool({ headingLevel = "h3" }: { headingLevel?: "h2" | 
             ))}
           </fieldset>
           <label className="flex items-center gap-2 text-sm text-muted">
-            Background
+            {t.background}
             <select
               value={background ?? ""}
               onChange={(e) => setBackground(e.target.value ? Number(e.target.value) : null)}
               className="rounded-md border border-border bg-surface px-2 py-1.5 text-sm text-text"
             >
-              <option value="">None</option>
+              <option value="">{t.none}</option>
               {ansiBackgroundColors.map((c) => (
                 <option key={c.code} value={c.code}>
-                  {c.name}
+                  {colorName(c.code, c.name)}
                 </option>
               ))}
             </select>
@@ -180,7 +195,7 @@ export function FormattingTool({ headingLevel = "h3" }: { headingLevel?: "h2" | 
               onChange={(e) => setBold(e.target.checked)}
               className="size-4 accent-[var(--accent-solid)]"
             />
-            Bold
+            {t.bold}
           </label>
           <label className="flex items-center gap-2 text-sm text-muted">
             <input
@@ -189,7 +204,7 @@ export function FormattingTool({ headingLevel = "h3" }: { headingLevel?: "h2" | 
               onChange={(e) => setUnderline(e.target.checked)}
               className="size-4 accent-[var(--accent-solid)]"
             />
-            Underline
+            {t.underline}
           </label>
         </div>
 

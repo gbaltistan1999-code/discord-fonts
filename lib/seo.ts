@@ -1,47 +1,65 @@
 import type { Metadata } from "next";
+import { defaultLocale, isTranslated, localeInfo, localePath, locales, type Locale } from "./i18n";
 import { absoluteUrl, siteConfig } from "./site";
 
 interface PageSeo {
   title: string;
   description: string;
-  /** Path starting with "/", used for the canonical URL. */
+  /** English path starting with "/"; the canonical URL adds the locale prefix. */
   path: string;
-  /** Override the OG image alt text. */
-  imageAlt?: string;
+  locale?: Locale;
+  /** The page's route has its own opengraph-image.tsx. */
+  ownImage?: boolean;
 }
 
-/** Consistent canonical, Open Graph and Twitter metadata for a page. */
-export function buildMetadata({ title, description, path, imageAlt }: PageSeo): Metadata {
-  const url = absoluteUrl(path);
+/** The shared share-image (app/opengraph-image.tsx, outside the route groups so its URL has no hash). */
+const DEFAULT_OG_IMAGE = { url: "/opengraph-image", width: 1200, height: 630, alt: siteConfig.ogImageAlt };
+
+/** hreflang links for a page published in every language, or undefined. */
+export function languageAlternates(path: string): Record<string, string> | undefined {
+  if (!isTranslated(path)) return undefined;
+  const languages: Record<string, string> = {};
+  for (const locale of locales) languages[localeInfo[locale].lang] = absoluteUrl(localePath(locale, path));
+  languages["x-default"] = absoluteUrl(path);
+  return languages;
+}
+
+/**
+ * Consistent canonical, hreflang, Open Graph and Twitter metadata for a page.
+ *
+ * Share image: a page with its own opengraph-image.tsx (`ownImage`) leaves it
+ * to Next.js, which writes the URL (it carries a hash inside route groups).
+ * Every other page names the shared default, because setting `openGraph`
+ * here stops the page from inheriting an image file from a parent.
+ */
+export function buildMetadata({
+  title,
+  description,
+  path,
+  locale = defaultLocale,
+  ownImage = false,
+}: PageSeo): Metadata {
+  const images = ownImage ? undefined : [DEFAULT_OG_IMAGE];
+  const url = absoluteUrl(localePath(locale, path));
+  const languages = languageAlternates(path);
   return {
     title: { absolute: title },
     description,
-    alternates: { canonical: url },
+    alternates: { canonical: url, ...(languages && { languages }) },
     openGraph: {
       type: "website",
       url,
       title,
       description,
       siteName: siteConfig.name,
-      locale: siteConfig.locale,
-      images: [{ url: ogImagePath(path), width: 1200, height: 630, alt: imageAlt ?? siteConfig.ogImageAlt }],
+      locale: localeInfo[locale].ogLocale,
+      ...(languages && {
+        alternateLocale: locales.filter((l) => l !== locale).map((l) => localeInfo[l].ogLocale),
+      }),
+      ...(images && { images }),
     },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: [{ url: ogImagePath(path), alt: imageAlt ?? siteConfig.ogImageAlt }],
-    },
+    twitter: { card: "summary_large_image", title, description, ...(images && { images }) },
   };
-}
-
-/** Pages with an opengraph-image.tsx of their own; the rest share the home image. */
-const OWN_OG_IMAGE = ["/discord-font-generator/", "/discord-timestamp-generator"];
-
-function ogImagePath(path: string): string {
-  return OWN_OG_IMAGE.some((prefix) => path.startsWith(prefix))
-    ? `${path}/opengraph-image`
-    : "/opengraph-image";
 }
 
 // ---------------------------------------------------------------------------
@@ -67,22 +85,25 @@ export function webApplicationJsonLd({
   name,
   description,
   path,
+  locale = defaultLocale,
 }: {
   name: string;
   description: string;
+  /** English path; the locale prefix is added. */
   path: string;
+  locale?: Locale;
 }): JsonLd {
   return {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     name,
     description,
-    url: absoluteUrl(path),
+    url: absoluteUrl(localePath(locale, path)),
     applicationCategory: "UtilitiesApplication",
     operatingSystem: "Any (web browser)",
     browserRequirements: "Requires JavaScript",
     isAccessibleForFree: true,
-    inLanguage: siteConfig.language,
+    inLanguage: localeInfo[locale].lang,
     dateModified: siteConfig.lastUpdated,
     offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
     publisher: { "@id": `${siteConfig.url}/#website` },
@@ -109,7 +130,8 @@ export function articleJsonLd({
     description,
     url: absoluteUrl(path),
     mainEntityOfPage: absoluteUrl(path),
-    image: absoluteUrl(`${path}/opengraph-image`),
+    // The post's own share image has a hashed URL inside the route group, so use the stable shared one.
+    image: absoluteUrl(DEFAULT_OG_IMAGE.url),
     datePublished,
     dateModified,
     inLanguage: siteConfig.language,

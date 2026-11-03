@@ -109,6 +109,11 @@
     color: var(--text);
   }
 
+  /* Japanese has no spaces, so headings would otherwise break mid-word; this breaks at phrase boundaries where supported. */
+  :lang(ja) :is(h1, h2, h3) {
+    word-break: auto-phrase;
+  }
+
   :focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 2px;

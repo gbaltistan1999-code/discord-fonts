@@ -1,7 +1,10 @@
 "use client";
 
 import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
+import { en } from "@/content/i18n/strings/en";
+import type { ToastStrings } from "@/content/i18n/types";
 import { copyToClipboard } from "@/lib/clipboard";
+import { fill } from "@/lib/i18n";
 
 type CopyFn = (text: string, label?: string) => Promise<boolean>;
 
@@ -14,27 +17,34 @@ export function useCopy(): CopyFn {
   return copy;
 }
 
-export function ToastProvider({ children }: { children: React.ReactNode }) {
+export function ToastProvider({
+  children,
+  strings = en.toast,
+}: {
+  children: React.ReactNode;
+  strings?: ToastStrings;
+}) {
   const [message, setMessage] = useState("");
   const [visible, setVisible] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout>>(undefined);
 
   useEffect(() => () => clearTimeout(timer.current), []);
 
-  const copy = useCallback<CopyFn>(async (text, label) => {
-    const ok = await copyToClipboard(text);
-    clearTimeout(timer.current);
-    // Clear first so screen readers re-announce identical consecutive messages.
-    setMessage("");
-    requestAnimationFrame(() => {
-      setMessage(
-        ok ? `Copied${label ? ` ${label}` : ""}!` : "Copy failed – select the text and copy it manually.",
-      );
-      setVisible(true);
-    });
-    timer.current = setTimeout(() => setVisible(false), 1800);
-    return ok;
-  }, []);
+  const copy = useCallback<CopyFn>(
+    async (text, label) => {
+      const ok = await copyToClipboard(text);
+      clearTimeout(timer.current);
+      // Clear first so screen readers re-announce identical consecutive messages.
+      setMessage("");
+      requestAnimationFrame(() => {
+        setMessage(ok ? (label ? fill(strings.copiedLabel, { label }) : strings.copied) : strings.failed);
+        setVisible(true);
+      });
+      timer.current = setTimeout(() => setVisible(false), 1800);
+      return ok;
+    },
+    [strings],
+  );
 
   return (
     <CopyContext.Provider value={copy}>

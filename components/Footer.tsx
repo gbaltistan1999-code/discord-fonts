@@ -1,27 +1,32 @@
 import Link from "next/link";
-import { generatorPages } from "@/content/generator-pages";
+import { getStrings } from "@/content/i18n";
 import { platformPages } from "@/content/platforms";
 import { stylePages } from "@/content/style-pages";
+import { defaultLocale, fill, localePath, type Locale } from "@/lib/i18n";
 import { siteConfig } from "@/lib/site";
 
-const siteLinks = [
-  { href: "/", label: "Discord Fonts Generator" },
-  ...generatorPages.map((page) => ({ href: page.path, label: page.name })),
-  { href: "/discord-text-formatting", label: "Text Formatting" },
-  { href: "/blog", label: "Blog" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
-  { href: "/privacy-policy", label: "Privacy Policy" },
-  { href: "/terms", label: "Terms of Use" },
-];
+export function Footer({ locale = defaultLocale }: { locale?: Locale }) {
+  const { ui } = getStrings(locale);
+  // Untranslated pages link to their English version.
+  const siteLinks = [
+    { href: localePath(locale, "/"), label: ui.links.discordFontsGenerator },
+    { href: "/fancy-text-generator", label: ui.links.fancyText },
+    { href: "/discord-name-generator", label: ui.links.nameGenerator },
+    { href: "/discord-timestamp-generator", label: ui.links.timestampGenerator },
+    { href: "/discord-text-formatting", label: ui.links.textFormatting },
+    { href: "/blog", label: ui.links.blog },
+    { href: "/about", label: ui.links.about },
+    { href: "/contact", label: ui.links.contact },
+    { href: "/privacy-policy", label: ui.links.privacy },
+    { href: "/terms", label: ui.links.terms },
+  ];
 
-export function Footer() {
   return (
     <footer className="mt-24 border-t border-border">
       <div className="mx-auto grid max-w-6xl gap-8 px-4 py-10 sm:grid-cols-2 lg:grid-cols-3">
         <nav aria-labelledby="footer-styles">
           <h2 id="footer-styles" className="text-sm font-semibold">
-            Discord font styles
+            {ui.footer.styles}
           </h2>
           <ul className="mt-2 grid grid-cols-2 gap-x-4 gap-y-0.5 text-sm">
             {stylePages.map((page) => (
@@ -30,7 +35,7 @@ export function Footer() {
                   href={`/discord-font-generator/${page.slug}`}
                   className="inline-block py-1 text-muted hover:text-accent"
                 >
-                  {page.name} Font
+                  {fill(ui.styleFont, { name: ui.styleNames[page.slug] ?? page.name })}
                 </Link>
               </li>
             ))}
@@ -38,13 +43,13 @@ export function Footer() {
         </nav>
         <nav aria-labelledby="footer-platforms">
           <h2 id="footer-platforms" className="text-sm font-semibold">
-            Fonts for other platforms
+            {ui.footer.platforms}
           </h2>
           <ul className="mt-2 grid grid-cols-2 gap-x-4 gap-y-0.5 text-sm">
             {platformPages.map((page) => (
               <li key={page.slug}>
                 <Link href={`/${page.slug}`} className="inline-block py-1 text-muted hover:text-accent">
-                  {page.name} Fonts
+                  {fill(ui.platformFonts, { name: page.name })}
                 </Link>
               </li>
             ))}
@@ -52,7 +57,7 @@ export function Footer() {
         </nav>
         <nav aria-labelledby="footer-site">
           <h2 id="footer-site" className="text-sm font-semibold">
-            Site
+            {ui.footer.site}
           </h2>
           <ul className="mt-2 grid grid-cols-2 gap-x-4 gap-y-0.5 text-sm">
             {siteLinks.map((link) => (
@@ -67,11 +72,8 @@ export function Footer() {
       </div>
       <div className="border-t border-border">
         <div className="mx-auto max-w-6xl space-y-1 px-4 pt-6 pb-[calc(1.5rem+env(safe-area-inset-bottom))] text-sm text-muted">
-          <p>{siteConfig.disclaimer}</p>
-          <p>
-            © {new Date().getFullYear()} {siteConfig.name}. Text is converted in your browser and never
-            stored.
-          </p>
+          <p>{ui.footer.disclaimer}</p>
+          <p>{fill(ui.footer.copyright, { year: new Date().getFullYear(), name: siteConfig.name })}</p>
           {/* External SVG badges: next/image would need remotePatterns and adds nothing for an SVG.
               Lazy so they only download when the footer scrolls into view. */}
           <div className="flex flex-wrap items-center gap-3" style={{ marginTop: "15px" }}>

@@ -45,11 +45,11 @@ export function HomeArticle() {
         </li>
         <li>
           <strong>Browse the styles</strong> or use the filter buttons (Bold, Cursive, Gothic, Decorative,
-          Aesthetic and Glitch) to narrow the list. Tap <em>Load more fonts</em> to see every option.
+          Aesthetic and Glitch) to narrow the list. Tap <em>Show more styles</em> to see every option.
         </li>
         <li>
-          <strong>Check the live preview</strong> to see how the style looks as a display name and as a chat
-          message on a dark background, plus whether it fits the 32-character name limit.
+          <strong>Check the length</strong> if it’s for a name. Styles that go over Discord’s 32-character
+          name limit are marked with <em>32+</em>.
         </li>
         <li>
           <strong>Click Copy</strong> (or the styled text itself). A “Copied!” message confirms it is on your

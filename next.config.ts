@@ -12,8 +12,12 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
-  // Inline the (small) stylesheet so it does not block first render.
-  experimental: { inlineCss: true },
+  experimental: {
+    // Inline the (small) stylesheet so it does not block first render.
+    inlineCss: true,
+    // One 404 for URLs matching no route; needed with separate English and translated root layouts.
+    globalNotFound: true,
+  },
   // Pin the workspace root so stray lockfiles in parent folders are ignored.
   turbopack: { root: dirname(fileURLToPath(import.meta.url)) },
   async headers() {

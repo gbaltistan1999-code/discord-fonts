@@ -14,20 +14,22 @@ import {
   type FontCategory,
   type FontStyle,
 } from "@/lib/fonts";
+import { en } from "@/content/i18n/strings/en";
+import type { GeneratorStrings } from "@/content/i18n/types";
+import { fill } from "@/lib/i18n";
 import { useStoredState } from "@/lib/useStoredState";
-import { PlatformLinks } from "./PlatformLinks";
+import { PlatformLinks, type PlatformLinksProps } from "./PlatformLinks";
 import { useCopy } from "./ToastProvider";
 
-const SAMPLE_TEXT = "Your Text Here";
 const PAGE_SIZE = 24;
 const MAX_INPUT = 1000;
 const RANDOM_PAGE = 12;
 const RECENT_LIMIT = 24;
 
-function makeRandomStyle(seed: number, index: number): FontStyle {
+function makeRandomStyle(seed: number, index: number, nameTemplate: string): FontStyle {
   return {
     id: `random-mix-${seed}`,
-    name: `Random ${index + 1}`,
+    name: fill(nameTemplate, { n: index + 1 }),
     categories: [],
     transform: (text) => randomStyle(text, seed),
   };
@@ -104,6 +106,10 @@ interface FontGeneratorProps {
   hero?: React.ReactNode;
   /** Show the selected style as a name in a mock chat message and member list. */
   namePreview?: boolean;
+  /** Interface text in the page's language (English by default). */
+  strings?: GeneratorStrings;
+  /** Sidebar links in the page's language. */
+  platformLinks?: PlatformLinksProps;
 }
 
 type Variant = "cards" | "list";
@@ -117,13 +123,15 @@ function orderStyles(order: readonly string[] | undefined): readonly FontStyle[]
 
 export function FontGenerator({
   featured,
-  sampleText = SAMPLE_TEXT,
+  strings: t = en.generator,
+  sampleText = t.sampleText,
   order,
   randomAfter,
   showSupport = false,
   variant = "cards",
   hero,
   namePreview = false,
+  platformLinks,
 }: FontGeneratorProps) {
   const isList = variant === "list";
   const inputId = useId();
@@ -203,8 +211,8 @@ export function FontGenerator({
   }, [browsingAll, matched, limit, shownText, zalgoIntensity]);
 
   const randomStyles = useMemo(
-    () => Array.from({ length: randomCount }, (_, i) => makeRandomStyle(randomStart + i, i)),
-    [randomStart, randomCount],
+    () => Array.from({ length: randomCount }, (_, i) => makeRandomStyle(randomStart + i, i, t.randomName)),
+    [randomStart, randomCount, t.randomName],
   );
 
   const randomResults = useMemo(
@@ -233,18 +241,18 @@ export function FontGenerator({
 
   const filters: { id: Filter; label: string; count: number }[] = [
     ...(featured ? [{ id: "featured" as const, label: featured.label, count: featuredStyles.length }] : []),
-    { id: "all", label: "All", count: fontStyles.length },
+    { id: "all", label: t.all, count: fontStyles.length },
     ...fontCategories.map((c) => ({
       id: c.id,
-      label: c.label,
+      label: t.categories[c.id],
       count: fontStyles.filter((s) => s.categories.includes(c.id)).length,
     })),
   ];
 
   const scopes: { id: Scope; label: string; icon?: React.ReactNode; badge?: number }[] = [
-    { id: "all", label: "All styles" },
-    { id: "favorites", label: "Favorites", icon: <HeartIcon filled={false} />, badge: favorites.length },
-    { id: "recent", label: "Recent", icon: <HistoryIcon /> },
+    { id: "all", label: t.scopeAll },
+    { id: "favorites", label: t.favorites, icon: <HeartIcon filled={false} />, badge: favorites.length },
+    { id: "recent", label: t.recent, icon: <HistoryIcon /> },
   ];
 
   const listClass = isList
@@ -275,6 +283,7 @@ export function FontGenerator({
       limitedSupport={showSupport && Boolean(style.limitedSupport)}
       zalgoIntensity={zalgoIntensity}
       onZalgoChange={setZalgoIntensity}
+      strings={t}
     />
   );
 
@@ -283,11 +292,9 @@ export function FontGenerator({
       <div className="mb-3 flex flex-wrap items-end justify-between gap-3">
         <div>
           <h2 id={randomHeadingId} className="text-base font-semibold text-text">
-            Random styles
+            {t.randomTitle}
           </h2>
-          <p className="mt-0.5 text-xs text-muted">
-            Every letter gets a different style. Generate as many as you like.
-          </p>
+          <p className="mt-0.5 text-xs text-muted">{t.randomDescription}</p>
         </div>
         <button
           type="button"
@@ -297,10 +304,10 @@ export function FontGenerator({
           }}
           className="shrink-0 rounded-full border border-border px-4 py-1.5 text-sm font-medium text-text transition-colors hover:border-text/30 hover:bg-surface"
         >
-          Shuffle
+          {t.shuffle}
         </button>
       </div>
-      <ul aria-label="Random text styles" className={listClass}>
+      <ul aria-label={t.randomLabel} className={listClass}>
         {randomResults.map((result) => renderRow(result, false))}
       </ul>
       <button
@@ -308,7 +315,7 @@ export function FontGenerator({
         onClick={() => setRandomCount((n) => n + RANDOM_PAGE)}
         className="mt-3 w-full rounded-xl border border-border px-4 py-3 text-sm font-medium text-muted transition-colors hover:bg-surface hover:text-text"
       >
-        🎲 Generate {RANDOM_PAGE} more
+        🎲 {fill(t.generateMore, { count: RANDOM_PAGE })}
       </button>
     </section>
   );
@@ -326,7 +333,7 @@ export function FontGenerator({
       >
         {isList && hero}
         <label htmlFor={inputId} className="sr-only">
-          Type or paste your text
+          {t.inputLabel}
         </label>
         <div className="relative">
           <textarea
@@ -334,7 +341,7 @@ export function FontGenerator({
             id={inputId}
             value={text}
             onChange={(e) => setText(e.target.value)}
-            placeholder="Type your text here…"
+            placeholder={t.placeholder}
             rows={1}
             maxLength={MAX_INPUT}
             spellCheck={false}
@@ -352,13 +359,14 @@ export function FontGenerator({
               }}
               className="absolute top-1/2 right-3 -translate-y-1/2 rounded-md px-2.5 py-1.5 text-sm font-medium text-muted transition-colors hover:bg-surface-2 hover:text-text"
             >
-              Clear<span className="sr-only"> text</span>
+              {t.clear}
+              <span className="sr-only">{t.clearSr}</span>
             </button>
           )}
         </div>
         <p id={hintId} className="mt-2 flex justify-between gap-4 px-1 text-xs text-muted">
-          <span>Updates as you type. Click any result to copy it.</span>
-          <span className="shrink-0 tabular-nums">{visibleLength(text)} chars</span>
+          <span>{t.hint}</span>
+          <span className="shrink-0 tabular-nums">{fill(t.chars, { count: visibleLength(text) })}</span>
         </p>
       </div>
 
@@ -368,7 +376,7 @@ export function FontGenerator({
       >
         <div
           role="group"
-          aria-label="Filter font styles by category"
+          aria-label={t.filterGroup}
           className={
             isList
               ? "-mx-4 flex gap-1 overflow-x-auto border-b border-border px-4 [scrollbar-width:none] sm:mx-0 sm:px-0"
@@ -408,7 +416,7 @@ export function FontGenerator({
         <div className="mt-4 flex flex-col gap-3 lg:flex-row lg:items-center">
           <div className="relative flex-1">
             <label htmlFor={searchId} className="sr-only">
-              Find a style by name
+              {t.searchLabel}
             </label>
             <span className="pointer-events-none absolute top-1/2 left-3.5 -translate-y-1/2 text-muted">
               <SearchIcon />
@@ -421,14 +429,14 @@ export function FontGenerator({
                 setQuery(e.target.value);
                 setLimit(PAGE_SIZE);
               }}
-              placeholder="Find a style by name, e.g. bold or script"
+              placeholder={t.searchPlaceholder}
               autoComplete="off"
               className="h-12 w-full rounded-xl border border-border bg-bg pr-4 pl-11 text-base text-text outline-none placeholder:text-muted focus:border-accent focus:ring-4 focus:ring-accent/15"
             />
           </div>
 
           <div className="-mx-4 flex items-center gap-2 overflow-x-auto px-4 [scrollbar-width:none] sm:mx-0 sm:px-0">
-            <div role="group" aria-label="Show styles" className="flex shrink-0 gap-2">
+            <div role="group" aria-label={t.scopeGroup} className="flex shrink-0 gap-2">
               {scopes.map((s) => {
                 const active = scope === s.id;
                 return (
@@ -458,7 +466,7 @@ export function FontGenerator({
               })}
             </div>
             <p aria-live="polite" className="shrink-0 pl-1 text-sm font-medium text-muted tabular-nums">
-              {matched.length} {matched.length === 1 ? "style" : "styles"}
+              {fill(matched.length === 1 ? t.countOne : t.countMany, { count: matched.length })}
             </p>
           </div>
         </div>
@@ -478,7 +486,7 @@ export function FontGenerator({
         {!isList && (
           <aside className="order-last lg:order-none lg:col-start-2 lg:row-start-1">
             <div className="lg:sticky lg:top-6">
-              <PlatformLinks />
+              <PlatformLinks {...platformLinks} />
             </div>
           </aside>
         )}
@@ -486,7 +494,7 @@ export function FontGenerator({
         <div className="cv-list min-w-0 lg:col-start-1 lg:row-start-1">
           {searchAsText && (
             <div className="mb-3 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-accent/30 bg-accent-soft px-4 py-3 text-sm text-text">
-              <p>No style is called “{deferredQuery}”, so here is your text in every style.</p>
+              <p>{fill(t.noMatch, { query: deferredQuery })}</p>
               <button
                 type="button"
                 onClick={() => {
@@ -497,14 +505,14 @@ export function FontGenerator({
                 }}
                 className="shrink-0 rounded-full bg-accent-solid px-4 py-1.5 text-sm font-semibold text-on-accent transition-opacity hover:opacity-90"
               >
-                Move to text box
+                {t.moveToTextBox}
               </button>
             </div>
           )}
 
           {results.length > 0 ? (
             <>
-              <ul aria-label="Converted text styles" className={listClass}>
+              <ul aria-label={t.resultsLabel} className={listClass}>
                 {results.slice(0, splitAt).map((result) => renderRow(result, true))}
               </ul>
               {splitAt !== undefined && (
@@ -518,11 +526,7 @@ export function FontGenerator({
             </>
           ) : (
             <p className="rounded-2xl border border-dashed border-border bg-surface px-5 py-10 text-center text-sm text-muted">
-              {scope === "favorites"
-                ? "No favorites yet. Tap the heart on any style to save it here."
-                : scope === "recent"
-                  ? "Styles you copy will show up here."
-                  : "No styles in this group."}
+              {scope === "favorites" ? t.emptyFavorites : scope === "recent" ? t.emptyRecent : t.emptyGroup}
             </p>
           )}
 
@@ -532,7 +536,7 @@ export function FontGenerator({
               onClick={() => setLimit((n) => n + PAGE_SIZE)}
               className="mt-3 w-full rounded-xl border border-border px-4 py-3 text-sm font-medium text-muted transition-colors hover:bg-surface hover:text-text"
             >
-              Show {Math.min(PAGE_SIZE, matched.length - limit)} more styles
+              {fill(t.showMore, { count: Math.min(PAGE_SIZE, matched.length - limit) })}
             </button>
           )}
 
@@ -556,9 +560,11 @@ interface StyleRowProps {
   limitedSupport: boolean;
   zalgoIntensity: number;
   onZalgoChange: (value: number) => void;
+  strings: GeneratorStrings;
 }
 
 function StyleRow({
+  strings: t,
   variant,
   style,
   value,
@@ -580,14 +586,14 @@ function StyleRow({
       <span className="truncate">{style.name}</span>
       {limitedSupport && (
         <span
-          title="May show as boxes on older phones, TVs and consoles"
+          title={t.limitedSupportTitle}
           className="shrink-0 rounded-full bg-amber-50 px-2 py-0.5 font-semibold text-amber-800 dark:bg-amber-500/15 dark:text-amber-300"
         >
-          Limited support
+          {t.limitedSupport}
         </span>
       )}
       {tooLong && (
-        <span title={`Over ${DISCORD_NAME_LIMIT} characters`} className="shrink-0 tabular-nums">
+        <span title={fill(t.overLimit, { limit: DISCORD_NAME_LIMIT })} className="shrink-0 tabular-nums">
           · {DISCORD_NAME_LIMIT}+
         </span>
       )}
@@ -600,7 +606,7 @@ function StyleRow({
         <button
           type="button"
           aria-pressed={favorite}
-          aria-label={`${favorite ? "Remove" : "Save"} ${style.name} ${favorite ? "from" : "to"} favorites`}
+          aria-label={fill(favorite ? t.removeFavorite : t.saveFavorite, { name: style.name })}
           onClick={onToggleFavorite}
           className={`grid size-9 place-items-center rounded-full transition-colors ${
             favorite ? "text-rose-600 dark:text-rose-400" : "text-muted hover:bg-surface-2 hover:text-text"
@@ -618,8 +624,8 @@ function StyleRow({
             : "border-border text-text hover:border-text/30 hover:bg-surface-2"
         }`}
       >
-        {copied ? "Copied" : "Copy"}
-        <span className="sr-only"> {style.name} text</span>
+        {copied ? t.copied : t.copy}
+        <span className="sr-only"> {fill(t.copySr, { name: style.name })}</span>
       </button>
     </div>
   );
@@ -628,7 +634,7 @@ function StyleRow({
   const sample = (
     <p
       onClick={onCopy}
-      title="Click to copy"
+      title={t.clickToCopy}
       className={`fancy-text min-w-0 flex-1 cursor-pointer text-xl leading-snug break-words text-text ${
         isList ? "" : "mt-2"
       }`}
@@ -640,7 +646,7 @@ function StyleRow({
   const slider = style.id === "zalgo" && (
     <div className="mt-2 flex items-center gap-3 text-xs">
       <label htmlFor={sliderId} className="shrink-0 text-muted">
-        Intensity
+        {t.intensity}
       </label>
       <input
         id={sliderId}
