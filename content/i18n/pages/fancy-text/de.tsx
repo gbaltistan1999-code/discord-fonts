@@ -95,7 +95,7 @@ function Article() {
       <p>
         Sie funktioniert fast überall, wo du Text eingeben kannst: Anzeigenamen, Nicknames, Bios, Servernamen
         und Nachrichten in Discord sowie Instagram, TikTok, Roblox, Facebook, YouTube und X. Tipps für
-        einzelne Plattformen findest du auf den Seiten (auf Englisch) zu{" "}
+        einzelne Plattformen findest du auf den Seiten zu{" "}
         <LocalLink locale={L} path="/instagram-fonts">
           Instagram
         </LocalLink>

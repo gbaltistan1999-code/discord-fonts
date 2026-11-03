@@ -7,6 +7,7 @@ import { buildMetadata, webApplicationJsonLd } from "@/lib/seo";
 import { Breadcrumbs } from "./Breadcrumbs";
 import { FontGenerator } from "./FontGenerator";
 import { JsonLd } from "./JsonLd";
+import { platformLinksProps } from "./platform-links-props";
 import { StyleLinks } from "./StyleLinks";
 
 export function styleMetadata(slug: string, locale: Locale): Metadata {
@@ -52,6 +53,7 @@ export function StylePageView({ style, locale }: { style: StylePage; locale: Loc
             <FontGenerator
               variant="list"
               strings={generator}
+              platformLinks={platformLinksProps(locale)}
               featured={featured}
               hero={
                 <div className="mx-auto mb-6 max-w-3xl text-center">
@@ -76,7 +78,11 @@ export function StylePageView({ style, locale }: { style: StylePage; locale: Loc
             <p className="mt-3 mb-6 max-w-3xl text-base text-muted sm:text-lg">{text.intro}</p>
           </div>
           <section aria-label={toolLabel}>
-            <FontGenerator strings={generator} featured={featured} />
+            <FontGenerator
+              strings={generator}
+              featured={featured}
+              platformLinks={platformLinksProps(locale)}
+            />
           </section>
         </>
       )}

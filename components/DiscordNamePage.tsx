@@ -6,6 +6,7 @@ import { buildMetadata, faqJsonLd, webApplicationJsonLd } from "@/lib/seo";
 import { Breadcrumbs } from "./Breadcrumbs";
 import { FontGenerator } from "./FontGenerator";
 import { JsonLd } from "./JsonLd";
+import { platformLinksProps } from "./platform-links-props";
 import { ToolPageEnd } from "./ToolPageEnd";
 
 const PATH = discordNamePage.path;
@@ -35,6 +36,7 @@ export function DiscordNamePage({ locale }: { locale: Locale }) {
         <FontGenerator
           variant="list"
           strings={generator}
+          platformLinks={platformLinksProps(locale)}
           sampleText={page.sampleText}
           order={discordNamePage.order}
           randomAfter={discordNamePage.order.length}

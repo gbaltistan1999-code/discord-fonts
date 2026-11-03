@@ -95,7 +95,7 @@ function Article() {
         <LocalLink locale={L} path="/facebook-fonts">
           Facebook
         </LocalLink>
-        のページ（英語）をご覧ください。
+        のページをご覧ください。
       </p>
       <p>基本的な文字しか受け付けない場所では、たいてい使えません。</p>
       <ul>

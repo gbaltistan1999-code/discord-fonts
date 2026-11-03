@@ -95,7 +95,7 @@ function Article() {
       <p>
         Funcionan casi en cualquier sitio donde puedas escribir: nombres visibles, apodos, biografías, nombres
         de servidor y mensajes de Discord, además de Instagram, TikTok, Roblox, Facebook, YouTube y X. Para
-        consejos de cada plataforma, mira las páginas (en inglés) de{" "}
+        consejos de cada plataforma, mira las páginas de{" "}
         <LocalLink locale={L} path="/instagram-fonts">
           Instagram
         </LocalLink>

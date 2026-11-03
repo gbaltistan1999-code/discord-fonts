@@ -88,7 +88,7 @@ function Article() {
       <p>
         Funcionam em quase todo lugar onde dá para digitar: nomes de exibição, apelidos, bios, nomes de
         servidor e mensagens do Discord, além de Instagram, TikTok, Roblox, Facebook, YouTube e X. Para dicas
-        de cada plataforma, veja as páginas (em inglês) de{" "}
+        de cada plataforma, veja as páginas de{" "}
         <LocalLink locale={L} path="/instagram-fonts">
           Instagram
         </LocalLink>

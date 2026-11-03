@@ -4,9 +4,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { en } from "@/content/i18n/strings/en";
 import { platformPages } from "@/content/platforms";
-import { fill } from "@/lib/i18n";
+import { defaultLocale, fill, hrefFor, type Locale } from "@/lib/i18n";
 
 export interface PlatformLinksProps {
+  /** Language of the page; platform links go to that language. */
+  locale?: Locale;
   title?: string;
   /** The Discord fonts home in the page's language. */
   homeHref?: string;
@@ -21,12 +23,13 @@ export function PlatformLinks({
   homeHref = "/",
   homeLabel = en.ui.links.discordFonts,
   platformFonts = en.ui.platformFonts,
+  locale = defaultLocale,
 }: PlatformLinksProps) {
   const pathname = usePathname();
   const links = [
     { href: homeHref, label: homeLabel },
     ...platformPages.map((page) => ({
-      href: `/${page.slug}`,
+      href: hrefFor(locale, `/${page.slug}`),
       label: fill(platformFonts, { name: page.name }),
     })),
   ];

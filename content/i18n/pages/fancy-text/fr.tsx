@@ -100,7 +100,7 @@ function Article() {
       <p>
         Elle fonctionne presque partout où l’on peut écrire : noms d’affichage, pseudos, bios, noms de serveur
         et messages sur Discord, mais aussi Instagram, TikTok, Roblox, Facebook, YouTube et X. Pour des
-        conseils par plateforme, consultez les pages (en anglais) consacrées à{" "}
+        conseils par plateforme, consultez les pages consacrées à{" "}
         <LocalLink locale={L} path="/instagram-fonts">
           Instagram
         </LocalLink>

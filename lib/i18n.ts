@@ -39,9 +39,12 @@ export const translatedPaths: readonly string[] = [
   "/discord-name-generator",
   "/discord-timestamp-generator",
   "/discord-text-formatting",
-  // Style pages, listed by slug so this file doesn't pull page content into client code.
+  // Style and platform pages, listed by slug so this file doesn't pull page content into client code.
   ...["bold", "cursive", "gothic", "small-caps", "aesthetic", "glitch", "bubble", "upside-down"].map(
     (slug) => `/discord-font-generator/${slug}`,
+  ),
+  ...["roblox", "instagram", "snapchat", "youtube", "twitter", "facebook", "tiktok", "steam", "xbox"].map(
+    (name) => `/${name}-fonts`,
   ),
 ];
 
