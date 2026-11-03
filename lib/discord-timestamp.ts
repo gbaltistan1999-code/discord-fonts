@@ -323,11 +323,43 @@ const FALLBACK_ZONES = [
   "Pacific/Auckland",
 ];
 
-/** Every IANA zone the browser knows, plus UTC. */
+/**
+ * Browsers still report some zones by their old IANA names (Chrome lists
+ * India as "Asia/Calcutta"), which nobody searches for. These are the
+ * current names; both forms are valid time zones.
+ */
+const MODERN_ZONE_NAMES: Readonly<Record<string, string>> = {
+  "America/Buenos_Aires": "America/Argentina/Buenos_Aires",
+  "America/Catamarca": "America/Argentina/Catamarca",
+  "America/Cordoba": "America/Argentina/Cordoba",
+  "America/Godthab": "America/Nuuk",
+  "America/Indianapolis": "America/Indiana/Indianapolis",
+  "America/Jujuy": "America/Argentina/Jujuy",
+  "America/Louisville": "America/Kentucky/Louisville",
+  "America/Mendoza": "America/Argentina/Mendoza",
+  "Asia/Calcutta": "Asia/Kolkata",
+  "Asia/Katmandu": "Asia/Kathmandu",
+  "Asia/Rangoon": "Asia/Yangon",
+  "Asia/Saigon": "Asia/Ho_Chi_Minh",
+  "Atlantic/Faeroe": "Atlantic/Faroe",
+  "Europe/Kiev": "Europe/Kyiv",
+  "Pacific/Enderbury": "Pacific/Kanton",
+  "Pacific/Ponape": "Pacific/Pohnpei",
+  "Pacific/Truk": "Pacific/Chuuk",
+};
+
+/** The current IANA name for a zone the browser reports under an old one. */
+export function modernZoneName(zone: string): string {
+  const modern = MODERN_ZONE_NAMES[zone];
+  return modern && isValidTimeZone(modern) ? modern : zone;
+}
+
+/** Every IANA zone the browser knows, under current names, sorted, plus UTC. */
 export function listTimeZones(): string[] {
   const supported = (Intl as { supportedValuesOf?: (key: string) => string[] }).supportedValuesOf;
-  const zones = supported ? supported("timeZone") : FALLBACK_ZONES;
-  return zones.includes("UTC") ? zones : ["UTC", ...zones];
+  const zones = new Set((supported ? supported("timeZone") : FALLBACK_ZONES).map(modernZoneName));
+  zones.add("UTC");
+  return [...zones].sort();
 }
 
 /** "UTC−05:00" style label for a zone's offset at an instant. */

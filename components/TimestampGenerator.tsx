@@ -8,6 +8,7 @@ import {
   formatPreview,
   isValidTimeZone,
   listTimeZones,
+  modernZoneName,
   offsetLabel,
   parseDateTime,
   parseUnixInput,
@@ -19,6 +20,7 @@ import {
   type ZonedStatus,
 } from "@/lib/discord-timestamp";
 import { useStoredState } from "@/lib/useStoredState";
+import { TimeZonePicker } from "./TimeZonePicker";
 import { useCopy } from "./ToastProvider";
 
 // Client-only values. The server and the hydration render see the fallbacks,
@@ -28,7 +30,7 @@ const noSubscribe = () => () => {};
 let pageLoadedAt: number | undefined;
 /** The minute the page opened, used as the starting date and time. */
 const getLoadTime = () => (pageLoadedAt ??= Math.floor(Date.now() / 60_000) * 60_000);
-const getLocalZone = () => Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
+const getLocalZone = () => modernZoneName(Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC");
 
 // One shared one-second clock, so the Relative preview counts live.
 let clock = 0;
@@ -80,7 +82,6 @@ export function TimestampGenerator({ hero }: { hero?: React.ReactNode }) {
     date: useId(),
     time: useId(),
     zone: useId(),
-    zones: useId(),
     zoneHint: useId(),
     seconds: useId(),
     unix: useId(),
@@ -101,8 +102,6 @@ export function TimestampGenerator({ hero }: { hero?: React.ReactNode }) {
 
   const [savedZone, setSavedZone] = useStoredState("df:timezone", "", parseZone);
   const zone = savedZone || localZone;
-  const [zoneDraft, setZoneDraft] = useState<string | null>(null);
-  const zoneError = zoneDraft !== null && !isValidTimeZone(zoneDraft);
 
   const [withSeconds, setWithSeconds] = useState(false);
   // null = follow the page-load time; set once the visitor picks something.
@@ -227,46 +226,26 @@ export function TimestampGenerator({ hero }: { hero?: React.ReactNode }) {
             <label htmlFor={ids.zone} className={labelClass}>
               Time zone
             </label>
-            <input
+            <TimeZonePicker
               id={ids.zone}
-              type="text"
-              list={ids.zones}
-              value={zoneDraft ?? (hydrated ? zone : "")}
-              onChange={(e) => {
-                setZoneDraft(e.target.value);
-                if (isValidTimeZone(e.target.value)) setSavedZone(e.target.value);
-              }}
-              onFocus={(e) => e.target.select()}
-              onBlur={() => {
-                if (!zoneError) setZoneDraft(null);
-              }}
-              placeholder="Search, e.g. America/New_York"
-              autoComplete="off"
-              spellCheck={false}
-              aria-invalid={zoneError}
-              aria-describedby={ids.zoneHint}
+              describedBy={ids.zoneHint}
+              value={hydrated ? zone : ""}
+              onChange={setSavedZone}
+              zones={zones}
+              instant={ms ?? loadTime ?? 0}
+              localZone={localZone}
               className={fieldClass}
             />
-            <datalist id={ids.zones}>
-              {zones.map((z) => (
-                <option key={z} value={z} />
-              ))}
-            </datalist>
             <p id={ids.zoneHint} className="mt-1.5 flex flex-wrap gap-x-3 px-1 text-xs text-muted">
-              {zoneError ? (
-                <span className="text-rose-700 dark:text-rose-300">Pick a time zone from the list.</span>
-              ) : (
-                <span>
-                  {hydrated && ms !== null ? `${zone} · ${offsetLabel(ms, zone)}` : "Your local time zone"}
-                </span>
-              )}
+              <span>
+                {hydrated && ms !== null
+                  ? `${zone} · ${offsetLabel(ms, zone)}`
+                  : "Click to see every time zone, or type a city"}
+              </span>
               {hydrated && zone !== localZone && (
                 <button
                   type="button"
-                  onClick={() => {
-                    setSavedZone("");
-                    setZoneDraft(null);
-                  }}
+                  onClick={() => setSavedZone("")}
                   className="font-medium text-accent underline underline-offset-2"
                 >
                   Use my time zone ({localZone})

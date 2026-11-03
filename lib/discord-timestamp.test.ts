@@ -6,6 +6,8 @@ import {
   formatPreview,
   formatRelative,
   isValidTimeZone,
+  listTimeZones,
+  modernZoneName,
   offsetLabel,
   parseDateTime,
   parseUnixInput,
@@ -205,5 +207,17 @@ describe("time zones", () => {
     expect(offsetLabel(EXAMPLE * 1000, "America/New_York")).toBe("UTC−05:00");
     expect(offsetLabel(EXAMPLE * 1000, "Asia/Kathmandu")).toBe("UTC+05:45");
     expect(offsetLabel(EXAMPLE * 1000, "UTC")).toBe("UTC+00:00");
+  });
+
+  it("lists every zone under its current name", () => {
+    const zones = listTimeZones();
+    expect(zones.length).toBeGreaterThan(400);
+    expect(zones).toEqual(
+      expect.arrayContaining(["UTC", "Asia/Kolkata", "Asia/Karachi", "America/New_York", "Europe/Kyiv"]),
+    );
+    expect(zones).not.toContain("Asia/Calcutta");
+    expect(new Set(zones).size).toBe(zones.length);
+    expect(modernZoneName("Asia/Calcutta")).toBe("Asia/Kolkata");
+    expect(modernZoneName("Europe/London")).toBe("Europe/London");
   });
 });
