@@ -99,6 +99,17 @@ export const ptBr: Strings = {
     limitedSupportTitle: "Pode aparecer como quadrados em celulares, TVs e consoles antigos",
     overLimit: "Mais de {limit} caracteres",
     platformsTitle: "Redes sociais",
+    moreResultsLabel: "Mais estilos de texto convertidos",
+    namePreview: {
+      title: "Prévia do nome",
+      showing: "Mostrando {name}. Toque em qualquer estilo abaixo para ver e copiar.",
+      copyName: "Copiar nome",
+      tooLong:
+        "Passa do limite de {limit} caracteres, então não cabe como nome de exibição. Tente um nome mais curto ou menos símbolos.",
+      time: "Hoje às 16:20",
+      message: "oi, pessoal 👋",
+      online: "Online — 1",
+    },
   },
   formatting: {
     sampleText: "GG pessoal",

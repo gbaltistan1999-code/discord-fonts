@@ -99,6 +99,17 @@ export const ja: Strings = {
     limitedSupportTitle: "古いスマホ、テレビ、ゲーム機では四角（□）で表示されることがあります",
     overLimit: "{limit}文字を超えています",
     platformsTitle: "SNS",
+    moreResultsLabel: "変換されたテキストのスタイル（続き）",
+    namePreview: {
+      title: "名前のプレビュー",
+      showing: "表示中：{name}。下のスタイルをタップすると、プレビューしてコピーできます。",
+      copyName: "名前をコピー",
+      tooLong:
+        "{limit}文字の上限を超えているため、表示名には使えません。短い名前にするか、記号を減らしてください。",
+      time: "今日 16:20",
+      message: "みんなよろしく👋",
+      online: "オンライン — 1",
+    },
   },
   formatting: {
     sampleText: "GG everyone",

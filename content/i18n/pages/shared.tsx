@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { nameIdeaExamples } from "@/content/discord-name";
 import { fancyExamples } from "@/content/fancy-text";
 import { hrefFor, type Locale } from "@/lib/i18n";
 
@@ -75,5 +76,71 @@ export function StyleGeneratorLinks({
         </span>
       ))}
     </>
+  );
+}
+
+/** Display name vs @username comparison. Rows are [label, display name, @username]. */
+export function NameTypeTable({
+  headers,
+  rows,
+}: {
+  headers: readonly [string, string];
+  rows: readonly (readonly [string, string, string])[];
+}) {
+  return (
+    <div className="overflow-x-auto">
+      <table className="min-w-[34rem]">
+        <thead>
+          <tr>
+            <td />
+            <th scope="col">{headers[0]}</th>
+            <th scope="col">{headers[1]}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map(([label, displayName, username]) => (
+            <tr key={label}>
+              <th scope="row">{label}</th>
+              <td>{displayName}</td>
+              <td>{username}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+/** Name ideas by vibe. Rows are [vibe, formula]; the Unicode examples are shared. */
+export function NameIdeasTable({
+  headers,
+  rows,
+}: {
+  headers: readonly [string, string, string];
+  rows: readonly (readonly [string, string])[];
+}) {
+  return (
+    <div className="overflow-x-auto">
+      <table className="min-w-[30rem]">
+        <thead>
+          <tr>
+            {headers.map((header) => (
+              <th key={header} scope="col">
+                {header}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map(([vibe, formula], i) => (
+            <tr key={vibe}>
+              <td>{vibe}</td>
+              <td>{formula}</td>
+              <td className="fancy-text whitespace-nowrap">{nameIdeaExamples[i]}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }

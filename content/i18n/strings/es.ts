@@ -100,6 +100,17 @@ export const es: Strings = {
     limitedSupportTitle: "Puede verse como cuadros en móviles, televisores y consolas antiguos",
     overLimit: "Más de {limit} caracteres",
     platformsTitle: "Redes sociales",
+    moreResultsLabel: "Más estilos de texto convertidos",
+    namePreview: {
+      title: "Vista previa del nombre",
+      showing: "Mostrando {name}. Toca cualquier estilo de abajo para verlo y copiarlo.",
+      copyName: "Copiar nombre",
+      tooLong:
+        "Supera el límite de {limit} caracteres, así que no cabe como nombre visible. Prueba un nombre más corto o menos símbolos.",
+      time: "hoy a las 16:20",
+      message: "hola a todos 👋",
+      online: "En línea — 1",
+    },
   },
   formatting: {
     sampleText: "GG a todos",

@@ -99,6 +99,17 @@ export const fr: Strings = {
     limitedSupportTitle: "Peut s’afficher en carrés sur les anciens téléphones, TV et consoles",
     overLimit: "Plus de {limit} caractères",
     platformsTitle: "Réseaux sociaux",
+    moreResultsLabel: "Autres styles de texte convertis",
+    namePreview: {
+      title: "Aperçu du pseudo",
+      showing: "Style affiché : {name}. Touchez un style ci-dessous pour l’afficher et le copier.",
+      copyName: "Copier le pseudo",
+      tooLong:
+        "Cela dépasse la limite de {limit} caractères, donc ça ne tiendra pas comme nom d’affichage. Essayez un nom plus court ou moins de symboles.",
+      time: "Aujourd’hui à 16:20",
+      message: "salut tout le monde 👋",
+      online: "En ligne — 1",
+    },
   },
   formatting: {
     sampleText: "GG à tous",

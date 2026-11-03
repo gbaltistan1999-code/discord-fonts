@@ -99,6 +99,17 @@ export const en: Strings = {
     limitedSupportTitle: "May show as boxes on older phones, TVs and consoles",
     overLimit: "Over {limit} characters",
     platformsTitle: "Social platforms",
+    moreResultsLabel: "More converted text styles",
+    namePreview: {
+      title: "Name preview",
+      showing: "Showing {name}. Tap any style below to preview and copy it.",
+      copyName: "Copy name",
+      tooLong:
+        "This is over the {limit}-character limit, so it won’t fit as a display name. Try a shorter name or fewer symbols.",
+      time: "Today at 4:20 PM",
+      message: "hey everyone 👋",
+      online: "Online — 1",
+    },
   },
   formatting: {
     sampleText: "GG everyone",

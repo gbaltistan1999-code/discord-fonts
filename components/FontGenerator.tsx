@@ -479,6 +479,7 @@ export function FontGenerator({
           initial={shownText.trim().charAt(0).toUpperCase() || "?"}
           copied={copiedId === selectedResult.style.id}
           onCopy={() => handleCopy(selectedResult.style, selectedResult.value)}
+          strings={t}
         />
       )}
 
@@ -518,7 +519,7 @@ export function FontGenerator({
               {splitAt !== undefined && (
                 <>
                   {randomSection}
-                  <ul aria-label="More converted text styles" className={listClass}>
+                  <ul aria-label={t.moreResultsLabel} className={listClass}>
                     {results.slice(splitAt).map((result) => renderRow(result, true))}
                   </ul>
                 </>
@@ -700,16 +701,20 @@ function NamePreview({
   initial,
   copied,
   onCopy,
+  strings: t,
 }: {
   name: string;
   styleName: string;
   initial: string;
   copied: boolean;
   onCopy: () => void;
+  strings: GeneratorStrings;
 }) {
   const headingId = useId();
   const length = visibleLength(name);
   const tooLong = length > DISCORD_NAME_LIMIT;
+  const p = t.namePreview;
+  const [showingBefore, showingAfter = ""] = p.showing.split("{name}");
 
   const avatar = (size: string) => (
     <span
@@ -728,11 +733,12 @@ function NamePreview({
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div className="min-w-0">
           <h2 id={headingId} className="text-base font-semibold text-text">
-            Name preview
+            {p.title}
           </h2>
           <p className="mt-0.5 text-xs text-muted">
-            Showing <span className="font-medium text-text">{styleName}</span>. Tap any style below to preview
-            and copy it.
+            {showingBefore}
+            <span className="font-medium text-text">{styleName}</span>
+            {showingAfter}
           </p>
         </div>
         <div className="flex shrink-0 items-center gap-3">
@@ -746,15 +752,14 @@ function NamePreview({
             onClick={onCopy}
             className="rounded-full bg-accent-solid px-4 py-1.5 text-sm font-semibold text-on-accent transition-opacity hover:opacity-90"
           >
-            {copied ? "Copied" : "Copy name"}
+            {copied ? t.copied : p.copyName}
           </button>
         </div>
       </div>
 
       {tooLong && (
         <p className="mt-3 text-sm text-rose-600 dark:text-rose-400">
-          This is over the {DISCORD_NAME_LIMIT}-character limit, so it won’t fit as a display name. Try a
-          shorter name or fewer symbols.
+          {fill(p.tooLong, { limit: DISCORD_NAME_LIMIT })}
         </p>
       )}
 
@@ -764,13 +769,13 @@ function NamePreview({
           <div className="min-w-0">
             <p className="flex flex-wrap items-baseline gap-x-2">
               <span className="fancy-text font-semibold break-words text-accent">{name}</span>
-              <span className="text-xs text-muted">Today at 4:20 PM</span>
+              <span className="text-xs text-muted">{p.time}</span>
             </p>
-            <p className="mt-0.5 text-sm text-text">hey everyone 👋</p>
+            <p className="mt-0.5 text-sm text-text">{p.message}</p>
           </div>
         </div>
         <div className="rounded-xl bg-bg p-4">
-          <p className="text-[11px] font-semibold tracking-wide text-muted uppercase">Online — 1</p>
+          <p className="text-[11px] font-semibold tracking-wide text-muted uppercase">{p.online}</p>
           <div className="mt-2.5 flex items-center gap-2.5">
             <span className="relative">
               {avatar("size-8 text-sm")}

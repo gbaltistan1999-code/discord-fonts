@@ -99,6 +99,21 @@ export interface GeneratorStrings {
   /** "Over {limit} characters" */
   overLimit: string;
   platformsTitle: string;
+  /** Accessible name of the second results list when random styles sit in between. */
+  moreResultsLabel: string;
+  /** The display-name preview on the Discord Name Generator. */
+  namePreview: {
+    title: string;
+    /** Contains "{name}", the selected style's name. */
+    showing: string;
+    copyName: string;
+    /** "{limit}" is the character limit. */
+    tooLong: string;
+    /** Timestamp shown next to the sample message. */
+    time: string;
+    message: string;
+    online: string;
+  };
 }
 
 export interface FormattingStrings {

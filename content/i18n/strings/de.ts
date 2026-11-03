@@ -100,6 +100,17 @@ export const de: Strings = {
     limitedSupportTitle: "Kann auf älteren Handys, Fernsehern und Konsolen als Kästchen erscheinen",
     overLimit: "Mehr als {limit} Zeichen",
     platformsTitle: "Soziale Netzwerke",
+    moreResultsLabel: "Weitere umgewandelte Textstile",
+    namePreview: {
+      title: "Namensvorschau",
+      showing: "Angezeigt: {name}. Tippe unten auf einen Stil, um ihn anzusehen und zu kopieren.",
+      copyName: "Namen kopieren",
+      tooLong:
+        "Das ist länger als das Limit von {limit} Zeichen und passt deshalb nicht als Anzeigename. Versuch einen kürzeren Namen oder weniger Symbole.",
+      time: "Heute um 16:20 Uhr",
+      message: "hallo zusammen 👋",
+      online: "Online — 1",
+    },
   },
   formatting: {
     sampleText: "GG an alle",

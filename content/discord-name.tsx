@@ -66,6 +66,9 @@ const nameIdeaRows = [
   ["Minimal", "Plain name + one symbol", "noah ♡"],
 ] as const;
 
+/** The example column, shared with the translated tables. */
+export const nameIdeaExamples: readonly string[] = nameIdeaRows.map((row) => row[2]);
+
 export function DiscordNameArticle() {
   return (
     <>
