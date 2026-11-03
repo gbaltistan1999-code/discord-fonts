@@ -44,7 +44,7 @@ export default function HomePage() {
       />
 
       <section className="mx-auto max-w-3xl pt-12 pb-10 text-center sm:pt-20 sm:pb-12">
-        <h1 className="text-3xl leading-tight font-bold tracking-tight text-balance text-violet-600 sm:text-[2.75rem] dark:text-violet-300">
+        <h1 className="text-3xl leading-tight font-extrabold tracking-tight text-balance text-text sm:text-[2.75rem]">
           Discord Fonts Generator – Copy &amp; Paste Cool Discord Font Styles
         </h1>
         <p className="mx-auto mt-4 max-w-2xl text-base text-pretty text-muted sm:text-lg">
