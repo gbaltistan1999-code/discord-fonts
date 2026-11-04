@@ -18,7 +18,7 @@ export const siteConfig = {
   language: "en",
   title: "Discord Fonts – Copy & Paste Cool Discord Font Generator",
   description:
-    "Free Discord Fonts generator: turn text into 170+ cool styles to copy and paste. Pick a Discord font for your name, nickname, server, bio or messages.",
+    "Free Discord Fonts generator: turn text into 200+ cool styles to copy and paste. Pick a Discord font for your name, nickname, server, bio or messages.",
   ogImageAlt: "Discord Fonts generator – copy and paste cool Discord font styles",
   contactEmail: "eshfaqihmed@gmail.com",
   /**
