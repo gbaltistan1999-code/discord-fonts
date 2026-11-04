@@ -76,11 +76,8 @@ function Card({
 }
 
 const facts = [
-  {
-    icon: <MailIcon />,
-    label: "Email",
-    value: <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>,
-  },
+  // The address lives only in the sidebar, so it appears once on the page for scrapers to find.
+  { icon: <ChatIcon />, label: "Contact form", value: <a href="#message">Send us a message</a> },
   { icon: <ClockIcon />, label: "Response time", value: "Within 24 hours" },
   { icon: <CalendarIcon />, label: "Business hours", value: "Mon – Fri, 9 AM – 6 PM EST" },
 ];
@@ -144,7 +141,7 @@ export default function Page() {
       </ul>
 
       <div className="mt-10 grid gap-6 lg:grid-cols-[minmax(0,1fr)_22rem]">
-        <section className="rounded-3xl border border-border bg-surface shadow-sm">
+        <section id="message" className="scroll-mt-6 rounded-3xl border border-border bg-surface shadow-sm">
           <header className="flex items-center gap-3 border-b border-border px-6 py-5 sm:px-8">
             <IconBox>
               <ChatIcon />
