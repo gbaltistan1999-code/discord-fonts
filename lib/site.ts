@@ -1,10 +1,14 @@
 /**
  * Site-wide configuration. Change the domain, name or default SEO copy here.
  *
- * The base URL comes from NEXT_PUBLIC_SITE_URL. On Vercel it falls back to the
- * project's production domain, and locally to http://localhost:3000.
+ * Production always uses PRODUCTION_URL, so canonical tags, the sitemap and robots.txt can't drift
+ * to an old domain through a stale environment variable. Elsewhere the base URL comes from
+ * NEXT_PUBLIC_SITE_URL, then the Vercel production domain, then http://localhost:3000.
  */
+const PRODUCTION_URL = "https://discordfont.app";
+
 function resolveSiteUrl(): string {
+  if (process.env.VERCEL_ENV === "production") return PRODUCTION_URL;
   const explicit = process.env.NEXT_PUBLIC_SITE_URL;
   const vercel = process.env.VERCEL_PROJECT_PRODUCTION_URL;
   const url = explicit || (vercel ? `https://${vercel}` : "http://localhost:3000");
