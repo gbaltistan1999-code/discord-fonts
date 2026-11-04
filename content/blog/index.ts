@@ -1,4 +1,5 @@
 import type { Faq } from "../faqs";
+import { discordColoredText } from "./discord-colored-text";
 import { changeFontOnDiscord } from "./how-to-change-font-on-discord";
 
 export interface BlogPost {
@@ -20,7 +21,7 @@ export interface BlogPost {
 }
 
 /** Newest first. To add a post, create a file in this folder and list it here. */
-export const blogPosts: readonly BlogPost[] = [changeFontOnDiscord];
+export const blogPosts: readonly BlogPost[] = [discordColoredText, changeFontOnDiscord];
 
 export function getBlogPost(slug: string): BlogPost | undefined {
   return blogPosts.find((post) => post.slug === slug);
