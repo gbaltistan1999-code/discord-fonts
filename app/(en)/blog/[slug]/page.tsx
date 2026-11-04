@@ -84,18 +84,20 @@ export default async function BlogPostPage({ params }: PageProps) {
         {post.outro && <div className="prose-content mt-4">{post.outro}</div>}
       </article>
 
-      <aside className="mt-12 rounded-2xl border border-border bg-surface p-5 sm:p-6">
-        <p className="text-lg font-bold text-text">Try it now</p>
-        <p className="mt-1 text-sm text-muted">
-          Type your name once and copy any of 170+ fancy font styles for Discord.
-        </p>
-        <Link
-          href="/"
-          className="mt-4 inline-block rounded-full bg-accent-solid px-5 py-2.5 text-sm font-semibold text-on-accent transition-opacity hover:opacity-90"
-        >
-          Open the font generator
-        </Link>
-      </aside>
+      {!post.hideGeneratorCta && (
+        <aside className="mt-12 rounded-2xl border border-border bg-surface p-5 sm:p-6">
+          <p className="text-lg font-bold text-text">Try it now</p>
+          <p className="mt-1 text-sm text-muted">
+            Type your name once and copy any of 170+ fancy font styles for Discord.
+          </p>
+          <Link
+            href="/"
+            className="mt-4 inline-block rounded-full bg-accent-solid px-5 py-2.5 text-sm font-semibold text-on-accent transition-opacity hover:opacity-90"
+          >
+            Open the font generator
+          </Link>
+        </aside>
+      )}
 
       {others.length > 0 && (
         <section aria-labelledby="more-posts" className="mt-12">

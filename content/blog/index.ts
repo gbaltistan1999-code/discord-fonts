@@ -18,6 +18,8 @@ export interface BlogPost {
   body: React.ReactNode;
   /** Closing section shown after the FAQ. */
   outro?: React.ReactNode;
+  /** Hide the "Try it now" generator box, for posts that already link to the homepage in the text. */
+  hideGeneratorCta?: boolean;
 }
 
 /** Newest first. To add a post, create a file in this folder and list it here. */

@@ -38,6 +38,7 @@ export const discordColoredText: BlogPost = {
   datePublished: "2026-11-04",
   dateModified: "2026-11-04",
   readingMinutes: 7,
+  hideGeneratorCta: true,
   faqs: [
     {
       question: "Can you change text color in Discord without code?",
@@ -369,10 +370,7 @@ export const discordColoredText: BlogPost = {
           </tbody>
         </table>
       </div>
-      <p>
-        For names, bios and server names, see our guide on {fontsGuide}. And for bold, italics, spoilers and
-        headers, there&apos;s our <Link href="/discord-text-formatting">Discord text formatting guide</Link>.
-      </p>
+      <p>For names, bios and server names, see our guide on {fontsGuide}.</p>
     </>
   ),
   outro: (
