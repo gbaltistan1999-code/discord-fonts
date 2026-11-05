@@ -1,3 +1,4 @@
+import { HeroHeading } from "./HeroHeading";
 import type { Metadata } from "next";
 import { getStrings } from "@/content/i18n";
 import { getPlatformPages } from "@/content/i18n/pages/platforms";
@@ -71,14 +72,11 @@ export function PlatformPageView({ slug, locale = defaultLocale }: { slug: strin
           locale={locale}
           items={[{ name: fill(content.breadcrumb, name), path: localePath(locale, `/${p.slug}`) }]}
         />
-        <h1 className="max-w-4xl text-3xl leading-tight font-extrabold tracking-tight text-balance sm:text-4xl">
-          {text.h1}
-        </h1>
-        <p className="mt-3 mb-6 max-w-3xl text-base text-muted sm:text-lg">{text.intro}</p>
       </div>
 
       <section aria-label={fill(content.toolLabel, name)}>
         <FontGenerator
+          hero={<HeroHeading title={text.h1} intro={text.intro} />}
           strings={generator}
           platformLinks={platformLinksProps(locale)}
           featured={{ label: text.featuredLabel, ids: p.featured.ids }}

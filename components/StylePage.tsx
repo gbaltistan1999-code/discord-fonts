@@ -1,3 +1,4 @@
+import { HeroHeading } from "./HeroHeading";
 import type { Metadata } from "next";
 import { getStrings } from "@/content/i18n";
 import { getStylePages } from "@/content/i18n/pages/styles";
@@ -72,13 +73,10 @@ export function StylePageView({ style, locale }: { style: StylePage; locale: Loc
         <>
           <div className="pt-6">
             <Breadcrumbs locale={locale} items={[{ name: text.name, path }]} />
-            <h1 className="max-w-4xl text-3xl leading-tight font-extrabold tracking-tight text-balance sm:text-4xl">
-              {text.h1}
-            </h1>
-            <p className="mt-3 mb-6 max-w-3xl text-base text-muted sm:text-lg">{text.intro}</p>
           </div>
           <section aria-label={toolLabel}>
             <FontGenerator
+              hero={<HeroHeading title={text.h1} intro={text.intro} />}
               strings={generator}
               featured={featured}
               platformLinks={platformLinksProps(locale)}

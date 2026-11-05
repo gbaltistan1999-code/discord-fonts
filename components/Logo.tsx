@@ -4,8 +4,8 @@ export function Logo({ className = "size-8" }: { className?: string }) {
     <svg viewBox="0 0 32 32" className={className} aria-hidden="true">
       <defs>
         <linearGradient id="logo-grad" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#7c6dff" />
-          <stop offset="1" stopColor="#c45cd6" />
+          <stop offset="0" stopColor="#0d9488" />
+          <stop offset="1" stopColor="#0891b2" />
         </linearGradient>
       </defs>
       <rect width="32" height="32" rx="9" fill="url(#logo-grad)" />

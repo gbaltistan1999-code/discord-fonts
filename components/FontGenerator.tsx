@@ -50,12 +50,12 @@ type Scope = "all" | "favorites" | "recent";
 /** Each filter tab gets its own colour: a soft tint when idle, solid when selected (white text stays above 4.5:1). */
 const FILTER_COLORS: Record<Filter, { idle: string; active: string }> = {
   featured: {
-    idle: "bg-violet-50 text-violet-700 hover:bg-violet-100 dark:bg-violet-500/15 dark:text-violet-300 dark:hover:bg-violet-500/25",
-    active: "bg-linear-to-r from-violet-600 to-fuchsia-600 text-white",
+    idle: "bg-teal-50 text-teal-700 hover:bg-teal-100 dark:bg-teal-500/15 dark:text-teal-300 dark:hover:bg-teal-500/25",
+    active: "bg-linear-to-r from-teal-700 to-cyan-700 text-white",
   },
   all: {
-    idle: "bg-indigo-50 text-indigo-700 hover:bg-indigo-100 dark:bg-indigo-500/15 dark:text-indigo-300 dark:hover:bg-indigo-500/25",
-    active: "bg-indigo-600 text-white",
+    idle: "bg-cyan-50 text-cyan-800 hover:bg-cyan-100 dark:bg-cyan-500/15 dark:text-cyan-300 dark:hover:bg-cyan-500/25",
+    active: "bg-linear-to-r from-teal-700 to-cyan-700 text-white",
   },
   bold: {
     idle: "bg-rose-50 text-rose-700 hover:bg-rose-100 dark:bg-rose-500/15 dark:text-rose-300 dark:hover:bg-rose-500/25",

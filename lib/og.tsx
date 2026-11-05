@@ -25,7 +25,7 @@ export function renderOgImage({
         flexDirection: "column",
         justifyContent: "space-between",
         padding: "72px",
-        background: "linear-gradient(135deg, #0c0d13 0%, #1b1840 55%, #3a1d4f 100%)",
+        background: "linear-gradient(135deg, #0c0d13 0%, #0f2e2c 55%, #0c3b44 100%)",
         color: "#ececf4",
         fontFamily: "sans-serif",
       }}
@@ -36,7 +36,7 @@ export function renderOgImage({
             width: "64px",
             height: "64px",
             borderRadius: "18px",
-            background: "linear-gradient(135deg, #7c6dff, #c45cd6)",
+            background: "linear-gradient(135deg, #0d9488, #0891b2)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -47,7 +47,7 @@ export function renderOgImage({
         >
           Aa
         </div>
-        <div style={{ fontSize: "30px", fontWeight: 600, color: "#b9b6ff" }}>{siteConfig.name}</div>
+        <div style={{ fontSize: "30px", fontWeight: 600, color: "#5eead4" }}>{siteConfig.name}</div>
       </div>
       <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
         <div style={{ fontSize: "76px", fontWeight: 800, lineHeight: 1.05, letterSpacing: "-0.02em" }}>
@@ -63,10 +63,10 @@ export function renderOgImage({
               display: "flex",
               padding: "10px 22px",
               borderRadius: "999px",
-              background: "rgba(124, 109, 255, 0.22)",
-              border: "1px solid rgba(157, 151, 255, 0.5)",
+              background: "rgba(20, 184, 166, 0.22)",
+              border: "1px solid rgba(94, 234, 212, 0.5)",
               fontSize: "26px",
-              color: "#e4e2ff",
+              color: "#ccfbf1",
             }}
           >
             {tag}

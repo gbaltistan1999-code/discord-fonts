@@ -43,7 +43,7 @@ export function TimestampPage({ locale }: { locale: Locale }) {
           strings={timestamp}
           hero={
             <div className="mx-auto mb-7 max-w-3xl text-center">
-              <h1 className="bg-linear-to-r from-indigo-600 to-violet-600 bg-clip-text text-3xl leading-tight font-extrabold tracking-tight text-balance text-transparent sm:text-5xl dark:from-indigo-300 dark:to-violet-300">
+              <h1 className="bg-linear-to-r from-teal-600 to-cyan-600 bg-clip-text text-3xl leading-tight font-extrabold tracking-tight text-balance text-transparent sm:text-5xl dark:from-teal-300 dark:to-cyan-300">
                 {page.h1}
               </h1>
               <p className="mt-4 text-base text-pretty text-muted sm:text-lg">{page.intro}</p>

@@ -40,8 +40,8 @@ export const stylePages: readonly StylePage[] = [
     featured: fromCategory("bold", "Bold styles"),
     related: ["cursive", "gothic", "small-caps"],
     look: {
-      accent: "accent-orange",
-      heading: "from-orange-600 to-red-600 dark:from-orange-300 dark:to-red-300",
+      accent: "accent-teal",
+      heading: "from-teal-600 to-cyan-600 dark:from-teal-300 dark:to-cyan-300",
     },
     body: (
       <>
@@ -109,8 +109,8 @@ export const stylePages: readonly StylePage[] = [
     featured: fromCategory("cursive", "Cursive styles"),
     related: ["bold", "aesthetic", "small-caps"],
     look: {
-      accent: "accent-pink",
-      heading: "from-pink-600 to-rose-600 dark:from-pink-300 dark:to-rose-300",
+      accent: "accent-teal",
+      heading: "from-teal-600 to-cyan-600 dark:from-teal-300 dark:to-cyan-300",
     },
     body: (
       <>
@@ -238,8 +238,8 @@ export const stylePages: readonly StylePage[] = [
     },
     related: ["aesthetic", "cursive", "bold"],
     look: {
-      accent: "accent-blue",
-      heading: "from-blue-700 to-sky-600 dark:from-blue-300 dark:to-sky-300",
+      accent: "accent-teal",
+      heading: "from-teal-600 to-cyan-600 dark:from-teal-300 dark:to-cyan-300",
     },
     body: (
       <>

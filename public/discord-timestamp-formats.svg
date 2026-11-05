@@ -6,55 +6,55 @@
   <g font-family="system-ui, sans-serif">
     <g transform="translate(24 62)">
       <rect width="592" height="52" rx="10" fill="#1b1d29"/>
-      <text x="14" y="32" font-size="16" fill="#9d97ff" font-family="ui-monospace, Consolas, monospace">&lt;t:…:t&gt;</text>
+      <text x="14" y="32" font-size="16" fill="#5eead4" font-family="ui-monospace, Consolas, monospace">&lt;t:…:t&gt;</text>
       <text x="116" y="21" font-size="12" fill="#a4a8bd">Short Time</text>
       <text x="116" y="41" font-size="17" fill="#ececf4">4:20 PM</text>
     </g>
     <g transform="translate(24 120)">
       <rect width="592" height="52" rx="10" fill="#1b1d29"/>
-      <text x="14" y="32" font-size="16" fill="#9d97ff" font-family="ui-monospace, Consolas, monospace">&lt;t:…:T&gt;</text>
+      <text x="14" y="32" font-size="16" fill="#5eead4" font-family="ui-monospace, Consolas, monospace">&lt;t:…:T&gt;</text>
       <text x="116" y="21" font-size="12" fill="#a4a8bd">Medium Time</text>
       <text x="116" y="41" font-size="17" fill="#ececf4">4:20:00 PM</text>
     </g>
     <g transform="translate(24 178)">
       <rect width="592" height="52" rx="10" fill="#1b1d29"/>
-      <text x="14" y="32" font-size="16" fill="#9d97ff" font-family="ui-monospace, Consolas, monospace">&lt;t:…:d&gt;</text>
+      <text x="14" y="32" font-size="16" fill="#5eead4" font-family="ui-monospace, Consolas, monospace">&lt;t:…:d&gt;</text>
       <text x="116" y="21" font-size="12" fill="#a4a8bd">Short Date</text>
       <text x="116" y="41" font-size="17" fill="#ececf4">11/03/2026</text>
     </g>
     <g transform="translate(24 236)">
       <rect width="592" height="52" rx="10" fill="#1b1d29"/>
-      <text x="14" y="32" font-size="16" fill="#9d97ff" font-family="ui-monospace, Consolas, monospace">&lt;t:…:D&gt;</text>
+      <text x="14" y="32" font-size="16" fill="#5eead4" font-family="ui-monospace, Consolas, monospace">&lt;t:…:D&gt;</text>
       <text x="116" y="21" font-size="12" fill="#a4a8bd">Long Date</text>
       <text x="116" y="41" font-size="17" fill="#ececf4">November 3, 2026</text>
     </g>
     <g transform="translate(24 294)">
       <rect width="592" height="52" rx="10" fill="#1b1d29"/>
-      <text x="14" y="32" font-size="16" fill="#9d97ff" font-family="ui-monospace, Consolas, monospace">&lt;t:…:f&gt;</text>
+      <text x="14" y="32" font-size="16" fill="#5eead4" font-family="ui-monospace, Consolas, monospace">&lt;t:…:f&gt;</text>
       <text x="116" y="21" font-size="12" fill="#a4a8bd">Long Date, Short Time (default)</text>
       <text x="116" y="41" font-size="17" fill="#ececf4">November 3, 2026 at 4:20 PM</text>
     </g>
     <g transform="translate(24 352)">
       <rect width="592" height="52" rx="10" fill="#1b1d29"/>
-      <text x="14" y="32" font-size="16" fill="#9d97ff" font-family="ui-monospace, Consolas, monospace">&lt;t:…:F&gt;</text>
+      <text x="14" y="32" font-size="16" fill="#5eead4" font-family="ui-monospace, Consolas, monospace">&lt;t:…:F&gt;</text>
       <text x="116" y="21" font-size="12" fill="#a4a8bd">Full Date, Short Time</text>
       <text x="116" y="41" font-size="17" fill="#ececf4">Tuesday, November 3, 2026 at 4:20 PM</text>
     </g>
     <g transform="translate(24 410)">
       <rect width="592" height="52" rx="10" fill="#1b1d29"/>
-      <text x="14" y="32" font-size="16" fill="#9d97ff" font-family="ui-monospace, Consolas, monospace">&lt;t:…:s&gt;</text>
+      <text x="14" y="32" font-size="16" fill="#5eead4" font-family="ui-monospace, Consolas, monospace">&lt;t:…:s&gt;</text>
       <text x="116" y="21" font-size="12" fill="#a4a8bd">Short Date, Short Time</text>
       <text x="116" y="41" font-size="17" fill="#ececf4">11/03/2026, 4:20 PM</text>
     </g>
     <g transform="translate(24 468)">
       <rect width="592" height="52" rx="10" fill="#1b1d29"/>
-      <text x="14" y="32" font-size="16" fill="#9d97ff" font-family="ui-monospace, Consolas, monospace">&lt;t:…:S&gt;</text>
+      <text x="14" y="32" font-size="16" fill="#5eead4" font-family="ui-monospace, Consolas, monospace">&lt;t:…:S&gt;</text>
       <text x="116" y="21" font-size="12" fill="#a4a8bd">Short Date, Medium Time</text>
       <text x="116" y="41" font-size="17" fill="#ececf4">11/03/2026, 4:20:00 PM</text>
     </g>
     <g transform="translate(24 526)">
       <rect width="592" height="52" rx="10" fill="#1b1d29"/>
-      <text x="14" y="32" font-size="16" fill="#9d97ff" font-family="ui-monospace, Consolas, monospace">&lt;t:…:R&gt;</text>
+      <text x="14" y="32" font-size="16" fill="#5eead4" font-family="ui-monospace, Consolas, monospace">&lt;t:…:R&gt;</text>
       <text x="116" y="21" font-size="12" fill="#a4a8bd">Relative Time</text>
       <text x="116" y="41" font-size="17" fill="#ececf4">in 2 hours</text>
     </g>

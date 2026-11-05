@@ -4,7 +4,7 @@
   <g font-family="system-ui, sans-serif">
     <text x="32" y="44" font-size="15" font-weight="600" fill="#a4a8bd">ONE CODE</text>
     <rect x="24" y="58" width="592" height="56" rx="12" fill="#1b1d29" stroke="#2a2c3c"/>
-    <text x="320" y="93" font-size="20" fill="#9d97ff" text-anchor="middle" font-family="ui-monospace, Consolas, monospace">&lt;t:1793740800:F&gt;</text>
+    <text x="320" y="93" font-size="20" fill="#5eead4" text-anchor="middle" font-family="ui-monospace, Consolas, monospace">&lt;t:1793740800:F&gt;</text>
 
     <text x="32" y="150" font-size="15" font-weight="600" fill="#a4a8bd">THREE VIEWERS, EACH IN THEIR OWN TIME</text>
 
