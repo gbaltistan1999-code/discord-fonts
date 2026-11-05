@@ -386,15 +386,7 @@ export function FontGenerator({
       <div
         className={isList ? "mt-8" : "mt-6 rounded-2xl border border-border bg-surface p-4 shadow-sm sm:p-5"}
       >
-        <div
-          role="group"
-          aria-label={t.filterGroup}
-          className={
-            isList
-              ? "-mx-4 flex gap-1 overflow-x-auto border-b border-border px-4 [scrollbar-width:none] sm:mx-0 sm:px-0"
-              : "grid grid-cols-2 gap-2 sm:flex sm:flex-wrap"
-          }
-        >
+        <div role="group" aria-label={t.filterGroup} className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap">
           {filters.map((f) => {
             const active = filter === f.id;
             return (
@@ -406,16 +398,10 @@ export function FontGenerator({
                   setFilter(f.id);
                   setLimit(PAGE_SIZE);
                 }}
-                className={
-                  isList
-                    ? `-mb-px shrink-0 border-b-2 px-3 py-3 text-sm font-semibold transition-colors ${
-                        active ? "border-accent text-accent" : "border-transparent text-muted hover:text-text"
-                      }`
-                    : // Two-column boxes on phones (an odd last one spans both), pills from sm up.
-                      `flex min-w-0 items-center justify-between rounded-xl px-4 py-2.5 text-left text-sm font-semibold transition-colors last:odd:col-span-2 sm:inline-block sm:shrink-0 sm:rounded-full sm:py-2 ${
-                        active ? `${FILTER_COLORS[f.id].active} shadow-sm` : FILTER_COLORS[f.id].idle
-                      }`
-                }
+                // Two-column boxes on phones (an odd last one spans both), pills from sm up.
+                className={`flex min-w-0 items-center justify-between rounded-xl px-4 py-2.5 text-left text-sm font-semibold transition-colors last:odd:col-span-2 sm:inline-block sm:shrink-0 sm:rounded-full sm:py-2 ${
+                  active ? `${FILTER_COLORS[f.id].active} shadow-sm` : FILTER_COLORS[f.id].idle
+                }`}
               >
                 {f.label}
                 <span className={`ml-1.5 tabular-nums ${active ? "opacity-80" : "opacity-70"}`}>
