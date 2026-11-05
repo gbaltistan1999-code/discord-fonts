@@ -224,6 +224,12 @@ export const homeFr: HomeContent = {
   popularIntro:
     "Des générateurs dédiés à un seul style, avec des conseils sur les endroits où chacun fonctionne le mieux.",
   moreGenerators: "Autres générateurs :",
+  socialTitle: "Polices pour les réseaux sociaux",
+  socialIntro:
+    "Des générateurs de texte stylé pour chaque appli, avec des conseils sur ce qui marche dans les noms, les bios et les publications.",
+  gamingTitle: "Polices pour les jeux",
+  gamingIntro:
+    "Des générateurs de pseudos stylés pour vos jeux préférés, avec les règles de nom de chaque jeu.",
   faqHeading: "Questions fréquentes sur les polices Discord",
   faqs: [
     {

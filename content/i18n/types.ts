@@ -240,6 +240,10 @@ export interface HomeContent {
   popularTitle: string;
   popularIntro: string;
   moreGenerators: string;
+  socialTitle: string;
+  socialIntro: string;
+  gamingTitle: string;
+  gamingIntro: string;
   faqHeading: string;
   faqs: readonly Faq[];
   Article: () => React.ReactNode;

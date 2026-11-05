@@ -219,6 +219,12 @@ export const homeDe: HomeContent = {
   popularTitle: "Beliebte Discord-Schriftstile",
   popularIntro: "Generatoren für jeweils einen Stil, mit Tipps, wo er am besten funktioniert.",
   moreGenerators: "Weitere Generatoren:",
+  socialTitle: "Schriftarten für soziale Netzwerke",
+  socialIntro:
+    "Generatoren für schöne Schrift in jeder App, mit Tipps, was in Namen, Bios und Beiträgen funktioniert.",
+  gamingTitle: "Schriftarten für Spiele",
+  gamingIntro:
+    "Generatoren für stylische Namen in deinen Lieblingsspielen, mit den Namensregeln jedes Spiels.",
   faqHeading: "Häufige Fragen zu Discord-Schriftarten",
   faqs: [
     {

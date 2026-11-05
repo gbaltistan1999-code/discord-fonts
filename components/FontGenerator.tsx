@@ -19,7 +19,6 @@ import { simpleLast, stylishFirst, themeStyles, type Theme } from "@/content/i18
 import type { GeneratorStrings } from "@/content/i18n/types";
 import { fill } from "@/lib/i18n";
 import { useStoredState } from "@/lib/useStoredState";
-import { PlatformLinks, type PlatformLinksProps } from "./PlatformLinks";
 import { useCopy } from "./ToastProvider";
 
 const PAGE_SIZE = 24;
@@ -134,8 +133,6 @@ interface FontGeneratorProps {
   namePreview?: boolean;
   /** Interface text in the page's language (English by default). */
   strings?: GeneratorStrings;
-  /** Sidebar links in the page's language. */
-  platformLinks?: PlatformLinksProps;
 }
 
 type Variant = "cards" | "list";
@@ -165,7 +162,6 @@ export function FontGenerator({
   hero,
   heroClassName = "",
   namePreview = false,
-  platformLinks,
 }: FontGeneratorProps) {
   const isList = variant === "list";
   const inputId = useId();
@@ -275,7 +271,7 @@ export function FontGenerator({
 
   const listClass = isList
     ? "divide-y divide-border overflow-hidden rounded-2xl border border-border bg-surface shadow-sm"
-    : "grid gap-3 sm:grid-cols-2";
+    : "grid gap-3 sm:grid-cols-2 lg:grid-cols-3";
   // Random styles can sit between the first few results and the rest, only while browsing the full list.
   const splitAt = browsingAll && randomAfter !== undefined ? randomAfter : undefined;
 
@@ -504,16 +500,8 @@ export function FontGenerator({
         />
       )}
 
-      <div className={isList ? "mt-6" : "mt-4 grid gap-6 lg:grid-cols-[minmax(0,1fr)_18rem]"}>
-        {!isList && (
-          <aside className="order-last lg:order-none lg:col-start-2 lg:row-start-1">
-            <div className="lg:sticky lg:top-6">
-              <PlatformLinks {...platformLinks} />
-            </div>
-          </aside>
-        )}
-
-        <div className="cv-list min-w-0 lg:col-start-1 lg:row-start-1">
+      <div className={isList ? "mt-6" : "mt-4"}>
+        <div className="cv-list min-w-0">
           {results.length > 0 ? (
             <>
               <ul aria-label={t.resultsLabel} className={listClass}>

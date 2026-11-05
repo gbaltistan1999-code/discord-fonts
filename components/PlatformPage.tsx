@@ -1,6 +1,7 @@
 import { HeroHeading } from "./HeroHeading";
 import type { Metadata } from "next";
 import { getStrings } from "@/content/i18n";
+import { getHome } from "@/content/i18n/home";
 import { getPlatformPages } from "@/content/i18n/pages/platforms";
 import { getPlatformPage, type PlatformPage } from "@/content/platforms";
 import { defaultLocale, fill, localePath, type Locale } from "@/lib/i18n";
@@ -10,7 +11,7 @@ import { Breadcrumbs } from "./Breadcrumbs";
 import { FaqList } from "./FaqList";
 import { FontGenerator } from "./FontGenerator";
 import { JsonLd } from "./JsonLd";
-import { platformLinksProps } from "./platform-links-props";
+import { gamingSlugs, PlatformGrid, socialSlugs } from "./PlatformGrid";
 
 /*
  * Platform pages ("/roblox-fonts", ...) are fixed routes in English rather than
@@ -52,7 +53,9 @@ export function PlatformPageView({ slug, locale = defaultLocale }: { slug: strin
   const p = page(slug);
   const content = getPlatformPages(locale);
   const text = content.pages[p.slug]!;
-  const { generator } = getStrings(locale);
+  const { generator, ui } = getStrings(locale);
+  const home = getHome(locale);
+  const isGaming = (gamingSlugs as readonly string[]).includes(p.slug);
   const name = { name: p.name };
 
   return (
@@ -78,7 +81,6 @@ export function PlatformPageView({ slug, locale = defaultLocale }: { slug: strin
         <FontGenerator
           hero={<HeroHeading title={text.h1} intro={text.intro} />}
           strings={generator}
-          platformLinks={platformLinksProps(locale)}
           featured={{ label: text.featuredLabel, ids: p.featured.ids }}
           sampleText={text.sampleText}
         />
@@ -93,6 +95,18 @@ export function PlatformPageView({ slug, locale = defaultLocale }: { slug: strin
       <div className="cv-auto mt-12">
         <FaqList faqs={text.faqs} heading={fill(content.faqHeading, name)} />
       </div>
+
+      <section aria-labelledby="more-platforms" className="cv-auto mt-12">
+        <h2 id="more-platforms" className="mb-4 text-2xl font-bold tracking-tight">
+          {isGaming ? home.gamingTitle : home.socialTitle}
+        </h2>
+        <PlatformGrid
+          slugs={isGaming ? gamingSlugs : socialSlugs}
+          exclude={p.slug}
+          locale={locale}
+          platformFonts={ui.platformFonts}
+        />
+      </section>
     </>
   );
 }

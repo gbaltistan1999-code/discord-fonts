@@ -12,7 +12,7 @@ import { FaqList } from "./FaqList";
 import { FontGenerator } from "./FontGenerator";
 import { FormattingTool } from "./FormattingTool";
 import { JsonLd } from "./JsonLd";
-import { platformLinksProps } from "./platform-links-props";
+import { gamingSlugs, PlatformGrid, socialSlugs } from "./PlatformGrid";
 import { StyleLinks } from "./StyleLinks";
 
 export function homeMetadata(locale: Locale) {
@@ -76,7 +76,6 @@ export function HomePage({ locale }: { locale: Locale }) {
           }
           strings={generator}
           order={homeStyleOrder[locale]}
-          platformLinks={platformLinksProps(locale)}
         />
       </section>
 
@@ -109,6 +108,20 @@ export function HomePage({ locale }: { locale: Locale }) {
               </span>
             ))}
           </p>
+        </section>
+
+        <section aria-labelledby="social-fonts" className="cv-auto mt-20 border-t border-border pt-16">
+          <SectionHeader id="social-fonts" title={home.socialTitle}>
+            {home.socialIntro}
+          </SectionHeader>
+          <PlatformGrid slugs={socialSlugs} locale={locale} platformFonts={ui.platformFonts} />
+        </section>
+
+        <section aria-labelledby="gaming-fonts" className="cv-auto mt-16">
+          <SectionHeader id="gaming-fonts" title={home.gamingTitle}>
+            {home.gamingIntro}
+          </SectionHeader>
+          <PlatformGrid slugs={gamingSlugs} locale={locale} platformFonts={ui.platformFonts} />
         </section>
 
         {locale === "en" && blogPosts.length > 0 && (

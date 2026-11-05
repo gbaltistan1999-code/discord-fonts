@@ -219,6 +219,12 @@ export const homeEs: HomeContent = {
   popularTitle: "Estilos de letra populares para Discord",
   popularIntro: "Generadores centrados en un solo estilo, con consejos sobre dónde funciona mejor cada uno.",
   moreGenerators: "Más generadores:",
+  socialTitle: "Letras para redes sociales",
+  socialIntro:
+    "Generadores de letras bonitas para cada app, con consejos sobre lo que funciona en nombres, biografías y publicaciones.",
+  gamingTitle: "Letras para juegos",
+  gamingIntro:
+    "Generadores de nombres con estilo para tus juegos favoritos, con las reglas de nombres de cada juego.",
   faqHeading: "Preguntas frecuentes sobre las letras para Discord",
   faqs: [
     {

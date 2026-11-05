@@ -197,6 +197,10 @@ export const homeJa: HomeContent = {
   popularTitle: "人気のDiscordフォント スタイル",
   popularIntro: "1つのスタイルに絞ったジェネレーターです。それぞれ、どこで使うと効果的かのヒント付き。",
   moreGenerators: "ほかのジェネレーター：",
+  socialTitle: "SNS用フォント",
+  socialIntro: "アプリごとのおしゃれ文字ジェネレーター。名前・プロフィール・投稿で使えるかのヒント付き。",
+  gamingTitle: "ゲーム用フォント",
+  gamingIntro: "人気ゲーム向けのおしゃれな名前ジェネレーター。各ゲームの名前ルールも解説。",
   faqHeading: "Discordフォントのよくある質問",
   faqs: [
     {
