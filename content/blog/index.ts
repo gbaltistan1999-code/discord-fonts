@@ -2,6 +2,8 @@ import type { Faq } from "../faqs";
 import { discordColoredText } from "./discord-colored-text";
 import { changeFontOnDiscord } from "./how-to-change-font-on-discord";
 
+export type BlogIcon = "palette" | "type" | "sparkle" | "chat";
+
 export interface BlogPost {
   /** URL path segment under /blog. */
   slug: string;
@@ -9,6 +11,10 @@ export interface BlogPost {
   title: string;
   /** Meta description, also used as the card summary on /blog. */
   description: string;
+  /** Short line shown in small caps under the title on blog cards. */
+  tagline: string;
+  /** Icon on blog cards. */
+  icon: BlogIcon;
   /** ISO dates (YYYY-MM-DD). */
   datePublished: string;
   dateModified: string;

@@ -4,12 +4,12 @@
 
 /* Light palette */
 :root {
-  --bg: #f6f6fb;
+  --bg: #f3f8f8;
   --surface: #ffffff;
-  --surface-2: #efeff7;
-  --border: #dcdce8;
-  --text: #15161c;
-  --muted: #50556a;
+  --surface-2: #e8f2f1;
+  --border: #d3e4e2;
+  --text: #12201f;
+  --muted: #4a5f60;
   --accent: #0f766e;
   --accent-solid: #0f766e;
   --accent-soft: #d5f5ef;
@@ -22,15 +22,15 @@
 
 /* Dark palette (default) */
 .dark {
-  --bg: #0c0d13;
-  --surface: #14151e;
-  --surface-2: #1b1d29;
-  --border: #2a2c3c;
-  --text: #ececf4;
-  --muted: #a4a8bd;
+  --bg: #081517;
+  --surface: #0e2023;
+  --surface-2: #142b2f;
+  --border: #21403f;
+  --text: #e9f3f2;
+  --muted: #9db5b6;
   --accent: #5eead4;
   --accent-solid: #0f766e;
-  --accent-soft: #0f2e2c;
+  --accent-soft: #113a38;
   --on-accent: #ffffff;
   --success: #4ade80;
   --warning: #fbbf24;
@@ -48,7 +48,7 @@
 .dark .accent-teal {
   --accent: #5eead4;
   --accent-solid: #0f766e;
-  --accent-soft: #0f2e2c;
+  --accent-soft: #113a38;
 }
 .accent-orange {
   --accent: #c2410c;

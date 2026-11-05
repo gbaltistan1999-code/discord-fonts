@@ -35,6 +35,8 @@ export const discordColoredText: BlogPost = {
   title: "How to Write Colored Text in Discord (Easy 2026 Guide)",
   description:
     "Learn how to type colored text in Discord using ANSI code blocks. Full color code chart, copy-paste examples, and fixes for when colors don't show up.",
+  tagline: "ANSI color codes, chart & copy-paste examples",
+  icon: "palette",
   datePublished: "2026-11-04",
   dateModified: "2026-11-04",
   readingMinutes: 7,

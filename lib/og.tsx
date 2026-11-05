@@ -25,7 +25,7 @@ export function renderOgImage({
         flexDirection: "column",
         justifyContent: "space-between",
         padding: "72px",
-        background: "linear-gradient(135deg, #0c0d13 0%, #0f2e2c 55%, #0c3b44 100%)",
+        background: "linear-gradient(135deg, #081517 0%, #0f2e2c 55%, #0c3b44 100%)",
         color: "#ececf4",
         fontFamily: "sans-serif",
       }}

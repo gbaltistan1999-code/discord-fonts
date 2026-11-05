@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { blogPosts } from "@/content/blog";
 import { getStrings } from "@/content/i18n";
 import { getHome } from "@/content/i18n/home";
 import { homeStyleOrder } from "@/content/i18n/style-order";
@@ -6,6 +7,7 @@ import { generatorPages } from "@/content/generator-pages";
 import { fontStyles } from "@/lib/fonts";
 import { fill, hrefFor, type Locale } from "@/lib/i18n";
 import { buildMetadata, faqJsonLd, webApplicationJsonLd, websiteJsonLd } from "@/lib/seo";
+import { BlogCards } from "./BlogCards";
 import { FaqList } from "./FaqList";
 import { FontGenerator } from "./FontGenerator";
 import { FormattingTool } from "./FormattingTool";
@@ -108,6 +110,27 @@ export function HomePage({ locale }: { locale: Locale }) {
             ))}
           </p>
         </section>
+
+        {locale === "en" && blogPosts.length > 0 && (
+          <section aria-labelledby="from-the-blog" className="cv-auto mt-20 border-t border-border pt-16">
+            <header className="mx-auto mb-10 max-w-2xl text-center">
+              <h2 id="from-the-blog" className="text-3xl font-extrabold tracking-tight sm:text-4xl">
+                From the{" "}
+                <span className="bg-linear-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent dark:from-teal-300 dark:to-cyan-300">
+                  Blog
+                </span>
+              </h2>
+              <p className="mt-3 text-muted sm:text-lg">
+                Step-by-step guides for fancy fonts, colored text and better Discord names.{" "}
+                <Link href="/blog" className="font-semibold text-accent underline underline-offset-4">
+                  See all posts
+                </Link>
+                .
+              </p>
+            </header>
+            <BlogCards posts={blogPosts.slice(0, 6)} />
+          </section>
+        )}
 
         <div className="cv-auto mt-20 border-t border-border pt-4">
           <article className="mx-auto max-w-3xl">
