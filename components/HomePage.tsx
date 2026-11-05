@@ -55,17 +55,23 @@ export function HomePage({ locale }: { locale: Locale }) {
         ]}
       />
 
-      <section className="mx-auto max-w-3xl pt-12 pb-10 text-center sm:pt-20 sm:pb-12">
-        <h1 className="text-3xl leading-tight font-extrabold tracking-tight text-balance text-text sm:text-[2.75rem]">
-          {home.h1}
-        </h1>
-        <p className="mx-auto mt-4 max-w-2xl text-base text-pretty text-muted sm:text-lg">
-          {fill(home.intro, { count: fontStyles.length })}
-        </p>
-      </section>
-
-      <section id="font-styles" aria-label={home.generatorLabel} className="mx-auto max-w-5xl scroll-mt-4">
+      <section
+        id="font-styles"
+        aria-label={home.generatorLabel}
+        className="mx-auto max-w-5xl scroll-mt-4 pt-6"
+      >
         <FontGenerator
+          heroClassName="accent-teal"
+          hero={
+            <div className="mx-auto mb-6 max-w-3xl text-center">
+              <h1 className="bg-linear-to-r from-teal-600 to-cyan-600 bg-clip-text text-3xl leading-tight font-extrabold tracking-tight text-balance text-transparent sm:text-5xl dark:from-teal-300 dark:to-cyan-300">
+                {home.h1}
+              </h1>
+              <p className="mx-auto mt-4 max-w-2xl text-base text-pretty text-muted sm:text-lg">
+                {fill(home.intro, { count: fontStyles.length })}
+              </p>
+            </div>
+          }
           strings={generator}
           order={homeStyleOrder[locale]}
           platformLinks={platformLinksProps(locale)}

@@ -123,8 +123,13 @@ interface FontGeneratorProps {
   showSupport?: boolean;
   /** "cards" is the homepage grid; "list" puts the input in a hero panel and shows one row per style. */
   variant?: Variant;
-  /** Heading content shown above the input inside the hero panel (list variant only). */
+  /**
+   * Heading content shown above the input inside a tinted hero panel. The list variant always has the
+   * panel; the cards variant gets it only when a hero is passed (its input then stops being sticky).
+   */
   hero?: React.ReactNode;
+  /** Extra classes for the hero panel, such as an accent-* color class. */
+  heroClassName?: string;
   /** Show the selected style as a name in a mock chat message and member list. */
   namePreview?: boolean;
   /** Interface text in the page's language (English by default). */
@@ -158,6 +163,7 @@ export function FontGenerator({
   showSupport = false,
   variant = "cards",
   hero,
+  heroClassName = "",
   namePreview = false,
   platformLinks,
 }: FontGeneratorProps) {
@@ -338,12 +344,12 @@ export function FontGenerator({
           List: the input sits inside a tinted hero panel under the page heading. */}
       <div
         className={
-          isList
-            ? "-mx-4 border-y border-accent/20 bg-linear-to-br from-accent-soft via-surface to-accent-soft px-4 pt-6 pb-7 sm:mx-0 sm:rounded-3xl sm:border sm:px-10 sm:pt-8 sm:pb-9"
+          isList || hero
+            ? `-mx-4 border-y border-accent/20 bg-linear-to-br from-accent-soft via-surface to-accent-soft px-4 pt-6 pb-7 sm:mx-0 sm:rounded-3xl sm:border sm:px-10 sm:pt-8 sm:pb-9 ${heroClassName}`
             : "sticky top-[env(safe-area-inset-top)] z-20 -mx-4 border-b border-border bg-bg/95 px-4 py-3 backdrop-blur supports-[backdrop-filter]:bg-bg/85 sm:static sm:mx-0 sm:border-0 sm:bg-transparent sm:p-0 sm:backdrop-blur-none"
         }
       >
-        {isList && hero}
+        {hero}
         <label htmlFor={inputId} className="sr-only">
           {t.inputLabel}
         </label>
