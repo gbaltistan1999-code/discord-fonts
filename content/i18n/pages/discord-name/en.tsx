@@ -14,7 +14,7 @@ export const discordNameEn: ToolPageContent = {
   intro: discordNamePage.intro,
   sampleText: discordNamePage.sampleText,
   toolLabel: "Discord name generator",
-  faqHeading: "FAQ",
+  faqHeading: "Frequently Asked Questions",
   faqs: discordNameFaqs,
   Article: DiscordNameArticle,
   relatedHeading: "Related links",

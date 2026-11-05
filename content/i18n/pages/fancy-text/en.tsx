@@ -9,7 +9,7 @@ export const fancyTextEn: ToolPageContent = {
   intro: fancyTextPage.intro,
   sampleText: fancyTextPage.sampleText,
   toolLabel: "Fancy text generator",
-  faqHeading: "FAQ",
+  faqHeading: "Frequently Asked Questions",
   faqs: fancyTextFaqs,
   Article: FancyTextArticle,
   relatedHeading: "Related links",

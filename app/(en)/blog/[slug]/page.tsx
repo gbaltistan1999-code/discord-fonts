@@ -77,7 +77,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 
         {post.faqs.length > 0 && (
           <div className="mt-12 max-w-[72ch]">
-            <FaqList faqs={post.faqs} heading="FAQ" />
+            <FaqList faqs={post.faqs} heading="Frequently Asked Questions" twoColumns={false} />
           </div>
         )}
 
