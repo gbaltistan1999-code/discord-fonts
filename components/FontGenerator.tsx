@@ -21,7 +21,7 @@ import { fill } from "@/lib/i18n";
 import { useStoredState } from "@/lib/useStoredState";
 import { useCopy } from "./ToastProvider";
 
-const PAGE_SIZE = 24;
+const PAGE_SIZE = 18;
 const MAX_INPUT = 1000;
 const RANDOM_PAGE = 12;
 const RECENT_LIMIT = 24;
@@ -406,7 +406,7 @@ export function FontGenerator({
                 }`}
               >
                 {f.label}
-                <span className={`ml-1.5 tabular-nums ${active ? "opacity-80" : "opacity-70"}`}>
+                <span className={`ml-1.5 tabular-nums ${active ? "opacity-80" : "dark:opacity-70"}`}>
                   {f.count}
                 </span>
               </button>
@@ -662,7 +662,7 @@ function StyleRow({
   if (isList) {
     return (
       <li
-        className={`grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-3 gap-y-1.5 px-4 py-3 transition-colors sm:grid-cols-[11rem_minmax(0,1fr)_auto] sm:gap-x-5 sm:px-5 ${
+        className={`cv-row grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-3 gap-y-1.5 px-4 py-3 transition-colors sm:grid-cols-[11rem_minmax(0,1fr)_auto] sm:gap-x-5 sm:px-5 ${
           selected ? "bg-accent-soft" : "hover:bg-surface-2"
         }`}
       >
@@ -676,7 +676,7 @@ function StyleRow({
 
   return (
     <li
-      className={`flex flex-col rounded-2xl border bg-surface p-4 shadow-sm transition-colors ${
+      className={`cv-card flex flex-col rounded-2xl border bg-surface p-4 shadow-sm transition-colors ${
         selected ? "border-accent ring-1 ring-accent/40" : "border-border hover:border-text/25"
       }`}
     >

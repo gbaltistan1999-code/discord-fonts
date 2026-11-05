@@ -83,7 +83,7 @@ export const en: BaseStrings = {
     emptyRecent: "Styles you copy will show up here.",
     emptyGroup: "No styles in this group.",
     showMore: "Show {count} more styles",
-    randomTitle: "Random styles",
+    randomTitle: "Random Discord Font Styles",
     randomDescription: "Every letter gets a different style. Generate as many as you like.",
     shuffle: "Shuffle",
     generateMore: "Generate {count} more",

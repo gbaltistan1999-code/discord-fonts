@@ -22,7 +22,7 @@ export function Footer({ locale = defaultLocale }: { locale?: Locale }) {
   ];
 
   return (
-    <footer className="mt-24 border-t border-border">
+    <footer className="cv-auto mt-24 border-t border-border">
       <div className="mx-auto grid max-w-6xl gap-8 px-4 py-10 sm:grid-cols-2 lg:grid-cols-3">
         <nav aria-labelledby="footer-styles">
           <h2 id="footer-styles" className="text-sm font-semibold">
@@ -83,13 +83,15 @@ export function Footer({ locale = defaultLocale }: { locale?: Locale }) {
             <a
               href="https://sellwithboost.com"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="nofollow noopener noreferrer"
               className="inline-block"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="https://sellwithboost.com/badge/listing.svg"
                 alt="Listed on Sell With Boost"
+                width={160}
+                height={40}
                 loading="lazy"
                 decoding="async"
                 style={{ height: "40px", width: "auto" }}

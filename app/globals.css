@@ -232,3 +232,15 @@
     }
   }
 }
+
+@layer utilities {
+  /* Each result skips style and layout until it nears the viewport: fancy Unicode is costly to lay out. */
+  .cv-card {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 120px;
+  }
+  .cv-row {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 72px;
+  }
+}

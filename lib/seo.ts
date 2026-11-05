@@ -78,6 +78,23 @@ export function websiteJsonLd(): JsonLd {
     url: absoluteUrl("/"),
     description: siteConfig.description,
     inLanguage: siteConfig.language,
+    publisher: organizationJsonLd(),
+  };
+}
+
+/** The site as an Organization, so search engines can show its logo. */
+export function organizationJsonLd(): JsonLd {
+  return {
+    "@type": "Organization",
+    "@id": `${siteConfig.url}/#organization`,
+    name: siteConfig.name,
+    url: absoluteUrl("/"),
+    logo: {
+      "@type": "ImageObject",
+      url: absoluteUrl("/apple-icon"),
+      width: 180,
+      height: 180,
+    },
   };
 }
 

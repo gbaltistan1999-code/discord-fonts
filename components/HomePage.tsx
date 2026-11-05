@@ -80,7 +80,7 @@ export function HomePage({ locale }: { locale: Locale }) {
       </section>
 
       <div className="mx-auto max-w-5xl">
-        <section aria-labelledby="formatting-tool" className="mt-20 border-t border-border pt-16">
+        <section aria-labelledby="formatting-tool" className="cv-auto mt-20 border-t border-border pt-16">
           <SectionHeader id="formatting-tool" title={home.formattingTitle}>
             {home.formattingIntro}
           </SectionHeader>
