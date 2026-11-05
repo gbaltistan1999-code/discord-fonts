@@ -11,7 +11,7 @@ export const homeEn: HomeContent = {
   description: siteConfig.description,
   h1: "Discord Fonts Generator – Copy & Paste Cool Discord Font Styles",
   intro:
-    "Turn any text into {count} Discord fonts, from bold and cursive to gothic and glitch. Copy a style and paste it into your Discord name, nickname, server or messages. Free, private and no sign-up.",
+    "Turn ordinary text into eye-catching Discord styles. Explore {count}+ unique fonts, including bold, cursive, gothic, aesthetic, and glitch text. Copy your favorite style instantly and make your Discord profile unforgettable.",
   generatorLabel: "Discord font generator",
   formattingTitle: "Discord Text Formatting Helper",
   formattingIntro: (
