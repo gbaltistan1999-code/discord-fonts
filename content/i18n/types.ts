@@ -234,6 +234,8 @@ export interface HomeContent {
   title: string;
   description: string;
   h1: string;
+  /** Optional smaller second line inside the H1. */
+  h1Tagline?: string;
   /** "Turn any text into {count} Discord fonts…" */
   intro: string;
   generatorLabel: string;

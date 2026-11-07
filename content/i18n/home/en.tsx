@@ -9,7 +9,8 @@ const link = "text-text underline underline-offset-4";
 export const homeEn: HomeContent = {
   title: siteConfig.title,
   description: siteConfig.description,
-  h1: "Discord Fonts Generator – Copy & Paste Cool Discord Font Styles",
+  h1: "Discord Fonts",
+  h1Tagline: "Copy and Paste Discord Fonts",
   intro:
     "Turn ordinary text into eye-catching Discord styles. Explore {count}+ unique fonts, including bold, cursive, gothic, aesthetic, and glitch text. Copy your favorite style instantly and make your Discord profile unforgettable.",
   generatorLabel: "Discord font generator",
