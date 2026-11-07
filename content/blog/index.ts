@@ -1,5 +1,6 @@
 import type { Faq } from "../faqs";
 import { discordColoredText } from "./discord-colored-text";
+import { smallTextDiscord } from "./small-text-discord";
 import { changeFontOnDiscord } from "./how-to-change-font-on-discord";
 
 export type BlogIcon = "palette" | "type" | "sparkle" | "chat";
@@ -9,6 +10,8 @@ export interface BlogPost {
   slug: string;
   /** Page title and H1. */
   title: string;
+  /** Shorter title tag for search results, when the H1 is long. */
+  metaTitle?: string;
   /** Meta description, also used as the card summary on /blog. */
   description: string;
   /** Short line shown in small caps under the title on blog cards. */
@@ -29,7 +32,7 @@ export interface BlogPost {
 }
 
 /** Newest first. To add a post, create a file in this folder and list it here. */
-export const blogPosts: readonly BlogPost[] = [discordColoredText, changeFontOnDiscord];
+export const blogPosts: readonly BlogPost[] = [smallTextDiscord, discordColoredText, changeFontOnDiscord];
 
 export function getBlogPost(slug: string): BlogPost | undefined {
   return blogPosts.find((post) => post.slug === slug);

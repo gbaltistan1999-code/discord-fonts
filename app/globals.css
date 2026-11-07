@@ -198,6 +198,21 @@
     background: var(--surface-2);
     border: 1px solid var(--border);
   }
+  .prose-content pre {
+    overflow-x: auto;
+    padding: 0.85rem 1rem;
+    border-radius: 0.75rem;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+  .prose-content pre code {
+    padding: 0;
+    border: 0;
+    background: none;
+    font-size: inherit;
+  }
   .prose-content table {
     width: 100%;
     border-collapse: collapse;
