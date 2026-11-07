@@ -12,6 +12,7 @@ export function Footer({ locale = defaultLocale }: { locale?: Locale }) {
     { href: localePath(locale, "/"), label: ui.links.discordFontsGenerator },
     { href: hrefFor(locale, "/fancy-text-generator"), label: ui.links.fancyText },
     { href: hrefFor(locale, "/discord-name-generator"), label: ui.links.nameGenerator },
+    { href: hrefFor(locale, "/discord-username-generator"), label: ui.links.usernameGenerator },
     { href: hrefFor(locale, "/discord-timestamp-generator"), label: ui.links.timestampGenerator },
     { href: hrefFor(locale, "/discord-text-formatting"), label: ui.links.textFormatting },
     { href: "/blog", label: ui.links.blog },

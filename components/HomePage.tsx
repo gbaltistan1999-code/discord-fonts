@@ -40,6 +40,7 @@ export function HomePage({ locale }: { locale: Locale }) {
     "/fancy-text-generator": ui.links.fancyText,
     "/discord-name-generator": ui.links.nameGenerator,
     "/discord-timestamp-generator": ui.links.timestampGenerator,
+    "/discord-username-generator": ui.links.usernameGenerator,
   };
 
   return (
@@ -64,6 +65,7 @@ export function HomePage({ locale }: { locale: Locale }) {
       >
         <FontGenerator
           heroClassName="accent-teal"
+          textFromQuery
           hero={
             <div className="mx-auto mb-6 max-w-3xl text-center">
               <h1 className="bg-linear-to-r from-teal-600 to-cyan-600 bg-clip-text text-3xl leading-tight font-extrabold tracking-tight text-balance text-transparent sm:text-5xl dark:from-teal-300 dark:to-cyan-300">

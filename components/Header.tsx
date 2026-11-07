@@ -18,6 +18,7 @@ function menuGroups(locale: Locale): MenuGroup[] {
       links: [
         { href: hrefFor(locale, "/fancy-text-generator"), label: ui.links.fancyText },
         { href: hrefFor(locale, "/discord-name-generator"), label: ui.links.nameGenerator },
+        { href: hrefFor(locale, "/discord-username-generator"), label: ui.links.usernameGenerator },
         ...stylePages.map((page) => ({
           href: hrefFor(locale, `/discord-font-generator/${page.slug}`),
           label: fill(ui.styleFont, { name: ui.styleNames[page.slug] ?? page.name }),

@@ -15,6 +15,7 @@ export const en: BaseStrings = {
       discordFontsGenerator: "Discord Fonts Generator",
       fancyText: "Fancy Text Generator",
       nameGenerator: "Discord Name Generator",
+      usernameGenerator: "Discord Username Generator",
       timestampGenerator: "Discord Timestamp Generator",
       textFormatting: "Text Formatting",
       timestamp: "Timestamp Generator",

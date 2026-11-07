@@ -131,6 +131,8 @@ interface FontGeneratorProps {
   heroClassName?: string;
   /** Show the selected style as a name in a mock chat message and member list. */
   namePreview?: boolean;
+  /** Prefill the input from a ?text= query parameter (used by "Make it fancy" links). */
+  textFromQuery?: boolean;
   /** Interface text in the page's language (English by default). */
   strings?: GeneratorStrings;
 }
@@ -162,6 +164,7 @@ export function FontGenerator({
   hero,
   heroClassName = "",
   namePreview = false,
+  textFromQuery = false,
 }: FontGeneratorProps) {
   const isList = variant === "list";
   const inputId = useId();
@@ -171,6 +174,14 @@ export function FontGenerator({
   const copy = useCopy();
 
   const [text, setText] = useState("");
+  // The page is static, so the query is read in the browser after the first render.
+  useEffect(() => {
+    if (!textFromQuery) return;
+    const fromQuery = new URLSearchParams(window.location.search).get("text");
+    if (!fromQuery) return;
+    const frame = requestAnimationFrame(() => setText(fromQuery.slice(0, MAX_INPUT)));
+    return () => cancelAnimationFrame(frame);
+  }, [textFromQuery]);
   const [filter, setFilter] = useState<Filter>(featured ? "featured" : "all");
   const [scope, setScope] = useState<Scope>("all");
   const [favorites, setFavorites] = useStoredState("df:favorites", NO_IDS, parseStyleIds);
