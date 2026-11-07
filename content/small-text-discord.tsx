@@ -1,20 +1,52 @@
 import Link from "next/link";
-import type { BlogPost } from ".";
+import type { Faq } from "./faqs";
 
 const fontGenerator = <Link href="/">Discord font generator</Link>;
 
-export const smallTextDiscord: BlogPost = {
-  slug: "small-text-discord",
-  title: "Small Text Discord: How to Make Text Small in Discord (Subtext + Copy-Paste)",
-  metaTitle: "Small Text Discord: How to Make Text Small in Discord",
+interface SmallTextPage {
+  path: string;
+  name: string;
+  /** Title tag. */
+  title: string;
+  h1: string;
+  intro: string;
+  description: string;
+  /** Tiny styles shown first in the generator. */
+  featuredIds: readonly string[];
+  faqs: readonly Faq[];
+  body: React.ReactNode;
+}
+
+/** Copy for /small-text-discord (English only). The article text is used as supplied. */
+export const smallTextPage: SmallTextPage = {
+  path: "/small-text-discord",
+  name: "Small Text Generator",
+  title: "Small Text Discord: How to Make Text Small in Discord",
+  h1: "Small Text Generator for Discord",
+  intro:
+    "Type below to get tiny text you can copy into your Discord name, bio or server name. For small text in messages, start the line with -# and a space.",
   description:
     "Small text in Discord is easy: type -# for subtext in messages, or copy-paste tiny text for your name and bio. Works on desktop and mobile.",
-  tagline: "-# subtext, tiny copy-paste text & fixes",
-  icon: "chat",
-  datePublished: "2026-11-07",
-  dateModified: "2026-11-07",
-  readingMinutes: 6,
-  hideGeneratorCta: true,
+  featuredIds: [
+    "superscript",
+    "small-caps",
+    "subscript",
+    "small-caps-all",
+    "hearts",
+    "cloud-prefix",
+    "corner-quotes",
+    "corner-brackets",
+    "butterfly",
+    "flower-frame",
+    "starburst",
+    "bunny-prefix",
+    "sun-prefix",
+    "tortoise-shell",
+    "double-diamond",
+    "hibiscus",
+    "chain-frame",
+    "heart-melody",
+  ],
   faqs: [
     {
       question: "What is the command for small text in Discord?",

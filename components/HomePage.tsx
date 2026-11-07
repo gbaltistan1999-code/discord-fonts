@@ -41,6 +41,7 @@ export function HomePage({ locale }: { locale: Locale }) {
     "/discord-name-generator": ui.links.nameGenerator,
     "/discord-timestamp-generator": ui.links.timestampGenerator,
     "/discord-username-generator": ui.links.usernameGenerator,
+    "/small-text-discord": ui.links.smallText,
   };
 
   return (

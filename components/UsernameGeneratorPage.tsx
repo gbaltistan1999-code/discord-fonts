@@ -22,6 +22,7 @@ const moreTools = [
   { href: "/", label: "Discord Fonts Generator", note: "224+ fancy fonts for names and bios" },
   { href: "/fancy-text-generator", label: "Fancy Text Generator", note: "Styled text for any app" },
   { href: "/discord-name-generator", label: "Discord Name Generator", note: "Fancy display names" },
+  { href: "/small-text-discord", label: "Small Text Generator", note: "Tiny text and -# subtext" },
   {
     href: "/discord-timestamp-generator",
     label: "Discord Timestamp Generator",

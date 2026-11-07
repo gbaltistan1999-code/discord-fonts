@@ -25,6 +25,7 @@ export interface UiStrings {
     fancyText: string;
     nameGenerator: string;
     usernameGenerator: string;
+    smallText: string;
     timestampGenerator: string;
     textFormatting: string;
     timestamp: string;

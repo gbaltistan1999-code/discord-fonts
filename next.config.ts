@@ -20,6 +20,10 @@ const nextConfig: NextConfig = {
   },
   // Pin the workspace root so stray lockfiles in parent folders are ignored.
   turbopack: { root: dirname(fileURLToPath(import.meta.url)) },
+  async redirects() {
+    // The small text guide started as a blog post and moved to a tool page.
+    return [{ source: "/blog/small-text-discord", destination: "/small-text-discord", permanent: true }];
+  },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },
