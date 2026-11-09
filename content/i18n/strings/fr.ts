@@ -17,6 +17,7 @@ export const fr: BaseStrings = {
       nameGenerator: "Générateur de pseudo Discord",
       usernameGenerator: "Générateur de nom d’utilisateur Discord",
       smallText: "Générateur de petit texte",
+      numberFonts: "Polices de chiffres",
       timestampGenerator: "Générateur de timestamp Discord",
       textFormatting: "Mise en forme du texte",
       timestamp: "Générateur de timestamp",

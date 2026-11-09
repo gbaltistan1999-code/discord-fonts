@@ -5,4 +5,5 @@ export const generatorPages = [
   { path: "/discord-timestamp-generator", name: "Discord Timestamp Generator" },
   { path: "/discord-username-generator", name: "Discord Username Generator" },
   { path: "/small-text-discord", name: "Small Text Generator" },
+  { path: "/number-fonts", name: "Number Fonts" },
 ] as const;

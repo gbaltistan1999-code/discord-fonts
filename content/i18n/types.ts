@@ -26,6 +26,7 @@ export interface UiStrings {
     nameGenerator: string;
     usernameGenerator: string;
     smallText: string;
+    numberFonts: string;
     timestampGenerator: string;
     textFormatting: string;
     timestamp: string;
