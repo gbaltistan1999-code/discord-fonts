@@ -91,7 +91,7 @@ export function organizationJsonLd(): JsonLd {
     url: absoluteUrl("/"),
     logo: {
       "@type": "ImageObject",
-      url: absoluteUrl("/apple-icon"),
+      url: absoluteUrl("/apple-icon.png"),
       width: 180,
       height: 180,
     },
