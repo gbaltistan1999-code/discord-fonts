@@ -99,16 +99,6 @@ export function Footer({ locale = defaultLocale }: { locale?: Locale }) {
                 style={{ height: "40px", width: "auto" }}
               />
             </a>
-            {/* Launch badge: ufind.best checks the homepage for this exact link. */}
-            <a href="https://ufind.best/products/discord-fonts" target="_blank" rel="noopener" className="inline-block">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="https://ufind.best/badges/ufind-best-badge-light.svg"
-                alt="Featured on ufind.best"
-                width={150}
-                style={{ width: "150px", height: "auto" }}
-              />
-            </a>
           </div>
         </div>
       </div>
