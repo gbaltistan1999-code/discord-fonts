@@ -269,6 +269,8 @@ export interface FormattingPageContent {
   /** Name of the tool in structured data. */
   appName: string;
   Guide: () => React.ReactNode;
+  /** FAQ section and FAQPage structured data. Only the English page has one so far. */
+  faqs?: readonly Faq[];
 }
 
 /** One style page (bold, cursive, ...) in a language. Server-only (it holds JSX). */

@@ -1,8 +1,9 @@
 import { getStrings } from "@/content/i18n";
 import { getFormattingPage } from "@/content/i18n/pages/formatting";
 import { localePath, type Locale } from "@/lib/i18n";
-import { buildMetadata, webApplicationJsonLd } from "@/lib/seo";
+import { buildMetadata, faqJsonLd, webApplicationJsonLd } from "@/lib/seo";
 import { Breadcrumbs } from "./Breadcrumbs";
+import { FaqList } from "./FaqList";
 import { FormattingTool } from "./FormattingTool";
 import { JsonLd } from "./JsonLd";
 
@@ -24,6 +25,7 @@ export function FormattingPage({ locale }: { locale: Locale }) {
       <JsonLd
         data={webApplicationJsonLd({ name: page.appName, description: page.description, path: PATH, locale })}
       />
+      {page.faqs && page.faqs.length > 0 && <JsonLd data={faqJsonLd(page.faqs)} />}
 
       <div className="pt-6">
         <Breadcrumbs locale={locale} items={[{ name: page.name, path: localePath(locale, PATH) }]} />
@@ -40,6 +42,12 @@ export function FormattingPage({ locale }: { locale: Locale }) {
       <article className="cv-auto mt-12">
         <Guide />
       </article>
+
+      {page.faqs && page.faqs.length > 0 && (
+        <div className="cv-auto mt-12">
+          <FaqList faqs={page.faqs} heading="Frequently Asked Questions" />
+        </div>
+      )}
     </>
   );
 }
