@@ -18,6 +18,7 @@ export const ja: BaseStrings = {
       usernameGenerator: "Discordユーザー名ジェネレーター",
       smallText: "小さい文字ジェネレーター",
       numberFonts: "数字フォント",
+      discordSymbols: "Discordの記号",
       timestampGenerator: "Discordタイムスタンプ ジェネレーター",
       textFormatting: "テキスト書式",
       timestamp: "タイムスタンプ ジェネレーター",

@@ -43,6 +43,7 @@ export function HomePage({ locale }: { locale: Locale }) {
     "/discord-username-generator": ui.links.usernameGenerator,
     "/small-text-discord": ui.links.smallText,
     "/number-fonts": ui.links.numberFonts,
+    "/discord-symbols": ui.links.discordSymbols,
   };
 
   return (

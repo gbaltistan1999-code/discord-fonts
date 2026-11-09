@@ -80,8 +80,9 @@ export function HomeArticle() {
       <h3>Server and channel names</h3>
       <p>
         If you own or manage a server, paste styled text into the server name in{" "}
-        <strong>Server Settings</strong>, or edit a channel and paste into its name. Fancy channel names such
-        as “︱𝐠𝐞𝐧𝐞𝐫𝐚𝐥” are a popular way to make a server look organized. Keep important channels readable so
+        <strong>Server Settings</strong>, or edit a channel and paste into its name.{" "}
+        <Link href="/discord-symbols">Fancy channel names</Link> such as “︱𝐠𝐞𝐧𝐞𝐫𝐚𝐥” are a popular way to make a
+        server look organized. Keep important channels readable so
         new members can find their way around.
       </p>
       <h3>About Me and messages</h3>

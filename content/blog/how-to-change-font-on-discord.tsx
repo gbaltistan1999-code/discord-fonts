@@ -267,7 +267,8 @@ export const changeFontOnDiscord: BlogPost = {
         <strong>Channel names:</strong> hover over a channel, click the gear icon, paste into{" "}
         <strong>Channel Name</strong> and save. Discord turns spaces into dashes in text channels, so plan
         around that. A lot of servers use a small symbol or emoji at the start, like 「𝐜𝐡𝐚𝐭」, to make
-        categories easy to scan.
+        categories easy to scan. Our <Link href="/discord-symbols">Discord symbols</Link> page has a channel
+        name builder and ready-made templates for exactly this.
       </p>
       <p>
         One honest warning from experience: styled channel names look great but are harder to search. If

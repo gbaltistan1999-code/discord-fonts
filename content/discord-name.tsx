@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Faq } from "./faqs";
 
 export const discordNamePage = {
@@ -170,6 +171,11 @@ export function DiscordNameArticle() {
         edit your per-server profile, and paste your styled name into Nickname. If the option is greyed out,
         the server doesn&apos;t let members change nicknames, so ask a moderator.
       </p>
+      <p>
+        Running your own server? Give its channel and server names the same treatment with{" "}
+        <Link href="/discord-symbols">Discord symbols</Link>, like dividers and brackets for names such as
+        &ldquo;📢︱announcements&rdquo;.
+      </p>
 
       <h2>Things to watch out for</h2>
       <ul>
@@ -196,6 +202,7 @@ export function DiscordNameArticle() {
 
 export const discordNameRelated = [
   { href: "/fancy-text-generator", label: "Fancy Text Generator" },
+  { href: "/discord-symbols", label: "Discord Symbols" },
   { href: "/", label: "Discord Fonts Generator" },
   { href: "/discord-font-generator/bold", label: "Bold font generator" },
   { href: "/discord-font-generator/cursive", label: "Cursive font generator" },
