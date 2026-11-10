@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { defaultLocale, isTranslated, localeInfo, localePath, locales, type Locale } from "./i18n";
+import { defaultLocale, localeInfo, localePath, localesFor, type Locale } from "./i18n";
 import { absoluteUrl, siteConfig } from "./site";
 
 interface PageSeo {
@@ -17,9 +17,10 @@ const DEFAULT_OG_IMAGE = { url: "/opengraph-image", width: 1200, height: 630, al
 
 /** hreflang links for a page published in every language, or undefined. */
 export function languageAlternates(path: string): Record<string, string> | undefined {
-  if (!isTranslated(path)) return undefined;
+  const available = localesFor(path);
+  if (available.length < 2) return undefined;
   const languages: Record<string, string> = {};
-  for (const locale of locales) languages[localeInfo[locale].lang] = absoluteUrl(localePath(locale, path));
+  for (const locale of available) languages[localeInfo[locale].lang] = absoluteUrl(localePath(locale, path));
   languages["x-default"] = absoluteUrl(path);
   return languages;
 }
@@ -54,7 +55,7 @@ export function buildMetadata({
       siteName: siteConfig.name,
       locale: localeInfo[locale].ogLocale,
       ...(languages && {
-        alternateLocale: locales.filter((l) => l !== locale).map((l) => localeInfo[l].ogLocale),
+        alternateLocale: localesFor(path).filter((l) => l !== locale).map((l) => localeInfo[l].ogLocale),
       }),
       ...(images && { images }),
     },

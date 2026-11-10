@@ -3,7 +3,7 @@ import { blogPosts } from "@/content/blog";
 import { generatorPages } from "@/content/generator-pages";
 import { platformPages } from "@/content/platforms";
 import { stylePages } from "@/content/style-pages";
-import { localePath, prefixedLocales, translatedPaths } from "@/lib/i18n";
+import { localePath, partialTranslations, prefixedLocales, translatedPaths } from "@/lib/i18n";
 import { languageAlternates } from "@/lib/seo";
 import { absoluteUrl, siteConfig } from "@/lib/site";
 
@@ -27,10 +27,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: absoluteUrl(localePath(locale, path)),
     })),
   );
+  // Pages translated into only some languages.
+  const partial = Object.entries(partialTranslations).flatMap(([path, extra]) =>
+    extra.map((locale) => ({ ...entry(path, 0.7, "monthly"), url: absoluteUrl(localePath(locale, path)) })),
+  );
 
   return [
     entry("/", 1, "weekly"),
     ...translated,
+    ...partial,
     ...generatorPages.map((page) => entry(page.path, 0.8, "monthly")),
     ...stylePages.map((page) => entry(`/discord-font-generator/${page.slug}`, 0.8, "monthly")),
     ...platformPages.map((page) => entry(`/${page.slug}`, 0.7, "monthly")),

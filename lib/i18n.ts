@@ -48,12 +48,36 @@ export const translatedPaths: readonly string[] = [
   ),
 ];
 
+/**
+ * Pages translated into only some languages: English path → the extra languages it exists in.
+ * Everywhere else these pages link to, and switch to, the English version.
+ */
+export const partialTranslations: Readonly<Record<string, readonly Exclude<Locale, "en">[]>> = {
+  "/small-text-discord": ["pt-br"],
+  "/discord-username-generator": ["pt-br"],
+  "/number-fonts": ["pt-br"],
+  "/discord-symbols": ["pt-br"],
+};
+
 export function isLocale(value: string): value is Locale {
   return (locales as readonly string[]).includes(value);
 }
 
+/** True when the page exists in every language. */
 export function isTranslated(path: string): boolean {
   return translatedPaths.includes(path);
+}
+
+/** Languages a page exists in (always including English). */
+export function localesFor(path: string): readonly Locale[] {
+  if (isTranslated(path)) return locales;
+  const extra = partialTranslations[path];
+  return extra ? [defaultLocale, ...extra] : [defaultLocale];
+}
+
+/** True when `path` has a version in `locale`. */
+export function isAvailable(path: string, locale: Locale): boolean {
+  return localesFor(path).includes(locale);
 }
 
 /** "/" in Spanish → "/es"; "/about" in English → "/about". */
@@ -64,7 +88,7 @@ export function localePath(locale: Locale, path: string): string {
 
 /** Link target for a page from a page in `locale`: its translation if there is one, otherwise English. */
 export function hrefFor(locale: Locale, path: string): string {
-  return isTranslated(path) ? localePath(locale, path) : path;
+  return isAvailable(path, locale) ? localePath(locale, path) : path;
 }
 
 /** Splits "/es/x" into { locale: "es", path: "/x" }. English paths have no prefix. */
@@ -82,7 +106,7 @@ export function splitLocale(pathname: string): { locale: Locale; path: string } 
  */
 export function switchLocaleHref(pathname: string, target: Locale): string {
   const { path } = splitLocale(pathname);
-  return localePath(target, target === defaultLocale || isTranslated(path) ? path : "/");
+  return localePath(target, isAvailable(path, target) ? path : "/");
 }
 
 /** Fills "{name}" style placeholders. */

@@ -17,7 +17,7 @@ export const ptBr: BaseStrings = {
       nameGenerator: "Gerador de nomes para Discord",
       usernameGenerator: "Gerador de nomes de usuário para Discord",
       smallText: "Gerador de letras pequenas",
-      numberFonts: "Fontes de números",
+      numberFonts: "Números estilizados",
       discordSymbols: "Símbolos para Discord",
       timestampGenerator: "Gerador de timestamp do Discord",
       textFormatting: "Formatação de texto",

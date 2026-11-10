@@ -3,7 +3,7 @@ import type { Faq } from "./faqs";
 
 const fontGenerator = <Link href="/">Discord font generator</Link>;
 
-interface NumberFontsPage {
+export interface NumberFontsPageContent {
   path: string;
   name: string;
   /** Title tag. */
@@ -13,6 +13,9 @@ interface NumberFontsPage {
   description: string;
   /** Styles that restyle digits, shown first in the generator. */
   featuredIds: readonly string[];
+  featuredLabel: string;
+  toolLabel: string;
+  faqHeading: string;
   faqs: readonly Faq[];
   body: React.ReactNode;
 }
@@ -37,7 +40,7 @@ const numberSets = [
 ] as const;
 
 /** Copy for /number-fonts (English only). */
-export const numberFontsPage: NumberFontsPage = {
+export const numberFontsPage: NumberFontsPageContent = {
   path: "/number-fonts",
   name: "Number Fonts",
   title: "Number Fonts – Copy & Paste Fancy Numbers (Bold, Circled & More)",
@@ -46,6 +49,9 @@ export const numberFontsPage: NumberFontsPage = {
     "Type any number below to turn it into bold, circled, tiny or outlined digits you can copy and paste into Discord, Instagram, games and anywhere else.",
   description:
     "Free number fonts generator: turn 123 into 𝟏𝟐𝟑, ①②③, ¹²³ and more. Copy and paste fancy numbers into Discord names, bios, channels and games.",
+  featuredLabel: "Number styles",
+  toolLabel: "Number fonts generator",
+  faqHeading: "Frequently Asked Questions",
   featuredIds: [
     "bold-serif",
     "bold-sans",

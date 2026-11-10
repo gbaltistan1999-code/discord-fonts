@@ -1,7 +1,12 @@
 "use client";
 
 import { useEffect, useId, useMemo, useRef, useState } from "react";
-import { symbolCategories } from "@/content/discord-symbols-data";
+import {
+  libraryStringsEn,
+  symbolCategories,
+  type CategoryText,
+  type LibraryStrings,
+} from "@/content/discord-symbols-data";
 import { useStoredState } from "@/lib/useStoredState";
 import { useCopy } from "./ToastProvider";
 
@@ -20,7 +25,14 @@ const symbolButtonClass =
  * Searchable symbol grid. Every category renders on the server with its own H3, so the full library is in
  * the HTML; search and filters only hide sections on the client.
  */
-export function SymbolLibrary() {
+export function SymbolLibrary({
+  strings: t = libraryStringsEn,
+  categoryText,
+}: {
+  strings?: LibraryStrings;
+  /** Translated category labels, headings and search words (English words still match). */
+  categoryText?: CategoryText;
+}) {
   const id = useId();
   const copy = useCopy();
   const [query, setQuery] = useState("");
@@ -29,16 +41,24 @@ export function SymbolLibrary() {
   const [favorites, setFavorites] = useStoredState(FAVORITES_KEY, NO_FAVORITES, parseFavorites);
 
   const q = query.trim().toLowerCase();
+  const categories = useMemo(
+    () =>
+      symbolCategories.map((c) => {
+        const tr = categoryText?.[c.id];
+        return tr ? { ...c, label: tr.label, heading: tr.heading, keywords: `${c.keywords} ${tr.keywords}` } : c;
+      }),
+    [categoryText],
+  );
   const visible = useMemo(
     () =>
-      symbolCategories
+      categories
         .filter((c) => filter === "all" || c.id === filter)
         .map((c) => {
           if (!q || `${c.label} ${c.heading} ${c.keywords}`.toLowerCase().includes(q)) return c;
           return { ...c, symbols: c.symbols.filter((s) => s.includes(query.trim())) };
         })
         .filter((c) => c.symbols.length > 0),
-    [filter, q, query],
+    [categories, filter, q, query],
   );
 
   // Latest list, so quick taps in a row build on each other instead of on a stale render.
@@ -65,14 +85,14 @@ export function SymbolLibrary() {
     <div>
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
         <label htmlFor={`${id}-search`} className="sr-only">
-          Search symbols
+          {t.searchLabel}
         </label>
         <input
           id={`${id}-search`}
           type="search"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search symbols (star, heart, arrow, ︱)"
+          placeholder={t.placeholder}
           autoComplete="off"
           className="block min-h-12 w-full flex-1 rounded-xl border border-border bg-surface px-4 py-3 text-base text-text shadow-sm outline-none placeholder:text-muted focus:border-accent focus:ring-4 focus:ring-accent/15"
         />
@@ -86,12 +106,12 @@ export function SymbolLibrary() {
               : "border-border bg-surface text-text hover:border-text/30"
           }`}
         >
-          {editing ? "✓ Done editing" : "☆ Edit favorites"}
+          {editing ? t.doneEditing : t.editFavorites}
         </button>
       </div>
 
-      <div role="group" aria-label="Symbol categories" className="mt-3 flex flex-wrap gap-1.5">
-        {[{ id: "all", label: "All" }, ...symbolCategories].map((c) => (
+      <div role="group" aria-label={t.categoriesLabel} className="mt-3 flex flex-wrap gap-1.5">
+        {[{ id: "all", label: t.all }, ...categories].map((c) => (
           <button
             key={c.id}
             type="button"
@@ -110,12 +130,14 @@ export function SymbolLibrary() {
 
       <section aria-labelledby={`${id}-favorites`} className="mt-5 rounded-2xl border border-border bg-surface p-4">
         <h3 id={`${id}-favorites`} className="text-sm font-semibold text-text">
-          ★ Your favorites
+          {t.favoritesTitle}
         </h3>
         <div className="mt-2 flex min-h-11 flex-wrap items-center gap-1.5">
           {favorites.length === 0 ? (
             <p className="text-sm text-muted">
-              Tap <strong>☆ Edit favorites</strong>, then tap symbols to save them here on this device.
+              {t.favoritesEmpty.split("{button}")[0]}
+              <strong>{t.editFavorites}</strong>
+              {t.favoritesEmpty.split("{button}")[1]}
             </p>
           ) : (
             favorites.map((symbol) => (
@@ -123,7 +145,7 @@ export function SymbolLibrary() {
                 key={symbol}
                 type="button"
                 onClick={() => (editing ? toggleFavorite(symbol) : copy(symbol, symbol))}
-                aria-label={editing ? `Remove ${symbol} from favorites` : `Copy ${symbol}`}
+                aria-label={(editing ? t.removeFavorite : t.copySymbol).replace("{symbol}", symbol)}
                 className={`${symbolButtonClass} border-border bg-surface-2 hover:border-text/30`}
               >
                 {symbol}
@@ -135,12 +157,12 @@ export function SymbolLibrary() {
 
       {editing && (
         <p className="mt-3 text-sm text-muted" role="status">
-          Editing favorites: tap a symbol to add or remove it. Tap “Done editing” to go back to copying.
+          {t.editingHint}
         </p>
       )}
 
       <div className="mt-6 space-y-8">
-        {visible.length === 0 && <p className="text-muted">No symbols match “{query}”. Try another word.</p>}
+        {visible.length === 0 && <p className="text-muted">{t.noMatch.replace("{query}", query)}</p>}
         {visible.map((category) => (
           <section key={category.id} aria-labelledby={`${id}-${category.id}`}>
             <h3 id={`${id}-${category.id}`} className="text-lg font-bold tracking-tight text-text">
@@ -154,7 +176,7 @@ export function SymbolLibrary() {
                     key={symbol}
                     type="button"
                     onClick={() => handleSymbol(symbol)}
-                    aria-label={editing ? `${favorite ? "Remove" : "Add"} ${symbol} favorite` : `Copy ${symbol}`}
+                    aria-label={(editing ? (favorite ? t.removeFavorite : t.addFavorite) : t.copySymbol).replace("{symbol}", symbol)}
                     aria-pressed={editing ? favorite : undefined}
                     className={`${symbolButtonClass} ${
                       editing && favorite

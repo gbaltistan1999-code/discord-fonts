@@ -1,24 +1,26 @@
 import Link from "next/link";
 import {
+  UsernameGeneratorArticlePtBr,
+  usernameGeneratorFaqsPtBr,
+  usernameGeneratorPagePtBr,
+  usernameGeneratorStringsPtBr,
+  usernameMoreToolsPtBr,
+} from "@/content/i18n/pages/username-generator/pt-br";
+import {
   UsernameGeneratorArticle,
   usernameGeneratorFaqs,
-  usernameGeneratorPage as page,
+  usernameGeneratorPage,
 } from "@/content/username-generator";
+import { localePath, type Locale } from "@/lib/i18n";
 import { buildMetadata, faqJsonLd, webApplicationJsonLd } from "@/lib/seo";
 import { Breadcrumbs } from "./Breadcrumbs";
 import { FaqList } from "./FaqList";
 import { HeroHeading } from "./HeroHeading";
 import { JsonLd } from "./JsonLd";
+import { usernameGeneratorStringsEn } from "@/content/username-generator-strings";
 import { UsernameGenerator } from "./UsernameGenerator";
 
-export const usernameGeneratorMetadata = buildMetadata({
-  title: page.title,
-  description: page.description,
-  path: page.path,
-  ownImage: true,
-});
-
-const moreTools = [
+const moreToolsEn = [
   { href: "/", label: "Discord Fonts Generator", note: "224+ fancy fonts for names and bios" },
   { href: "/fancy-text-generator", label: "Fancy Text Generator", note: "Styled text for any app" },
   { href: "/discord-name-generator", label: "Discord Name Generator", note: "Fancy display names" },
@@ -45,31 +47,63 @@ const moreTools = [
   },
 ] as const;
 
-export function UsernameGeneratorPage() {
+const content = {
+  en: {
+    page: { ...usernameGeneratorPage, faqHeading: "FAQ", moreToolsHeading: "More Discord tools" },
+    faqs: usernameGeneratorFaqs,
+    Article: UsernameGeneratorArticle,
+    moreTools: moreToolsEn,
+    strings: usernameGeneratorStringsEn,
+  },
+  "pt-br": {
+    page: usernameGeneratorPagePtBr,
+    faqs: usernameGeneratorFaqsPtBr,
+    Article: UsernameGeneratorArticlePtBr,
+    moreTools: usernameMoreToolsPtBr,
+    strings: usernameGeneratorStringsPtBr,
+  },
+};
+
+const getContent = (locale: Locale) => (locale === "pt-br" ? content["pt-br"] : content.en);
+
+export function usernameGeneratorMetadata(locale: Locale = "en") {
+  const { page } = getContent(locale);
+  // Only the English page has its own share image; translations use the shared one.
+  return buildMetadata({
+    title: page.title,
+    description: page.description,
+    path: page.path,
+    locale,
+    ownImage: locale === "en",
+  });
+}
+
+export function UsernameGeneratorPage({ locale = "en" }: { locale?: Locale }) {
+  const { page, faqs, Article, moreTools, strings } = getContent(locale);
   return (
     <>
       <JsonLd
-        data={webApplicationJsonLd({ name: page.name, description: page.description, path: page.path })}
+        data={webApplicationJsonLd({ name: page.name, description: page.description, path: page.path, locale })}
       />
-      <JsonLd data={faqJsonLd(usernameGeneratorFaqs)} />
+      <JsonLd data={faqJsonLd(faqs)} />
 
       <div className="pt-6">
-        <Breadcrumbs items={[{ name: page.name, path: page.path }]} />
+        <Breadcrumbs locale={locale} items={[{ name: page.name, path: localePath(locale, page.path) }]} />
       </div>
 
-      <UsernameGenerator hero={<HeroHeading title={page.h1} intro={page.intro} />} />
+      <UsernameGenerator strings={strings} hero={<HeroHeading title={page.h1} intro={page.intro} />} />
 
       <article className="prose-content cv-auto mt-12">
-        <UsernameGeneratorArticle />
+        <Article />
       </article>
 
       <div className="cv-auto mt-12">
-        <FaqList faqs={usernameGeneratorFaqs} heading="FAQ" />
+        <FaqList faqs={faqs} heading={page.faqHeading} />
       </div>
 
       <section aria-labelledby="more-tools" className="cv-auto mt-12">
         <h2 id="more-tools" className="mb-4 text-2xl font-bold tracking-tight">
-          More Discord tools
+          {page.moreToolsHeading}
         </h2>
         <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {moreTools.map((tool) => (

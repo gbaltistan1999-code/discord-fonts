@@ -3,7 +3,7 @@ import type { Faq } from "./faqs";
 
 const fontGenerator = <Link href="/">Discord font generator</Link>;
 
-interface SmallTextPage {
+export interface SmallTextPageContent {
   path: string;
   name: string;
   /** Title tag. */
@@ -13,12 +13,18 @@ interface SmallTextPage {
   description: string;
   /** Tiny styles shown first in the generator. */
   featuredIds: readonly string[];
+  /** Label of the featured filter in the generator. */
+  featuredLabel: string;
+  /** Example text before the visitor types. */
+  sampleText: string;
+  toolLabel: string;
+  faqHeading: string;
   faqs: readonly Faq[];
   body: React.ReactNode;
 }
 
 /** Copy for /small-text-discord (English only). The article text is used as supplied. */
-export const smallTextPage: SmallTextPage = {
+export const smallTextPage: SmallTextPageContent = {
   path: "/small-text-discord",
   name: "Small Text Generator",
   title: "Small Text Discord: How to Make Text Small in Discord",
@@ -27,6 +33,10 @@ export const smallTextPage: SmallTextPage = {
     "Type below to get tiny text you can copy into your Discord name, bio or server name. For small text in messages, start the line with -# and a space.",
   description:
     "Small text in Discord is easy: type -# for subtext in messages, or copy-paste tiny text for your name and bio. Works on desktop and mobile.",
+  featuredLabel: "Small text styles",
+  sampleText: "small text",
+  toolLabel: "Small text generator",
+  faqHeading: "Frequently Asked Questions",
   featuredIds: [
     "superscript",
     "small-caps",

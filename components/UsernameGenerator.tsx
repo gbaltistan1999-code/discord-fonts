@@ -10,29 +10,15 @@ import {
   type LengthFilter,
   type UsernameStyle,
 } from "@/lib/usernameGenerator";
+import {
+  usernameGeneratorStringsEn,
+  type UsernameGeneratorStrings,
+} from "@/content/username-generator-strings";
 import { useCopy } from "./ToastProvider";
 
 const BATCH = 24;
 
-const STYLE_LABELS: Record<UsernameStyle, string> = {
-  random: "Random",
-  cool: "Cool",
-  aesthetic: "Aesthetic",
-  gaming: "Gaming",
-  cute: "Cute",
-  funny: "Funny",
-  dark: "Dark",
-  short: "Short",
-};
-
-const LENGTH_LABELS: Record<LengthFilter, string> = {
-  any: "Any",
-  "3": "3",
-  "4": "4",
-  "5": "5",
-  "6-8": "6–8",
-  "9-12": "9–12",
-};
+const lengthLabel = (l: LengthFilter, any: string) => (l === "any" ? any : l.replace("-", "–"));
 
 /** The first batch uses a fixed seed so the server and the browser render the same names. */
 const INITIAL = generateUsernames({ random: seededRandom(2026), count: BATCH });
@@ -94,7 +80,7 @@ function Toggle({
   );
 }
 
-function ResultCard({ name }: { name: string }) {
+function ResultCard({ name, t }: { name: string; t: UsernameGeneratorStrings }) {
   const copy = useCopy();
   const [copied, setCopied] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout>>(undefined);
@@ -120,7 +106,7 @@ function ResultCard({ name }: { name: string }) {
               : "border-border text-text hover:border-accent hover:text-accent"
           }`}
         >
-          {copied ? "Copied!" : "Copy"}
+          {copied ? t.copied : t.copy}
           <span className="sr-only"> {name}</span>
         </button>
       </div>
@@ -129,13 +115,13 @@ function ResultCard({ name }: { name: string }) {
           <svg aria-hidden="true" viewBox="0 0 20 20" className="size-3.5" fill="currentColor">
             <path d="M16.7 5.3a1 1 0 0 1 0 1.4l-8 8a1 1 0 0 1-1.4 0l-4-4a1 1 0 1 1 1.4-1.4L8 12.6l7.3-7.3a1 1 0 0 1 1.4 0Z" />
           </svg>
-          Follows Discord rules
+          {t.followsRules}
         </span>
         <Link
-          href={`/?text=${encodeURIComponent(name)}`}
+          href={`${t.fontGeneratorPath}?text=${encodeURIComponent(name)}`}
           className="font-semibold text-accent hover:underline"
         >
-          Make it fancy<span className="sr-only"> ({name})</span> <span aria-hidden="true">→</span>
+          {t.makeFancy}<span className="sr-only"> ({name})</span> <span aria-hidden="true">→</span>
         </Link>
       </div>
     </li>
@@ -143,7 +129,13 @@ function ResultCard({ name }: { name: string }) {
 }
 
 /** Discord username generator: keyword, style, length and character options, 24 valid names per click. */
-export function UsernameGenerator({ hero }: { hero: React.ReactNode }) {
+export function UsernameGenerator({
+  hero,
+  strings: t = usernameGeneratorStringsEn,
+}: {
+  hero: React.ReactNode;
+  strings?: UsernameGeneratorStrings;
+}) {
   const keywordId = useId();
   const [keyword, setKeyword] = useState("");
   const [style, setStyle] = useState<UsernameStyle>("random");
@@ -188,14 +180,14 @@ export function UsernameGenerator({ hero }: { hero: React.ReactNode }) {
         {hero}
 
         <label htmlFor={keywordId} className="sr-only">
-          Keyword (optional)
+          {t.keywordLabel}
         </label>
         <input
           id={keywordId}
           type="text"
           value={keyword}
           onChange={(e) => setKeyword(e.target.value)}
-          placeholder="Add a word, e.g. luna, shadow, pixel"
+          placeholder={t.placeholder}
           maxLength={40}
           autoComplete="off"
           autoCapitalize="off"
@@ -204,11 +196,11 @@ export function UsernameGenerator({ hero }: { hero: React.ReactNode }) {
         />
 
         <fieldset className="mt-5">
-          <legend className="mb-2 text-sm font-semibold text-text">Style</legend>
+          <legend className="mb-2 text-sm font-semibold text-text">{t.style}</legend>
           <div className="flex flex-wrap gap-2">
             {USERNAME_STYLES.map((s) => (
               <Chip key={s} active={style === s} onClick={() => setStyle(s)}>
-                {STYLE_LABELS[s]}
+                {t.styles[s]}
               </Chip>
             ))}
           </div>
@@ -216,18 +208,18 @@ export function UsernameGenerator({ hero }: { hero: React.ReactNode }) {
 
         <div className="mt-5 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <fieldset>
-            <legend className="mb-2 text-sm font-semibold text-text">Length</legend>
+            <legend className="mb-2 text-sm font-semibold text-text">{t.length}</legend>
             <div className="flex flex-wrap gap-2">
               {LENGTH_FILTERS.map((l) => (
                 <Chip key={l} active={length === l} onClick={() => setLength(l)}>
-                  {LENGTH_LABELS[l]}
+                  {lengthLabel(l, t.anyLength)}
                 </Chip>
               ))}
             </div>
           </fieldset>
           <div className="flex flex-wrap gap-x-6 gap-y-2">
-            <Toggle checked={allowNumbers} onChange={setAllowNumbers} label="Allow numbers" />
-            <Toggle checked={allowSeparators} onChange={setAllowSeparators} label="Allow _ and ." />
+            <Toggle checked={allowNumbers} onChange={setAllowNumbers} label={t.allowNumbers} />
+            <Toggle checked={allowSeparators} onChange={setAllowSeparators} label={t.allowSeparators} />
           </div>
         </div>
 
@@ -235,7 +227,7 @@ export function UsernameGenerator({ hero }: { hero: React.ReactNode }) {
           type="submit"
           className="mt-6 w-full rounded-2xl bg-linear-to-r from-teal-700 to-cyan-700 px-6 py-4 text-lg font-bold text-white shadow-sm transition-[opacity,transform] hover:opacity-95 active:scale-[0.99]"
         >
-          Generate usernames
+          {t.generate}
         </button>
       </form>
 
@@ -247,15 +239,15 @@ export function UsernameGenerator({ hero }: { hero: React.ReactNode }) {
             tabIndex={-1}
             className="text-lg font-semibold outline-none"
           >
-            Your usernames
+            {t.results}
           </h2>
           <p className="text-sm text-muted" aria-live="polite">
-            {names.length} names, all checked against Discord&apos;s rules
+            {t.count.replace("{count}", String(names.length))}
           </p>
         </div>
         <ul key={batch} className="grid min-h-[30rem] gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {names.map((name) => (
-            <ResultCard key={name} name={name} />
+            <ResultCard key={name} name={name} t={t} />
           ))}
         </ul>
         <button
@@ -263,7 +255,7 @@ export function UsernameGenerator({ hero }: { hero: React.ReactNode }) {
           onClick={generateMore}
           className="mt-4 w-full rounded-xl border border-border px-4 py-3 text-sm font-semibold text-text transition-colors hover:border-accent hover:text-accent"
         >
-          Generate more
+          {t.generateMore}
         </button>
       </section>
     </div>

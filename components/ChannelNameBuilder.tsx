@@ -1,27 +1,29 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
-import { builderDividers, builderEmojis, builderLeft, builderRight } from "@/content/discord-symbols-data";
+import {
+  builderDividers,
+  builderEmojis,
+  builderLeft,
+  builderRight,
+  builderStringsEn,
+  type BuilderStrings,
+} from "@/content/discord-symbols-data";
 import { useCopy } from "./ToastProvider";
 
 type ChannelType = "text" | "voice" | "category";
 
 /** Discord's channel name limit. */
 const LIMIT = 100;
-const SAMPLE = "announcements";
-
-const channelTypes: readonly { id: ChannelType; label: string }[] = [
-  { id: "text", label: "Text channel" },
-  { id: "voice", label: "Voice channel" },
-  { id: "category", label: "Category" },
-];
+const CHANNEL_TYPES: readonly ChannelType[] = ["text", "voice", "category"];
 
 /** Text channels are lowercase with hyphens for spaces, like Discord does on save. */
 export function buildChannelName(
   type: ChannelType,
   parts: { left: string; emoji: string; divider: string; name: string; right: string },
+  sample: string,
 ): string {
-  const raw = parts.name.trim() || SAMPLE;
+  const raw = parts.name.trim() || sample;
   const name = type === "text" ? raw.toLowerCase().replace(/\s+/g, "-") : raw;
   return `${parts.left}${parts.emoji}${parts.divider}${name}${parts.right}`;
 }
@@ -33,12 +35,14 @@ function OptionRow({
   options,
   value,
   onChange,
+  none,
   big = false,
 }: {
   legend: string;
   options: readonly string[];
   value: string;
   onChange: (next: string) => void;
+  none: string;
   /** Emoji row: larger glyphs. */
   big?: boolean;
 }) {
@@ -62,7 +66,7 @@ function OptionRow({
                   : "border-border bg-surface hover:border-text/30"
               }`}
             >
-              {option || "none"}
+              {option || none}
             </button>
           );
         })}
@@ -97,7 +101,7 @@ function ChevronIcon() {
 }
 
 /** Live channel name builder with a Discord-sidebar style preview. */
-export function ChannelNameBuilder() {
+export function ChannelNameBuilder({ strings: t = builderStringsEn }: { strings?: BuilderStrings }) {
   const id = useId();
   const copy = useCopy();
   const [type, setType] = useState<ChannelType>("text");
@@ -111,12 +115,12 @@ export function ChannelNameBuilder() {
 
   useEffect(() => () => clearTimeout(timer.current), []);
 
-  const output = buildChannelName(type, { left, emoji, divider, name, right });
+  const output = buildChannelName(type, { left, emoji, divider, name, right }, t.sample);
   const length = Array.from(output).length;
   const over = length > LIMIT;
 
   async function handleCopy() {
-    const ok = await copy(output, "channel name");
+    const ok = await copy(output, t.copyLabel);
     if (!ok) return;
     setCopied(true);
     clearTimeout(timer.current);
@@ -136,19 +140,19 @@ export function ChannelNameBuilder() {
     <div className="grid gap-6 text-left lg:grid-cols-[minmax(0,1fr)_minmax(0,22rem)]">
       <div className="space-y-5">
         <fieldset>
-          <legend className="sr-only">Channel type</legend>
+          <legend className="sr-only">{t.typeLegend}</legend>
           <div className="grid w-full grid-cols-3 rounded-xl border border-border bg-surface p-1 sm:inline-grid sm:w-auto">
-            {channelTypes.map((t) => (
+            {CHANNEL_TYPES.map((id) => (
               <button
-                key={t.id}
+                key={id}
                 type="button"
-                aria-pressed={type === t.id}
-                onClick={() => setType(t.id)}
+                aria-pressed={type === id}
+                onClick={() => setType(id)}
                 className={`min-h-11 rounded-lg px-2 text-sm leading-tight font-semibold transition-colors sm:px-4 ${
-                  type === t.id ? "bg-accent-solid text-on-accent" : "text-muted hover:text-text"
+                  type === id ? "bg-accent-solid text-on-accent" : "text-muted hover:text-text"
                 }`}
               >
-                {t.label}
+                {t.types[id]}
               </button>
             ))}
           </div>
@@ -156,14 +160,14 @@ export function ChannelNameBuilder() {
 
         <div>
           <label htmlFor={`${id}-name`} className="mb-1.5 block text-sm font-semibold text-text">
-            Channel name
+            {t.nameLabel}
           </label>
           <input
             id={`${id}-name`}
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            placeholder={SAMPLE}
+            placeholder={t.sample}
             maxLength={120}
             autoComplete="off"
             spellCheck={false}
@@ -171,19 +175,19 @@ export function ChannelNameBuilder() {
           />
           {type === "text" && (
             <p className="mt-1.5 text-xs text-muted">
-              Discord makes text channel names lowercase and turns spaces into hyphens.
+              {t.textNote}
             </p>
           )}
         </div>
 
-        <OptionRow legend="Emoji" options={builderEmojis} value={emoji} onChange={setEmoji} big />
-        <OptionRow legend="Left decoration" options={builderLeft} value={left} onChange={setLeft} />
-        <OptionRow legend="Divider" options={builderDividers} value={divider} onChange={setDivider} />
-        <OptionRow legend="Right decoration" options={builderRight} value={right} onChange={setRight} />
+        <OptionRow legend={t.emoji} none={t.none} options={builderEmojis} value={emoji} onChange={setEmoji} big />
+        <OptionRow legend={t.left} none={t.none} options={builderLeft} value={left} onChange={setLeft} />
+        <OptionRow legend={t.divider} none={t.none} options={builderDividers} value={divider} onChange={setDivider} />
+        <OptionRow legend={t.right} none={t.none} options={builderRight} value={right} onChange={setRight} />
       </div>
 
       <div className="lg:sticky lg:top-4 lg:self-start">
-        <p className="mb-1.5 text-sm font-semibold text-text">Preview</p>
+        <p className="mb-1.5 text-sm font-semibold text-text">{t.preview}</p>
         <div
           aria-hidden="true"
           className="rounded-xl bg-[#f2f3f5] p-3 text-[#5c5e66] dark:bg-[#2b2d31] dark:text-[#949ba4]"
@@ -196,14 +200,14 @@ export function ChannelNameBuilder() {
               </div>
               <div className="flex items-center gap-1.5 rounded-md px-2 py-1.5 text-[15px] font-medium">
                 <HashIcon />
-                <span>general</span>
+                <span>{t.textNeighbour}</span>
               </div>
             </>
           ) : (
             <>
               <div className="flex items-center gap-1 px-1 py-1.5 text-xs font-semibold tracking-wide uppercase">
                 <ChevronIcon />
-                <span>{type === "voice" ? "Voice channels" : "Text channels"}</span>
+                <span>{type === "voice" ? t.voiceChannels : t.textChannels}</span>
               </div>
               <div className="flex items-center gap-1.5 rounded-md bg-[#d7d9dc] px-2 py-1.5 text-[15px] font-medium text-[#060607] dark:bg-[#404249] dark:text-white">
                 <Icon />
@@ -211,7 +215,7 @@ export function ChannelNameBuilder() {
               </div>
               <div className="flex items-center gap-1.5 rounded-md px-2 py-1.5 text-[15px] font-medium">
                 <Icon />
-                <span>{type === "voice" ? "Lounge" : "general"}</span>
+                <span>{type === "voice" ? t.voiceNeighbour : t.textNeighbour}</span>
               </div>
             </>
           )}
@@ -225,7 +229,8 @@ export function ChannelNameBuilder() {
             {output}
           </p>
           <p className={`mt-1 text-xs ${over ? "font-semibold text-red-600 dark:text-red-400" : "text-muted"}`}>
-            {length} / {LIMIT} characters{over ? " – too long for Discord" : ""}
+            {t.characters.replace("{count}", String(length)).replace("{limit}", String(LIMIT))}
+            {over ? t.tooLong : ""}
           </p>
         </div>
 
@@ -235,14 +240,14 @@ export function ChannelNameBuilder() {
             onClick={handleCopy}
             className="min-h-12 flex-1 rounded-xl bg-accent-solid px-5 text-base font-bold text-on-accent transition-opacity hover:opacity-90"
           >
-            {copied ? "Copied!" : "Copy channel name"}
+            {copied ? t.copied : t.copy}
           </button>
           <button
             type="button"
             onClick={randomize}
             className="min-h-12 rounded-xl border border-border bg-surface px-4 text-sm font-semibold text-text transition-colors hover:border-text/30"
           >
-            🎲 Randomize
+            {t.randomize}
           </button>
         </div>
       </div>

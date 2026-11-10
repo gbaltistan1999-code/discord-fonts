@@ -1,10 +1,16 @@
 "use client";
 
-import type { ChannelPack } from "@/content/discord-symbols-data";
+import { packStringsEn, type ChannelPack, type PackStrings } from "@/content/discord-symbols-data";
 import { useCopy } from "./ToastProvider";
 
 /** Ready-made channel name sets: copy one name, or the whole pack on separate lines. */
-export function ChannelPacks({ packs }: { packs: readonly ChannelPack[] }) {
+export function ChannelPacks({
+  packs,
+  strings: t = packStringsEn,
+}: {
+  packs: readonly ChannelPack[];
+  strings?: PackStrings;
+}) {
   const copy = useCopy();
   return (
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -14,11 +20,11 @@ export function ChannelPacks({ packs }: { packs: readonly ChannelPack[] }) {
             <h3 className="font-semibold text-text">{pack.title}</h3>
             <button
               type="button"
-              onClick={() => copy(pack.names.join("\n"), `${pack.title} pack`)}
+              onClick={() => copy(pack.names.join("\n"), t.packLabel.replace("{title}", pack.title))}
               className="min-h-11 shrink-0 rounded-lg border border-border px-3 text-sm font-medium text-text transition-colors hover:border-text/30 hover:bg-surface-2"
             >
-              Copy all
-              <span className="sr-only"> {pack.title} names</span>
+              {t.copyAll}
+              <span className="sr-only"> {t.copyAllSr.replace("{title}", pack.title)}</span>
             </button>
           </div>
           <ul className="mt-3 flex flex-wrap gap-1.5">

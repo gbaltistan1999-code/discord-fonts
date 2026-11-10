@@ -161,3 +161,111 @@ export const channelPacks: readonly ChannelPack[] = [
     names: ["🔊︱Lounge", "🎧︱Music Room", "🎮︱Gaming VC", "💤︱AFK", "🎤︱Stage", "📚︱Study Room"],
   },
 ];
+
+// ---------------------------------------------------------------------------
+// Interface text (English defaults; translations pass their own)
+// ---------------------------------------------------------------------------
+
+export interface BuilderStrings {
+  typeLegend: string;
+  types: { text: string; voice: string; category: string };
+  nameLabel: string;
+  /** Example name used when the input is empty. */
+  sample: string;
+  textNote: string;
+  emoji: string;
+  left: string;
+  divider: string;
+  right: string;
+  none: string;
+  preview: string;
+  textChannels: string;
+  voiceChannels: string;
+  /** Neighbouring channels shown in the preview. */
+  textNeighbour: string;
+  voiceNeighbour: string;
+  /** "{count}" and "{limit}" are filled in. */
+  characters: string;
+  tooLong: string;
+  copy: string;
+  copied: string;
+  /** Toast label, e.g. "Copied channel name!". */
+  copyLabel: string;
+  randomize: string;
+}
+
+export const builderStringsEn: BuilderStrings = {
+  typeLegend: "Channel type",
+  types: { text: "Text channel", voice: "Voice channel", category: "Category" },
+  nameLabel: "Channel name",
+  sample: "announcements",
+  textNote: "Discord makes text channel names lowercase and turns spaces into hyphens.",
+  emoji: "Emoji",
+  left: "Left decoration",
+  divider: "Divider",
+  right: "Right decoration",
+  none: "none",
+  preview: "Preview",
+  textChannels: "Text channels",
+  voiceChannels: "Voice channels",
+  textNeighbour: "general",
+  voiceNeighbour: "Lounge",
+  characters: "{count} / {limit} characters",
+  tooLong: " – too long for Discord",
+  copy: "Copy channel name",
+  copied: "Copied!",
+  copyLabel: "channel name",
+  randomize: "🎲 Randomize",
+};
+
+export interface PackStrings {
+  copyAll: string;
+  /** Screen-reader text after "Copy all"; "{title}" is filled in. */
+  copyAllSr: string;
+  /** Toast label for a whole pack; "{title}" is filled in. */
+  packLabel: string;
+}
+
+export const packStringsEn: PackStrings = {
+  copyAll: "Copy all",
+  copyAllSr: "{title} names",
+  packLabel: "{title} pack",
+};
+
+export interface LibraryStrings {
+  searchLabel: string;
+  placeholder: string;
+  editFavorites: string;
+  doneEditing: string;
+  categoriesLabel: string;
+  all: string;
+  favoritesTitle: string;
+  /** Shown when there are no favorites; "{button}" becomes the bold button name. */
+  favoritesEmpty: string;
+  editingHint: string;
+  /** "{query}" is filled in. */
+  noMatch: string;
+  /** "{symbol}" is filled in. */
+  copySymbol: string;
+  addFavorite: string;
+  removeFavorite: string;
+}
+
+export const libraryStringsEn: LibraryStrings = {
+  searchLabel: "Search symbols",
+  placeholder: "Search symbols (star, heart, arrow, ︱)",
+  editFavorites: "☆ Edit favorites",
+  doneEditing: "✓ Done editing",
+  categoriesLabel: "Symbol categories",
+  all: "All",
+  favoritesTitle: "★ Your favorites",
+  favoritesEmpty: "Tap {button}, then tap symbols to save them here on this device.",
+  editingHint: "Editing favorites: tap a symbol to add or remove it. Tap “Done editing” to go back to copying.",
+  noMatch: "No symbols match “{query}”. Try another word.",
+  copySymbol: "Copy {symbol}",
+  addFavorite: "Add {symbol} to favorites",
+  removeFavorite: "Remove {symbol} from favorites",
+};
+
+/** Translated label, heading and search words for a symbol category. */
+export type CategoryText = Readonly<Record<string, { label: string; heading: string; keywords: string }>>;
