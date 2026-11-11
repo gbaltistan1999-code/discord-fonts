@@ -25,15 +25,15 @@ export function HomeArticle() {
       </p>
       <figure>
         <Image
-          src="/discord-fonts-examples.svg"
-          alt="Discord Fonts examples: the words Discord Fonts in bold, script, gothic, small caps, bubble and decorated styles"
-          width={640}
-          height={390}
+          src="/home/discord-font-styles.webp"
+          alt="Discord font styles compared: the word Gamer in bold, script, bubble and small caps letters"
+          width={1200}
+          height={800}
           unoptimized
-          className="h-auto w-full max-w-xl rounded-xl"
+          className="h-auto w-full rounded-xl"
         />
         <figcaption className="mt-2 text-sm text-muted">
-          The same two words in six Discord font styles, all made from standard Unicode characters.
+          The same word in four Discord font styles, all made from standard Unicode characters.
         </figcaption>
       </figure>
 
@@ -59,12 +59,36 @@ export function HomeArticle() {
           <strong>Paste it into Discord</strong> with Ctrl+V, Cmd+V or a long press on mobile, then save.
         </li>
       </ol>
+      <figure>
+        <Image
+          src="/home/how-to-use-discord-font-generator.webp"
+          alt="How to use the Discord font generator in 3 steps: type your text, copy a fancy style, paste it into Discord"
+          width={1200}
+          height={512}
+          unoptimized
+          className="h-auto w-full rounded-xl"
+        />
+        <figcaption className="mt-2 text-sm text-muted">Type, copy and paste: that&apos;s all it takes.</figcaption>
+      </figure>
 
       <h2 id="change-discord-name-font">How to Change Your Discord Name Font, Nickname or Server Name</h2>
       <p>
         Discord menus move around from time to time, so the labels below may differ slightly in your version
         of the app, but the fields themselves stay the same.
       </p>
+      <figure>
+        <Image
+          src="/home/fancy-name-on-discord.webp"
+          alt="Fancy font name on Discord: the cursive name Luna with star symbols in the member list and profile card"
+          width={1200}
+          height={675}
+          unoptimized
+          className="h-auto w-full rounded-xl"
+        />
+        <figcaption className="mt-2 text-sm text-muted">
+          A styled name shows up for everyone in the member list and on your profile card.
+        </figcaption>
+      </figure>
       <h3>Display name</h3>
       <p>
         Your display name is shown next to your messages in every server. Open <strong>User Settings</strong>,
