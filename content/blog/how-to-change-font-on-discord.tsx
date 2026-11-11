@@ -172,7 +172,9 @@ export const changeFontOnDiscord: BlogPost = {
         Want a different name in just one server? Use a server nickname instead. Right-click the server icon
         (or long-press on mobile), choose <strong>Edit Per-server Profile</strong> (on some versions it&apos;s{" "}
         <strong>Change Nickname</strong>), and paste it there. Your main display name stays the same
-        everywhere else.
+        everywhere else. Our guide on{" "}
+        <Link href="/blog/how-to-change-nickname-on-discord">how to change your nickname on Discord</Link> covers
+        every method, including the <code>/nick</code> command.
       </p>
       <p>
         A small heads-up: display names are capped at 32 characters, and some styled letters count as more
