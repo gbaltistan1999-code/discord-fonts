@@ -7,4 +7,5 @@ export const generatorPages = [
   { path: "/small-text-discord", name: "Small Text Generator" },
   { path: "/number-fonts", name: "Number Fonts" },
   { path: "/discord-symbols", name: "Discord Symbols" },
+  { path: "/discord-server-names", name: "Discord Server Names" },
 ] as const;

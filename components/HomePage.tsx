@@ -44,6 +44,7 @@ export function HomePage({ locale }: { locale: Locale }) {
     "/small-text-discord": ui.links.smallText,
     "/number-fonts": ui.links.numberFonts,
     "/discord-symbols": ui.links.discordSymbols,
+    "/discord-server-names": ui.links.serverNames,
   };
 
   return (
