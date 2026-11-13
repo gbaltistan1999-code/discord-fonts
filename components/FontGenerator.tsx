@@ -46,40 +46,84 @@ const THEMES: readonly { id: Theme; emoji: string }[] = [
 const isTheme = (filter: Filter): filter is Theme => filter in themeStyles;
 type Scope = "all" | "favorites" | "recent";
 
-/** Each filter tab gets its own colour: a soft tint when idle, solid when selected (white text stays above 4.5:1). */
-const FILTER_COLORS: Record<Filter, { idle: string; active: string }> = {
+type ChipFilter = Exclude<Filter, Theme>;
+
+/**
+ * Style filter chips: a tinted, outlined pill with a coloured icon tile. Selected chips turn solid in light
+ * mode (white text stays above 4.5:1) and glow in dark mode.
+ */
+const CHIP_STYLES: Record<
+  ChipFilter,
+  { icon: React.ReactNode; idle: string; active: string; tile: string; tileActive: string }
+> = {
   featured: {
-    idle: "bg-teal-50 text-teal-700 hover:bg-teal-100 dark:bg-teal-500/15 dark:text-teal-300 dark:hover:bg-teal-500/25",
-    active: "bg-linear-to-r from-teal-700 to-cyan-700 text-white",
+    icon: <span className="text-sm">★</span>,
+    idle: "border-violet-200 bg-violet-50 hover:bg-violet-100 dark:border-violet-400/35 dark:bg-violet-500/10 dark:hover:bg-violet-500/20",
+    active:
+      "border-violet-600 bg-violet-600 text-white dark:border-violet-300/80 dark:bg-violet-500/30 dark:shadow-[0_0_18px_rgba(139,92,246,0.55)]",
+    tile: "bg-violet-100 text-violet-700 dark:bg-violet-500/25 dark:text-violet-300",
+    tileActive: "bg-white/20 text-white dark:bg-violet-400/30 dark:text-violet-100",
   },
   all: {
-    idle: "bg-cyan-50 text-cyan-800 hover:bg-cyan-100 dark:bg-cyan-500/15 dark:text-cyan-300 dark:hover:bg-cyan-500/25",
-    active: "bg-linear-to-r from-teal-700 to-cyan-700 text-white",
+    icon: <GridIcon />,
+    idle: "border-slate-200 bg-slate-50 hover:bg-slate-100 dark:border-slate-400/30 dark:bg-slate-500/10 dark:hover:bg-slate-500/20",
+    active:
+      "border-slate-700 bg-slate-700 text-white dark:border-slate-300/70 dark:bg-slate-500/30 dark:shadow-[0_0_18px_rgba(148,163,184,0.45)]",
+    tile: "bg-slate-200 text-slate-700 dark:bg-slate-500/25 dark:text-slate-200",
+    tileActive: "bg-white/20 text-white dark:bg-slate-400/30 dark:text-white",
   },
   bold: {
-    idle: "bg-rose-50 text-rose-700 hover:bg-rose-100 dark:bg-rose-500/15 dark:text-rose-300 dark:hover:bg-rose-500/25",
-    active: "bg-rose-600 text-white",
+    icon: <span className="text-base font-black">B</span>,
+    idle: "border-blue-200 bg-blue-50 hover:bg-blue-100 dark:border-blue-400/35 dark:bg-blue-500/10 dark:hover:bg-blue-500/20",
+    active:
+      "border-blue-600 bg-blue-600 text-white dark:border-blue-300/80 dark:bg-blue-500/30 dark:shadow-[0_0_18px_rgba(59,130,246,0.55)]",
+    tile: "bg-blue-100 text-blue-700 dark:bg-blue-500/25 dark:text-blue-300",
+    tileActive: "bg-white/20 text-white dark:bg-blue-400/30 dark:text-blue-100",
   },
   cursive: {
-    idle: "bg-pink-50 text-pink-700 hover:bg-pink-100 dark:bg-pink-500/15 dark:text-pink-300 dark:hover:bg-pink-500/25",
-    active: "bg-pink-700 text-white",
+    icon: <span className="text-base">𝒜</span>,
+    idle: "border-rose-200 bg-rose-50 hover:bg-rose-100 dark:border-rose-400/35 dark:bg-rose-500/10 dark:hover:bg-rose-500/20",
+    active:
+      "border-rose-600 bg-rose-600 text-white dark:border-rose-300/80 dark:bg-rose-500/30 dark:shadow-[0_0_18px_rgba(244,63,94,0.55)]",
+    tile: "bg-rose-100 text-rose-700 dark:bg-rose-500/25 dark:text-rose-300",
+    tileActive: "bg-white/20 text-white dark:bg-rose-400/30 dark:text-rose-100",
   },
   gothic: {
-    idle: "bg-purple-50 text-purple-700 hover:bg-purple-100 dark:bg-purple-500/15 dark:text-purple-300 dark:hover:bg-purple-500/25",
-    active: "bg-purple-700 text-white",
+    icon: <span className="text-base">𝔊</span>,
+    idle: "border-purple-200 bg-purple-50 hover:bg-purple-100 dark:border-purple-400/35 dark:bg-purple-500/10 dark:hover:bg-purple-500/20",
+    active:
+      "border-purple-700 bg-purple-700 text-white dark:border-purple-300/80 dark:bg-purple-500/30 dark:shadow-[0_0_18px_rgba(168,85,247,0.55)]",
+    tile: "bg-purple-100 text-purple-700 dark:bg-purple-500/25 dark:text-purple-300",
+    tileActive: "bg-white/20 text-white dark:bg-purple-400/30 dark:text-purple-100",
   },
   decorative: {
-    idle: "bg-amber-50 text-amber-800 hover:bg-amber-100 dark:bg-amber-500/15 dark:text-amber-300 dark:hover:bg-amber-500/25",
-    active: "bg-amber-700 text-white",
+    icon: <span className="text-sm">✦</span>,
+    idle: "border-amber-200 bg-amber-50 hover:bg-amber-100 dark:border-amber-400/35 dark:bg-amber-500/10 dark:hover:bg-amber-500/20",
+    active:
+      "border-amber-700 bg-amber-700 text-white dark:border-amber-300/80 dark:bg-amber-500/30 dark:shadow-[0_0_18px_rgba(245,158,11,0.55)]",
+    tile: "bg-amber-100 text-amber-700 dark:bg-amber-500/25 dark:text-amber-300",
+    tileActive: "bg-white/20 text-white dark:bg-amber-400/30 dark:text-amber-100",
   },
   aesthetic: {
-    idle: "bg-teal-50 text-teal-700 hover:bg-teal-100 dark:bg-teal-500/15 dark:text-teal-300 dark:hover:bg-teal-500/25",
-    active: "bg-teal-700 text-white",
+    icon: <span className="text-xs font-bold">Aa</span>,
+    idle: "border-teal-200 bg-teal-50 hover:bg-teal-100 dark:border-teal-400/35 dark:bg-teal-500/10 dark:hover:bg-teal-500/20",
+    active:
+      "border-teal-700 bg-teal-700 text-white dark:border-teal-300/80 dark:bg-teal-500/30 dark:shadow-[0_0_18px_rgba(20,184,166,0.55)]",
+    tile: "bg-teal-100 text-teal-700 dark:bg-teal-500/25 dark:text-teal-300",
+    tileActive: "bg-white/20 text-white dark:bg-teal-400/30 dark:text-teal-100",
   },
   glitch: {
-    idle: "bg-emerald-50 text-emerald-700 hover:bg-emerald-100 dark:bg-emerald-500/15 dark:text-emerald-300 dark:hover:bg-emerald-500/25",
-    active: "bg-emerald-700 text-white",
+    icon: <GlitchIcon />,
+    idle: "border-emerald-200 bg-emerald-50 hover:bg-emerald-100 dark:border-emerald-400/35 dark:bg-emerald-500/10 dark:hover:bg-emerald-500/20",
+    active:
+      "border-emerald-700 bg-emerald-700 text-white dark:border-emerald-300/80 dark:bg-emerald-500/30 dark:shadow-[0_0_18px_rgba(16,185,129,0.55)]",
+    tile: "bg-emerald-100 text-emerald-700 dark:bg-emerald-500/25 dark:text-emerald-300",
+    tileActive: "bg-white/20 text-white dark:bg-emerald-400/30 dark:text-emerald-100",
   },
+};
+
+/** Theme pills: a soft tint when idle, solid when selected (white text stays above 4.5:1). */
+const FILTER_COLORS: Record<Theme, { idle: string; active: string }> = {
   love: {
     idle: "bg-red-50 text-red-700 hover:bg-red-100 dark:bg-red-500/15 dark:text-red-300 dark:hover:bg-red-500/25",
     active: "bg-red-600 text-white",
@@ -264,7 +308,7 @@ export function FontGenerator({
     setFavorites(favorites.includes(id) ? favorites.filter((f) => f !== id) : [id, ...favorites]);
   }
 
-  const filters: { id: Filter; label: string; count: number }[] = [
+  const filters: { id: ChipFilter; label: string; count: number }[] = [
     ...(featured ? [{ id: "featured" as const, label: featured.label, count: featuredStyles.length }] : []),
     { id: "all", label: t.all, count: fontStyles.length },
     ...fontCategories.map((c) => ({
@@ -399,9 +443,15 @@ export function FontGenerator({
       <div
         className={isList ? "mt-8" : "mt-6 rounded-2xl border border-border bg-surface p-4 shadow-sm sm:p-5"}
       >
-        <div role="group" aria-label={t.filterGroup} className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap">
+        {/* Style filters in a glowing panel: two-column chips on phones (an odd last one spans both), wrapping pills from sm up. */}
+        <div
+          role="group"
+          aria-label={t.filterGroup}
+          className="grid grid-cols-2 gap-2 rounded-2xl border border-indigo-200 bg-white/70 p-2.5 shadow-[0_0_24px_rgba(99,102,241,0.12)] sm:flex sm:flex-wrap sm:gap-2 sm:p-3 dark:border-indigo-400/40 dark:bg-[#16171d] dark:shadow-[0_0_28px_rgba(124,92,255,0.4),inset_0_0_14px_rgba(124,92,255,0.12)]"
+        >
           {filters.map((f) => {
             const active = filter === f.id;
+            const chip = CHIP_STYLES[f.id];
             return (
               <button
                 key={f.id}
@@ -411,15 +461,20 @@ export function FontGenerator({
                   setFilter(f.id);
                   setLimit(PAGE_SIZE);
                 }}
-                // Two-column boxes on phones (an odd last one spans both), pills from sm up.
-                className={`flex min-w-0 items-center justify-between rounded-xl px-4 py-2.5 text-left text-sm font-semibold transition-colors last:odd:col-span-2 sm:inline-block sm:shrink-0 sm:rounded-full sm:py-2 ${
-                  active ? `${FILTER_COLORS[f.id].active} shadow-sm` : FILTER_COLORS[f.id].idle
+                className={`flex min-w-0 items-center gap-1.5 rounded-full border py-1.5 pr-3 pl-1.5 text-left text-sm font-semibold transition-[background-color,border-color,box-shadow] last:odd:col-span-2 sm:shrink-0 ${
+                  active ? `${chip.active} shadow-sm` : `${chip.idle} text-text`
                 }`}
               >
-                {f.label}
-                <span className={`ml-1.5 tabular-nums ${active ? "opacity-80" : "dark:opacity-70"}`}>
-                  {f.count}
+                <span
+                  aria-hidden="true"
+                  className={`grid size-7 shrink-0 place-items-center rounded-full leading-none [&_svg]:size-4 ${
+                    active ? chip.tileActive : chip.tile
+                  }`}
+                >
+                  {chip.icon}
                 </span>
+                <span className="min-w-0 flex-1 truncate">{f.label}</span>
+                <span className={`tabular-nums ${active ? "opacity-80" : "opacity-60"}`}>{f.count}</span>
               </button>
             );
           })}
@@ -822,6 +877,19 @@ function GridIcon() {
       <rect x="13.5" y="4" width="6.5" height="6.5" rx="1.5" />
       <rect x="4" y="13.5" width="6.5" height="6.5" rx="1.5" />
       <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.5" />
+    </svg>
+  );
+}
+
+function GlitchIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true">
+      <rect x="0" y="0" width="4" height="4" />
+      <rect x="8" y="0" width="4" height="4" />
+      <rect x="4" y="4" width="4" height="4" />
+      <rect x="10" y="5" width="4" height="3" />
+      <rect x="0" y="8" width="4" height="4" />
+      <rect x="6" y="10" width="5" height="4" />
     </svg>
   );
 }
