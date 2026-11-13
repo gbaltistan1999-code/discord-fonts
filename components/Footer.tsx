@@ -82,7 +82,7 @@ export function Footer({ locale = defaultLocale }: { locale?: Locale }) {
         <div className="mx-auto max-w-6xl space-y-1 px-4 pt-6 pb-[calc(1.5rem+env(safe-area-inset-bottom))] text-sm text-muted">
           <p>{ui.footer.disclaimer}</p>
           <p>{fill(ui.footer.copyright, { year: new Date().getFullYear(), name: siteConfig.name })}</p>
-          {/* External SVG badges: next/image would need remotePatterns and adds nothing for an SVG.
+          {/* External badges: next/image would need remotePatterns and adds nothing for tiny images.
               Lazy so they only download when the footer scrolls into view. */}
           <div className="flex flex-wrap items-center gap-3" style={{ marginTop: "15px" }}>
             <a
@@ -100,6 +100,18 @@ export function Footer({ locale = defaultLocale }: { locale?: Locale }) {
                 loading="lazy"
                 decoding="async"
                 style={{ height: "40px", width: "auto" }}
+              />
+            </a>
+            <a href="https://aigc160.com/ai/discordfont" target="_blank" rel="noopener" className="inline-block">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://aigc160.com/assets/images/badge.png"
+                alt="AIGC 160"
+                width={164}
+                height={54}
+                loading="lazy"
+                decoding="async"
+                style={{ height: "54px", width: "auto" }}
               />
             </a>
           </div>
