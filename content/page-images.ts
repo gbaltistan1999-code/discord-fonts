@@ -33,4 +33,9 @@ export const pageImages: Readonly<Record<string, readonly string[]>> = {
     "/blog/discord-nickname-role-permissions.webp",
     "/blog/discord-nickname-fancy-font.webp",
   ],
+  "/blog/what-font-does-discord-use": [
+    "/blog/what-font-does-discord-use.webp",
+    "/blog/discord-whitney-vs-gg-sans.webp",
+    "/blog/discord-font-alternatives.webp",
+  ],
 };

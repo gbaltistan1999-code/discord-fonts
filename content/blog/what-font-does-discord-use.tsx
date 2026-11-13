@@ -1,5 +1,15 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { BlogPost } from ".";
+
+function Figure({ src, alt, caption }: { src: string; alt: string; caption: string }) {
+  return (
+    <figure>
+      <Image src={src} alt={alt} width={1200} height={675} unoptimized className="h-auto w-full rounded-xl" />
+      <figcaption className="mt-2 text-sm text-muted">{caption}</figcaption>
+    </figure>
+  );
+}
 
 export const whatFontDoesDiscordUse: BlogPost = {
   slug: "what-font-does-discord-use",
@@ -20,8 +30,7 @@ export const whatFontDoesDiscordUse: BlogPost = {
     },
     {
       question: "What font did Discord use before gg sans?",
-      answer:
-        "Discord used Whitney, a licensed font from Hoefler & Co., from launch until December 2022.",
+      answer: "Discord used Whitney, a licensed font from Hoefler & Co., from launch until December 2022.",
     },
     {
       question: "What font is the Discord logo?",
@@ -46,6 +55,18 @@ export const whatFontDoesDiscordUse: BlogPost = {
   ],
   body: (
     <>
+      <figure>
+        <Image
+          src="/blog/what-font-does-discord-use.webp"
+          alt="What font does Discord use? gg sans explained, with a large lowercase g next to a chat app window"
+          width={1200}
+          height={675}
+          priority
+          unoptimized
+          className="h-auto w-full rounded-xl"
+        />
+      </figure>
+
       <p>
         Discord uses a font called <strong>gg sans</strong>. It&apos;s a custom typeface Discord made for
         itself, and it&apos;s what you see in chat messages, channel lists, menus and settings on desktop, web
@@ -57,8 +78,9 @@ export const whatFontDoesDiscordUse: BlogPost = {
         called Whitney.
       </p>
       <p>
-        In this guide I&apos;ll cover what gg sans is, why Discord changed it, the other fonts Discord uses for
-        its logo and website, whether you can download any of them, and the best free fonts that look similar.
+        In this guide I&apos;ll cover what gg sans is, why Discord changed it, the other fonts Discord uses
+        for its logo and website, whether you can download any of them, and the best free fonts that look
+        similar.
       </p>
       <p>
         <strong>Quick answer:</strong> Discord&apos;s app font is gg sans. The old font was Whitney. The
@@ -81,8 +103,8 @@ export const whatFontDoesDiscordUse: BlogPost = {
       <p>
         Whitney is a commercial font made by the type foundry Hoefler &amp; Co., so Discord had to license it
         from someone else. With its own font, Discord can change letter shapes, add new languages and tweak
-        readability whenever it wants. In its announcement, Discord said the switch gives it the flexibility to
-        keep customizing the font going forward.
+        readability whenever it wants. In its announcement, Discord said the switch gives it the flexibility
+        to keep customizing the font going forward.
       </p>
       <p>
         Not everyone was happy. When gg sans launched, a lot of users posted on Discord&apos;s feedback forums
@@ -91,6 +113,11 @@ export const whatFontDoesDiscordUse: BlogPost = {
       </p>
 
       <h3>Whitney vs gg sans</h3>
+      <Figure
+        src="/blog/discord-whitney-vs-gg-sans.webp"
+        alt="Whitney vs gg sans comparison: the sample text Aa Gg 123 in Discord's old font Whitney (2015 to 2022) and its current font gg sans (2022 to now)"
+        caption="Whitney (left) was Discord's font until December 2022. gg sans (right) is slightly rounder and wider."
+      />
       <div className="overflow-x-auto">
         <table className="min-w-[36rem]">
           <thead>
@@ -178,8 +205,8 @@ export const whatFontDoesDiscordUse: BlogPost = {
       </div>
       <p>
         The current logo arrived in May 2021, when Discord refreshed its mascot Clyde. Discord&apos;s own blog
-        described the new wordmark as a custom font based on Ginto, and the Dinamo foundry shows the project on
-        its website.
+        described the new wordmark as a custom font based on Ginto, and the Dinamo foundry shows the project
+        on its website.
       </p>
       <p>
         So if someone asks &ldquo;what&apos;s the Discord font,&rdquo; the right answer depends on what they
@@ -190,8 +217,8 @@ export const whatFontDoesDiscordUse: BlogPost = {
       <p>
         No, not officially. Discord&apos;s support page says gg sans isn&apos;t open source, so you can&apos;t
         use it in your own projects. You&apos;ll find &ldquo;gg sans free download&rdquo; links on random font
-        sites, but those aren&apos;t from Discord, and using them in a logo, thumbnail or product could get you
-        into licensing trouble.
+        sites, but those aren&apos;t from Discord, and using them in a logo, thumbnail or product could get
+        you into licensing trouble.
       </p>
       <p>
         The logo font is the same story. Ginto Nord is a paid font from Dinamo, and Discord&apos;s version has
@@ -201,13 +228,18 @@ export const whatFontDoesDiscordUse: BlogPost = {
 
       <h2>Free fonts that look like Discord&apos;s</h2>
       <p>
-        If you want the Discord look for a server banner, YouTube thumbnail or website, these free Google Fonts
-        get close and are safe to use commercially.
+        If you want the Discord look for a server banner, YouTube thumbnail or website, these free Google
+        Fonts get close and are safe to use commercially.
       </p>
+      <Figure
+        src="/blog/discord-font-alternatives.webp"
+        alt="The word Discord written in four free Google Fonts that look like Discord's fonts: Nunito Sans, Inter, Poppins and Anton"
+        caption="Free Discord look-alike fonts: Nunito Sans, Inter, Poppins and Anton."
+      />
       <ul>
         <li>
-          <strong>For the app text (gg sans):</strong> Nunito Sans, Inter or Source Sans 3. They&apos;re clean,
-          rounded and easy to read at small sizes.
+          <strong>For the app text (gg sans):</strong> Nunito Sans, Inter or Source Sans 3. They&apos;re
+          clean, rounded and easy to read at small sizes.
         </li>
         <li>
           <strong>For the old app text (Whitney):</strong> Open Sans, which has similar humanist shapes.
@@ -217,13 +249,14 @@ export const whatFontDoesDiscordUse: BlogPost = {
           confident.
         </li>
         <li>
-          <strong>For big Discord-style headlines:</strong> Anton, which is heavy and condensed and looks great
-          in all caps.
+          <strong>For big Discord-style headlines:</strong> Anton, which is heavy and condensed and looks
+          great in all caps.
         </li>
       </ul>
       <p>
-        <strong>Tip:</strong> for a banner that really feels like Discord, set the headline in Anton or Poppins
-        Extra Bold, use white text, and put it on Discord&apos;s blurple colour (<code>#5865F2</code>).
+        <strong>Tip:</strong> for a banner that really feels like Discord, set the headline in Anton or
+        Poppins Extra Bold, use white text, and put it on Discord&apos;s blurple colour (<code>#5865F2</code>
+        ).
       </p>
 
       <h2>Can you change Discord&apos;s font?</h2>
@@ -237,8 +270,8 @@ export const whatFontDoesDiscordUse: BlogPost = {
         terms of service and could get your account banned, so I don&apos;t recommend them.
       </p>
       <p>
-        If what you really want is fancy text in your name, bio or messages, that&apos;s a different thing, and
-        it&apos;s easy. I explain the whole process in{" "}
+        If what you really want is fancy text in your name, bio or messages, that&apos;s a different thing,
+        and it&apos;s easy. I explain the whole process in{" "}
         <Link href="/blog/how-to-change-font-on-discord">how to change your font on Discord</Link>.
       </p>
 
@@ -273,12 +306,12 @@ export const whatFontDoesDiscordUse: BlogPost = {
         </table>
       </div>
       <p>
-        Type your name into the <Link href="/">Discord font generator</Link>, tap a style to copy it, and paste
-        it into your display name, About Me, server name or a message.
+        Type your name into the <Link href="/">Discord font generator</Link>, tap a style to copy it, and
+        paste it into your display name, About Me, server name or a message.
       </p>
       <p>
-        Your device draws these styles with its own built-in fonts. That&apos;s also why a rare style sometimes
-        shows as boxes on older phones, so test it on another device first.
+        Your device draws these styles with its own built-in fonts. That&apos;s also why a rare style
+        sometimes shows as boxes on older phones, so test it on another device first.
       </p>
     </>
   ),
