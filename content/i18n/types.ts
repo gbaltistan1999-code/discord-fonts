@@ -29,6 +29,7 @@ export interface UiStrings {
     numberFonts: string;
     discordSymbols: string;
     serverNames: string;
+    statusIdeas: string;
     timestampGenerator: string;
     textFormatting: string;
     timestamp: string;

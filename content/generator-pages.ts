@@ -8,4 +8,5 @@ export const generatorPages = [
   { path: "/number-fonts", name: "Number Fonts" },
   { path: "/discord-symbols", name: "Discord Symbols" },
   { path: "/discord-server-names", name: "Discord Server Names" },
+  { path: "/discord-status-ideas", name: "Discord Status Ideas" },
 ] as const;

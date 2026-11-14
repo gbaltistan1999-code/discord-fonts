@@ -20,6 +20,7 @@ export const ja: BaseStrings = {
       numberFonts: "数字フォント",
       discordSymbols: "Discordの記号",
       serverNames: "Discordサーバー名",
+      statusIdeas: "Discordステータスのアイデア",
       timestampGenerator: "Discordタイムスタンプ ジェネレーター",
       textFormatting: "テキスト書式",
       timestamp: "タイムスタンプ ジェネレーター",

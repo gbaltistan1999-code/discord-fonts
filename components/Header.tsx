@@ -23,6 +23,7 @@ function menuGroups(locale: Locale): MenuGroup[] {
         { href: hrefFor(locale, "/number-fonts"), label: ui.links.numberFonts },
         { href: hrefFor(locale, "/discord-symbols"), label: ui.links.discordSymbols },
         { href: hrefFor(locale, "/discord-server-names"), label: ui.links.serverNames },
+        { href: hrefFor(locale, "/discord-status-ideas"), label: ui.links.statusIdeas },
         ...stylePages.map((page) => ({
           href: hrefFor(locale, `/discord-font-generator/${page.slug}`),
           label: fill(ui.styleFont, { name: ui.styleNames[page.slug] ?? page.name }),

@@ -20,6 +20,7 @@ export const es: BaseStrings = {
       numberFonts: "Fuentes de números",
       discordSymbols: "Símbolos de Discord",
       serverNames: "Nombres para servidores de Discord",
+      statusIdeas: "Ideas de estado para Discord",
       timestampGenerator: "Generador de marcas de tiempo",
       textFormatting: "Formato de texto",
       timestamp: "Marcas de tiempo",
