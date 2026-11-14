@@ -201,6 +201,7 @@ export const homeDe: HomeContent = {
   intro:
     "Verwandle jeden Text in {count} Discord-Schriftarten, von fett und geschwungen bis Fraktur und Glitch. Kopiere einen Stil und füge ihn in deinen Namen, Nickname, Server oder deine Nachrichten ein. Kostenlos, privat und ohne Anmeldung.",
   generatorLabel: "Discord-Schriftarten-Generator",
+  heroBadges: ["{count}+ Schriftstile", "Sofort kopieren", "100 % kostenlos"],
   formattingTitle: "Discord-Textformatierung",
   formattingIntro: (
     <>

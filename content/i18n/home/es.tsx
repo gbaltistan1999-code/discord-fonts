@@ -201,6 +201,7 @@ export const homeEs: HomeContent = {
   intro:
     "Convierte cualquier texto en {count} letras para Discord, de negrita y cursiva a gótica y glitch. Copia un estilo y pégalo en tu nombre, apodo, servidor o mensajes. Gratis, privado y sin registro.",
   generatorLabel: "Generador de letras para Discord",
+  heroBadges: ["{count}+ estilos de letra", "Copia al instante", "100 % gratis"],
   formattingTitle: "Herramienta de formato de texto para Discord",
   formattingIntro: (
     <>

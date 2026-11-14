@@ -11,6 +11,7 @@ import { BlogCards } from "./BlogCards";
 import { FaqList } from "./FaqList";
 import { FontGenerator } from "./FontGenerator";
 import { FormattingTool } from "./FormattingTool";
+import { HomeHero } from "./HomeHero";
 import { JsonLd } from "./JsonLd";
 import { gamingSlugs, PlatformGrid, socialSlugs } from "./PlatformGrid";
 import { StyleLinks } from "./StyleLinks";
@@ -69,26 +70,16 @@ export function HomePage({ locale }: { locale: Locale }) {
         className="mx-auto max-w-5xl scroll-mt-4 pt-6"
       >
         <FontGenerator
-          heroClassName="accent-teal"
+          heroClassName="accent-violet hero-aurora relative isolate overflow-hidden"
           textFromQuery
           hero={
-            <div className="mx-auto mb-6 max-w-3xl text-center">
-              <h1 className="leading-tight font-extrabold tracking-tight text-balance">
-                <span
-                  className={`block bg-linear-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent dark:from-teal-300 dark:to-cyan-300 ${
-                    home.h1Tagline ? "text-4xl sm:text-6xl" : "text-3xl sm:text-5xl"
-                  }`}
-                >
-                  {home.h1}
-                </span>
-                {home.h1Tagline && (
-                  <span className="mt-2 block text-xl font-bold text-text sm:text-3xl">{home.h1Tagline}</span>
-                )}
-              </h1>
-              <p className="mx-auto mt-4 max-w-2xl text-base text-pretty text-muted sm:text-lg">
-                {fill(home.intro, { count: fontStyles.length })}
-              </p>
-            </div>
+            <HomeHero
+              h1={home.h1}
+              tagline={home.h1Tagline}
+              intro={fill(home.intro, { count: fontStyles.length })}
+              badges={home.heroBadges}
+              count={fontStyles.length}
+            />
           }
           strings={generator}
           order={homeStyleOrder[locale]}

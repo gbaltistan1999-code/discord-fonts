@@ -180,6 +180,7 @@ export const homeJa: HomeContent = {
   intro:
     "英数字を{count}種類のDiscordフォントに変換。太字や筆記体からゴシック、グリッチまで、好きなスタイルをコピーして名前、ニックネーム、サーバー、メッセージに貼り付けられます。無料・登録不要で、入力内容は送信されません。",
   generatorLabel: "Discordフォント ジェネレーター",
+  heroBadges: ["{count}種類以上のフォント", "すぐにコピー", "完全無料"],
   formattingTitle: "Discordのテキスト書式ツール",
   formattingIntro: (
     <>

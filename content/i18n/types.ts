@@ -243,6 +243,8 @@ export interface HomeContent {
   /** "Turn any text into {count} Discord fonts…" */
   intro: string;
   generatorLabel: string;
+  /** Three short feature badges under the homepage intro; {count} is the number of styles. */
+  heroBadges: readonly [string, string, string];
   formattingTitle: string;
   formattingIntro: React.ReactNode;
   popularTitle: string;

@@ -96,15 +96,15 @@ export const numberFontsPtBr: NumberFontsPageContent = {
         <li>Cole no seu nome de exibição, bio, nome de canal do Discord ou onde quiser.</li>
       </ol>
       <p>
-        As letras mudam também, então você pode estilizar um nome inteiro como &ldquo;𝐒𝐪𝐮𝐚𝐝 𝟕&rdquo; de uma vez
-        só. Quer mais estilos de letras? O {fontGenerator} completo tem mais de 220.
+        As letras mudam também, então você pode estilizar um nome inteiro como &ldquo;𝐒𝐪𝐮𝐚𝐝 𝟕&rdquo; de uma
+        vez só. Quer mais estilos de letras? O {fontGenerator} completo tem mais de 220.
       </p>
 
       <h2>Conjuntos de números para copiar e colar</h2>
       <p>
-        Aqui estão todos os estilos de números em um só lugar, prontos para copiar. Alguns só existem de 1 a 10
-        e outros passam do 9 (os números em círculo vão até ㊿), então nem todos estão no gerador. Selecione os
-        que precisar e cole.
+        Aqui estão todos os estilos de números em um só lugar, prontos para copiar. Alguns só existem de 1 a
+        10 e outros passam do 9 (os números em círculo vão até ㊿), então nem todos estão no gerador.
+        Selecione os que precisar e cole.
       </p>
       <div className="overflow-x-auto">
         <table>
@@ -134,13 +134,13 @@ export const numberFontsPtBr: NumberFontsPageContent = {
           ilegível, como &ldquo;Nova 𝟕&rdquo; ou &ldquo;ᴋɪʀᴀ ⁹⁹&rdquo;.
         </li>
         <li>
-          <strong>Canais de regras.</strong> Números em círculo ou em círculo escuro (① ② ③ ou ❶ ❷ ❸) deixam as
-          regras fáceis de ler e de citar: &ldquo;veja a regra ④&rdquo;.
+          <strong>Canais de regras.</strong> Números em círculo ou em círculo escuro (① ② ③ ou ❶ ❷ ❸) deixam
+          as regras fáceis de ler e de citar: &ldquo;veja a regra ④&rdquo;.
         </li>
         <li>
           <strong>Nomes de canais e categorias.</strong> Numere os canais em ordem, como
-          &ldquo;➊・boas-vindas&rdquo; ou &ldquo;1️⃣-avisos&rdquo;, para os novos membros saberem por onde começar.
-          Os{" "}
+          &ldquo;➊・boas-vindas&rdquo; ou &ldquo;1️⃣-avisos&rdquo;, para os novos membros saberem por onde
+          começar. Os{" "}
           <LocalLink locale={L} path="/discord-symbols">
             símbolos para Discord
           </LocalLink>{" "}
@@ -163,8 +163,8 @@ export const numberFontsPtBr: NumberFontsPageContent = {
       <h2>Qual estilo de número escolher?</h2>
       <ul>
         <li>
-          <strong>Mais legíveis:</strong> Negrito (𝟏𝟐𝟑) e Negrito sem serifa (𝟭𝟮𝟯). Parecem números normais, só
-          que mais grossos, e aparecem em quase todos os aparelhos.
+          <strong>Mais legíveis:</strong> Negrito (𝟏𝟐𝟑) e Negrito sem serifa (𝟭𝟮𝟯). Parecem números normais,
+          só que mais grossos, e aparecem em quase todos os aparelhos.
         </li>
         <li>
           <strong>Mais estilosos:</strong> Contorno duplo (𝟙𝟚𝟛) e Monoespaçado (𝟷𝟸𝟹) dão um ar vazado ou retrô
@@ -175,8 +175,8 @@ export const numberFontsPtBr: NumberFontsPageContent = {
           discretos.
         </li>
         <li>
-          <strong>Melhores para listas:</strong> Números em círculo (①②③) e em círculo escuro (❶❷❸) foram feitos
-          para numerar coisas.
+          <strong>Melhores para listas:</strong> Números em círculo (①②③) e em círculo escuro (❶❷❸) foram
+          feitos para numerar coisas.
         </li>
       </ul>
 

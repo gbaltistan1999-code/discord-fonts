@@ -90,14 +90,46 @@ export const usernameGeneratorFaqsPtBr: readonly Faq[] = [
 ];
 
 export const usernameMoreToolsPtBr = [
-  { href: hrefFor(L, "/"), label: "Gerador de Letras para Discord", note: "Mais de 220 letras estilizadas para nome e bio" },
-  { href: hrefFor(L, "/fancy-text-generator"), label: "Gerador de Letras Bonitas", note: "Texto estiloso para qualquer app" },
-  { href: hrefFor(L, "/discord-name-generator"), label: "Gerador de Nomes para Discord", note: "Nomes de exibição estilizados" },
-  { href: hrefFor(L, "/small-text-discord"), label: "Letras Pequenas para Discord", note: "Letras miniatura e subtexto -#" },
-  { href: hrefFor(L, "/discord-symbols"), label: "Símbolos para Discord", note: "Símbolos e divisores para canais" },
-  { href: hrefFor(L, "/number-fonts"), label: "Números Estilizados", note: "Números em negrito, círculo e mais" },
-  { href: hrefFor(L, "/discord-timestamp-generator"), label: "Gerador de Timestamp do Discord", note: "Horários locais para todo mundo" },
-  { href: hrefFor(L, "/discord-text-formatting"), label: "Formatação de Texto no Discord", note: "Negrito, spoilers, títulos e mais" },
+  {
+    href: hrefFor(L, "/"),
+    label: "Gerador de Letras para Discord",
+    note: "Mais de 220 letras estilizadas para nome e bio",
+  },
+  {
+    href: hrefFor(L, "/fancy-text-generator"),
+    label: "Gerador de Letras Bonitas",
+    note: "Texto estiloso para qualquer app",
+  },
+  {
+    href: hrefFor(L, "/discord-name-generator"),
+    label: "Gerador de Nomes para Discord",
+    note: "Nomes de exibição estilizados",
+  },
+  {
+    href: hrefFor(L, "/small-text-discord"),
+    label: "Letras Pequenas para Discord",
+    note: "Letras miniatura e subtexto -#",
+  },
+  {
+    href: hrefFor(L, "/discord-symbols"),
+    label: "Símbolos para Discord",
+    note: "Símbolos e divisores para canais",
+  },
+  {
+    href: hrefFor(L, "/number-fonts"),
+    label: "Números Estilizados",
+    note: "Números em negrito, círculo e mais",
+  },
+  {
+    href: hrefFor(L, "/discord-timestamp-generator"),
+    label: "Gerador de Timestamp do Discord",
+    note: "Horários locais para todo mundo",
+  },
+  {
+    href: hrefFor(L, "/discord-text-formatting"),
+    label: "Formatação de Texto no Discord",
+    note: "Negrito, spoilers, títulos e mais",
+  },
 ] as const;
 
 /** The guide below the tool. */
@@ -106,11 +138,14 @@ export function UsernameGeneratorArticlePtBr() {
     <>
       <h2>Como usar o gerador de nomes de usuário para Discord</h2>
       <ol>
-        <li>Digite uma palavra que você curte (opcional). Seu nome, um hobby, um personagem de jogo, qualquer coisa.</li>
+        <li>
+          Digite uma palavra que você curte (opcional). Seu nome, um hobby, um personagem de jogo, qualquer
+          coisa.
+        </li>
         <li>Escolha um estilo e um tamanho.</li>
         <li>
-          Clique em Gerar, copie um nome que você gostou e teste no Discord. Já está em uso? Gere de novo. Cada
-          clique traz uma leva nova.
+          Clique em Gerar, copie um nome que você gostou e teste no Discord. Já está em uso? Gere de novo.
+          Cada clique traz uma leva nova.
         </li>
       </ol>
       <p>
@@ -121,8 +156,8 @@ export function UsernameGeneratorArticlePtBr() {
 
       <h2>Por que tantos nomes gerados não funcionam no Discord</h2>
       <p>
-        Em 2023 o Discord acabou com as antigas tags Nome#1234. Agora todo nome de usuário precisa ser único, e
-        as regras ficaram mais rígidas:
+        Em 2023 o Discord acabou com as antigas tags Nome#1234. Agora todo nome de usuário precisa ser único,
+        e as regras ficaram mais rígidas:
       </p>
       <ul>
         <li>De 2 a 32 caracteres</li>
@@ -132,22 +167,22 @@ export function UsernameGeneratorArticlePtBr() {
       </ul>
       <p>
         Muitos geradores ainda sugerem nomes com maiúsculas, espaços ou símbolos, e o Discord simplesmente não
-        aceita. Todo nome que esta ferramenta mostra já passou por essas regras, então você não perde tempo com
-        nomes que nunca vão funcionar.
+        aceita. Todo nome que esta ferramenta mostra já passou por essas regras, então você não perde tempo
+        com nomes que nunca vão funcionar.
       </p>
 
       <h2>Nome de usuário ou nome de exibição: qual a diferença?</h2>
       <p>
-        O nome de usuário é o seu ID único. É assim que as pessoas te adicionam como amigo, e ninguém mais pode
-        ter o mesmo.
+        O nome de usuário é o seu ID único. É assim que as pessoas te adicionam como amigo, e ninguém mais
+        pode ter o mesmo.
       </p>
       <p>
-        O nome de exibição é o que as pessoas realmente veem nos chats e servidores. Ele não precisa ser único e
-        pode ter espaços, emojis e letras estilizadas.
+        O nome de exibição é o que as pessoas realmente veem nos chats e servidores. Ele não precisa ser único
+        e pode ter espaços, emojis e letras estilizadas.
       </p>
       <p>
-        Então aqui vai o truque que muita gente não sabe: deixe o nome de usuário simples e fácil de digitar, e
-        coloque o estilo no nome de exibição. Depois de escolher o nome de usuário, transforme-o num nome de
+        Então aqui vai o truque que muita gente não sabe: deixe o nome de usuário simples e fácil de digitar,
+        e coloque o estilo no nome de exibição. Depois de escolher o nome de usuário, transforme-o num nome de
         exibição estiloso com o nosso {fontGenerator}.
       </p>
 
@@ -155,14 +190,17 @@ export function UsernameGeneratorArticlePtBr() {
       <ul>
         <li>Mais curto é mais fácil de passar para os outros. Entre 5 e 12 caracteres é o ideal.</li>
         <li>
-          Evite encher de números. &quot;sombra_48291&quot; é mais difícil de lembrar que &quot;sombra.wav&quot;.
+          Evite encher de números. &quot;sombra_48291&quot; é mais difícil de lembrar que
+          &quot;sombra.wav&quot;.
         </li>
         <li>Fale em voz alta. Se você ficaria sem graça de dizer o nome para um amigo, escolha outro.</li>
         <li>
-          Não use seu nome completo nem o ano em que nasceu. O nome de usuário fica visível para todo mundo que
-          você conhece nos servidores.
+          Não use seu nome completo nem o ano em que nasceu. O nome de usuário fica visível para todo mundo
+          que você conhece nos servidores.
         </li>
-        <li>Pense a longo prazo. O nome que parece legal hoje ainda precisa parecer ok daqui a alguns anos.</li>
+        <li>
+          Pense a longo prazo. O nome que parece legal hoje ainda precisa parecer ok daqui a alguns anos.
+        </li>
         <li>
           Se o seu nome favorito já está em uso, tente colocar um ponto ou sublinhado (luna.exe, kai_codes)
           antes de desistir dele.
@@ -172,7 +210,10 @@ export function UsernameGeneratorArticlePtBr() {
       <h2>Como mudar seu nome de usuário no Discord</h2>
       <p>No computador:</p>
       <ol>
-        <li>Clique na engrenagem ao lado do seu nome, no canto inferior esquerdo, para abrir as Configurações de usuário.</li>
+        <li>
+          Clique na engrenagem ao lado do seu nome, no canto inferior esquerdo, para abrir as Configurações de
+          usuário.
+        </li>
         <li>Vá em Minha conta e clique em Editar ao lado de Nome de usuário.</li>
         <li>Digite o novo nome de usuário, coloque sua senha e clique em Concluído.</li>
       </ol>

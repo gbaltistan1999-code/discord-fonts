@@ -50,6 +50,16 @@
   --accent-solid: #0f766e;
   --accent-soft: #10343f;
 }
+.accent-violet {
+  --accent: #6d28d9;
+  --accent-solid: #6d28d9;
+  --accent-soft: #ede5ff;
+}
+.dark .accent-violet {
+  --accent: #c4b5fd;
+  --accent-solid: #6d28d9;
+  --accent-soft: #241a4d;
+}
 .accent-orange {
   --accent: #c2410c;
   --accent-solid: #c2410c;
@@ -283,4 +293,38 @@
   .username-card {
     animation: fade-up 0.25s ease-out both;
   }
+}
+
+/* Homepage hero panel: lavender wash in light mode, deep violet in dark. Un-layered so it wins over
+   the default panel gradient utilities. */
+.hero-aurora {
+  border-color: #e3d7ff;
+  background:
+    radial-gradient(38rem 22rem at 85% 10%, rgb(217 70 239 / 0.12), transparent 70%),
+    radial-gradient(34rem 20rem at 5% 100%, rgb(124 58 237 / 0.1), transparent 70%),
+    linear-gradient(135deg, #f7f2ff 0%, #efe6ff 55%, #f8f1ff 100%);
+}
+.dark .hero-aurora {
+  border-color: rgb(167 139 250 / 0.22);
+  background:
+    radial-gradient(38rem 22rem at 85% 5%, rgb(192 38 211 / 0.2), transparent 70%),
+    radial-gradient(34rem 20rem at 0% 100%, rgb(109 40 217 / 0.25), transparent 70%),
+    linear-gradient(135deg, #160f33 0%, #1a1240 55%, #120d2b 100%);
+}
+
+/* Gentle bobbing for the hero illustration (switched off by the reduced-motion rule). */
+@keyframes hero-float {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -8px;
+  }
+}
+.hero-float {
+  animation: hero-float 6s ease-in-out infinite;
+}
+.hero-float-slow {
+  animation: hero-float 8s ease-in-out 1s infinite;
 }

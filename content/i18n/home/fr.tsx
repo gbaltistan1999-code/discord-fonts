@@ -205,6 +205,7 @@ export const homeFr: HomeContent = {
   intro:
     "Transformez n’importe quel texte en {count} polices Discord, du gras et de la cursive au gothique et au glitch. Copiez un style et collez-le dans votre pseudo, votre surnom, votre serveur ou vos messages. Gratuit, privé et sans inscription.",
   generatorLabel: "Générateur de polices Discord",
+  heroBadges: ["{count}+ styles de police", "Copie instantanée", "100 % gratuit"],
   formattingTitle: "Outil de mise en forme du texte Discord",
   formattingIntro: (
     <>

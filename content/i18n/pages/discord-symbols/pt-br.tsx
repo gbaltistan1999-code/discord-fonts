@@ -80,9 +80,9 @@ export function DiscordSymbolsArticlePtBr() {
     <>
       <h2>O que são símbolos para Discord?</h2>
       <p>
-        Símbolos para Discord são caracteres Unicode especiais, como divisores, colchetes, estrelas, corações e
-        setas, que você cola no Discord como se fosse texto normal. Não são imagens nem emojis enviados para um
-        servidor, então todo mundo vê sem precisar instalar nada.
+        Símbolos para Discord são caracteres Unicode especiais, como divisores, colchetes, estrelas, corações
+        e setas, que você cola no Discord como se fosse texto normal. Não são imagens nem emojis enviados para
+        um servidor, então todo mundo vê sem precisar instalar nada.
       </p>
       <p>
         Donos de servidor usam esses símbolos para deixar a lista de canais organizada e estilosa,
@@ -94,7 +94,10 @@ export function DiscordSymbolsArticlePtBr() {
       <h2>Como colocar símbolos nos nomes dos canais do Discord</h2>
       <ol>
         <li>Monte um nome de canal com a ferramenta acima ou copie um dos modelos.</li>
-        <li>No Discord, clique com o botão direito no canal que quer renomear (ou segure o dedo nele no celular).</li>
+        <li>
+          No Discord, clique com o botão direito no canal que quer renomear (ou segure o dedo nele no
+          celular).
+        </li>
         <li>
           Escolha <strong>Editar canal</strong>.
         </li>
@@ -106,19 +109,19 @@ export function DiscordSymbolsArticlePtBr() {
         </li>
       </ol>
       <p>
-        Você precisa da permissão <strong>Gerenciar canais</strong>. Se a opção Editar canal não aparecer, peça
-        para um administrador do servidor dar essa permissão ao seu cargo.
+        Você precisa da permissão <strong>Gerenciar canais</strong>. Se a opção Editar canal não aparecer,
+        peça para um administrador do servidor dar essa permissão ao seu cargo.
       </p>
       <p>
         <strong>No celular:</strong> segure o dedo no canal, toque em <strong>Editar canal</strong>, cole no
-        campo do nome e toque em Salvar. Copie o nome desta página no navegador do celular antes e depois troque
-        para o app do Discord.
+        campo do nome e toque em Salvar. Copie o nome desta página no navegador do celular antes e depois
+        troque para o app do Discord.
       </p>
       <p>
-        Vai renomear o servidor inteiro? Use <strong>Copiar tudo</strong> em um dos modelos acima e cole a lista
-        num app de notas. Assim você copia cada linha enquanto passa pelos canais, um por um, e todos os nomes
-        ficam combinando. Categorias são renomeadas do mesmo jeito: clique com o botão direito no nome da
-        categoria e escolha Editar categoria.
+        Vai renomear o servidor inteiro? Use <strong>Copiar tudo</strong> em um dos modelos acima e cole a
+        lista num app de notas. Assim você copia cada linha enquanto passa pelos canais, um por um, e todos os
+        nomes ficam combinando. Categorias são renomeadas do mesmo jeito: clique com o botão direito no nome
+        da categoria e escolha Editar categoria.
       </p>
 
       <h2>Regras de nomes de canais do Discord que você precisa saber</h2>
@@ -129,13 +132,13 @@ export function DiscordSymbolsArticlePtBr() {
           nomes de categoria como &ldquo;━━ 𝐈𝐍𝐅𝐎 ━━&rdquo; funcionam.
         </li>
         <li>
-          <strong>Até 100 caracteres.</strong> É bastante, mas nomes longos são cortados na barra lateral, então
-          quanto mais curto, melhor.
+          <strong>Até 100 caracteres.</strong> É bastante, mas nomes longos são cortados na barra lateral,
+          então quanto mais curto, melhor.
         </li>
         <li>
-          <strong>A maioria dos símbolos funciona, mas não todos.</strong> O Discord aceita quase todos os emojis
-          e símbolos Unicode, mas pode remover ou trocar alguns caracteres. Se um símbolo sumir depois de salvar,
-          tente outro.
+          <strong>A maioria dos símbolos funciona, mas não todos.</strong> O Discord aceita quase todos os
+          emojis e símbolos Unicode, mas pode remover ou trocar alguns caracteres. Se um símbolo sumir depois
+          de salvar, tente outro.
         </li>
         <li>
           <strong>Deixe a palavra legível.</strong> Os membros procuram canais digitando o nome. Um nome como
@@ -143,14 +146,14 @@ export function DiscordSymbolsArticlePtBr() {
           estilizado pode não aparecer.
         </li>
         <li>
-          <strong>Acentos funcionam.</strong> Nomes como &ldquo;🎵︱música&rdquo; ou &ldquo;💡︱sugestões&rdquo;
-          ficam certinhos, então não precisa tirar os acentos do português.
+          <strong>Acentos funcionam.</strong> Nomes como &ldquo;🎵︱música&rdquo; ou
+          &ldquo;💡︱sugestões&rdquo; ficam certinhos, então não precisa tirar os acentos do português.
         </li>
       </ul>
       <p>
         Por isso a maioria dos servidores populares coloca os símbolos em volta do nome, e não dentro dele. O
-        emoji e o divisor fazem a decoração, e a palavra continua fácil de digitar, buscar e mencionar com o link
-        de canal <code>#</code>.
+        emoji e o divisor fazem a decoração, e a palavra continua fácil de digitar, buscar e mencionar com o
+        link de canal <code>#</code>.
       </p>
 
       <h2>Onde mais usar símbolos no Discord</h2>
@@ -159,12 +162,12 @@ export function DiscordSymbolsArticlePtBr() {
         nome, como &ldquo;✦ Nova ✦&rdquo;. Os dois têm limite de 32 caracteres, então use decorações curtas.
       </p>
       <p>
-        <strong>Sobre mim (bio).</strong> A bio tem espaço para divisores e marcadores, o que facilita separar o
-        texto em pequenas seções organizadas.
+        <strong>Sobre mim (bio).</strong> A bio tem espaço para divisores e marcadores, o que facilita separar
+        o texto em pequenas seções organizadas.
       </p>
       <p>
-        <strong>Nome do servidor.</strong> Um símbolo de cada lado, como &ldquo;꧁ Moonlight ꧂&rdquo;, destaca o
-        seu servidor na lista de servidores.
+        <strong>Nome do servidor.</strong> Um símbolo de cada lado, como &ldquo;꧁ Moonlight ꧂&rdquo;, destaca
+        o seu servidor na lista de servidores.
       </p>
       <p>
         <strong>Nomes de cargos.</strong> Símbolos ajudam a separar grupos de cargos, como &ldquo;━━ Staff
@@ -176,8 +179,8 @@ export function DiscordSymbolsArticlePtBr() {
       </p>
       <p>
         O único lugar onde símbolos não funcionam é o seu @nome de usuário, que só aceita letras minúsculas,
-        números, sublinhados e pontos. Para letras estilizadas no nome, use o {fontGenerator}, e para ideias de
-        nomes, o{" "}
+        números, sublinhados e pontos. Para letras estilizadas no nome, use o {fontGenerator}, e para ideias
+        de nomes, o{" "}
         <LocalLink locale={L} path="/discord-name-generator">
           gerador de nomes para Discord
         </LocalLink>
@@ -211,20 +214,21 @@ export function DiscordSymbolsArticlePtBr() {
       </p>
       <p>
         Uma boa receita é dar a cada canal um emoji que indique para que ele serve e usar o mesmo divisor em
-        todos. Use maiúsculas em negrito com linhas nas categorias, como &ldquo;━━ 𝐈𝐍𝐅𝐎 ━━&rdquo;, para as seções
-        se destacarem dos canais. Nos canais de voz, um emoji de alto-falante ou fone de ouvido com um nome curto
-        e com maiúscula, como &ldquo;🎧︱Sala de Música&rdquo;, mostra na hora onde a galera se encontra.
+        todos. Use maiúsculas em negrito com linhas nas categorias, como &ldquo;━━ 𝐈𝐍𝐅𝐎 ━━&rdquo;, para as
+        seções se destacarem dos canais. Nos canais de voz, um emoji de alto-falante ou fone de ouvido com um
+        nome curto e com maiúscula, como &ldquo;🎧︱Sala de Música&rdquo;, mostra na hora onde a galera se
+        encontra.
       </p>
 
       <h2>Por que alguns símbolos aparecem como quadradinhos</h2>
       <p>
-        Se um símbolo aparece como um quadrado vazio ou um ponto de interrogação, o aparelho de quem está vendo
-        não tem uma fonte com aquele caractere. O símbolo continua lá, só não consegue ser desenhado.
+        Se um símbolo aparece como um quadrado vazio ou um ponto de interrogação, o aparelho de quem está
+        vendo não tem uma fonte com aquele caractere. O símbolo continua lá, só não consegue ser desenhado.
       </p>
       <p>
-        Símbolos comuns como ︱ ・ ★ ♡ → funcionam em quase todo lugar. Caracteres decorativos mais raros podem
-        falhar em celulares antigos, consoles e smart TVs. Antes de renomear o servidor inteiro, teste um nome de
-        canal no computador e no celular.
+        Símbolos comuns como ︱ ・ ★ ♡ → funcionam em quase todo lugar. Caracteres decorativos mais raros
+        podem falhar em celulares antigos, consoles e smart TVs. Antes de renomear o servidor inteiro, teste
+        um nome de canal no computador e no celular.
       </p>
       <p>
         As escolhas mais seguras estão nas seções Divisores, Setas, Estrelas e Marcadores, no começo da
@@ -237,8 +241,8 @@ export function DiscordSymbolsArticlePtBr() {
       <h2>Símbolos, emojis e letras: qual a diferença?</h2>
       <ul>
         <li>
-          <strong>Símbolos</strong> são caracteres Unicode únicos, como ︱ ou ★. Eles ficam da mesma cor do texto
-          em volta.
+          <strong>Símbolos</strong> são caracteres Unicode únicos, como ︱ ou ★. Eles ficam da mesma cor do
+          texto em volta.
         </li>
         <li>
           <strong>Emojis</strong> são figurinhas coloridas. Podem ser os emojis padrão que todo mundo tem ou

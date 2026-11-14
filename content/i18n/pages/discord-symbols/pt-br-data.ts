@@ -61,7 +61,11 @@ export const categoryTextPtBr: CategoryText = {
     heading: "Divisores e separadores",
     keywords: "divisor separador barra linha vertical ponto",
   },
-  brackets: { label: "Colchetes", heading: "Colchetes e molduras", keywords: "colchete moldura canto parênteses japonês" },
+  brackets: {
+    label: "Colchetes",
+    heading: "Colchetes e molduras",
+    keywords: "colchete moldura canto parênteses japonês",
+  },
   stars: { label: "Estrelas", heading: "Estrelas e brilhos", keywords: "estrela brilho asterisco" },
   flowers: { label: "Flores", heading: "Flores", keywords: "flor floral fofo" },
   hearts: { label: "Corações", heading: "Corações", keywords: "coração amor fofo" },
@@ -79,26 +83,70 @@ export const categoryTextPtBr: CategoryText = {
     heading: "Marcadores e checks",
     keywords: "marcador check visto caixa quadrado círculo triângulo losango",
   },
-  misc: { label: "Outros", heading: "Outros símbolos", keywords: "matemática moeda direitos autorais outros" },
+  misc: {
+    label: "Outros",
+    heading: "Outros símbolos",
+    keywords: "matemática moeda direitos autorais outros",
+  },
 };
 
 /** Channel names Brazilian servers actually use. */
 export const channelPacksPtBr: readonly ChannelPack[] = [
   {
     title: "Emoji + barra",
-    names: ["📜︱regras", "📢︱avisos", "👋︱boas-vindas", "💬︱geral", "😂︱memes", "🎮︱jogos", "🎵︱música", "🖼️︱mídia", "🤖︱comandos", "🎉︱eventos", "💡︱sugestões", "🆘︱suporte"],
+    names: [
+      "📜︱regras",
+      "📢︱avisos",
+      "👋︱boas-vindas",
+      "💬︱geral",
+      "😂︱memes",
+      "🎮︱jogos",
+      "🎵︱música",
+      "🖼️︱mídia",
+      "🤖︱comandos",
+      "🎉︱eventos",
+      "💡︱sugestões",
+      "🆘︱suporte",
+    ],
   },
   {
     title: "Pontilhado",
-    names: ["┊📜・regras", "┊📢・avisos", "┊👋・boas-vindas", "┊💬・geral", "┊😂・memes", "┊🎮・jogos", "┊🎵・música", "┊🖼️・mídia"],
+    names: [
+      "┊📜・regras",
+      "┊📢・avisos",
+      "┊👋・boas-vindas",
+      "┊💬・geral",
+      "┊😂・memes",
+      "┊🎮・jogos",
+      "┊🎵・música",
+      "┊🖼️・mídia",
+    ],
   },
   {
     title: "Colchetes fofos",
-    names: ["꒰📜꒱regras", "꒰📢꒱novidades", "꒰👋꒱boas-vindas", "꒰💬꒱chat", "꒰🌸꒱selfies", "꒰🎀꒱artes", "꒰🎵꒱música", "꒰✨꒱vibes"],
+    names: [
+      "꒰📜꒱regras",
+      "꒰📢꒱novidades",
+      "꒰👋꒱boas-vindas",
+      "꒰💬꒱chat",
+      "꒰🌸꒱selfies",
+      "꒰🎀꒱artes",
+      "꒰🎵꒱música",
+      "꒰✨꒱vibes",
+    ],
   },
   {
     title: "Brilho minimalista",
-    names: ["⟡・regras", "⟡・avisos", "⟡・geral", "⟡・memes", "⟡・jogos", "⟡・música", "⟡・mídia", "⟡・eventos"],
+    names: [
+      "⟡・regras",
+      "⟡・avisos",
+      "⟡・geral",
+      "⟡・memes",
+      "⟡・jogos",
+      "⟡・música",
+      "⟡・mídia",
+      "⟡・eventos",
+    ],
   },
   {
     title: "Moldura japonesa",
@@ -110,10 +158,24 @@ export const channelPacksPtBr: readonly ChannelPack[] = [
   },
   {
     title: "Nomes de categorias",
-    names: ["━━ 𝐈𝐍𝐅𝐎 ━━", "━━ 𝐆𝐄𝐑𝐀𝐋 ━━", "✦ COMUNIDADE ✦", "『 CANAIS DE VOZ 』", "╭── ⋅ ⋅ STAFF ⋅ ⋅ ──╮", "꒰ JOGOS ꒱"],
+    names: [
+      "━━ 𝐈𝐍𝐅𝐎 ━━",
+      "━━ 𝐆𝐄𝐑𝐀𝐋 ━━",
+      "✦ COMUNIDADE ✦",
+      "『 CANAIS DE VOZ 』",
+      "╭── ⋅ ⋅ STAFF ⋅ ⋅ ──╮",
+      "꒰ JOGOS ꒱",
+    ],
   },
   {
     title: "Canais de voz",
-    names: ["🔊︱Sala Geral", "🎧︱Sala de Música", "🎮︱Jogando", "💤︱AFK", "🎤︱Palco", "📚︱Sala de Estudos"],
+    names: [
+      "🔊︱Sala Geral",
+      "🎧︱Sala de Música",
+      "🎮︱Jogando",
+      "💤︱AFK",
+      "🎤︱Palco",
+      "📚︱Sala de Estudos",
+    ],
   },
 ];

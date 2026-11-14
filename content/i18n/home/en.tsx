@@ -14,6 +14,7 @@ export const homeEn: HomeContent = {
   intro:
     "Turn ordinary text into eye-catching Discord styles. Explore {count}+ unique fonts, including bold, cursive, gothic, aesthetic, and glitch text. Copy your favorite style instantly and make your Discord profile unforgettable.",
   generatorLabel: "Discord font generator",
+  heroBadges: ["{count}+ Font Styles", "Instant Copy", "100% Free"],
   formattingTitle: "Discord Text Formatting Helper",
   formattingIntro: (
     <>

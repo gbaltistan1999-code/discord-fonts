@@ -61,11 +61,14 @@ export const smallTextPtBr: SmallTextPageContent = {
         depois o seu texto. Aperte Enter e ele aparece em letras menores e cinzas, abaixo do tamanho normal do
         chat.
       </p>
-      <p>Pronto, isso resolve nas mensagens. O Discord chama isso de subtexto, e funciona no PC, no navegador e no celular.</p>
+      <p>
+        Pronto, isso resolve nas mensagens. O Discord chama isso de subtexto, e funciona no PC, no navegador e
+        no celular.
+      </p>
       <p>
         Mas tem um detalhe que a maioria dos guias não conta: o <code>-#</code> só funciona em mensagens. Ele
-        não diminui o seu nome de exibição, a sua bio nem o nome do servidor. Para isso, você precisa de letras
-        pequenas feitas com caracteres especiais, que você copia e cola. Mostro como mais abaixo.
+        não diminui o seu nome de exibição, a sua bio nem o nome do servidor. Para isso, você precisa de
+        letras pequenas feitas com caracteres especiais, que você copia e cola. Mostro como mais abaixo.
       </p>
       <p>Então este guia cobre as duas coisas: texto pequeno no chat e texto pequeno em todo o resto.</p>
 
@@ -83,17 +86,20 @@ export const smallTextPtBr: SmallTextPageContent = {
       <pre>
         <code>-# isto é um texto pequeno</code>
       </pre>
-      <p>O Discord mostra &ldquo;isto é um texto pequeno&rdquo; com letras menores e mais claras que o resto do chat.</p>
       <p>
-        As pessoas usam isso para observações, avisos de &ldquo;editado&rdquo;, créditos embaixo de uma imagem,
-        avisos em mensagens de bots ou só para cochichar uma piada sem roubar a atenção do chat. É discreto de
-        propósito, então funciona melhor em linhas curtas, não em parágrafos inteiros.
+        O Discord mostra &ldquo;isto é um texto pequeno&rdquo; com letras menores e mais claras que o resto do
+        chat.
       </p>
       <p>
-        <strong>No celular:</strong> a tecla # costuma ficar na página de símbolos do teclado (toque em ?123 ou
-        na tecla de números). Alguns teclados colocam letra maiúscula automática ou um espaço depois do hífen.
-        Se o texto não diminuir, confira se você digitou um hífen, depois #, depois um único espaço, sem nada
-        antes.
+        As pessoas usam isso para observações, avisos de &ldquo;editado&rdquo;, créditos embaixo de uma
+        imagem, avisos em mensagens de bots ou só para cochichar uma piada sem roubar a atenção do chat. É
+        discreto de propósito, então funciona melhor em linhas curtas, não em parágrafos inteiros.
+      </p>
+      <p>
+        <strong>No celular:</strong> a tecla # costuma ficar na página de símbolos do teclado (toque em ?123
+        ou na tecla de números). Alguns teclados colocam letra maiúscula automática ou um espaço depois do
+        hífen. Se o texto não diminuir, confira se você digitou um hífen, depois #, depois um único espaço,
+        sem nada antes.
       </p>
 
       <h2>Misturando texto pequeno com outras formatações</h2>
@@ -123,7 +129,10 @@ export const smallTextPtBr: SmallTextPageContent = {
       <pre>
         <code>{"Mensagem principal no tamanho normal\n-# observação um\n-# observação dois"}</code>
       </pre>
-      <p>Se você colocar o <code>-#</code> só na primeira linha, tudo depois da quebra de linha volta ao tamanho normal.</p>
+      <p>
+        Se você colocar o <code>-#</code> só na primeira linha, tudo depois da quebra de linha volta ao
+        tamanho normal.
+      </p>
       <p>
         Uma coisa que não funciona: subtexto e título na mesma linha. Uma linha é título (<code>#</code>,{" "}
         <code>##</code>, <code>###</code>) ou subtexto (<code>-#</code>), nunca os dois.
@@ -153,8 +162,8 @@ export const smallTextPtBr: SmallTextPageContent = {
           diz ao Discord para mostrar os símbolos em vez de formatar.
         </li>
         <li>
-          <strong>O app está desatualizado.</strong> Versões antigas do Discord não entendem subtexto. Atualize
-          o app e o texto aparece certinho.
+          <strong>O app está desatualizado.</strong> Versões antigas do Discord não entendem subtexto.
+          Atualize o app e o texto aparece certinho.
         </li>
         <li>
           <strong>Você está tentando no nome ou na bio.</strong> O subtexto é para mensagens. Para nomes e
@@ -177,7 +186,8 @@ export const smallTextPtBr: SmallTextPageContent = {
             </LocalLink>
             :
           </strong>{" "}
-          <span className="fancy-text">ᴛᴇxᴛᴏ ᴘᴇǫᴜᴇɴᴏ</span> (limpo e fácil de ler, ótimo para nomes de exibição)
+          <span className="fancy-text">ᴛᴇxᴛᴏ ᴘᴇǫᴜᴇɴᴏ</span> (limpo e fácil de ler, ótimo para nomes de
+          exibição)
         </li>
         <li>
           <strong>Sobrescrito:</strong> <span className="fancy-text">ᵗᵉˣᵗᵒ ᵐⁱⁿⁱ</span> (elevado e bem pequeno,
@@ -185,8 +195,8 @@ export const smallTextPtBr: SmallTextPageContent = {
         </li>
       </ul>
       <p>
-        Você não precisa caçar letra por letra. Digite o texto no nosso {fontGenerator}, copie o estilo pequeno
-        que preferir e cole onde quiser.
+        Você não precisa caçar letra por letra. Digite o texto no nosso {fontGenerator}, copie o estilo
+        pequeno que preferir e cole onde quiser.
       </p>
       <p>
         <strong>Onde as letras pequenas copiadas funcionam:</strong>
@@ -207,10 +217,10 @@ export const smallTextPtBr: SmallTextPageContent = {
         só mostra nomes que seguem essas regras.
       </p>
       <p>
-        Duas desvantagens, para ser sincero. Nem toda letra tem uma versão miniatura (não existe q sobrescrito,
-        por exemplo), então algumas letras podem ficar um pouco diferentes. E leitores de tela podem ler esses
-        caracteres de um jeito estranho, então deixe coisas importantes, como as regras do servidor, em texto
-        normal.
+        Duas desvantagens, para ser sincero. Nem toda letra tem uma versão miniatura (não existe q
+        sobrescrito, por exemplo), então algumas letras podem ficar um pouco diferentes. E leitores de tela
+        podem ler esses caracteres de um jeito estranho, então deixe coisas importantes, como as regras do
+        servidor, em texto normal.
       </p>
 
       <h2>Subtexto ou letras pequenas copiadas: qual usar</h2>
