@@ -20,17 +20,17 @@
   color-scheme: light;
 }
 
-/* Dark palette (default) */
+/* Dark palette (default): midnight indigo with a teal accent */
 .dark {
-  --bg: #081517;
-  --surface: #0e2023;
-  --surface-2: #142b2f;
-  --border: #21403f;
-  --text: #e9f3f2;
-  --muted: #9db5b6;
+  --bg: #0a0f1f;
+  --surface: #111833;
+  --surface-2: #18213f;
+  --border: #283260;
+  --text: #eef1fb;
+  --muted: #a6b0cf;
   --accent: #5eead4;
   --accent-solid: #0f766e;
-  --accent-soft: #113a38;
+  --accent-soft: #10343f;
   --on-accent: #ffffff;
   --success: #4ade80;
   --warning: #fbbf24;
@@ -48,7 +48,7 @@
 .dark .accent-teal {
   --accent: #5eead4;
   --accent-solid: #0f766e;
-  --accent-soft: #113a38;
+  --accent-soft: #10343f;
 }
 .accent-orange {
   --accent: #c2410c;
@@ -107,6 +107,14 @@
   body {
     background: var(--bg);
     color: var(--text);
+  }
+
+  /* Dark mode: a soft teal and violet glow at the top of the page, so it reads as midnight, not flat black. */
+  .dark body {
+    background:
+      radial-gradient(60rem 36rem at 8% -8rem, rgb(45 212 191 / 0.13), transparent 70%),
+      radial-gradient(56rem 36rem at 96% -6rem, rgb(124 92 255 / 0.2), transparent 70%), var(--bg);
+    background-repeat: no-repeat;
   }
 
   /* Japanese has no spaces, so headings would otherwise break mid-word; this breaks at phrase boundaries where supported. */
