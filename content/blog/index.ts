@@ -1,6 +1,7 @@
 import type { Faq } from "../faqs";
 import { discordColoredText } from "./discord-colored-text";
 import { addEmojisToDiscordServer } from "./how-to-add-emojis-to-discord-server";
+import { changeDiscordTheme } from "./how-to-change-discord-theme";
 import { changeNicknameOnDiscord } from "./how-to-change-nickname-on-discord";
 import { changeFontOnDiscord } from "./how-to-change-font-on-discord";
 import { whatFontDoesDiscordUse } from "./what-font-does-discord-use";
@@ -35,6 +36,7 @@ export interface BlogPost {
 
 /** Newest first. To add a post, create a file in this folder and list it here. */
 export const blogPosts: readonly BlogPost[] = [
+  changeDiscordTheme,
   whatFontDoesDiscordUse,
   changeNicknameOnDiscord,
   addEmojisToDiscordServer,
