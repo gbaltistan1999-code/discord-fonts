@@ -18,25 +18,14 @@ function applyTheme(theme: Theme) {
 
 function subscribe(notify: () => void) {
   listeners.add(notify);
-  // Follow the OS setting until the user picks a theme explicitly.
-  const media = window.matchMedia("(prefers-color-scheme: light)");
-  const onSystemChange = () => {
-    let stored: string | null = null;
-    try {
-      stored = localStorage.getItem(STORAGE_KEY);
-    } catch {}
-    if (!stored) applyTheme(media.matches ? "light" : "dark");
-  };
-  media.addEventListener("change", onSystemChange);
   return () => {
     listeners.delete(notify);
-    media.removeEventListener("change", onSystemChange);
   };
 }
 
 export function ThemeToggle() {
-  // Server render assumes the dark-first default; the client reads the real class.
-  const theme = useSyncExternalStore(subscribe, readTheme, () => "dark" as Theme);
+  // Server render assumes the light default; the client reads the real class.
+  const theme = useSyncExternalStore(subscribe, readTheme, () => "light" as Theme);
   const next: Theme = theme === "dark" ? "light" : "dark";
 
   return (

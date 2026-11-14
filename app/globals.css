@@ -4,7 +4,7 @@
 
 /* Light palette */
 :root {
-  --bg: #f3f8f8;
+  --bg: #ffffff;
   --surface: #ffffff;
   --surface-2: #e8f2f1;
   --border: #d3e4e2;
@@ -20,7 +20,7 @@
   color-scheme: light;
 }
 
-/* Dark palette (default): midnight indigo with a teal accent */
+/* Dark palette (opt-in via the theme toggle): midnight indigo with a teal accent */
 .dark {
   --bg: #0a0f1f;
   --surface: #111833;

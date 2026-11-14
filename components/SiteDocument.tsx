@@ -32,18 +32,15 @@ export const rootViewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
-  themeColor: [
-    { media: "(prefers-color-scheme: dark)", color: "#0a0f1f" },
-    { media: "(prefers-color-scheme: light)", color: "#f3f8f8" },
-  ],
+  themeColor: "#ffffff",
 };
 
 /** The <html> document for a language: header, footer, toast and skip link around the page. */
 export function SiteDocument({ locale, children }: { locale: Locale; children: React.ReactNode }) {
   const { ui, toast } = getStrings(locale);
   return (
-    // "dark" is the server default; the inline script corrects it before paint.
-    <html lang={localeInfo[locale].lang} className={`dark ${inter.variable}`} suppressHydrationWarning>
+    // Light is the server default; the inline script switches to dark before paint if the visitor chose it.
+    <html lang={localeInfo[locale].lang} className={inter.variable} suppressHydrationWarning>
       {/* This component is the root layout's document, where a plain <head> is correct. */}
       {/* eslint-disable-next-line @next/next/no-head-element */}
       <head>
