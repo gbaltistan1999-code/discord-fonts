@@ -1,7 +1,19 @@
 import { BlogImage } from "@/components/BlogImage";
 import Link from "next/link";
 import { InvisibleCharacters } from "@/components/InvisibleCharacters";
+import {
+  BRAILLE_BLANK,
+  HALFWIDTH_HANGUL_FILLER,
+  HANGUL_FILLER,
+  type InvisibleCharRow,
+} from "@/content/invisible-characters";
 import type { BlogPost } from ".";
+
+const blankChars: readonly InvisibleCharRow[] = [
+  { ...HANGUL_FILLER, note: "Try this first. The most widely used blank character for Discord names." },
+  { ...BRAILLE_BLANK, note: "Backup option if the Hangul Filler is rejected." },
+  { ...HALFWIDTH_HANGUL_FILLER, note: "Second backup; narrower blank." },
+];
 
 const nameTypes = [
   [
@@ -83,10 +95,14 @@ export const invisibleNameDiscord: BlogPost = {
 
       <h2>Copy an Invisible Character</h2>
       <p>Tap Copy next to a character. Nothing will look selected, because the character is invisible.</p>
-      <InvisibleCharacters />
+      <InvisibleCharacters rows={blankChars} noteHeading="When to use it" />
       <p>
         <strong>Tip:</strong> Don&apos;t use a normal spacebar space. Discord trims regular spaces, so a name
         made only of spaces won&apos;t save.
+      </p>
+      <p>
+        Need several blank characters in a row? Use the{" "}
+        <Link href="/invisible-text">invisible text generator</Link>.
       </p>
 
       <h2>Why Invisible Names Work</h2>

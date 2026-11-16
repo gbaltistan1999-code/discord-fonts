@@ -9,4 +9,5 @@ export const generatorPages = [
   { path: "/discord-symbols", name: "Discord Symbols" },
   { path: "/discord-server-names", name: "Discord Server Names" },
   { path: "/discord-status-ideas", name: "Discord Status Ideas" },
+  { path: "/invisible-text", name: "Invisible Text Generator" },
 ] as const;

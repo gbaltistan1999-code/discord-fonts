@@ -18,6 +18,7 @@ export function Footer({ locale = defaultLocale }: { locale?: Locale }) {
     { href: hrefFor(locale, "/discord-symbols"), label: ui.links.discordSymbols },
     { href: hrefFor(locale, "/discord-server-names"), label: ui.links.serverNames },
     { href: hrefFor(locale, "/discord-status-ideas"), label: ui.links.statusIdeas },
+    { href: hrefFor(locale, "/invisible-text"), label: ui.links.invisibleText },
     { href: hrefFor(locale, "/discord-timestamp-generator"), label: ui.links.timestampGenerator },
     { href: hrefFor(locale, "/discord-text-formatting"), label: ui.links.textFormatting },
     { href: "/blog", label: ui.links.blog },

@@ -1,31 +1,17 @@
 "use client";
 
+import type { InvisibleCharRow } from "@/content/invisible-characters";
 import { useCopy } from "./ToastProvider";
 
-/** Blank characters that Discord accepts in display names and nicknames. Escaped so they survive editing. */
-const characters = [
-  {
-    name: "Hangul Filler",
-    code: "U+3164",
-    char: "ㅤ",
-    use: "Try this first. The most widely used blank character for Discord names.",
-  },
-  {
-    name: "Braille Pattern Blank",
-    code: "U+2800",
-    char: "⠀",
-    use: "Backup option if the Hangul Filler is rejected.",
-  },
-  {
-    name: "Halfwidth Hangul Filler",
-    code: "U+FFA0",
-    char: "ﾠ",
-    use: "Second backup; narrower blank.",
-  },
-] as const;
-
 /** Table of invisible characters, each with a one-tap Copy button. */
-export function InvisibleCharacters() {
+export function InvisibleCharacters({
+  rows,
+  noteHeading,
+}: {
+  rows: readonly InvisibleCharRow[];
+  /** Heading of the last column, e.g. "When to use it" or "Best for". */
+  noteHeading: string;
+}) {
   const copy = useCopy();
   return (
     <div className="overflow-x-auto">
@@ -35,11 +21,11 @@ export function InvisibleCharacters() {
             <th scope="col">Character</th>
             <th scope="col">Unicode</th>
             <th scope="col">Copy</th>
-            <th scope="col">When to use it</th>
+            <th scope="col">{noteHeading}</th>
           </tr>
         </thead>
         <tbody>
-          {characters.map((c) => (
+          {rows.map((c) => (
             <tr key={c.code}>
               <td>
                 <strong>{c.name}</strong>
@@ -55,7 +41,7 @@ export function InvisibleCharacters() {
                   Copy
                 </button>
               </td>
-              <td>{c.use}</td>
+              <td>{c.note}</td>
             </tr>
           ))}
         </tbody>

@@ -21,6 +21,7 @@ export const ja: BaseStrings = {
       discordSymbols: "Discordの記号",
       serverNames: "Discordサーバー名",
       statusIdeas: "Discordステータスのアイデア",
+      invisibleText: "透明文字ジェネレーター",
       timestampGenerator: "Discordタイムスタンプ ジェネレーター",
       textFormatting: "テキスト書式",
       timestamp: "タイムスタンプ ジェネレーター",
