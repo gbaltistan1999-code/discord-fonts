@@ -23,6 +23,7 @@ export const pageImages: Readonly<Record<string, readonly string[]>> = {
   ...Object.fromEntries(
     prefixedLocales.map((l) => [localePath(l, "/discord-timestamp-generator"), timestampImages]),
   ),
+  "/blog/invisible-name-discord": ["/blog/invisible-name-discord.webp"],
   "/blog/how-to-change-discord-theme": [
     "/blog/how-to-change-discord-theme.webp",
     "/blog/discord-themes-light-ash-dark-onyx.webp",

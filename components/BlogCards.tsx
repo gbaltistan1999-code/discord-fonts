@@ -83,7 +83,7 @@ export function BlogCards({ posts, headingLevel = 3 }: { posts: readonly BlogPos
                   </p>
                 </div>
               </div>
-              <p className="mt-5 leading-relaxed text-muted">{post.description}</p>
+              <p className="mt-5 leading-relaxed text-muted">{post.excerpt ?? post.description}</p>
               <p className="mt-auto flex items-center justify-between gap-3 pt-6 text-sm">
                 <span className={`font-semibold ${color.tagline}`}>
                   Read article{" "}

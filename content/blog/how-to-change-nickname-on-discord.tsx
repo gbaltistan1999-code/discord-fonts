@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { BlogImage } from "@/components/BlogImage";
 import Link from "next/link";
 import type { BlogPost } from ".";
 
@@ -42,16 +42,6 @@ const fancyExamples = [
   ["ⒼⓐⓜⓔⓡⒷⓞⓨ", "bubble"],
 ] as const;
 
-/** Step illustration with a caption. Images are lazy-loaded below the fold. */
-function Step({ src, alt, caption, height = 675 }: { src: string; alt: string; caption: string; height?: number }) {
-  return (
-    <figure>
-      <Image src={src} alt={alt} width={1200} height={height} unoptimized className="h-auto w-full rounded-xl" />
-      <figcaption className="mt-2 text-sm text-muted">{caption}</figcaption>
-    </figure>
-  );
-}
-
 export const changeNicknameOnDiscord: BlogPost = {
   slug: "how-to-change-nickname-on-discord",
   title: "How to Change Your Nickname on Discord (PC & Mobile, 2026)",
@@ -91,8 +81,8 @@ export const changeNicknameOnDiscord: BlogPost = {
         "You can paste standard Unicode emojis and symbols, but custom server emojis do not work in names. For custom emojis in chat, see our guide on how to add emojis to a Discord server.",
       answerContent: (
         <>
-          You can paste standard Unicode emojis and symbols, but custom server emojis do not work in names. For
-          custom emojis in chat, see our guide on{" "}
+          You can paste standard Unicode emojis and symbols, but custom server emojis do not work in names.
+          For custom emojis in chat, see our guide on{" "}
           <Link href="/blog/how-to-add-emojis-to-discord-server">how to add emojis to a Discord server</Link>.
         </>
       ),
@@ -100,30 +90,26 @@ export const changeNicknameOnDiscord: BlogPost = {
   ],
   body: (
     <>
-      <figure>
-        <Image
-          src="/blog/how-to-change-nickname-on-discord.webp"
-          alt="How to change your nickname on Discord on PC and mobile: open the server menu, edit the Nickname field and save"
-          width={1200}
-          height={675}
-          priority
-          unoptimized
-          className="h-auto w-full rounded-xl"
-        />
-      </figure>
+      <BlogImage
+        src="/blog/how-to-change-nickname-on-discord.webp"
+        alt="How to change your nickname on Discord on PC and mobile: open the server menu, edit the Nickname field and save"
+        href="/discord-name-generator"
+        label="Discord Name Generator"
+        priority
+      />
 
       <h2>Quick answer</h2>
       <p>
         <strong>To change your nickname on Discord:</strong> click the server name, choose{" "}
         <strong>Edit Per-server Profile</strong>, type your new name in <strong>Nickname</strong>, and click{" "}
-        <strong>Save Changes</strong>. Or type <code>/nick</code> followed by your new name in any channel of that
-        server. It&apos;s free and only changes your name in that one server.
+        <strong>Save Changes</strong>. Or type <code>/nick</code> followed by your new name in any channel of
+        that server. It&apos;s free and only changes your name in that one server.
       </p>
 
       <h2>Nickname vs username vs display name</h2>
       <p>
-        A Discord nickname is the name you show in one server only. Changing it does not touch your account name
-        or how you appear in other servers.
+        A Discord nickname is the name you show in one server only. Changing it does not touch your account
+        name or how you appear in other servers.
       </p>
       <p>Discord has three different names, and mixing them up is the most common reason people get stuck:</p>
       <div className="overflow-x-auto">
@@ -167,20 +153,24 @@ export const changeNicknameOnDiscord: BlogPost = {
           Click <strong>Save Changes</strong>.
         </li>
       </ol>
-      <Step
+      <BlogImage
         src="/blog/discord-nickname-desktop-menu.webp"
+        href="/discord-name-generator"
+        label="Discord Name Generator"
         alt="Edit Per-server Profile option in Discord server menu on PC"
         caption="Illustration: open the server menu and choose Edit Per-server Profile."
       />
-      <Step
+      <BlogImage
         src="/blog/discord-nickname-desktop-field.webp"
+        href="/discord-symbols"
+        label="Discord Symbols"
         alt="Server Nickname field in Discord desktop"
         caption="Illustration: type your new name in the Nickname field and click Save Changes."
       />
       <p>
         Quick shortcut: right-click your own name in the member list and choose{" "}
-        <strong>Edit Per-server Profile</strong>. The steps are the same in the desktop app and in the browser at
-        discord.com.
+        <strong>Edit Per-server Profile</strong>. The steps are the same in the desktop app and in the browser
+        at discord.com.
       </p>
 
       <h2>How to change your nickname on Discord mobile (Android &amp; iPhone)</h2>
@@ -198,12 +188,17 @@ export const changeNicknameOnDiscord: BlogPost = {
           Tap <strong>Save</strong>.
         </li>
       </ol>
-      <Step
+      <BlogImage
         src="/blog/discord-nickname-mobile.webp"
+        href="/discord-username-generator"
+        label="Discord Username Generator"
         alt="Change nickname on Discord mobile app"
         caption="Illustration: on mobile, tap Edit Per-server Profile, change the Nickname and tap Save."
       />
-      <p>Your new nickname shows to everyone in that server right away. Other servers keep your normal display name.</p>
+      <p>
+        Your new nickname shows to everyone in that server right away. Other servers keep your normal display
+        name.
+      </p>
 
       <h2>Change your nickname with the /nick command</h2>
       <p>The fastest way is the built-in /nick slash command, which works on PC and mobile:</p>
@@ -214,19 +209,22 @@ export const changeNicknameOnDiscord: BlogPost = {
         </li>
         <li>Enter your new nickname and press Enter.</li>
       </ol>
-      <Step
+      <BlogImage
         src="/blog/discord-nickname-nick-command.webp"
+        href="/discord-text-formatting"
+        label="Discord Text Formatting"
         alt="Using the /nick command in Discord"
         caption="Illustration: type /nick, pick the command and add your new name."
       />
       <p>
-        To remove your nickname and go back to your display name, run <code>/nick</code> and leave the name empty.
-        The command uses the same permission as the menu, so if one fails, the other will too.
+        To remove your nickname and go back to your display name, run <code>/nick</code> and leave the name
+        empty. The command uses the same permission as the menu, so if one fails, the other will too.
       </p>
 
       <h2>How to change someone else&apos;s nickname (admins &amp; mods)</h2>
       <p>
-        Server owners and anyone with the <strong>Manage Nicknames</strong> permission can rename other members:
+        Server owners and anyone with the <strong>Manage Nicknames</strong> permission can rename other
+        members:
       </p>
       <ol>
         <li>
@@ -239,15 +237,17 @@ export const changeNicknameOnDiscord: BlogPost = {
         <li>Type the new nickname, or clear it to reset, and save.</li>
       </ol>
       <p>
-        Role order matters. You can only rename members whose highest role sits below yours, and nobody can change
-        the server owner&apos;s nickname except the owner.
+        Role order matters. You can only rename members whose highest role sits below yours, and nobody can
+        change the server owner&apos;s nickname except the owner.
       </p>
       <p>
         To let members rename themselves, go to <strong>Server Settings &gt; Roles</strong>, pick a role (or
         @everyone), and turn on <strong>Change Nickname</strong>.
       </p>
-      <Step
+      <BlogImage
         src="/blog/discord-nickname-role-permissions.webp"
+        href="/discord-server-names"
+        label="Discord Server Names"
         alt="Change Nickname permission in Discord role settings"
         caption="Illustration: Change Nickname lets members rename themselves; Manage Nicknames lets them rename others."
         height={676}
@@ -267,16 +267,18 @@ export const changeNicknameOnDiscord: BlogPost = {
           Paste it into the Nickname field or after <code>/nick</code>, then save.
         </li>
       </ol>
-      <Step
+      <BlogImage
         src="/blog/discord-nickname-fancy-font.webp"
+        href="/"
+        label="Discord Font Generator"
         alt="Fancy font nickname on Discord made with discordfont.app"
         caption="Illustration: copy a style from the font generator and it shows in the member list."
         height={676}
       />
       <p>
         You can also add <Link href="/discord-symbols">Discord symbols</Link> like stars or hearts around your
-        name. Keep it readable, because some servers ban names that are hard to mention or search, and a few styles
-        show as boxes on older phones.
+        name. Keep it readable, because some servers ban names that are hard to mention or search, and a few
+        styles show as boxes on older phones.
       </p>
       <p>Example styles:</p>
       <ul>

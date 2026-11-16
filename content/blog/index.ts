@@ -4,6 +4,7 @@ import { addEmojisToDiscordServer } from "./how-to-add-emojis-to-discord-server"
 import { changeDiscordTheme } from "./how-to-change-discord-theme";
 import { changeNicknameOnDiscord } from "./how-to-change-nickname-on-discord";
 import { changeFontOnDiscord } from "./how-to-change-font-on-discord";
+import { invisibleNameDiscord } from "./invisible-name-discord";
 import { whatFontDoesDiscordUse } from "./what-font-does-discord-use";
 
 export type BlogIcon = "palette" | "type" | "sparkle" | "chat";
@@ -15,8 +16,10 @@ export interface BlogPost {
   title: string;
   /** Shorter title tag for search results, when the H1 is long. */
   metaTitle?: string;
-  /** Meta description, also used as the card summary on /blog. */
+  /** Meta description, also used as the card summary on /blog unless `excerpt` is set. */
   description: string;
+  /** Card summary on /blog when it should differ from the meta description. */
+  excerpt?: string;
   /** Short line shown in small caps under the title on blog cards. */
   tagline: string;
   /** Icon on blog cards. */
@@ -36,6 +39,7 @@ export interface BlogPost {
 
 /** Newest first. To add a post, create a file in this folder and list it here. */
 export const blogPosts: readonly BlogPost[] = [
+  invisibleNameDiscord,
   changeDiscordTheme,
   whatFontDoesDiscordUse,
   changeNicknameOnDiscord,

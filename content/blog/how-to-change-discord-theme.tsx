@@ -1,15 +1,6 @@
-import Image from "next/image";
+import { BlogImage } from "@/components/BlogImage";
 import Link from "next/link";
 import type { BlogPost } from ".";
-
-function Figure({ src, alt, caption }: { src: string; alt: string; caption: string }) {
-  return (
-    <figure>
-      <Image src={src} alt={alt} width={1200} height={675} unoptimized className="h-auto w-full rounded-xl" />
-      <figcaption className="mt-2 text-sm text-muted">{caption}</figcaption>
-    </figure>
-  );
-}
 
 const themes = [
   ["Light", "White background, dark gray text. Optional Dark Sidebar.", "Bright rooms, daytime use"],
@@ -69,17 +60,13 @@ export const changeDiscordTheme: BlogPost = {
   ],
   body: (
     <>
-      <figure>
-        <Image
-          src="/blog/how-to-change-discord-theme.webp"
-          alt="Change your Discord theme: dark, light and custom, with a chat window split between light and dark mode"
-          width={1200}
-          height={675}
-          priority
-          unoptimized
-          className="h-auto w-full rounded-xl"
-        />
-      </figure>
+      <BlogImage
+        src="/blog/how-to-change-discord-theme.webp"
+        alt="Change your Discord theme: dark, light and custom, with a chat window split between light and dark mode"
+        href="/"
+        label="Discord Font Generator"
+        priority
+      />
 
       <p>
         Discord looks the same for everyone until you change it. You might want a darker screen for late-night
@@ -104,8 +91,10 @@ export const changeDiscordTheme: BlogPost = {
         Every Discord user gets four themes for free. Nitro subscribers get extra colorful themes on top of
         these.
       </p>
-      <Figure
+      <BlogImage
         src="/blog/discord-themes-light-ash-dark-onyx.webp"
+        href="/blog/how-to-change-font-on-discord"
+        label="Change your font on Discord"
         alt="The four free Discord themes side by side: Light, Ash, Dark and Onyx"
         caption="Discord's four free themes, from brightest to darkest: Light, Ash, Dark and Onyx."
       />
@@ -216,8 +205,10 @@ export const changeDiscordTheme: BlogPost = {
         This is where the custom colors part of this guide comes in. Discord Nitro subscribers can use
         colorful gradient themes across all platforms, on top of the four free ones.
       </p>
-      <Figure
+      <BlogImage
         src="/blog/discord-nitro-custom-theme-colors.webp"
+        href="/blog/discord-colored-text"
+        label="Colored text in Discord"
         alt="Discord chat window with a pink-to-blue gradient theme next to a color picker, hex code field and Gradient Direction and Color Intensity sliders"
         caption="Nitro custom themes: pick your colors, then adjust the gradient direction and intensity."
       />

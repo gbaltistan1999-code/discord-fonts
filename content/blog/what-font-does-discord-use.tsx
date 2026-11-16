@@ -1,15 +1,6 @@
-import Image from "next/image";
+import { BlogImage } from "@/components/BlogImage";
 import Link from "next/link";
 import type { BlogPost } from ".";
-
-function Figure({ src, alt, caption }: { src: string; alt: string; caption: string }) {
-  return (
-    <figure>
-      <Image src={src} alt={alt} width={1200} height={675} unoptimized className="h-auto w-full rounded-xl" />
-      <figcaption className="mt-2 text-sm text-muted">{caption}</figcaption>
-    </figure>
-  );
-}
 
 export const whatFontDoesDiscordUse: BlogPost = {
   slug: "what-font-does-discord-use",
@@ -55,17 +46,13 @@ export const whatFontDoesDiscordUse: BlogPost = {
   ],
   body: (
     <>
-      <figure>
-        <Image
-          src="/blog/what-font-does-discord-use.webp"
-          alt="What font does Discord use? gg sans explained, with a large lowercase g next to a chat app window"
-          width={1200}
-          height={675}
-          priority
-          unoptimized
-          className="h-auto w-full rounded-xl"
-        />
-      </figure>
+      <BlogImage
+        src="/blog/what-font-does-discord-use.webp"
+        alt="What font does Discord use? gg sans explained, with a large lowercase g next to a chat app window"
+        href="/"
+        label="Discord Font Generator"
+        priority
+      />
 
       <p>
         Discord uses a font called <strong>gg sans</strong>. It&apos;s a custom typeface Discord made for
@@ -113,8 +100,10 @@ export const whatFontDoesDiscordUse: BlogPost = {
       </p>
 
       <h3>Whitney vs gg sans</h3>
-      <Figure
+      <BlogImage
         src="/blog/discord-whitney-vs-gg-sans.webp"
+        href="/fancy-text-generator"
+        label="Fancy Text Generator"
         alt="Whitney vs gg sans comparison: the sample text Aa Gg 123 in Discord's old font Whitney (2015 to 2022) and its current font gg sans (2022 to now)"
         caption="Whitney (left) was Discord's font until December 2022. gg sans (right) is slightly rounder and wider."
       />
@@ -231,8 +220,10 @@ export const whatFontDoesDiscordUse: BlogPost = {
         If you want the Discord look for a server banner, YouTube thumbnail or website, these free Google
         Fonts get close and are safe to use commercially.
       </p>
-      <Figure
+      <BlogImage
         src="/blog/discord-font-alternatives.webp"
+        href="/discord-font-generator/cursive"
+        label="Cursive font generator"
         alt="The word Discord written in four free Google Fonts that look like Discord's fonts: Nunito Sans, Inter, Poppins and Anton"
         caption="Free Discord look-alike fonts: Nunito Sans, Inter, Poppins and Anton."
       />

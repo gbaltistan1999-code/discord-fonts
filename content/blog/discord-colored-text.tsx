@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { BlogImage } from "@/components/BlogImage";
 import Link from "next/link";
 import { AnsiCodeBlock } from "@/components/AnsiCodeBlock";
 import type { BlogPost } from ".";
@@ -85,19 +85,14 @@ export const discordColoredText: BlogPost = {
         button that includes the hidden escape character, so it works the moment you paste it.
       </p>
 
-      <figure>
-        <Image
-          src="/blog/discord-colored-text-examples.webp"
-          alt="Discord colored text examples: red, green, yellow, blue, pink and cyan text, bold and underlined text, background colors, and green and red diff lines"
-          width={1200}
-          height={698}
-          unoptimized
-          className="h-auto w-full rounded-xl"
-        />
-        <figcaption className="mt-2 text-sm text-muted">
-          How ANSI and diff code blocks look on Discord desktop.
-        </figcaption>
-      </figure>
+      <BlogImage
+        src="/blog/discord-colored-text-examples.webp"
+        alt="Discord colored text examples: red, green, yellow, blue, pink and cyan text, bold and underlined text, background colors, and green and red diff lines"
+        href="/discord-text-formatting"
+        label="Discord Text Formatting"
+        height={698}
+        caption="How ANSI and diff code blocks look on Discord desktop."
+      />
 
       <h2>How colored text in Discord works</h2>
       <p>
