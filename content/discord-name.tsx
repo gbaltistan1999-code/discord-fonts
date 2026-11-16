@@ -5,17 +5,22 @@ export const discordNamePage = {
   path: "/discord-name-generator",
   name: "Discord Name Generator",
   h1: "Discord Name Generator",
-  title: "Discord Name Generator – Stylish Display Names & Fonts",
+  title: "Discord Name Generator – Discord Name Fonts to Copy & Paste",
   description:
-    "Make a stylish Discord display name in seconds. Pick a fancy font, add symbols, check the 32-character limit, and copy your new name straight into Discord.",
+    "Make a stylish Discord display name in seconds. Pick a Discord name font, add symbols, check the 32-character limit, and copy your new name into Discord.",
   intro:
-    "Your display name shows up next to every message you send, in every server you're in. It's worth making it look good. Type your name or gamer tag below, try it in different fonts and decorations, and copy the one that feels like you.",
+    "Your display name shows up next to every message you send, in every server you're in. It's worth making it look good. Type your name or gamer tag below, try it in different Discord name fonts and decorations, and copy the one that feels like you.",
   sampleText: "Your Name",
   /** Bold, Bold Script, Small Caps, Double-Struck, Bold Sans, Sans Bold Italic. */
   order: ["bold-serif", "bold-script", "small-caps", "double-struck", "bold-sans", "sans-bold-italic"],
 } as const;
 
 export const discordNameFaqs: readonly Faq[] = [
+  {
+    question: "How do I change my Discord name font?",
+    answer:
+      "Discord has no font setting, so you change the letters instead. Type your name into the generator above, copy a style you like, then paste it into Display Name under User Settings and save. It works the same for server nicknames.",
+  },
   {
     question: "Can I use fancy fonts in my Discord username?",
     answer:
@@ -152,7 +157,11 @@ export function DiscordNameArticle() {
         </table>
       </div>
 
-      <h2>How to change your Discord display name</h2>
+      <h2>How to change your Discord name font</h2>
+      <p>
+        Discord doesn&apos;t let you pick a font, but your display name accepts Unicode letters, so a styled name
+        from this page shows up for everyone. Here&apos;s how to set it:
+      </p>
       <ol>
         <li>Copy your new name from the generator.</li>
         <li>Open Discord and go to User Settings (the gear icon next to your profile).</li>

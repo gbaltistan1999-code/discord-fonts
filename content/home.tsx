@@ -93,7 +93,8 @@ export function HomeArticle() {
       <p>
         Your display name is shown next to your messages in every server. Open <strong>User Settings</strong>,
         go to the profile section, paste your styled text into <strong>Display Name</strong> and save. Display
-        names can be up to 32 characters.
+        names can be up to 32 characters. To preview name fonts at the size they appear in chat, use the{" "}
+        <Link href="/discord-name-generator">Discord name font generator</Link>.
       </p>
       <h3>Server nickname</h3>
       <p>
