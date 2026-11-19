@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { FeaturedStyles } from "@/components/FontGenerator";
 import { getStylesByCategory, type FontCategory } from "@/lib/fonts";
+import { moreStylePages } from "./style-pages-more";
 
 export interface StylePage {
   slug: string;
@@ -291,7 +292,7 @@ export const stylePages: readonly StylePage[] = [
     slug: "aesthetic",
     name: "Aesthetic",
     h1: "Discord Aesthetic Font Generator",
-    title: "Aesthetic Discord Fonts – Vaporwave & Cute Text Generator",
+    title: "Aesthetic Discord Fonts – Cute & Soft Text Generator",
     description:
       "Aesthetic Discord fonts for bios and names: vaporwave fullwidth text, small caps, kawaii and sparkle styles. Copy and paste cute Discord text in one click.",
     intro:
@@ -311,7 +312,8 @@ export const stylePages: readonly StylePage[] = [
           <li>
             <strong>Vaporwave Fullwidth</strong> (ａｅｓｔｈｅｔｉｃ) uses the wide letters from East Asian
             typefaces for that retro 80s and 90s look. <strong>Vaporwave Spaced</strong> adds extra breathing
-            room.
+            room. The <Link href="/discord-font-generator/wide-text">wide text generator</Link> has every wide
+            style in one place.
           </li>
           <li>
             <strong>Small Caps</strong> and <strong>Tiny Caps</strong> give a quiet, minimal feel that works
@@ -544,6 +546,7 @@ export const stylePages: readonly StylePage[] = [
       </>
     ),
   },
+  ...moreStylePages,
 ];
 
 export function getStylePage(slug: string): StylePage | undefined {

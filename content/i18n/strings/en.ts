@@ -42,6 +42,13 @@ export const en: BaseStrings = {
       glitch: "Glitch",
       bubble: "Bubble",
       "upside-down": "Upside Down",
+      italic: "Italic",
+      strikethrough: "Strikethrough",
+      underline: "Underline",
+      "wide-text": "Wide Text",
+      monospace: "Monospace",
+      "double-struck": "Double Struck",
+      "square-text": "Square Text",
     },
     footer: {
       styles: "Discord font styles",

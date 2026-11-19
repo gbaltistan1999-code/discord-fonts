@@ -14,6 +14,13 @@ const cardSamples: Record<string, string> = {
   glitch: "zalgo",
   bubble: "bubble",
   "upside-down": "upside-down",
+  italic: "sans-bold-italic",
+  strikethrough: "strikethrough",
+  underline: "underline",
+  "wide-text": "fullwidth",
+  monospace: "monospace",
+  "double-struck": "double-struck",
+  "square-text": "squared",
 };
 
 /** Internal links to every style generator page, each with a live sample. */

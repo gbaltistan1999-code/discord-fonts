@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { StylePageView, styleMetadata } from "@/components/StylePage";
 import { getStylePage, stylePages } from "@/content/style-pages";
-import { isLocale } from "@/lib/i18n";
+import { isLocale, isTranslated } from "@/lib/i18n";
 
 interface PageProps {
   params: Promise<{ lang: string; style: string }>;
@@ -11,7 +11,10 @@ interface PageProps {
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return stylePages.map((page) => ({ style: page.slug }));
+  // Newer style pages are English only until they are translated.
+  return stylePages
+    .filter((page) => isTranslated(`/discord-font-generator/${page.slug}`))
+    .map((page) => ({ style: page.slug }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
