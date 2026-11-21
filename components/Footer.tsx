@@ -14,6 +14,7 @@ export function Footer({ locale = defaultLocale }: { locale?: Locale }) {
     { href: hrefFor(locale, "/discord-name-generator"), label: ui.links.nameGenerator },
     { href: hrefFor(locale, "/discord-username-generator"), label: ui.links.usernameGenerator },
     { href: hrefFor(locale, "/small-text-discord"), label: ui.links.smallText },
+    { href: hrefFor(locale, "/discord-big-text"), label: ui.links.bigText },
     { href: hrefFor(locale, "/number-fonts"), label: ui.links.numberFonts },
     { href: hrefFor(locale, "/discord-symbols"), label: ui.links.discordSymbols },
     { href: hrefFor(locale, "/discord-server-names"), label: ui.links.serverNames },

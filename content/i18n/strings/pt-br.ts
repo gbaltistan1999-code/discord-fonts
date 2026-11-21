@@ -21,6 +21,7 @@ export const ptBr: BaseStrings = {
       discordSymbols: "Símbolos para Discord",
       serverNames: "Nomes para servidor do Discord",
       statusIdeas: "Ideias de status para Discord",
+      bigText: "Texto grande para Discord",
       bioIdeas: "Ideias de bio para Discord",
       invisibleText: "Gerador de texto invisível",
       timestampGenerator: "Gerador de timestamp do Discord",

@@ -302,6 +302,10 @@ export const smallTextPage: SmallTextPageContent = {
       <pre>
         <code>{"# Big header\n## Medium header\n### Small header"}</code>
       </pre>
+      <p>
+        Want emoji letters, wide text or ASCII banners too? Try our{" "}
+        <Link href="/discord-big-text">Discord big text generator</Link>.
+      </p>
       <p>A few other formatting tricks that pair well with small text:</p>
       <ul>
         <li>

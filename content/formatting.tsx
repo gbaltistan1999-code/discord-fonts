@@ -96,7 +96,8 @@ export function FormattingGuide() {
         large, medium or small header. Headers are perfect for rules channels, announcements and event posts.
         For the opposite effect, start a line with <code>-#</code> and a space to make small, muted subtext,
         useful for footnotes, credits or “edited for clarity” notes. Both only work at the very start of a
-        line, and the space matters: <code>#Rules</code> just shows up as plain text.
+        line, and the space matters: <code>#Rules</code> just shows up as plain text. For emoji letters and ASCII
+        banners, use our <Link href="/discord-big-text">Discord big text generator</Link>.
       </p>
 
       <h2 id="lists-and-links">Lists and Masked Links</h2>

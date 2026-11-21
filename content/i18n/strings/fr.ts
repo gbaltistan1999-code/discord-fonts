@@ -21,6 +21,7 @@ export const fr: BaseStrings = {
       discordSymbols: "Symboles Discord",
       serverNames: "Noms de serveur Discord",
       statusIdeas: "Idées de statut Discord",
+      bigText: "Gros texte Discord",
       bioIdeas: "Idées de bio Discord",
       invisibleText: "Générateur de texte invisible",
       timestampGenerator: "Générateur de timestamp Discord",
