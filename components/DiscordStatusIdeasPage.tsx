@@ -18,7 +18,7 @@ const moreTools = [
   { href: "/", label: "Discord Font Generator", note: "220+ fancy fonts for statuses, names and bios" },
   { href: "/discord-username-generator", label: "Discord Username Generator", note: "Valid @username ideas" },
   { href: "/discord-symbols", label: "Discord Symbols", note: "Hearts, stars, dividers and more" },
-  { href: "/discord-server-names", label: "Discord Server Names", note: "Cool, funny and aesthetic ideas" },
+  { href: "/discord-bio-ideas", label: "Discord Bio Ideas", note: "About Me bios and templates" },
   { href: "/discord-name-generator", label: "Discord Name Generator", note: "Fancy display names" },
   {
     href: "/discord-text-formatting",

@@ -48,6 +48,7 @@ export function HomePage({ locale }: { locale: Locale }) {
     "/discord-symbols": ui.links.discordSymbols,
     "/discord-server-names": ui.links.serverNames,
     "/discord-status-ideas": ui.links.statusIdeas,
+    "/discord-bio-ideas": ui.links.bioIdeas,
     "/invisible-text": ui.links.invisibleText,
   };
 
