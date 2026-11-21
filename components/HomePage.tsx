@@ -1,11 +1,12 @@
 import Link from "next/link";
-import { blogPosts } from "@/content/blog";
+import { blogPosts, formatPostDate } from "@/content/blog";
 import { getStrings } from "@/content/i18n";
 import { getHome } from "@/content/i18n/home";
 import { homeStyleOrder } from "@/content/i18n/style-order";
 import { generatorPages } from "@/content/generator-pages";
-import { fontStyles } from "@/lib/fonts";
+import { STYLE_COUNT_LABEL } from "@/lib/fonts";
 import { fill, hrefFor, type Locale } from "@/lib/i18n";
+import { siteConfig } from "@/lib/site";
 import { buildMetadata, faqJsonLd, webApplicationJsonLd, websiteJsonLd } from "@/lib/seo";
 import { BlogCards } from "./BlogCards";
 import { FaqList } from "./FaqList";
@@ -77,9 +78,9 @@ export function HomePage({ locale }: { locale: Locale }) {
             <HomeHero
               h1={home.h1}
               tagline={home.h1Tagline}
-              intro={fill(home.intro, { count: fontStyles.length })}
+              intro={fill(home.intro, { count: STYLE_COUNT_LABEL })}
               badges={home.heroBadges}
-              count={fontStyles.length}
+              count={STYLE_COUNT_LABEL}
             />
           }
           strings={generator}
@@ -158,6 +159,15 @@ export function HomePage({ locale }: { locale: Locale }) {
             <Article />
           </article>
           <div className="mx-auto mt-16 max-w-3xl">
+            {locale === "en" && (
+              <p className="mb-6 text-sm text-muted">
+                Updated{" "}
+                <time dateTime={siteConfig.homeUpdated}>{formatPostDate(siteConfig.homeUpdated)}</time> · By{" "}
+                <Link href="/about" className="font-medium text-text hover:text-accent">
+                  the {siteConfig.name} team
+                </Link>
+              </p>
+            )}
             <FaqList faqs={home.faqs} heading={home.faqHeading} />
           </div>
         </div>

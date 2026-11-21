@@ -196,7 +196,7 @@ function Article() {
 export const homeEs: HomeContent = {
   title: "Letras para Discord – Generador de fuentes para copiar y pegar",
   description:
-    "Generador de letras para Discord gratis: convierte tu texto en más de 170 estilos para copiar y pegar en tu nombre, apodo, servidor o mensajes.",
+    "Generador de letras para Discord gratis: convierte tu texto en más de 220 estilos para copiar y pegar en tu nombre, apodo, servidor o mensajes.",
   h1: "Letras para Discord: generador de fuentes para copiar y pegar",
   intro:
     "Convierte cualquier texto en {count} letras para Discord, de negrita y cursiva a gótica y glitch. Copia un estilo y pégalo en tu nombre, apodo, servidor o mensajes. Gratis, privado y sin registro.",

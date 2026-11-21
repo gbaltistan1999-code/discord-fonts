@@ -150,12 +150,12 @@ function Article() {
 
 export const fancyTextDe: ToolPageContent = {
   name: "Generator für schöne Schrift",
-  title: "Schöne Schrift Generator – Über 170 Schriften zum Kopieren",
+  title: "Schöne Schrift Generator – Über 220 Schriften zum Kopieren",
   description:
-    "Verwandle Text in über 170 schöne Schriften: Schreibschrift, Fraktur, Blasen, Aesthetic und mehr. Mit einem Klick kopieren und in Discord, Instagram oder TikTok einfügen.",
+    "Verwandle Text in über 220 schöne Schriften: Schreibschrift, Fraktur, Blasen, Aesthetic und mehr. Mit einem Klick kopieren und in Discord, Instagram oder TikTok einfügen.",
   h1: "Generator für schöne Schrift",
   intro:
-    "Gib ein Wort, einen Namen oder einen ganzen Satz ein und sieh ihn sofort in über 170 schönen Schriften. Tippe auf einen Stil, um ihn zu kopieren, und füge ihn ein, wo du willst: als Discord-Namen, Instagram-Bio, TikTok-Beschreibung oder im Gruppenchat. Nichts zu installieren, kein Konto, und dein Text verlässt nie deinen Browser.",
+    "Gib ein Wort, einen Namen oder einen ganzen Satz ein und sieh ihn sofort in über 220 schönen Schriften. Tippe auf einen Stil, um ihn zu kopieren, und füge ihn ein, wo du willst: als Discord-Namen, Instagram-Bio, TikTok-Beschreibung oder im Gruppenchat. Nichts zu installieren, kein Konto, und dein Text verlässt nie deinen Browser.",
   sampleText: "Schoene Schrift",
   toolLabel: "Generator für schöne Schrift",
   faqHeading: "Häufige Fragen",

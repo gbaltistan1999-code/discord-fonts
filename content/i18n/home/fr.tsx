@@ -200,7 +200,7 @@ function Article() {
 export const homeFr: HomeContent = {
   title: "Polices Discord – Générateur d’écriture stylée à copier-coller",
   description:
-    "Générateur de polices Discord gratuit : transformez votre texte en plus de 170 styles à copier-coller dans votre pseudo, serveur ou vos messages.",
+    "Générateur de polices Discord gratuit : transformez votre texte en plus de 220 styles à copier-coller dans votre pseudo, serveur ou vos messages.",
   h1: "Polices Discord : générateur d’écriture stylée à copier-coller",
   intro:
     "Transformez n’importe quel texte en {count} polices Discord, du gras et de la cursive au gothique et au glitch. Copiez un style et collez-le dans votre pseudo, votre surnom, votre serveur ou vos messages. Gratuit, privé et sans inscription.",

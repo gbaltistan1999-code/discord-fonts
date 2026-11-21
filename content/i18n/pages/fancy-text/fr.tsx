@@ -157,12 +157,12 @@ function Article() {
 
 export const fancyTextFr: ToolPageContent = {
   name: "Générateur d’écriture stylée",
-  title: "Générateur d’écriture stylée – Plus de 170 polices à copier",
+  title: "Générateur d’écriture stylée – Plus de 220 polices à copier",
   description:
-    "Transformez votre texte en plus de 170 polices stylées : script, gothique, bulles, aesthetic et plus. Copiez en un clic et collez sur Discord, Instagram ou TikTok.",
+    "Transformez votre texte en plus de 220 polices stylées : script, gothique, bulles, aesthetic et plus. Copiez en un clic et collez sur Discord, Instagram ou TikTok.",
   h1: "Générateur d’écriture stylée",
   intro:
-    "Tapez un mot, un pseudo ou une phrase entière et voyez-le dans plus de 170 polices stylées à la fois. Touchez un style pour le copier, puis collez-le où vous voulez : un pseudo Discord, une bio Instagram, une légende TikTok, un groupe de discussion. Rien à installer, aucun compte, et votre texte ne quitte jamais votre navigateur.",
+    "Tapez un mot, un pseudo ou une phrase entière et voyez-le dans plus de 220 polices stylées à la fois. Touchez un style pour le copier, puis collez-le où vous voulez : un pseudo Discord, une bio Instagram, une légende TikTok, un groupe de discussion. Rien à installer, aucun compte, et votre texte ne quitte jamais votre navigateur.",
   sampleText: "Texte stylé",
   toolLabel: "Générateur d’écriture stylée",
   faqHeading: "Questions fréquentes",

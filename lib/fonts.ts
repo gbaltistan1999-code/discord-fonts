@@ -1619,6 +1619,12 @@ export const fontStyles: readonly FontStyle[] = [
 // Lookup and conversion helpers
 // ---------------------------------------------------------------------------
 
+/**
+ * Style total rounded down to the nearest ten, for "220+" style labels. Rounding keeps every page
+ * and the meta description on the same number, and it stays true as styles are added.
+ */
+export const STYLE_COUNT_LABEL = Math.floor(fontStyles.length / 10) * 10;
+
 const styleIndex = new Map(fontStyles.map((style) => [style.id, style]));
 
 export function getFontStyle(id: string): FontStyle | undefined {

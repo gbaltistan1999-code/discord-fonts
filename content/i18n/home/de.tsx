@@ -196,7 +196,7 @@ function Article() {
 export const homeDe: HomeContent = {
   title: "Discord-Schriftarten – Generator zum Kopieren und Einfügen",
   description:
-    "Kostenloser Discord-Schriftarten-Generator: Verwandle Text in über 170 Stile zum Kopieren und Einfügen für Namen, Nickname, Server und Nachrichten.",
+    "Kostenloser Discord-Schriftarten-Generator: Verwandle Text in über 220 Stile zum Kopieren und Einfügen für Namen, Nickname, Server und Nachrichten.",
   h1: "Discord-Schriftarten-Generator – schöne Schrift kopieren und einfügen",
   intro:
     "Verwandle jeden Text in {count} Discord-Schriftarten, von fett und geschwungen bis Fraktur und Glitch. Kopiere einen Stil und füge ihn in deinen Namen, Nickname, Server oder deine Nachrichten ein. Kostenlos, privat und ohne Anmeldung.",

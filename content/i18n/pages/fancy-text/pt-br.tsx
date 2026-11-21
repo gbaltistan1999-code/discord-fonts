@@ -142,12 +142,12 @@ function Article() {
 
 export const fancyTextPtBr: ToolPageContent = {
   name: "Gerador de letras diferentes",
-  title: "Gerador de letras diferentes – Mais de 170 fontes para copiar",
+  title: "Gerador de letras diferentes – Mais de 220 fontes para copiar",
   description:
-    "Transforme seu texto em mais de 170 letras diferentes: script, gótica, bolha, estética e mais. Copie com um toque e cole no Discord, Instagram ou TikTok.",
+    "Transforme seu texto em mais de 220 letras diferentes: script, gótica, bolha, estética e mais. Copie com um toque e cole no Discord, Instagram ou TikTok.",
   h1: "Gerador de letras diferentes",
   intro:
-    "Digite uma palavra, um nome ou uma frase inteira e veja tudo em mais de 170 letras diferentes de uma vez. Toque em qualquer estilo para copiar e cole onde quiser: nome no Discord, bio do Instagram, legenda do TikTok ou grupo de conversa. Sem instalar nada, sem conta, e seu texto nunca sai do seu navegador.",
+    "Digite uma palavra, um nome ou uma frase inteira e veja tudo em mais de 220 letras diferentes de uma vez. Toque em qualquer estilo para copiar e cole onde quiser: nome no Discord, bio do Instagram, legenda do TikTok ou grupo de conversa. Sem instalar nada, sem conta, e seu texto nunca sai do seu navegador.",
   sampleText: "Letras diferentes",
   toolLabel: "Gerador de letras diferentes",
   faqHeading: "Perguntas frequentes",

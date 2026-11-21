@@ -152,12 +152,12 @@ function Article() {
 
 export const fancyTextEs: ToolPageContent = {
   name: "Generador de letras bonitas",
-  title: "Generador de letras bonitas – Más de 170 fuentes para copiar",
+  title: "Generador de letras bonitas – Más de 220 fuentes para copiar",
   description:
-    "Convierte tu texto en más de 170 letras bonitas: script, gótica, burbuja, estética y más. Copia con un toque y pega en Discord, Instagram o TikTok.",
+    "Convierte tu texto en más de 220 letras bonitas: script, gótica, burbuja, estética y más. Copia con un toque y pega en Discord, Instagram o TikTok.",
   h1: "Generador de letras bonitas",
   intro:
-    "Escribe una palabra, un nombre o una frase entera y la verás en más de 170 letras bonitas a la vez. Toca cualquier estilo para copiarlo y pégalo donde quieras: un nombre de Discord, una biografía de Instagram, un texto de TikTok o un chat de grupo. Sin instalar nada, sin cuenta y tu texto nunca sale de tu navegador.",
+    "Escribe una palabra, un nombre o una frase entera y la verás en más de 220 letras bonitas a la vez. Toca cualquier estilo para copiarlo y pégalo donde quieras: un nombre de Discord, una biografía de Instagram, un texto de TikTok o un chat de grupo. Sin instalar nada, sin cuenta y tu texto nunca sale de tu navegador.",
   sampleText: "Letras bonitas",
   toolLabel: "Generador de letras bonitas",
   faqHeading: "Preguntas frecuentes",

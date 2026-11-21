@@ -6,6 +6,7 @@ import { FaqList } from "@/components/FaqList";
 import { JsonLd } from "@/components/JsonLd";
 import { blogPosts, formatPostDate, getBlogPost } from "@/content/blog";
 import { articleJsonLd, buildMetadata, faqJsonLd } from "@/lib/seo";
+import { siteConfig } from "@/lib/site";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -62,7 +63,11 @@ export default async function BlogPostPage({ params }: PageProps) {
             {post.title}
           </h1>
           <p className="mt-3 text-sm text-muted">
-            <time dateTime={post.datePublished}>{formatPostDate(post.datePublished)}</time> ·{" "}
+            By{" "}
+            <Link href="/about" className="font-medium text-text hover:text-accent">
+              the {siteConfig.name} team
+            </Link>{" "}
+            · <time dateTime={post.datePublished}>{formatPostDate(post.datePublished)}</time> ·{" "}
             {post.readingMinutes} min read
             {post.dateModified !== post.datePublished && (
               <>

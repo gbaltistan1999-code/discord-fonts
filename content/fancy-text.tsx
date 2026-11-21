@@ -5,11 +5,11 @@ export const fancyTextPage = {
   path: "/fancy-text-generator",
   name: "Fancy Text Generator",
   h1: "Fancy Text Generator",
-  title: "Fancy Text Generator – 170+ Cool Fonts to Copy & Paste",
+  title: "Fancy Text Generator – 220+ Cool Fonts to Copy & Paste",
   description:
-    "Turn plain text into 170+ fancy fonts: script, gothic, bubble, aesthetic and more. Copy with one click and paste into Discord, Instagram, TikTok or anywhere.",
+    "Turn plain text into 220+ fancy fonts: script, gothic, bubble, aesthetic and more. Copy with one click and paste into Discord, Instagram, TikTok or anywhere.",
   intro:
-    "Type a word, a name or a whole sentence, and you'll see it in more than 170 fancy fonts at once. Tap any style to copy it, then paste it wherever you want: a Discord name, an Instagram bio, a TikTok caption, a group chat. Nothing to install, no account, and your text never leaves your browser.",
+    "Type a word, a name or a whole sentence, and you'll see it in more than 220 fancy fonts at once. Tap any style to copy it, then paste it wherever you want: a Discord name, an Instagram bio, a TikTok caption, a group chat. Nothing to install, no account, and your text never leaves your browser.",
   sampleText: "Fancy Text",
   /** Bold Script, Gothic Fraktur, Bold Gothic, Double-Struck, Vaporwave Fullwidth, Bubble, Small Caps, Circled. */
   order: [

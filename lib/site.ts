@@ -24,6 +24,8 @@ export const siteConfig = {
   description:
     "Turn ordinary text into eye-catching Discord styles: 220+ fonts like bold, cursive, gothic and glitch. Copy and paste into your name, bio or server.",
   ogImageAlt: "Discord Fonts generator – copy and paste cool Discord font styles",
+  /** Last time the homepage content was reviewed; shown above the English homepage FAQ. */
+  homeUpdated: "2026-11-21",
   contactEmail: "eshfaqihmed@gmail.com",
   /**
    * Web3Forms access key for the contact form (public by design; it only lets the form email you).
