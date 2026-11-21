@@ -11,7 +11,7 @@ const fontGenerator = (
 export const discordSymbolsPagePtBr = {
   path: "/discord-symbols",
   name: "Símbolos para Discord",
-  title: "Símbolos para Discord: Copie e Cole Símbolos para Canais e Divisores",
+  title: "Símbolos para Discord – Copie e Cole para Canais e Divisores",
   description:
     "Copie e cole mais de 300 símbolos para Discord para nomes de canais, apelidos e bios. Monte nomes de canais estilosos como 📢︱avisos com prévia ao vivo.",
   h1: "Símbolos para Discord: Copie e Cole Símbolos para Nomes de Canais",

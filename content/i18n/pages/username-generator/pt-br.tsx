@@ -13,7 +13,7 @@ const fontGenerator = (
 export const usernameGeneratorPagePtBr = {
   path: "/discord-username-generator",
   name: "Gerador de Nome de Usuário para Discord",
-  title: "Gerador de Nome de Usuário para Discord – Nomes Únicos e Estilosos",
+  title: "Gerador de Nomes de Usuário para Discord – Únicos e Estilosos",
   description:
     "Gere nomes de usuário para Discord legais e únicos na hora. Escolha um estilo, adicione uma palavra e copie nomes que seguem as regras do Discord. Grátis, sem cadastro.",
   h1: "Gerador de Nome de Usuário para Discord",

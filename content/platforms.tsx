@@ -1736,7 +1736,7 @@ export const platformPages: readonly PlatformPage[] = [
       },
     ],
     h1: "PUBG & BGMI Name Generator",
-    title: "PUBG Name Generator – Stylish Names & Fonts for PUBG Mobile and BGMI",
+    title: "PUBG Name Generator – Stylish Names for PUBG Mobile & BGMI",
     description:
       "PUBG name generator for PUBG Mobile and BGMI: make stylish nicknames and clan names with cool fonts and symbols. Copy and paste, plus how to rename.",
     intro:
@@ -2049,7 +2049,7 @@ export const platformPages: readonly PlatformPage[] = [
       },
     ],
     h1: "Call of Duty & Warzone Name Fonts",
-    title: "Call of Duty Fonts – Warzone Name Styles for Clans, Clips & Discord",
+    title: "Call of Duty Fonts – Warzone Name Styles for Clans & Clips",
     description:
       "Call of Duty and Warzone name fonts for clans, clips, streams and Discord. Copy and paste cool text, and learn what your Activision ID allows.",
     intro:
@@ -2147,7 +2147,7 @@ export const platformPages: readonly PlatformPage[] = [
       },
     ],
     h1: "Minecraft Name Fonts Generator",
-    title: "Minecraft Fonts – Small Caps & Cool Text for Servers, Chat and Items",
+    title: "Minecraft Fonts – Small Caps & Cool Text for Servers & Chat",
     description:
       "Minecraft fonts for server ranks, chat, books, item names and signs. Copy and paste small caps and cool text, and learn what Minecraft usernames allow.",
     intro:

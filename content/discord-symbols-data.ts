@@ -228,7 +228,7 @@ export interface PackStrings {
 
 export const packStringsEn: PackStrings = {
   copyAll: "Copy all",
-  copyAllSr: "{title} names",
+  copyAllSr: "names in the {title} pack",
   packLabel: "{title} pack",
 };
 

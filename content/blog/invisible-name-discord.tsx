@@ -34,7 +34,7 @@ export const invisibleNameDiscord: BlogPost = {
   title: "How to Get an Invisible or Blank Name on Discord (PC & Mobile, 2026)",
   metaTitle: "How to Get an Invisible Name on Discord (PC & Mobile, 2026)",
   description:
-    "Make your Discord name invisible in seconds. Copy a blank character, paste it as your display name or server nickname, and fix the 'invalid name' error on PC and mobile.",
+    "Make your Discord name invisible in seconds. Copy a blank character, paste it as your display name or nickname, and fix the 'invalid name' error on PC and mobile.",
   excerpt:
     "Get a blank Discord name on PC, Android and iPhone. Copy a working invisible character, set it as your display name or server nickname, and fix it when Discord rejects it.",
   tagline: "Blank characters, display name, nickname & fixes",

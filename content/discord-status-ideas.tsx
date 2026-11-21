@@ -9,7 +9,7 @@ import { STATUS_COUNT } from "./status-ideas-data";
 export const discordStatusIdeasPage = {
   path: "/discord-status-ideas",
   name: "Discord Status Ideas",
-  title: `${STATUS_COUNT} Discord Status Ideas (Funny, Aesthetic & Cool) – Copy & Paste`,
+  title: `${STATUS_COUNT} Discord Status Ideas – Funny, Aesthetic & Cool to Copy`,
   description: `Find the perfect Discord status. ${STATUS_COUNT} funny, aesthetic, cool, gamer and cute Discord status ideas you can copy and paste in one click.`,
   h1: "Discord Status Ideas",
   intro: `Your custom status is the first thing people see when they open your profile or the member list. Here are ${STATUS_COUNT} Discord status ideas, sorted by vibe: funny, aesthetic, cool, gamer, cute and more. Tap any status to copy it, then paste it into Discord.`,

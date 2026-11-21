@@ -31,7 +31,7 @@ const numberSets = [
 export const numberFontsPtBr: NumberFontsPageContent = {
   path: "/number-fonts",
   name: "Números Estilizados",
-  title: "Números Estilizados – Copie e Cole Números Bonitos (Negrito, Círculo e Mais)",
+  title: "Números Estilizados – Copie e Cole Números Bonitos",
   h1: "Gerador de Números Estilizados",
   intro:
     "Digite qualquer número abaixo para transformá-lo em números em negrito, em círculo, miniatura ou com contorno, prontos para copiar e colar no Discord, Instagram, jogos e onde mais quiser.",
