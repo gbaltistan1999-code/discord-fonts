@@ -1,3 +1,4 @@
+import { BlogImage } from "@/components/BlogImage";
 import Link from "next/link";
 import { CopyBlock, CopyChipRow, ServerLayoutCard, type ServerLayout } from "@/components/ServerLayouts";
 import type { BlogPost } from ".";
@@ -257,6 +258,14 @@ export const aestheticServerLayoutIdeas: BlogPost = {
   ],
   body: (
     <>
+      <BlogImage
+        src="/blog/aesthetic-discord-server-layout-ideas.webp"
+        alt="Aesthetic Discord server layouts: a pastel server with decorated channel categories and colored roles, plus gothic, cottagecore and gaming server themes"
+        href="/discord-symbols"
+        label="Discord Symbols"
+        priority
+      />
+
       <p>
         A great Discord server isn&apos;t just about who&apos;s in it. It&apos;s also about how it looks. A
         clean, aesthetic layout makes your server feel welcoming, helps new members find their way around, and
