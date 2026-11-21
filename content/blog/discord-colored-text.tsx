@@ -1,6 +1,7 @@
 import { BlogImage } from "@/components/BlogImage";
 import Link from "next/link";
 import { AnsiCodeBlock } from "@/components/AnsiCodeBlock";
+import { ColoredTextTool } from "@/components/ColoredTextTool";
 import type { BlogPost } from ".";
 
 /** The invisible escape character (U+001B) that starts every ANSI color instruction. */
@@ -34,11 +35,11 @@ export const discordColoredText: BlogPost = {
   slug: "discord-colored-text",
   title: "How to Write Colored Text in Discord (Easy 2026 Guide)",
   description:
-    "Learn how to type colored text in Discord using ANSI code blocks. Full color code chart, copy-paste examples, and fixes for when colors don't show up.",
-  tagline: "ANSI color codes, chart & copy-paste examples",
+    "Make colored text in Discord with our free generator, or learn ANSI code blocks: full color chart, copy-paste examples and fixes when colors don't show.",
+  tagline: "Generator, ANSI color chart & copy-paste examples",
   icon: "palette",
   datePublished: "2026-11-04",
-  dateModified: "2026-11-04",
+  dateModified: "2026-11-22",
   readingMinutes: 7,
   hideGeneratorCta: true,
   faqs: [
@@ -81,9 +82,17 @@ export const discordColoredText: BlogPost = {
         color chart, and copy ready-made examples you can paste straight into Discord.
       </p>
       <p>
-        Want to skip the codes? Jump to the <a href="#examples">copy-paste examples</a>. Every one has a copy
-        button that includes the hidden escape character, so it works the moment you paste it.
+        Want to skip the codes? Use the colored text generator below, or jump to the{" "}
+        <a href="#examples">copy-paste examples</a>. Every copy button includes the hidden escape character,
+        so it works the moment you paste it.
       </p>
+
+      <h2 id="generator">Discord colored text generator</h2>
+      <p>
+        Type your text, pick a color, and tap <strong>Copy</strong>. Paste it into any Discord message and
+        send it.
+      </p>
+      <ColoredTextTool headingLevel="p" />
 
       <BlogImage
         src="/blog/discord-colored-text-examples.webp"

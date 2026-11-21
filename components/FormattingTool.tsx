@@ -3,8 +3,9 @@
 import { useId, useState } from "react";
 import { en } from "@/content/i18n/strings/en";
 import type { FormattingStrings } from "@/content/i18n/types";
-import { ansiBackgroundColors, ansiBlock, ansiTextColors, markdownFormats } from "@/lib/formatting";
+import { markdownFormats } from "@/lib/formatting";
 import { fill } from "@/lib/i18n";
+import { ColoredTextTool, copyButtonClass } from "./ColoredTextTool";
 import { useCopy } from "./ToastProvider";
 
 /** How each format renders in a chat message, for the visual preview only. */
@@ -57,9 +58,6 @@ function renderPreview(id: string, text: string): React.ReactNode {
   }
 }
 
-const copyButtonClass =
-  "shrink-0 rounded-md border border-border px-3 py-1.5 text-sm font-medium text-text transition-colors hover:border-text/30 hover:bg-surface";
-
 export function FormattingTool({
   headingLevel = "h3",
   strings: t = en.formatting,
@@ -68,22 +66,12 @@ export function FormattingTool({
   /** Interface text in the page's language (English by default). */
   strings?: FormattingStrings;
 }) {
-  const Heading = headingLevel;
   const name = (id: string, fallback: string) => t.formatNames[id] ?? fallback;
-  const colorName = (code: number, fallback: string) => t.colorNames[code] ?? fallback;
-  const [ansiBefore, ansiAfter = ""] = t.coloredDescription.split("{ansi}");
   const inputId = useId();
   const copy = useCopy();
   const [text, setText] = useState("");
-  const [color, setColor] = useState(34);
-  const [background, setBackground] = useState<number | null>(null);
-  const [bold, setBold] = useState(false);
-  const [underline, setUnderline] = useState(false);
 
   const source = text.trim() ? text : t.sampleText;
-  const ansi = ansiBlock(source, { color, background, bold, underline });
-  const colorHex = ansiTextColors.find((c) => c.code === color)?.hex;
-  const backgroundHex = ansiBackgroundColors.find((c) => c.code === background)?.hex;
 
   return (
     <div>
@@ -130,98 +118,7 @@ export function FormattingTool({
         })}
       </ul>
 
-      <section
-        aria-labelledby={`${inputId}-ansi`}
-        className="mt-4 rounded-xl border border-border bg-surface px-4 py-4 sm:px-5"
-      >
-        <div className="flex flex-wrap items-start justify-between gap-3">
-          <div>
-            <Heading id={`${inputId}-ansi`} className="text-sm font-semibold">
-              {t.coloredTitle}
-            </Heading>
-            <p className="mt-0.5 text-xs text-muted">
-              {ansiBefore}
-              <code className="font-mono">ansi</code>
-              {ansiAfter}
-            </p>
-          </div>
-          <button type="button" onClick={() => copy(ansi, t.coloredLabel)} className={copyButtonClass}>
-            {t.copy}
-            <span className="sr-only"> {t.coloredLabel}</span>
-          </button>
-        </div>
-
-        <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-3">
-          <fieldset className="flex items-center gap-2">
-            <legend className="sr-only">{t.textColor}</legend>
-            {ansiTextColors.map((c) => (
-              <label key={c.code} title={colorName(c.code, c.name)} className="relative cursor-pointer">
-                <input
-                  type="radio"
-                  name={`${inputId}-color`}
-                  value={c.code}
-                  checked={color === c.code}
-                  onChange={() => setColor(c.code)}
-                  className="peer sr-only"
-                />
-                <span className="sr-only">{colorName(c.code, c.name)}</span>
-                <span
-                  aria-hidden="true"
-                  className="block size-6 rounded-full border border-black/15 ring-offset-2 ring-offset-surface peer-checked:ring-2 peer-checked:ring-text peer-focus-visible:ring-2 peer-focus-visible:ring-accent"
-                  style={{ background: c.hex }}
-                />
-              </label>
-            ))}
-          </fieldset>
-          <label className="flex items-center gap-2 text-sm text-muted">
-            {t.background}
-            <select
-              value={background ?? ""}
-              onChange={(e) => setBackground(e.target.value ? Number(e.target.value) : null)}
-              className="rounded-md border border-border bg-surface px-2 py-1.5 text-sm text-text"
-            >
-              <option value="">{t.none}</option>
-              {ansiBackgroundColors.map((c) => (
-                <option key={c.code} value={c.code}>
-                  {colorName(c.code, c.name)}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label className="flex items-center gap-2 text-sm text-muted">
-            <input
-              type="checkbox"
-              checked={bold}
-              onChange={(e) => setBold(e.target.checked)}
-              className="size-4 accent-[var(--accent-solid)]"
-            />
-            {t.bold}
-          </label>
-          <label className="flex items-center gap-2 text-sm text-muted">
-            <input
-              type="checkbox"
-              checked={underline}
-              onChange={(e) => setUnderline(e.target.checked)}
-              className="size-4 accent-[var(--accent-solid)]"
-            />
-            {t.underline}
-          </label>
-        </div>
-
-        <div aria-hidden="true" className="mt-4 rounded-lg bg-[#101117] px-3 py-2.5 font-mono text-sm">
-          <span
-            className="whitespace-pre-wrap"
-            style={{
-              color: colorHex,
-              background: backgroundHex,
-              fontWeight: bold ? 700 : 400,
-              textDecoration: underline ? "underline" : undefined,
-            }}
-          >
-            {source}
-          </span>
-        </div>
-      </section>
+      <ColoredTextTool source={source} headingLevel={headingLevel} strings={t} />
     </div>
   );
 }
