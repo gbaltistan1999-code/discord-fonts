@@ -1,4 +1,5 @@
 import type { Faq } from "../faqs";
+import { aestheticServerLayoutIdeas } from "./aesthetic-discord-server-layout-ideas";
 import { discordColoredText } from "./discord-colored-text";
 import { addEmojisToDiscordServer } from "./how-to-add-emojis-to-discord-server";
 import { changeDiscordTheme } from "./how-to-change-discord-theme";
@@ -39,6 +40,7 @@ export interface BlogPost {
 
 /** Newest first. To add a post, create a file in this folder and list it here. */
 export const blogPosts: readonly BlogPost[] = [
+  aestheticServerLayoutIdeas,
   invisibleNameDiscord,
   changeDiscordTheme,
   whatFontDoesDiscordUse,
