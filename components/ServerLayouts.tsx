@@ -104,25 +104,39 @@ export function ServerLayoutCard({ layout }: { layout: ServerLayout }) {
       <CopyChipRow items={layout.roles} className="mt-2" />
 
       <p className="mt-4 mb-0 text-sm font-semibold text-text">Role colors</p>
-      <div role="list" className="mt-2 flex flex-wrap gap-2">
-        {layout.colors.map((c) => (
-          <div role="listitem" key={c.hex}>
-            <button
-              type="button"
-              onClick={() => copy(c.hex, `${c.hex} (${c.name})`)}
-              className="flex min-h-10 items-center gap-2 rounded-lg border border-border bg-surface px-2.5 text-sm text-text transition-colors hover:border-accent"
-            >
-              <span
-                aria-hidden="true"
-                className="size-5 rounded-md border border-black/15"
-                style={{ background: c.hex }}
-              />
-              <span className="font-mono">{c.hex}</span>
-              <span className="text-muted">{c.name}</span>
-            </button>
-          </div>
-        ))}
-      </div>
+      <ColorSwatches colors={layout.colors} className="mt-2" />
+    </div>
+  );
+}
+
+/** Color swatches; tapping one copies its hex code. */
+export function ColorSwatches({
+  colors,
+  className = "",
+}: {
+  colors: readonly { hex: string; name: string }[];
+  className?: string;
+}) {
+  const copy = useCopy();
+  return (
+    <div role="list" className={`flex flex-wrap gap-2 ${className}`}>
+      {colors.map((c) => (
+        <div role="listitem" key={c.hex}>
+          <button
+            type="button"
+            onClick={() => copy(c.hex, `${c.hex} (${c.name})`)}
+            className="flex min-h-10 items-center gap-2 rounded-lg border border-border bg-surface px-2.5 text-sm text-text transition-colors hover:border-accent"
+          >
+            <span
+              aria-hidden="true"
+              className="size-5 rounded-md border border-black/15"
+              style={{ background: c.hex }}
+            />
+            <span className="font-mono">{c.hex}</span>
+            <span className="text-muted">{c.name}</span>
+          </button>
+        </div>
+      ))}
     </div>
   );
 }

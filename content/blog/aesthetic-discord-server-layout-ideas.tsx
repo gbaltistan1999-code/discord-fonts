@@ -350,7 +350,8 @@ export const aestheticServerLayoutIdeas: BlogPost = {
         </li>
         <li>
           <strong>Create roles.</strong> Open <strong>Server Settings → Roles → Create Role</strong>, paste a
-          role name, and enter the hex color code.
+          role name, and enter the hex color code. See our full guide on{" "}
+          <Link href="/blog/how-to-make-roles-in-discord">how to make roles in Discord</Link>.
         </li>
         <li>
           <strong>Set an icon and banner.</strong> Match your server icon and banner to your theme&apos;s
