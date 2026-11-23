@@ -181,7 +181,7 @@ export interface BuilderStrings {
   preview: string;
   textChannels: string;
   voiceChannels: string;
-  /** Neighbouring channels shown in the preview. */
+  /** Neighboring channels shown in the preview. */
   textNeighbour: string;
   voiceNeighbour: string;
   /** "{count}" and "{limit}" are filled in. */

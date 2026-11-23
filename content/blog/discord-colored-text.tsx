@@ -22,7 +22,7 @@ const backgroundColors = [
   ["40", "Firefly dark blue"],
   ["41", "Orange"],
   ["42", "Marble blue"],
-  ["43", "Greyish turquoise"],
+  ["43", "Grayish turquoise"],
   ["44", "Gray"],
   ["45", "Indigo"],
   ["46", "Light gray"],

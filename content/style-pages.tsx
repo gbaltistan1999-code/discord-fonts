@@ -14,7 +14,7 @@ export interface StylePage {
   featured: FeaturedStyles;
   body: React.ReactNode;
   related: readonly string[];
-  /** Own colour theme with the hero + list layout; pages without it use the standard layout. */
+  /** Own color theme with the hero + list layout; pages without it use the standard layout. */
   look?: {
     /** Accent theme class from globals.css, e.g. "accent-orange". */
     accent: string;
@@ -434,7 +434,7 @@ export const stylePages: readonly StylePage[] = [
         <h2>What Is Bubble Text?</h2>
         <p>
           Bubble text puts each letter inside a circle, like ⓑⓤⓑⓑⓛⓔ or Ⓑⓤⓑⓑⓛⓔ. Unicode includes these
-          “enclosed alphanumerics” for labelling lists and diagrams, and they have become a playful favorite
+          “enclosed alphanumerics” for labeling lists and diagrams, and they have become a playful favorite
           for Discord names. Unlike emoji, they inherit your text color, so they blend into the chat theme.
         </p>
         <h2>Bubble Styles Explained</h2>

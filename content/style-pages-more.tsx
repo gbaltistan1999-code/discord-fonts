@@ -342,7 +342,7 @@ export const moreStylePages: readonly StylePage[] = [
         <h2>Things to Know</h2>
         <p>
           A few capitals (ℂ, ℍ, ℕ, ℙ, ℚ, ℝ and ℤ) come from a different Unicode block than the rest, so on
-          some fonts they can look slightly different from neighbouring letters. That’s normal. Styled letters
+          some fonts they can look slightly different from neighboring letters. That’s normal. Styled letters
           also aren’t found by Discord’s member search, so keep part of your name plain if you want to be easy
           to mention. For square letters in boxes, try the{" "}
           <Link href="/discord-font-generator/square-text">square text generator</Link>, or get typewriter

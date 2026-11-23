@@ -82,7 +82,7 @@ export const whatFontDoesDiscordUse: BlogPost = {
       <p>
         The name is a gaming joke with a double meaning. &ldquo;gg&rdquo; is short for &ldquo;good
         game,&rdquo; which people type after matches, and it&apos;s also part of Discord&apos;s invite links
-        (discord.gg). Discord says the name also shows off one of its favourite letters in the font, the
+        (discord.gg). Discord says the name also shows off one of its favorite letters in the font, the
         lowercase &ldquo;g&rdquo;.
       </p>
 
@@ -246,7 +246,7 @@ export const whatFontDoesDiscordUse: BlogPost = {
       </ul>
       <p>
         <strong>Tip:</strong> for a banner that really feels like Discord, set the headline in Anton or
-        Poppins Extra Bold, use white text, and put it on Discord&apos;s blurple colour (<code>#5865F2</code>
+        Poppins Extra Bold, use white text, and put it on Discord&apos;s blurple color (<code>#5865F2</code>
         ).
       </p>
 

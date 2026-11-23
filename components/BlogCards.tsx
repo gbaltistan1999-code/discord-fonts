@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { BlogIcon, BlogPost } from "@/content/blog";
 
-/** Each card takes the next color in turn, so neighbouring cards never match. */
+/** Each card takes the next color in turn, so neighboring cards never match. */
 const CARD_COLORS = [
   {
     card: "border-teal-500/30 hover:border-teal-500/70",

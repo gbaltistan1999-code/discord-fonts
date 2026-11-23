@@ -180,7 +180,7 @@ export const numberFontsPage: NumberFontsPageContent = {
         </li>
         <li>
           <strong>Bios.</strong> Superscript numbers are perfect for small details, like your age, timezone or
-          a favourite number, without taking up much space.
+          a favorite number, without taking up much space.
         </li>
       </ul>
       <p>

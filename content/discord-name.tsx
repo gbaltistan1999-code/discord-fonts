@@ -177,7 +177,7 @@ export function DiscordNameArticle() {
       <p>
         Use a server nickname. It replaces your display name inside that server only, which is handy for clan
         tags, roleplay names or matching a server&apos;s theme. Open the server menu, choose the option to
-        edit your per-server profile, and paste your styled name into Nickname. If the option is greyed out,
+        edit your per-server profile, and paste your styled name into Nickname. If the option is grayed out,
         the server doesn&apos;t let members change nicknames, so ask a moderator.
       </p>
       <p>

@@ -128,7 +128,7 @@ export const platformPages: readonly PlatformPage[] = [
         </p>
         <h2>Why Some Characters Turn Into Hashtags</h2>
         <p>
-          Roblox runs every piece of text through its chat filter. Characters it doesn’t recognise, or text
+          Roblox runs every piece of text through its chat filter. Characters it doesn’t recognize, or text
           the filter can’t read, are often replaced with hashtags (####) or removed. Simple styles like{" "}
           <strong>Small Caps</strong>, <strong>Bold</strong> and <strong>Wide Spaced</strong> tend to survive
           better than heavy decorations or glitch text. Always preview your text after saving it.
@@ -730,7 +730,7 @@ export const platformPages: readonly PlatformPage[] = [
       {
         question: "Can I use fonts in my Steam profile summary?",
         answer:
-          "Yes. Fancy text works in your summary, reviews, comments and group pages, and Bold Sans headings help organise long sections.",
+          "Yes. Fancy text works in your summary, reviews, comments and group pages, and Bold Sans headings help organize long sections.",
       },
     ],
     h1: "Steam Fonts Generator",
@@ -757,7 +757,7 @@ export const platformPages: readonly PlatformPage[] = [
         <ul>
           <li>Some games show your Steam name in their own font, which may not display every symbol.</li>
           <li>Friends can still find you by your profile URL or friend code, even with a fancy name.</li>
-          <li>Use Bold Sans headings to organise a long profile summary or guide.</li>
+          <li>Use Bold Sans headings to organize a long profile summary or guide.</li>
         </ul>
       </>
     ),
@@ -934,7 +934,7 @@ export const platformPages: readonly PlatformPage[] = [
         <WhereItWorks
           rows={[
             ["Chats and replies", "Yes", "Every style works; keep long messages mostly plain."],
-            ["Status", "Yes", "Great for greetings and quotes over a colour background."],
+            ["Status", "Yes", "Great for greetings and quotes over a color background."],
             ["Profile name", "Yes", "Up to 25 characters, symbols included."],
             ["About line", "Yes", "A short styled line reads better than a whole sentence."],
             ["Group name and description", "Yes", "Add one emoji so the group is easy to spot."],
@@ -1489,7 +1489,7 @@ export const platformPages: readonly PlatformPage[] = [
       {
         question: "Can I use fancy fonts in my Twitch name?",
         answer:
-          "No. Twitch usernames only allow letters, numbers and underscores, and your display name can only change the capitalisation of your username. Use fancy text in your bio, panels, stream title and chat instead.",
+          "No. Twitch usernames only allow letters, numbers and underscores, and your display name can only change the capitalization of your username. Use fancy text in your bio, panels, stream title and chat instead.",
       },
       {
         question: "Can I use fancy text in Twitch chat?",
@@ -1518,7 +1518,7 @@ export const platformPages: readonly PlatformPage[] = [
         <h2>What Twitch Lets You Style</h2>
         <p>
           Let’s get the disappointing bit out of the way: your Twitch name can’t be fancy. Usernames only
-          allow letters, numbers and underscores, and your display name can only change capitalisation. Almost
+          allow letters, numbers and underscores, and your display name can only change capitalization. Almost
           everything else on your channel is fair game, though, and that’s where a consistent style makes your
           channel look put together.
         </p>
@@ -1535,9 +1535,9 @@ export const platformPages: readonly PlatformPage[] = [
 
         <h2>Building a Streamer Look</h2>
         <p>
-          Viewers recognise channels the way they recognise logos. Pick one signature style and use it for
+          Viewers recognize channels the way they recognize logos. Pick one signature style and use it for
           your panel headings, your schedule, your Discord server and your social bios. Competitive FPS
-          streams suit Bold Gothic, Sniper or Gamer Tag. Cosy, art and music streams suit script, small caps
+          streams suit Bold Gothic, Sniper or Gamer Tag. Cozy, art and music streams suit script, small caps
           and sparkle frames.
         </p>
         <p>A simple, readable panel set might look like this:</p>
@@ -1612,7 +1612,7 @@ export const platformPages: readonly PlatformPage[] = [
       {
         question: "Can I use these styles for my guild name?",
         answer:
-          "Yes. Guild names accept many of the same symbols. Keep it short and readable so new members can find and recognise your guild.",
+          "Yes. Guild names accept many of the same symbols. Keep it short and readable so new members can find and recognize your guild.",
       },
       {
         question: "Why does my name show boxes for some friends?",
@@ -1785,7 +1785,7 @@ export const platformPages: readonly PlatformPage[] = [
 
         <h2>Clan Names and Squad Style</h2>
         <p>
-          A matching clan style makes your squad look organised in the lobby. Many clans put the same symbol
+          A matching clan style makes your squad look organized in the lobby. Many clans put the same symbol
           in front of every member’s name, and use the same style for their Discord server so the team feels
           connected outside the game too.
         </p>
@@ -1889,7 +1889,7 @@ export const platformPages: readonly PlatformPage[] = [
         <h2>Tips</h2>
         <ul>
           <li>Search-friendly titles style one or two words and keep the game name plain.</li>
-          <li>Use the same name style on TikTok, YouTube and Discord so fans recognise you.</li>
+          <li>Use the same name style on TikTok, YouTube and Discord so fans recognize you.</li>
           <li>Plan your Epic display name carefully, since you can’t change it often.</li>
         </ul>
       </>
@@ -2171,7 +2171,7 @@ export const platformPages: readonly PlatformPage[] = [
           ]}
         />
 
-        <h2>Small Caps: The Server Favourite</h2>
+        <h2>Small Caps: The Server Favorite</h2>
         <p>
           If you’ve played on a big network, you’ve seen it: ᴠɪᴘ, ᴍᴏᴅ, ʙᴜɪʟᴅᴇʀ, ꜱᴛᴀᴛꜱ. Small caps look tidy
           next to the blocky pixel font and line up well in menus and scoreboards. If you run a server, using

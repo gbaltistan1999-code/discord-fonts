@@ -189,7 +189,7 @@ export const changeFontOnDiscord: BlogPost = {
       </p>
       <ol>
         <li>Write your bio somewhere first, like your notes app, so you can see the length.</li>
-        <li>Paste the line you want styled into the generator and copy your favourite style.</li>
+        <li>Paste the line you want styled into the generator and copy your favorite style.</li>
         <li>
           In Discord, go to <strong>User Settings &gt; Profiles</strong> (or <strong>Edit Profile</strong> on
           mobile) and find <strong>About Me</strong>.
