@@ -327,6 +327,10 @@ export const makeRolesInDiscord: BlogPost = {
           : channels, categories and roles to copy
         </li>
         <li>
+          <Link href="/blog/discord-server-rules-template">Discord server rules template</Link>: rules to copy
+          for your #rules channel
+        </li>
+        <li>
           <Link href="/discord-server-names">Discord server names</Link>: cool, cute and aesthetic ideas
         </li>
         <li>

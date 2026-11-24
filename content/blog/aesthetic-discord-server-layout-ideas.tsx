@@ -358,7 +358,9 @@ export const aestheticServerLayoutIdeas: BlogPost = {
           colors.
         </li>
         <li>
-          <strong>Write a welcome message.</strong> Use the template below in your welcome or rules channel.
+          <strong>Write a welcome message.</strong> Use the template below in your welcome channel, and grab
+          ready-made rules from our{" "}
+          <Link href="/blog/discord-server-rules-template">Discord server rules template</Link>.
         </li>
         <li>
           <strong>Test it as a member.</strong> Use <strong>View Server As Role</strong> in the role settings
