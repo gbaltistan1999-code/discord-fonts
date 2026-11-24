@@ -7,7 +7,7 @@ export const changeFontOnDiscord: BlogPost = {
   slug: "how-to-change-font-on-discord",
   title: "How to Change Your Font on Discord? (Names, Bios and Messages)",
   description:
-    "Discord has no font setting, but you can still use fancy fonts in your name, About Me, messages and server names. Here's how, plus fixes for fonts that show as boxes.",
+    "Discord has no font setting, but you can use fancy fonts in your name, About Me, messages and server names. Here's how, plus fixes for fonts showing as boxes.",
   tagline: "Fancy names, bios, messages & server names",
   icon: "type",
   datePublished: "2026-11-01",

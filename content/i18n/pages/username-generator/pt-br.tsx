@@ -15,7 +15,7 @@ export const usernameGeneratorPagePtBr = {
   name: "Gerador de Nome de Usuário para Discord",
   title: "Gerador de Nomes de Usuário para Discord – Únicos e Estilosos",
   description:
-    "Gere nomes de usuário para Discord legais e únicos na hora. Escolha um estilo, adicione uma palavra e copie nomes que seguem as regras do Discord. Grátis, sem cadastro.",
+    "Gere nomes de usuário para Discord legais e únicos na hora. Escolha um estilo, adicione uma palavra e copie nomes que seguem as regras do Discord. Grátis.",
   h1: "Gerador de Nome de Usuário para Discord",
   intro:
     "Encontre nomes de usuário legais e únicos que realmente seguem as regras do Discord. Escolha um estilo, adicione uma palavra se quiser e copie o que tem a sua cara.",

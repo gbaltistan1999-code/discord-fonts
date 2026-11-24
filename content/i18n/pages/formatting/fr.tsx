@@ -126,7 +126,7 @@ export const formattingFr: FormattingPageContent = {
   name: "Mise en forme du texte Discord",
   title: "Mise en forme du texte Discord – Gras, couleur et markdown",
   description:
-    "Apprenez la mise en forme du texte sur Discord : gras, italique, souligné, spoiler, titres, sous-texte, blocs de code et texte en couleur. Copiez le markdown en un clic.",
+    "Mise en forme du texte sur Discord : gras, italique, souligné, spoiler, titres, sous-texte, blocs de code et texte en couleur. Copiez le markdown en un clic.",
   h1: "Mise en forme du texte Discord : guide du markdown et générateur",
   intro:
     "Tapez votre message une fois et copiez-le en gras, italique, souligné, spoiler, titre, sous-texte, code ou couleur, le tout avec le markdown intégré de Discord.",

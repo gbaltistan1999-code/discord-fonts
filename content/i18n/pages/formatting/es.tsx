@@ -122,7 +122,7 @@ export const formattingEs: FormattingPageContent = {
   name: "Formato de texto de Discord",
   title: "Formato de texto de Discord – Negrita, colores y markdown",
   description:
-    "Aprende a dar formato al texto en Discord: negrita, cursiva, subrayado, spoiler, títulos, subtexto, bloques de código y texto de colores. Copia el markdown al instante.",
+    "Aprende a dar formato al texto en Discord: negrita, cursiva, subrayado, spoiler, títulos, subtexto, bloques de código y colores. Copia el markdown al instante.",
   h1: "Formato de texto de Discord: guía de markdown y generador",
   intro:
     "Escribe tu mensaje una vez y cópialo en negrita, cursiva, subrayado, spoiler, título, subtexto, código o texto de colores, todo con el markdown integrado de Discord.",

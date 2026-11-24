@@ -130,7 +130,7 @@ export function HomeHero({
           <h1 className="leading-[1.05] font-extrabold tracking-tight text-balance">
             {tagline ? (
               <>
-                <span className="block text-4xl text-slate-900 sm:text-6xl dark:text-white">{h1}</span>
+                <span className="block text-4xl text-slate-900 sm:text-6xl dark:text-white">{h1}</span>{" "}
                 <span className="relative mt-3 inline-block bg-linear-to-r from-violet-700 via-purple-600 to-fuchsia-600 bg-clip-text pb-3 text-2xl text-transparent sm:text-4xl dark:from-violet-300 dark:via-purple-300 dark:to-fuchsia-300">
                   {tagline}
                   <svg
