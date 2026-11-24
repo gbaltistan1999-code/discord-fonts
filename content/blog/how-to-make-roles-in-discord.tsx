@@ -1,3 +1,4 @@
+import { BlogImage } from "@/components/BlogImage";
 import Link from "next/link";
 import { ColorSwatches, CopyChipRow } from "@/components/ServerLayouts";
 import { convert } from "@/lib/fonts";
@@ -103,6 +104,14 @@ export const makeRolesInDiscord: BlogPost = {
   ],
   body: (
     <>
+      <BlogImage
+        src="/blog/how-to-make-roles-in-discord.webp"
+        alt="Discord Roles settings screen: Owner, Admin, Moderator, Helper and Booster roles, a role color picker with hex code #9B59B6, and members whose names show their role colors"
+        href="/"
+        label="Discord Font Generator"
+        priority
+      />
+
       <p>
         Roles are how Discord servers stay organized. They give people colored names, control who can see
         which channels, and show at a glance who the moderators are. Making them only takes a minute once you
