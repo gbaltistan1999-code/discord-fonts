@@ -140,3 +140,26 @@ export function ColorSwatches({
     </div>
   );
 }
+
+/** Full-sentence messages in a grid; tap one to copy it. */
+export function CopyLineList({ items, className = "" }: { items: readonly string[]; className?: string }) {
+  const copy = useCopy();
+  return (
+    <div role="list" className={`grid gap-2 sm:grid-cols-2 ${className}`}>
+      {items.map((item) => (
+        <div role="listitem" key={item} className="flex">
+          <button
+            type="button"
+            onClick={() => copy(item, "Message")}
+            className="flex w-full items-start justify-between gap-3 rounded-lg border border-border bg-surface px-3 py-2.5 text-left text-[15px] leading-snug text-text transition-colors hover:border-accent hover:bg-accent-soft"
+          >
+            <span className="min-w-0 break-words whitespace-pre-line">{item}</span>
+            <span aria-hidden="true" className="shrink-0 pt-0.5 text-xs font-semibold text-accent">
+              Copy
+            </span>
+          </button>
+        </div>
+      ))}
+    </div>
+  );
+}

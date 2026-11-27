@@ -5,6 +5,7 @@ import { addEmojisToDiscordServer } from "./how-to-add-emojis-to-discord-server"
 import { changeDiscordTheme } from "./how-to-change-discord-theme";
 import { changeNicknameOnDiscord } from "./how-to-change-nickname-on-discord";
 import { makeRolesInDiscord } from "./how-to-make-roles-in-discord";
+import { discordWelcomeMessageIdeas } from "./discord-welcome-message-ideas";
 import { discordServerRulesTemplate } from "./discord-server-rules-template";
 import { changeFontOnDiscord } from "./how-to-change-font-on-discord";
 import { invisibleNameDiscord } from "./invisible-name-discord";
@@ -42,6 +43,7 @@ export interface BlogPost {
 
 /** Newest first. To add a post, create a file in this folder and list it here. */
 export const blogPosts: readonly BlogPost[] = [
+  discordWelcomeMessageIdeas,
   discordServerRulesTemplate,
   makeRolesInDiscord,
   aestheticServerLayoutIdeas,

@@ -293,7 +293,11 @@ export const discordServerRulesTemplate: BlogPost = {
           <Link href="/blog/aesthetic-discord-server-layout-ideas">
             Aesthetic Discord server layout ideas
           </Link>
-          : channels, categories and a welcome message to copy
+          : channels and categories to copy
+        </li>
+        <li>
+          <Link href="/blog/discord-welcome-message-ideas">Discord welcome message ideas</Link>: messages and
+          templates for your #welcome channel
         </li>
         <li>
           <Link href="/blog/how-to-make-roles-in-discord">How to make roles in Discord</Link>: create, color

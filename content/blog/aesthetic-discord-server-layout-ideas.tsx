@@ -369,7 +369,10 @@ export const aestheticServerLayoutIdeas: BlogPost = {
       </ol>
 
       <h2>Aesthetic Welcome Message Template</h2>
-      <p>Copy this into your welcome channel and edit the text in [brackets]:</p>
+      <p>
+        Copy this into your welcome channel and edit the text in [brackets]. For more styles, see our{" "}
+        <Link href="/blog/discord-welcome-message-ideas">Discord welcome message ideas</Link>.
+      </p>
       <CopyBlock text={welcomeMessage} label="Welcome message" />
       <p>
         After pasting, retype each <code>#channel</code> and pick it from the list that pops up, so it becomes
